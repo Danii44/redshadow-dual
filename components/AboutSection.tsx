@@ -30,40 +30,8 @@ export function AboutSection() {
               className="w-full h-full object-cover opacity-95"
             />
 
-            {/* Subtle Gradient & Scan line Overlay */}
+            {/* Subtle Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10" />
-
-            {/* Laser Line Scanning Effect */}
-            <motion.div 
-              className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#00d4ff] to-transparent shadow-[0_0_15px_#00d4ff] z-20 pointer-events-none"
-              animate={{ top: ['0%', '100%', '0%'] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-            />
-
-            {/* Floating Technical Telemetry Badge */}
-            <div className="absolute top-6 left-6 flex items-center gap-2 bg-black/70 backdrop-blur-md px-3.5 py-1.5 rounded-lg border border-[rgba(0,212,255,0.4)] z-30">
-              <span className="w-2 h-2 rounded-full bg-[#00d4ff] animate-ping" />
-              <span className="text-[0.68rem] font-mono text-[#00d4ff] uppercase tracking-widest font-bold">
-                ORBEI // Exploded 3D Render Video
-              </span>
-            </div>
-
-            <div className="absolute top-6 right-6 text-right hidden sm:block z-30">
-              <div className="text-[0.6rem] font-mono text-white/50 uppercase">Rendering Fidelity</div>
-              <div className="text-xs font-mono text-green-400 font-bold">60 FPS Photorealistic</div>
-            </div>
-
-            {/* Corner HUD Brackets */}
-            <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-[#00d4ff]/70 rounded-tl-md pointer-events-none z-30" />
-            <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-[#7c3aed]/70 rounded-tr-md pointer-events-none z-30" />
-            <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-[#7c3aed]/70 rounded-bl-md pointer-events-none z-30" />
-            <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-[#00d4ff]/70 rounded-br-md pointer-events-none z-30" />
-
-            {/* Status Badge */}
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full border border-[rgba(0,212,255,0.4)] bg-black/90 backdrop-blur-md text-[#00d4ff] text-[0.65rem] font-mono uppercase tracking-widest whitespace-nowrap z-30 flex items-center gap-2 shadow-[0_0_20px_rgba(0,212,255,0.3)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              3D Parametric Exploded Video Loop · Red Shadow Designs
-            </div>
           </div>
 
           <div className="about-image-glow" />

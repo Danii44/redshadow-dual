@@ -33,6 +33,7 @@ const impactItems = [
 
 export default function PortfolioShowcase() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const trackContainerRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
@@ -43,28 +44,26 @@ export default function PortfolioShowcase() {
 
   useEffect(() => {
     const section = sectionRef.current;
+    const trackContainer = trackContainerRef.current;
     const track = trackRef.current;
-    if (!section || !track) return;
-
-    // debug log to confirm client initialization
-    console.debug('PortfolioShowcase mounted', { sectionExists: !!section, trackExists: !!track });
+    if (!section || !trackContainer || !track) return;
 
     let ctx: gsap.Context | null = null;
-    let alive = true;
+    let isActive = true;
 
-    const getDistance = () => Math.max(track.scrollWidth - section.clientWidth + 40, 0);
+    const getDistance = () => Math.max(track.scrollWidth - trackContainer.clientWidth + 40, 0);
 
     const clearTriggers = () => {
       ScrollTrigger.getAll().forEach((trigger) => {
         const triggerEl = trigger.trigger as HTMLElement | null;
-        if (triggerEl === section || triggerEl === track) {
+        if (triggerEl === section || triggerEl === trackContainer || triggerEl === track) {
           trigger.kill();
         }
       });
     };
 
     const init = () => {
-      if (!alive) return;
+      if (!isActive) return;
       clearTriggers();
 
       ctx = gsap.context(() => {
@@ -100,6 +99,7 @@ export default function PortfolioShowcase() {
           if (img.complete) {
             return img.decode().catch(() => undefined);
           }
+
           return new Promise<void>((resolve) => {
             img.addEventListener('load', () => img.decode().catch(() => undefined).then(() => resolve()), { once: true });
             img.addEventListener('error', () => resolve(), { once: true });
@@ -108,12 +108,11 @@ export default function PortfolioShowcase() {
       );
     };
 
-    // Initialize when images are preloaded AND when section enters viewport.
     let io: IntersectionObserver | null = null;
 
     const onReady = () => {
       requestAnimationFrame(() => {
-        if (alive) {
+        if (isActive) {
           init();
           console.info('PortfolioShowcase: ScrollTrigger initialized');
         }
@@ -121,7 +120,6 @@ export default function PortfolioShowcase() {
     };
 
     preloadImages().then(() => {
-      // If section is already visible, init immediately.
       if (section.getBoundingClientRect().top < window.innerHeight) {
         onReady();
       } else {
@@ -145,7 +143,7 @@ export default function PortfolioShowcase() {
     window.addEventListener('resize', handleResize);
 
     return () => {
-      alive = false;
+      isActive = false;
       window.removeEventListener('resize', handleResize);
       if (ctx) ctx.revert();
       if (io) io.disconnect();
@@ -172,7 +170,7 @@ export default function PortfolioShowcase() {
           </p>
         </motion.div>
 
-        <div className="portfolio-track-container">
+        <div ref={trackContainerRef} className="portfolio-track-container">
           <div ref={trackRef} className="portfolio-track">
             {projects.map((project) => (
               <motion.div

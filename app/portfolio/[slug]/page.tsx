@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { findProject } from '@/lib/projects';
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = findProject(params.slug);
+  const { slug } = await params;
+  const project = findProject(slug);
   if (!project) return { title: 'Project not found' };
+
   return {
     title: `${project.title} | Red Shadow Designs`,
     description: project.description,
@@ -18,8 +20,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function ProjectPage({ params }: Props) {
-  const project = findProject(params.slug);
+export default async function ProjectPage({ params }: Props) {
+  const { slug } = await params;
+  const project = findProject(slug);
+
   if (!project) {
     return (
       <main className="max-w-4xl mx-auto py-24 px-6 text-center">

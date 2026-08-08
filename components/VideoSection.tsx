@@ -11,10 +11,13 @@ export default function VideoSection() {
   const subtitleColor = isLight ? 'text-[#3e325d]/80' : 'text-white/60';
   const cardBg = isLight ? 'bg-white' : 'bg-[#0a0a0a]';
   const cardBorder = isLight ? 'border-[rgba(93,75,139,0.15)]' : 'border-[rgba(0,212,255,0.15)]';
-  const imageBlend = isLight ? 'opacity-100 mix-blend-normal' : 'opacity-60 mix-blend-lighten';
+  const imageBlend = 'opacity-100 mix-blend-normal';
   const overlayGradient = isLight
-    ? 'linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0), transparent)'
+    ? 'linear-gradient(to top, rgba(255,255,255,0.14), rgba(255,255,255,0.06), transparent)'
     : 'linear-gradient(to top, rgba(6,9,18,0.95), rgba(6,9,18,0), transparent)';
+  const imageStyle = isLight
+    ? { filter: 'contrast(1.05) saturate(1.08)' }
+    : { filter: 'brightness(0.88) saturate(1.1)' };
 
   return (
     <section className={`relative w-full py-32 ${sectionBg} z-10`}>
@@ -45,7 +48,8 @@ export default function VideoSection() {
           <img
             src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop"
             alt="Engineering Video Placeholder"
-            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${imageBlend}`}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            style={imageStyle}
           />
           <div
             className="absolute inset-0 pointer-events-none"
