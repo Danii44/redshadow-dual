@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 /**
  * Footer.tsx - Premium Footer Component
@@ -7,6 +7,8 @@
  */
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { services } from '@/lib/services';
 import './Footer.css';
 
 export function Footer() {
@@ -42,10 +44,10 @@ export function Footer() {
           >
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/services">Services</a></li>
-              <li><a href="/portfolio">Portfolio</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="/services">Services</Link></li>
+              <li><Link href="/portfolio">Portfolio</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </motion.div>
 
@@ -58,10 +60,9 @@ export function Footer() {
           >
             <h4>Core Services</h4>
             <ul>
-              <li><a href="/services">CAD Design</a></li>
-              <li><a href="/services">3D Rendering</a></li>
-              <li><a href="/services">Product Design</a></li>
-              <li><a href="/services">Engineering</a></li>
+              {services.slice(0, 4).map((s) => (
+                <li key={s.slug}><Link href={`/services/${s.slug}`}>{s.title}</Link></li>
+              ))}
             </ul>
           </motion.div>
 

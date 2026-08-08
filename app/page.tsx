@@ -15,22 +15,26 @@ if (typeof window !== 'undefined') {
 const HeroModelSection   = dynamic(() => import('@/components/HeroModelSection'),    { ssr: false });
 const AboutSection       = dynamic(() => import('@/components/AboutSection'),         { ssr: false });
 const VideoSection       = dynamic(() => import('@/components/VideoSection'),         { ssr: false });
-const ServicesEnhanced   = dynamic(() => import('@/components/ServicesEnhanced'),     { ssr: false });
+const ServicesEnhanced     = dynamic(() => import('@/components/ServicesEnhanced'),     { ssr: false });
 const ClientMarqueeSection = dynamic(() => import('@/components/ClientMarqueeSection'), { ssr: false });
-const PortfolioEnhanced  = dynamic(() => import('@/components/PortfolioEnhanced'),    { ssr: false });
-const ProcessSection     = dynamic(() => import('@/components/ProcessSection'),       { ssr: false });
-const Testimonials3DEnhanced = dynamic(() => import('@/components/Testimonials3DEnhanced'), { ssr: false });
-const FAQSection         = dynamic(() => import('@/components/FAQSection'),           { ssr: false });
-const ContactEnhanced    = dynamic(() => import('@/components/ContactEnhanced'),      { ssr: false });
+const PortfolioShowcase    = dynamic(() => import('@/components/PortfolioShowcase'),    { ssr: false });
+const ProcessSection       = dynamic(() => import('@/components/ProcessSection'),       { ssr: false });
+const FAQSection           = dynamic(() => import('@/components/FAQSection'),           { ssr: false });
+const ContactEnhanced      = dynamic(() => import('@/components/ContactEnhanced'),      { ssr: false });
 
 export default function Page() {
   useEffect(() => {
-    const timeout = window.setTimeout(() => {
+    const rafId = window.requestAnimationFrame(() => {
       ScrollTrigger.sort();
       ScrollTrigger.refresh();
-    }, 500);
 
-    return () => window.clearTimeout(timeout);
+      if (window.location.hash === '#portfolio') {
+        const section = document.getElementById('portfolio');
+        section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    return () => window.cancelAnimationFrame(rafId);
   }, []);
 
   return (
@@ -45,9 +49,8 @@ export default function Page() {
         <VideoSection />
         <ServicesEnhanced />
         <ClientMarqueeSection />
-        <PortfolioEnhanced />
+        <PortfolioShowcase />
         <ProcessSection />
-        <Testimonials3DEnhanced />
         <FAQSection />
         <ContactEnhanced />
       </main>

@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
+import { services } from '@/lib/services';
 import './NavigationResponsive.css';
 
 export function NavigationResponsive() {
@@ -42,12 +43,13 @@ export function NavigationResponsive() {
   }, []);
 
   const activeItem = routeMap[pathname] || 'Home';
+  const portfolioHref = pathname === '/' ? '#portfolio' : '/#portfolio';
 
   const menuItems = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
-    { label: 'Portfolio', href: '/portfolio' },
+    { label: 'Portfolio', href: portfolioHref },
     { label: 'Contact', href: '/contact' },
   ];
 
@@ -82,10 +84,23 @@ export function NavigationResponsive() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           {menuItems.map((item, index) => (
-            <li key={index}>
+            <li key={index} className={item.label === 'Services' ? 'has-dropdown' : ''}>
               <Link href={item.href} className={activeItem === item.label ? 'active' : ''}>
                 {item.label}
               </Link>
+              {item.label === 'Services' && (
+                <ul className="nav-dropdown">
+                  {services.slice(0, 4).map((s) => (
+                    <li key={s.slug}>
+                      <Link href={`/services/${s.slug}`}>{s.title}</Link>
+                    </li>
+                  ))}
+                  <li className="divider" />
+                  <li>
+                    <Link href="/services">All Services</Link>
+                  </li>
+                </ul>
+              )}
             </li>
           ))}
         </motion.ul>
@@ -194,6 +209,19 @@ export function NavigationResponsive() {
                   >
                     {item.label}
                   </Link>
+                  {item.label === 'Services' && (
+                    <ul className="nav-mobile-sublist">
+                      {services.slice(0, 4).map((s) => (
+                        <li key={s.slug}>
+                          <Link href={`/services/${s.slug}`} onClick={() => setIsOpen(false)}>{s.title}</Link>
+                        </li>
+                      ))}
+                      <li className="divider" />
+                      <li>
+                        <Link href="/services" onClick={() => setIsOpen(false)}>All Services</Link>
+                      </li>
+                    </ul>
+                  )}
                 </motion.li>
               ))}
             </ul>

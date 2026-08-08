@@ -176,6 +176,8 @@ export function GLBModelViewer() {
           el.style.outline = 'none';
           el.style.boxShadow = 'none';
           el.style.background = wrapperBackground;
+          // Improve touch responsiveness on mobile devices
+          try { el.style.touchAction = 'none'; } catch (e) { /* ignore */ }
         }}
       >
         <CanvasClearColor isLight={isLight} />

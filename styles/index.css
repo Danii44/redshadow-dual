@@ -154,6 +154,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    scroll-behavior: smooth;
     /* Dark mode body gradient */
     background:
       radial-gradient(circle at top left, rgba(0, 212, 255, 0.08), transparent 22%),

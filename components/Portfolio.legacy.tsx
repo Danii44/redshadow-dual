@@ -1,10 +1,6 @@
 /**
- * Portfolio.tsx - Portfolio Showcase Section
- * 
- * Design: Immersive glass presentations with 3D effects
- * - Portfolio cards with hover depth and tilt
- * - Glassmorphism with reflections
- * - Staggered animations
+ * Legacy Portfolio.tsx preserved as Portfolio.legacy.tsx
+ * Kept for reference; replace with client-only `PortfolioShowcase` for interactive experiences.
  */
 
 import { motion } from 'framer-motion';
@@ -63,11 +59,10 @@ const itemVariants = {
   },
 };
 
-export function Portfolio() {
+export function PortfolioLegacy() {
   return (
     <section id="portfolio" className="portfolio-section">
       <div className="portfolio-container">
-        {/* Section Header */}
         <motion.div
           className="section-header"
           initial={{ opacity: 0, y: -20 }}
@@ -76,12 +71,9 @@ export function Portfolio() {
           viewport={{ once: true }}
         >
           <h2 className="section-title">Portfolio</h2>
-          <p className="section-subtitle">
-            Featured projects showcasing our expertise
-          </p>
+          <p className="section-subtitle">Featured projects showcasing our expertise</p>
         </motion.div>
 
-        {/* Portfolio Grid */}
         <motion.div
           className="portfolio-grid"
           variants={containerVariants}
@@ -90,12 +82,7 @@ export function Portfolio() {
           viewport={{ once: true }}
         >
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="portfolio-card"
-              variants={itemVariants}
-              whileHover={{ y: -12, rotateX: 5 }}
-            >
+            <motion.div key={index} className="portfolio-card" variants={itemVariants} whileHover={{ y: -12, rotateX: 5 }}>
               <div className="portfolio-image-placeholder">
                 <div className="placeholder-icon">📦</div>
               </div>
@@ -113,4 +100,4 @@ export function Portfolio() {
   );
 }
 
-export default Portfolio;
+export default PortfolioLegacy;

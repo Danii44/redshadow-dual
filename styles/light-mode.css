@@ -274,14 +274,14 @@
   font-weight: 700 !important;
 }
 
-:root:not(.dark) .portfolio-title {
+:root:not(.dark) .portfolio-enhanced-title {
   background: linear-gradient(135deg, #3E325D 0%, #5D4B8B 50%, #7c3aed 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
 }
 
-:root:not(.dark) .portfolio-subtitle {
+:root:not(.dark) .portfolio-enhanced-subtitle {
   color: rgba(30, 24, 48, 0.82) !important;
 }
 
