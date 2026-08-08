@@ -1,0 +1,193 @@
+/**
+ * Portfolio.css - Portfolio Section Styling
+ * 
+ * Design: Immersive glass presentations with depth
+ */
+
+.portfolio-section {
+  position: relative;
+  padding: 120px 20px;
+  background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0a 100%);
+  overflow: hidden;
+}
+
+.portfolio-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: rgba(232, 232, 232, 0.6);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+/* Portfolio Card */
+.portfolio-card {
+  position: relative;
+  height: 400px;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.25), inset 0 0 30px rgba(0, 212, 255, 0.08);
+}
+
+/* Portfolio Image Placeholder */
+.portfolio-image-placeholder {
+  flex: 1;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-image-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-image-placeholder::before {
+  opacity: 1;
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  opacity: 0.6;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-card:hover .placeholder-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* Portfolio Content */
+.portfolio-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Portfolio Category */
+.portfolio-category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #00d4ff;
+  font-family: 'Space Mono', monospace;
+}
+
+/* Portfolio Title */
+.portfolio-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #e8e8e8;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Portfolio Description */
+.portfolio-description {
+  font-size: 0.9rem;
+  color: rgba(232, 232, 232, 0.6);
+  margin: 0;
+  line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Portfolio Glow */
+.portfolio-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.portfolio-card:hover .portfolio-glow {
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .portfolio-section {
+    padding: 80px 16px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .section-header {
+    margin-bottom: 60px;
+  }
+
+  .portfolio-card {
+    height: 300px;
+  }
+
+  .portfolio-content {
+    padding: 16px;
+  }
+
+  .placeholder-icon {
+    font-size: 3rem;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-card,
+  .placeholder-icon,
+  .portfolio-glow {
+    transition: none;
+  }
+}

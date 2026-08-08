@@ -1,0 +1,307 @@
+/**
+ * ReviewsSection.css - sleek stacked testimonial deck with wheel/swipe controls
+ */
+
+.reviews-section {
+  position: relative;
+  padding: 6rem 0 3rem;
+  background:
+    radial-gradient(circle at top left, rgba(0, 212, 255, 0.08), transparent 26%),
+    linear-gradient(180deg, rgba(5, 6, 19, 0.95) 0%, #02030a 100%);
+  overflow: hidden;
+}
+
+.reviews-shell {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1240px;
+  padding: 2rem 1.5rem 2.5rem;
+  border-radius: 40px;
+  background: rgba(6, 9, 18, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+.reviews-background-glow {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 460px;
+  height: 460px;
+  transform: translate(-50%, -40%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(0, 212, 255, 0.18), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.24), transparent 40%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.reviews-header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 2rem;
+  z-index: 1;
+}
+
+.reviews-pill {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  background: rgba(0, 212, 255, 0.08);
+  color: #a3f0ff;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.66rem;
+}
+
+.reviews-header h2 {
+  font-size: clamp(2.25rem, 5vw, 3.8rem);
+  margin: 0;
+  color: #fff;
+  font-family: 'Space Mono', monospace;
+  background: linear-gradient(135deg, #8bf4ff 0%, #7c3aed 52%, #26c8ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviews-header p {
+  margin: 1rem auto 0;
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.reviews-carousel-shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.8rem;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.reviews-stage {
+  position: relative;
+  width: min(820px, 100%);
+  min-height: 360px;
+  height: 420px;
+}
+
+.review-card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: min(820px, 100%);
+  margin: 0 auto;
+  padding: 2.4rem;
+  border-radius: 30px;
+  background: rgba(10, 13, 26, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+  transform-origin: center center;
+  will-change: transform, opacity, filter;
+  transition: transform 0.64s ease, opacity 0.64s ease, filter 0.64s ease, z-index 0s linear;
+}
+
+.review-ribbon {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #9fe8ff;
+  padding: 0.38rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.28);
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 74px;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.95), rgba(124, 58, 237, 0.7));
+  border-radius: 9999px;
+}
+
+.review-card.is-active {
+  border-color: rgba(0, 212, 255, 0.28);
+  box-shadow: 0 30px 110px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(0, 212, 255, 0.08);
+}
+
+.review-card.is-prev,
+.review-card.is-next,
+.review-card.is-deep {
+  pointer-events: none;
+}
+
+.review-card.is-next,
+.review-card.is-prev,
+.review-card.is-deep {
+  opacity: 0.86;
+}
+
+.review-quote {
+  margin: 1rem 0 2rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1.05rem, 1.2vw, 1.18rem);
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  opacity: 0.96;
+}
+
+.review-meta::before {
+  content: '•';
+  color: rgba(255, 255, 255, 0.36);
+}
+
+.review-name {
+  font-size: 1.04rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.review-role {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.reviews-controls {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.carousel-button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: #c0efff;
+  font-size: 1.5rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carousel-button:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.14);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.carousel-dot.active {
+  width: 14px;
+  height: 14px;
+  background: #39d8ff;
+  box-shadow: 0 0 18px rgba(57, 216, 255, 0.38);
+}
+
+.reviews-marquee-wrap {
+  position: relative;
+  overflow: hidden;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+}
+
+.reviews-marquee-track {
+  display: flex;
+  gap: 0.9rem;
+  min-width: max-content;
+  animation: marqueeScroll 24s linear infinite;
+}
+
+.marquee-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #b9f3ff;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.66rem;
+  white-space: nowrap;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 980px) {
+  .reviews-shell {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .reviews-stage {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 640px) {
+  .reviews-stage {
+    min-height: 470px;
+  }
+
+  .review-card {
+    padding: 1.6rem;
+  }
+
+  .review-quote {
+    font-size: 1rem;
+  }
+}

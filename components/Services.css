@@ -1,0 +1,138 @@
+/**
+ * Services.css - Services Section Styling
+ * 
+ * Design: Glassmorphism cards with depth and animations
+ */
+
+.services-section {
+  position: relative;
+  padding: 120px 20px;
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+  overflow: hidden;
+}
+
+.services-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: rgba(232, 232, 232, 0.6);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* Service Card */
+.service-card {
+  position: relative;
+  padding: 32px 24px;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.service-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.2), inset 0 0 20px rgba(0, 212, 255, 0.05);
+}
+
+/* Service Glow Effect */
+.service-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.service-card:hover .service-glow {
+  opacity: 1;
+}
+
+/* Service Icon */
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* Service Title */
+.service-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e8e8e8;
+  margin: 0 0 12px 0;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Service Description */
+.service-description {
+  font-size: 0.95rem;
+  color: rgba(232, 232, 232, 0.6);
+  margin: 0;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 80px 16px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .section-header {
+    margin-bottom: 60px;
+  }
+
+  .service-card {
+    padding: 24px 16px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .service-card {
+    transition: none;
+  }
+
+  .service-glow {
+    transition: none;
+  }
+}

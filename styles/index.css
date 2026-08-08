@@ -1,0 +1,790 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ============================================================
+   LIGHT MODE (default :root) — User's lavender palette
+   #3E325D dark purple · #D7D1E6 light lavender · #DFD7F4 soft
+   #D0C9E2 muted · #5D4B8B medium purple
+   ============================================================ */
+:root {
+  --radius: 0.65rem;
+
+  /* Brand colours */
+  --brand-dark:    #3E325D;
+  --brand-primary: #5D4B8B;
+  --brand-mid:     #7c3aed;
+  --brand-light:   #D0C9E2;
+  --brand-lightest:#DFD7F4;
+
+  /* Semantic tokens — light mode */
+  --background:         #f4f1f9;
+  --foreground:         #1e1830;
+  --card:               #ffffff;
+  --card-foreground:    #2a2240;
+  --popover:            #ffffff;
+  --popover-foreground: #2a2240;
+  --primary:            #5D4B8B;
+  --primary-foreground: #ffffff;
+  --secondary:          #D0C9E2;
+  --secondary-foreground:#3E325D;
+  --muted:              #DFD7F4;
+  --muted-foreground:   #6b5f87;
+  --accent:             #5D4B8B;
+  --accent-foreground:  #ffffff;
+  --destructive:        #cc2233;
+  --destructive-foreground:#ffffff;
+  --border:             rgba(62, 50, 93, 0.15);
+  --input:              rgba(62, 50, 93, 0.08);
+  --ring:               #5D4B8B;
+
+  /* Charts */
+  --chart-1: #5D4B8B;
+  --chart-2: #7c3aed;
+  --chart-3: #D0C9E2;
+  --chart-4: #3E325D;
+  --chart-5: #DFD7F4;
+
+  /* Sidebar */
+  --sidebar:                  #3E325D;
+  --sidebar-foreground:       #DFD7F4;
+  --sidebar-primary:          #5D4B8B;
+  --sidebar-primary-foreground:#ffffff;
+  --sidebar-accent:           #D0C9E2;
+  --sidebar-accent-foreground:#3E325D;
+  --sidebar-border:           rgba(62, 50, 93, 0.2);
+  --sidebar-ring:             #5D4B8B;
+}
+
+/* ============================================================
+   DARK MODE — existing Red Shadow dark aesthetic
+   ============================================================ */
+.dark {
+  --radius: 0.65rem;
+
+  /* Brand colours */
+  --brand-dark:    #0a0a0a;
+  --brand-primary: #00d4ff;
+  --brand-mid:     #7c3aed;
+  --brand-light:   #2d2d44;
+  --brand-lightest:#1a1a2e;
+
+  /* Semantic tokens — dark mode */
+  --background:         #0a0a0a;
+  --foreground:         #e8e8e8;
+  --card:               #1a1a2e;
+  --card-foreground:    #e8e8e8;
+  --popover:            #1a1a2e;
+  --popover-foreground: #e8e8e8;
+  --primary:            #00d4ff;
+  --primary-foreground: #0a0a0a;
+  --secondary:          #7c3aed;
+  --secondary-foreground:#e8e8e8;
+  --muted:              #2d2d44;
+  --muted-foreground:   #a0a0b0;
+  --accent:             #00d4ff;
+  --accent-foreground:  #0a0a0a;
+  --destructive:        #ff4444;
+  --destructive-foreground:#ffffff;
+  --border:             rgba(255, 255, 255, 0.1);
+  --input:              rgba(255, 255, 255, 0.08);
+  --ring:               #00d4ff;
+
+  /* Charts */
+  --chart-1: #00d4ff;
+  --chart-2: #7c3aed;
+  --chart-3: #00d4ff;
+  --chart-4: #7c3aed;
+  --chart-5: #00d4ff;
+
+  /* Sidebar */
+  --sidebar:                  #1a1a2e;
+  --sidebar-foreground:       #e8e8e8;
+  --sidebar-primary:          #00d4ff;
+  --sidebar-primary-foreground:#0a0a0a;
+  --sidebar-accent:           #00d4ff;
+  --sidebar-accent-foreground:#0a0a0a;
+  --sidebar-border:           rgba(255, 255, 255, 0.1);
+  --sidebar-ring:             #00d4ff;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Dark mode body gradient */
+    background:
+      radial-gradient(circle at top left, rgba(0, 212, 255, 0.08), transparent 22%),
+      radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 28%),
+      #02040a;
+    transition: background 0.4s ease, color 0.3s ease;
+  }
+
+  /* Light mode body */
+  :root:not(.dark) body {
+    background:
+      radial-gradient(circle at top left, rgba(93, 75, 139, 0.08), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(62, 50, 93, 0.1), transparent 35%),
+      #f4f1f9;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+.homepage-shell {
+  position: relative;
+  min-height: 100vh;
+  /* keep horizontal overflow clipped but allow vertical overflow for sticky/pinned elements */
+  overflow-x: hidden;
+  /* Dark mode default */
+  background:
+    radial-gradient(circle at top left, rgba(0, 212, 255, 0.07), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.11), transparent 30%),
+    #02040a;
+  transition: background 0.4s ease;
+}
+
+/* Light mode shell */
+:root:not(.dark) .homepage-shell {
+  background:
+    radial-gradient(circle at top left, rgba(93, 75, 139, 0.07), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(62, 50, 93, 0.09), transparent 32%),
+    #f4f1f9;
+}
+
+.homepage-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================================
+   GLOBAL MOBILE SAFE PADDING
+   Ensures every section has proper horizontal breathing room on phones.
+   Specific component CSS can still override for individual needs.
+   ============================================================================ */
+@media (max-width: 768px) {
+  /* Give all direct section wrappers horizontal padding */
+  .services-content-container,
+  .portfolio-header-container,
+  .contact-content-container,
+  .about-container {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* Tailwind-inline sections (ServicesPageClient, AboutPageClient etc.) */
+  .homepage-main > section,
+  .homepage-main > div > section {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* FAQ & Testimonials inner wrappers */
+  .max-w-4xl,
+  .max-w-7xl,
+  .max-w-5xl,
+  .max-w-3xl,
+  .max-w-2xl,
+  .max-w-lg {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-content-container,
+  .portfolio-header-container,
+  .contact-content-container,
+  .about-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+.ambient-layer {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(0px);
+  mix-blend-mode: screen;
+}
+
+.ambient-layer-a {
+  top: -8%;
+  left: -12%;
+  width: 46rem;
+  height: 46rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, rgba(0, 212, 255, 0.34), rgba(0, 212, 255, 0.12) 24%, transparent 60%);
+  transform: translate3d(0, calc(var(--scroll-offset) * -1), 0);
+  animation: ambientFloatA 9s ease-in-out infinite;
+}
+
+.ambient-layer-b {
+  right: -8%;
+  bottom: 8%;
+  width: 38rem;
+  height: 38rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, rgba(124, 58, 237, 0.34), rgba(124, 58, 237, 0.1) 22%, transparent 64%);
+  transform: translate3d(0, var(--scroll-rise), 0);
+  animation: ambientFloatB 12s ease-in-out infinite;
+}
+
+.ambient-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.85));
+  opacity: 0.45;
+  transform: translate3d(0, calc(var(--scroll-offset) * -0.35), 0);
+}
+
+.site-loader-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, rgba(0, 212, 255, 0.10), transparent 18%),
+    radial-gradient(circle at center, rgba(124, 58, 237, 0.14), transparent 32%),
+    #02040a;
+}
+
+.site-loader-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2.2rem 2.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 212, 255, 0.26);
+  background: rgba(4, 8, 16, 0.72);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(18px);
+}
+
+.site-loader-gear {
+  font-size: 4rem;
+  color: #9df0ff;
+  line-height: 1;
+  animation: gearSpin 1.9s linear infinite;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.45);
+}
+
+.site-loader-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.24);
+}
+
+.site-loader-ring-a {
+  inset: 0.7rem;
+  animation: ringPulse 2.4s ease-in-out infinite;
+}
+
+.site-loader-ring-b {
+  inset: -0.85rem;
+  border-color: rgba(124, 58, 237, 0.22);
+  animation: ringPulse 2.4s ease-in-out infinite reverse;
+}
+
+.site-loader-text {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+}
+
+@keyframes gearSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: scale(0.96); opacity: 0.5; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+
+@keyframes ambientFloatA {
+  0%, 100% { transform: translate3d(0, calc(var(--scroll-offset) * -1), 0) scale(1); }
+  50% { transform: translate3d(0, calc(var(--scroll-offset) * -1 + 24px), 0) scale(1.04); }
+}
+
+@keyframes ambientFloatB {
+  0%, 100% { transform: translate3d(0, var(--scroll-rise), 0) scale(1); }
+  50% { transform: translate3d(0, calc(var(--scroll-rise) + 20px), 0) scale(1.05); }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* ============================================================================
+     GLASS EFFECT UTILITIES - Core Glassmorphism Foundation
+     ============================================================================ */
+
+  .glass-base {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-base::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Strong Glass - Premium effect with enhanced glow */
+  .glass-strong {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+    border: none;
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.28),
+      inset 0 1px 1px rgba(255, 255, 255, 0.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-strong::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Medium Glass - Balanced effect for cards and panels */
+  .glass-medium {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    border: none;
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.15),
+      0 0 40px rgba(0, 200, 255, 0.1);
+  }
+
+  /* Subtle Glass - Minimal effect for backgrounds */
+  .glass-subtle {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ============================================================================
+     GLASS ANIMATIONS - Dynamic Glow and Interaction Effects
+     ============================================================================ */
+
+  @keyframes glassGlow {
+    0%, 100% {
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+        0 0 60px rgba(0, 200, 255, 0.15),
+        0 0 120px rgba(124, 58, 237, 0.08);
+    }
+    50% {
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.25),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+        0 0 80px rgba(0, 200, 255, 0.25),
+        0 0 160px rgba(124, 58, 237, 0.12);
+    }
+  }
+
+  .glass-glow {
+    animation: glassGlow 3s ease-in-out infinite;
+  }
+
+  /* ============================================================================
+     GLASS HOVER STATES - Interactive Enhancements
+     ============================================================================ */
+
+  .glass-strong:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+    border: none;
+    box-shadow: 
+      0 12px 48px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.1),
+      0 0 100px rgba(0, 200, 255, 0.4),
+      0 0 200px rgba(124, 58, 237, 0.2);
+    transform: translateY(-4px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .glass-medium:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    border: none;
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2),
+      0 0 60px rgba(0, 200, 255, 0.2);
+    transform: translateY(-2px);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* ============================================================================
+     GLASS CARDS - Reusable Card Components
+     ============================================================================ */
+
+  .glass-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    border: none;
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.25),
+      inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    border: none;
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.32),
+      inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  }
+
+  /* ============================================================================
+     GLASS BUTTONS - Interactive Button Styles
+     ============================================================================ */
+
+  .glass-button {
+    position: relative;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #00c8ff;
+    background: transparent;
+    border: 2px solid #00c8ff;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .glass-button:hover {
+    background: rgba(0, 200, 255, 0.1);
+    box-shadow: 
+      0 0 30px rgba(0, 200, 255, 0.4),
+      inset 0 0 20px rgba(0, 200, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .glass-button:active {
+    transform: translateY(0);
+  }
+
+  .glass-button-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+  }
+
+  .glass-button-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  /* ============================================================================
+     GLASS SECTIONS - Full-Width Section Styling
+     ============================================================================ */
+
+  .glass-section {
+    position: relative;
+    width: 100%;
+    padding: 4rem 2rem;
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 10, 0.8) 0%,
+      rgba(26, 10, 46, 0.6) 100%
+    );
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .glass-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 0%,
+      rgba(0, 200, 255, 0.05) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .glass-section-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ============================================================================
+     SCROLL ANIMATIONS - Zoom and parallax effects
+     ============================================================================ */
+
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-zoom-in {
+    animation: zoomIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .scroll-fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .scroll-zoom-in {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .scroll-zoom-in.active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+/* ============================================================================
+   CUSTOM SCROLLBAR — Desktop only, matches Red Shadow Designs theme
+   ============================================================================ */
+
+@media (min-width: 768px) {
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #00d4ff #0a0a14;
+  }
+
+  /* Webkit (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a14;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00d4ff 0%, #7c3aed 100%);
+    border-radius: 999px;
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+    transition: background 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #7c3aed 0%, #00d4ff 100%);
+    box-shadow: 0 0 14px rgba(0, 212, 255, 0.6);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: #0a0a14;
+  }
+}
+
+/* Mobile — hide scrollbar completely */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    scrollbar-width: none;
+  }
+}
+

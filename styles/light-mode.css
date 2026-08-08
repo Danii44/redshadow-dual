@@ -1,0 +1,1193 @@
+/**
+ * light-mode.css
+ * Centralized light-mode overrides for Red Shadow Designs.
+ * Applies when :root does NOT have the .dark class.
+ * Palette: #3E325D | #5D4B8B | #D0C9E2 | #DFD7F4 | #f4f1f9
+ */
+
+/* ============================================================
+   GLOBAL TRANSITIONS
+   ============================================================ */
+:root:not(.dark) *,
+:root:not(.dark) *::before,
+:root:not(.dark) *::after {
+  transition:
+    background-color 0.35s ease,
+    background 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+:root:not(.dark) .hero-model-section {
+  background:
+    radial-gradient(circle at 50% 25%, rgba(124, 58, 237, 0.08), transparent 45%),
+    radial-gradient(circle at 50% 75%, rgba(99, 102, 241, 0.06), transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, #f6f4fa 50%, #eae6f5 100%) !important;
+}
+
+:root:not(.dark) .hero-background-glow {
+  background:
+    radial-gradient(circle at 40% 30%, rgba(167, 139, 250, 0.12), transparent 30%),
+    radial-gradient(circle at 75% 60%, rgba(192, 132, 252, 0.1), transparent 35%);
+}
+
+:root:not(.dark) .hero-model-section::after {
+  background: linear-gradient(180deg, rgba(234, 230, 245, 0) 0%, rgba(244, 241, 249, 1) 100%) !important;
+}
+
+:root:not(.dark) .hero-overlay-top {
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.2) 60%,
+      transparent 100%) !important;
+}
+
+:root:not(.dark) .hero-model-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+:root:not(.dark) .accent-gradient {
+  background: linear-gradient(135deg, #D0C9E2 0%, #DFD7F4 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+:root:not(.dark) .hero-model-subtitle {
+  color: rgba(223, 215, 244, 0.9) !important;
+}
+
+:root:not(.dark) .hero-info-chips span {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(223, 215, 244, 0.25) !important;
+  color: #ffffff !important;
+}
+
+:root:not(.dark) .hero-info-label {
+  color: rgba(223, 215, 244, 0.85) !important;
+}
+
+:root:not(.dark) .hero-logo-small {
+  border-color: rgba(62, 50, 93, 0.15);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+:root:not(.dark) .glass-button-lg {
+  color: #5D4B8B;
+  border-color: #5D4B8B;
+}
+
+:root:not(.dark) .glass-button-lg:hover {
+  background: rgba(93, 75, 139, 0.1);
+  box-shadow: 0 0 30px rgba(93, 75, 139, 0.35), inset 0 0 20px rgba(93, 75, 139, 0.08);
+}
+
+:root:not(.dark) .glass-button-outline {
+  color: #3E325D;
+  border-color: #3E325D;
+}
+
+:root:not(.dark) .glass-button-outline:hover {
+  background: rgba(62, 50, 93, 0.1);
+  box-shadow: 0 0 30px rgba(62, 50, 93, 0.3);
+}
+
+:root:not(.dark) .scroll-indicator-hero {
+  color: #5D4B8B;
+}
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+:root:not(.dark) .about-section {
+  background: linear-gradient(180deg, #e8e3f4 0%, #ede8f6 100%);
+}
+
+:root:not(.dark) .about-section::before {
+  background: linear-gradient(180deg, rgba(232, 227, 244, 0.9), rgba(237, 232, 246, 1) 100%);
+}
+
+:root:not(.dark) .about-background-glow {
+  background:
+    radial-gradient(circle at 20% 40%, rgba(93, 75, 139, 0.07), transparent 22%),
+    radial-gradient(circle at 80% 65%, rgba(62, 50, 93, 0.06), transparent 18%);
+}
+
+:root:not(.dark) .section-label {
+  background: rgba(93, 75, 139, 0.08);
+  border-color: rgba(93, 75, 139, 0.18);
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .about-content h2 {
+  color: #1e1830;
+}
+
+:root:not(.dark) .about-content p {
+  color: rgba(30, 24, 48, 0.78);
+}
+
+:root:not(.dark) .about-value-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(93, 75, 139, 0.18);
+  box-shadow: 0 2px 12px rgba(62, 50, 93, 0.08);
+}
+
+:root:not(.dark) .about-value-card:hover {
+  border-color: rgba(93, 75, 139, 0.4);
+  box-shadow: 0 4px 20px rgba(93, 75, 139, 0.15);
+}
+
+:root:not(.dark) .about-value-card strong {
+  color: #1e1830;
+}
+
+:root:not(.dark) .about-value-card span {
+  color: rgba(30, 24, 48, 0.68);
+}
+
+:root:not(.dark) .about-image {
+  box-shadow: 0 35px 120px rgba(62, 50, 93, 0.2);
+}
+
+:root:not(.dark) .about-image-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(93, 75, 139, 0.12), transparent 32%);
+}
+
+/* ============================================================
+   SERVICES SECTION
+   ============================================================ */
+:root:not(.dark) .services-section-wrapper {
+  background: rgba(237, 232, 246, 0.92);
+}
+
+:root:not(.dark) .services-content-container {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(93, 75, 139, 0.14);
+}
+
+:root:not(.dark) .services-title {
+  background: linear-gradient(135deg, #5D4B8B 0%, #3E325D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+:root:not(.dark) .services-subtitle {
+  color: rgba(30, 24, 48, 0.68);
+}
+
+:root:not(.dark) .services-header-accent {
+  background: linear-gradient(90deg, transparent, #5D4B8B, transparent);
+}
+
+:root:not(.dark) .service-card {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(93, 75, 139, 0.15);
+  box-shadow: 0 4px 24px rgba(62, 50, 93, 0.08);
+}
+
+:root:not(.dark) .service-card:hover {
+  border-color: rgba(93, 75, 139, 0.35);
+  box-shadow: 0 8px 40px rgba(62, 50, 93, 0.15);
+}
+
+:root:not(.dark) .service-icon {
+  background: linear-gradient(135deg, rgba(93, 75, 139, 0.1), rgba(62, 50, 93, 0.1));
+  border-color: rgba(93, 75, 139, 0.25);
+}
+
+:root:not(.dark) .service-card:hover .service-icon {
+  background: linear-gradient(135deg, rgba(93, 75, 139, 0.2), rgba(62, 50, 93, 0.2));
+  border-color: rgba(93, 75, 139, 0.5);
+  box-shadow: 0 0 20px rgba(93, 75, 139, 0.2);
+}
+
+:root:not(.dark) .service-title {
+  color: #1e1830;
+}
+
+:root:not(.dark) .service-description {
+  color: rgba(30, 24, 48, 0.68);
+}
+
+:root:not(.dark) .service-feature-item {
+  color: rgba(93, 75, 139, 0.9);
+}
+
+:root:not(.dark) .feature-dot {
+  background: #5D4B8B;
+  box-shadow: 0 0 8px rgba(93, 75, 139, 0.5);
+}
+
+:root:not(.dark) .service-border {
+  background: linear-gradient(90deg, #5D4B8B, #3E325D);
+}
+
+:root:not(.dark) .services-cta {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(93, 75, 139, 0.18);
+}
+
+:root:not(.dark) .services-cta-title {
+  color: #1e1830;
+}
+
+:root:not(.dark) .services-cta-text {
+  color: rgba(30, 24, 48, 0.68);
+}
+
+/* ============================================================
+   PORTFOLIO SECTION
+   ============================================================ */
+/* ============================================================
+   PORTFOLIO SECTION (Parallax Showcase)
+   ============================================================ */
+:root:not(.dark) .portfolio-section-wrapper {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(93, 75, 139, 0.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(62, 50, 93, 0.18), transparent 45%),
+    linear-gradient(180deg, #ede8f6 0%, #e5def2 50%, #dfd7f4 100%) !important;
+}
+
+:root:not(.dark) .portfolio-bg-overlay {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(244, 241, 249, 0.4) 0%, rgba(223, 215, 244, 0.8) 100%),
+    linear-gradient(180deg, rgba(237, 232, 246, 0.4), rgba(223, 215, 244, 0.85)) !important;
+}
+
+:root:not(.dark) .portfolio-parallax-bg img {
+  opacity: 0.28 !important;
+  filter: blur(2px) saturate(1.2) contrast(1.05) !important;
+  mix-blend-mode: multiply !important;
+}
+
+:root:not(.dark) .portfolio-pill {
+  border-color: rgba(93, 75, 139, 0.4) !important;
+  background: rgba(93, 75, 139, 0.12) !important;
+  color: #3E325D !important;
+  font-weight: 700 !important;
+}
+
+:root:not(.dark) .portfolio-title {
+  background: linear-gradient(135deg, #3E325D 0%, #5D4B8B 50%, #7c3aed 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+:root:not(.dark) .portfolio-subtitle {
+  color: rgba(30, 24, 48, 0.82) !important;
+}
+
+:root:not(.dark) .portfolio-item {
+  border-color: rgba(93, 75, 139, 0.22) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f1f9 100%) !important;
+  box-shadow: 0 20px 60px rgba(62, 50, 93, 0.18) !important;
+}
+
+:root:not(.dark) .portfolio-item:hover {
+  border-color: rgba(93, 75, 139, 0.45) !important;
+  box-shadow: 0 28px 80px rgba(62, 50, 93, 0.25) !important;
+}
+
+:root:not(.dark) .portfolio-item-info {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(244, 241, 249, 0.9)) !important;
+}
+
+:root:not(.dark) .portfolio-item-category {
+  color: #5D4B8B !important;
+}
+
+:root:not(.dark) .portfolio-item-title {
+  color: #1e1830 !important;
+}
+
+:root:not(.dark) .portfolio-item-description {
+  color: rgba(30, 24, 48, 0.75) !important;
+}
+
+:root:not(.dark) .portfolio-item-icon-overlay {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(93, 75, 139, 0.22) !important;
+  box-shadow: 0 4px 12px rgba(62, 50, 93, 0.15) !important;
+}
+
+/* ============================================================
+   CONTACT SECTION (Parallax Form & Panel)
+   ============================================================ */
+:root:not(.dark) .contact-section-wrapper {
+  background:
+    radial-gradient(circle at top left, rgba(93, 75, 139, 0.15), transparent 28%),
+    radial-gradient(circle at top right, rgba(62, 50, 93, 0.18), transparent 35%),
+    linear-gradient(180deg, #dfd7f4 0%, #ede8f6 100%) !important;
+}
+
+:root:not(.dark) .contact-bg-overlay {
+  background:
+    linear-gradient(135deg, rgba(244, 241, 249, 0.85), rgba(237, 232, 246, 0.75)),
+    radial-gradient(circle at 50% 50%, rgba(93, 75, 139, 0.1), transparent 48%) !important;
+}
+
+:root:not(.dark) .contact-parallax-bg img {
+  opacity: 0.22 !important;
+  filter: blur(2px) saturate(1.1) !important;
+  mix-blend-mode: multiply !important;
+}
+
+:root:not(.dark) .contact-pill {
+  border-color: rgba(93, 75, 139, 0.35);
+  background: rgba(93, 75, 139, 0.08);
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .contact-title {
+  background: linear-gradient(135deg, #5D4B8B 0%, #3E325D 48%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+:root:not(.dark) .contact-subtitle {
+  color: rgba(30, 24, 48, 0.72);
+}
+
+:root:not(.dark) .contact-header-accent {
+  background: linear-gradient(90deg, transparent, #5D4B8B, transparent);
+  box-shadow: 0 0 18px rgba(93, 75, 139, 0.4);
+}
+
+:root:not(.dark) .contact-grid-orbit {
+  border-color: rgba(93, 75, 139, 0.18);
+}
+
+:root:not(.dark) .info-card {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(93, 75, 139, 0.18) !important;
+  box-shadow: 0 16px 50px rgba(62, 50, 93, 0.12) !important;
+}
+
+:root:not(.dark) .info-card::before {
+  background: linear-gradient(140deg, rgba(93, 75, 139, 0.1), transparent 42%, rgba(62, 50, 93, 0.1));
+}
+
+:root:not(.dark) .contact-form {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(93, 75, 139, 0.18) !important;
+  box-shadow: 0 18px 52px rgba(62, 50, 93, 0.14) !important;
+}
+
+:root:not(.dark) .contact-form::before {
+  background: linear-gradient(140deg, rgba(93, 75, 139, 0.08), transparent 42%, rgba(62, 50, 93, 0.08));
+}
+
+:root:not(.dark) .contact-visual-panel {
+  background: linear-gradient(120deg, rgba(93, 75, 139, 0.12), rgba(62, 50, 93, 0.12));
+  border-color: rgba(93, 75, 139, 0.22);
+}
+
+:root:not(.dark) .contact-visual-ring {
+  border-color: rgba(93, 75, 139, 0.9);
+  box-shadow: 0 0 18px rgba(93, 75, 139, 0.35);
+}
+
+:root:not(.dark) .contact-visual-label {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .contact-visual-copy strong {
+  color: #1e1830;
+}
+
+:root:not(.dark) .contact-mini-card {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(93, 75, 139, 0.14);
+}
+
+:root:not(.dark) .contact-mini-card span {
+  color: rgba(30, 24, 48, 0.62);
+}
+
+:root:not(.dark) .contact-mini-card strong {
+  color: #1e1830;
+}
+
+:root:not(.dark) .info-icon {
+  background: rgba(93, 75, 139, 0.1);
+  border-color: rgba(93, 75, 139, 0.25);
+}
+
+:root:not(.dark) .info-text h4 {
+  color: #1e1830;
+}
+
+:root:not(.dark) .info-text p,
+:root:not(.dark) .info-text a {
+  color: rgba(30, 24, 48, 0.68);
+}
+
+:root:not(.dark) .info-text a:hover {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .form-group label {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .glass-input {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(93, 75, 139, 0.2);
+  color: #1e1830;
+}
+
+:root:not(.dark) .glass-input:focus {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #5D4B8B;
+  box-shadow: 0 0 0 4px rgba(93, 75, 139, 0.12), 0 0 20px rgba(93, 75, 139, 0.14);
+}
+
+:root:not(.dark) .glass-input::placeholder {
+  color: rgba(30, 24, 48, 0.35);
+}
+
+:root:not(.dark) .contact-form-note {
+  color: rgba(30, 24, 48, 0.58);
+}
+
+:root:not(.dark) .social-icon {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(93, 75, 139, 0.2);
+  color: #3E325D;
+}
+
+:root:not(.dark) .social-icon:hover {
+  background: linear-gradient(135deg, #5D4B8B, #3E325D);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(93, 75, 139, 0.35);
+}
+
+/* ============================================================
+   REVIEWS / TESTIMONIALS
+   ============================================================ */
+:root:not(.dark) .reviews-section {
+  background:
+    radial-gradient(circle at top left, rgba(93, 75, 139, 0.07), transparent 26%),
+    linear-gradient(180deg, rgba(237, 232, 246, 0.95) 0%, #f4f1f9 100%);
+}
+
+:root:not(.dark) .reviews-shell {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(93, 75, 139, 0.14);
+  box-shadow: 0 24px 80px rgba(62, 50, 93, 0.12);
+}
+
+:root:not(.dark) .reviews-background-glow {
+  background:
+    radial-gradient(circle, rgba(93, 75, 139, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(62, 50, 93, 0.15), transparent 40%);
+}
+
+:root:not(.dark) .reviews-pill {
+  border-color: rgba(93, 75, 139, 0.3);
+  background: rgba(93, 75, 139, 0.08);
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .reviews-header h2 {
+  background: linear-gradient(135deg, #5D4B8B 0%, #3E325D 52%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+:root:not(.dark) .reviews-header p {
+  color: rgba(30, 24, 48, 0.68);
+}
+
+:root:not(.dark) .review-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(93, 75, 139, 0.16);
+  box-shadow: 0 28px 90px rgba(62, 50, 93, 0.1);
+}
+
+:root:not(.dark) .review-card.is-active {
+  border-color: rgba(93, 75, 139, 0.32);
+  box-shadow: 0 30px 110px rgba(62, 50, 93, 0.16), 0 0 0 1px rgba(93, 75, 139, 0.1);
+}
+
+:root:not(.dark) .review-card::before {
+  background: linear-gradient(90deg, rgba(93, 75, 139, 0.9), rgba(62, 50, 93, 0.65));
+}
+
+:root:not(.dark) .review-ribbon {
+  color: #5D4B8B;
+  background: rgba(93, 75, 139, 0.08);
+  border-color: rgba(93, 75, 139, 0.28);
+}
+
+:root:not(.dark) .review-quote {
+  color: rgba(30, 24, 48, 0.88);
+}
+
+:root:not(.dark) .review-meta::before {
+  color: rgba(30, 24, 48, 0.3);
+}
+
+:root:not(.dark) .review-name {
+  color: #1e1830;
+}
+
+:root:not(.dark) .review-role {
+  color: rgba(30, 24, 48, 0.65);
+}
+
+:root:not(.dark) .carousel-button {
+  border-color: rgba(93, 75, 139, 0.2);
+  background: rgba(255, 255, 255, 0.6);
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .carousel-button:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+:root:not(.dark) .carousel-dot {
+  background: rgba(93, 75, 139, 0.2);
+  border-color: rgba(93, 75, 139, 0.15);
+}
+
+:root:not(.dark) .carousel-dot.active {
+  background: #5D4B8B;
+  box-shadow: 0 0 18px rgba(93, 75, 139, 0.38);
+}
+
+:root:not(.dark) .reviews-marquee-wrap {
+  border-top-color: rgba(93, 75, 139, 0.12);
+}
+
+:root:not(.dark) .marquee-pill {
+  border-color: rgba(93, 75, 139, 0.15);
+  background: rgba(255, 255, 255, 0.4);
+  color: #5D4B8B;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+:root:not(.dark) .footer {
+  background:
+    radial-gradient(circle at top left, rgba(93, 75, 139, 0.08), transparent 25%),
+    linear-gradient(180deg, #ede8f6 0%, #e0d9f0 100%);
+  border-top-color: rgba(93, 75, 139, 0.2);
+}
+
+:root:not(.dark) .footer::before {
+  background: linear-gradient(90deg, transparent, #5D4B8B, transparent);
+  opacity: 0.5;
+}
+
+:root:not(.dark) .footer-grid-glow-a {
+  border-color: rgba(93, 75, 139, 0.22);
+}
+
+:root:not(.dark) .footer-grid-glow-b {
+  border-color: rgba(62, 50, 93, 0.26);
+}
+
+:root:not(.dark) .footer-container {
+  border-color: rgba(93, 75, 139, 0.14);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.3));
+}
+
+:root:not(.dark) .footer-logo-wrap {
+  background: linear-gradient(135deg, rgba(93, 75, 139, 0.2), rgba(62, 50, 93, 0.2));
+  border-color: rgba(93, 75, 139, 0.3);
+  box-shadow: 0 12px 36px rgba(93, 75, 139, 0.15);
+}
+
+:root:not(.dark) .footer-logo-image {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 20px rgba(93, 75, 139, 0.1);
+}
+
+:root:not(.dark) .footer-brand h3 {
+  color: #1e1830;
+}
+
+:root:not(.dark) .footer-brand p {
+  color: rgba(30, 24, 48, 0.65);
+}
+
+:root:not(.dark) .footer-links h4,
+:root:not(.dark) .footer-social h4 {
+  color: #1e1830;
+}
+
+:root:not(.dark) .footer-links a {
+  color: rgba(30, 24, 48, 0.68);
+}
+
+:root:not(.dark) .footer-links a:hover {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .footer-social .social-icon {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(93, 75, 139, 0.22);
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .footer-social .social-icon:hover {
+  background: linear-gradient(135deg, rgba(93, 75, 139, 0.2), rgba(62, 50, 93, 0.2));
+  border-color: rgba(93, 75, 139, 0.7);
+  box-shadow: 0 0 18px rgba(93, 75, 139, 0.3);
+}
+
+:root:not(.dark) .footer-bottom {
+  border-top-color: rgba(93, 75, 139, 0.14);
+}
+
+:root:not(.dark) .footer-bottom p {
+  color: rgba(30, 24, 48, 0.55);
+}
+
+:root:not(.dark) .footer-legal a {
+  color: rgba(30, 24, 48, 0.55);
+}
+
+:root:not(.dark) .footer-legal a:hover {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .footer-legal span {
+  color: rgba(30, 24, 48, 0.3);
+}
+
+/* ============================================================
+   SESSION / SITE LOADER
+   ============================================================ */
+:root:not(.dark) .site-loader-shell {
+  background:
+    radial-gradient(circle at center, rgba(93, 75, 139, 0.1), transparent 18%),
+    radial-gradient(circle at center, rgba(62, 50, 93, 0.12), transparent 32%),
+    #f4f1f9;
+}
+
+:root:not(.dark) .site-loader-card {
+  border-color: rgba(93, 75, 139, 0.3);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+:root:not(.dark) .site-loader-gear {
+  color: #5D4B8B;
+  text-shadow: 0 0 20px rgba(93, 75, 139, 0.4);
+}
+
+:root:not(.dark) .site-loader-ring {
+  border-color: rgba(93, 75, 139, 0.24);
+}
+
+:root:not(.dark) .site-loader-ring-b {
+  border-color: rgba(62, 50, 93, 0.22);
+}
+
+:root:not(.dark) .site-loader-text {
+  color: rgba(30, 24, 48, 0.7);
+}
+
+/* ============================================================
+   AMBIENT LAYERS
+   ============================================================ */
+:root:not(.dark) .ambient-layer-a {
+  background:
+    radial-gradient(circle at center, rgba(93, 75, 139, 0.28), rgba(93, 75, 139, 0.1) 24%, transparent 60%);
+}
+
+:root:not(.dark) .ambient-layer-b {
+  background:
+    radial-gradient(circle at center, rgba(62, 50, 93, 0.28), rgba(62, 50, 93, 0.08) 22%, transparent 64%);
+}
+
+:root:not(.dark) .ambient-grid {
+  background-image:
+    linear-gradient(rgba(93, 75, 139, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 50, 93, 0.06) 1px, transparent 1px);
+}
+
+/* ============================================================
+   GLASS UTILITIES
+   ============================================================ */
+:root:not(.dark) .glass-base,
+:root:not(.dark) .glass-strong,
+:root:not(.dark) .glass-medium,
+:root:not(.dark) .glass-subtle {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.4) 100%);
+  border-color: rgba(93, 75, 139, 0.15);
+}
+
+:root:not(.dark) .glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.45) 100%);
+  border-color: rgba(93, 75, 139, 0.14);
+  box-shadow: 0 8px 24px rgba(62, 50, 93, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+:root:not(.dark) .glass-card:hover {
+  box-shadow: 0 12px 32px rgba(62, 50, 93, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+:root:not(.dark) .glass-button {
+  color: #5D4B8B;
+  border-color: #5D4B8B;
+}
+
+:root:not(.dark) .glass-button:hover {
+  background: rgba(93, 75, 139, 0.1);
+  box-shadow: 0 0 30px rgba(93, 75, 139, 0.3), inset 0 0 20px rgba(93, 75, 139, 0.08);
+}
+
+:root:not(.dark) .glass-section {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(237, 232, 246, 0.5) 100%);
+}
+
+/* ============================================================
+   SCROLLBAR - light mode
+   ============================================================ */
+@media (min-width: 768px) {
+  :root:not(.dark) * {
+    scrollbar-color: #5D4B8B #e8e4f4;
+  }
+
+  :root:not(.dark) ::-webkit-scrollbar-track {
+    background: #e8e4f4;
+  }
+
+  :root:not(.dark) ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #5D4B8B 0%, #3E325D 100%);
+    border-color: rgba(93, 75, 139, 0.2);
+    box-shadow: 0 0 8px rgba(93, 75, 139, 0.35);
+  }
+
+  :root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #3E325D 0%, #5D4B8B 100%);
+    box-shadow: 0 0 14px rgba(93, 75, 139, 0.55);
+  }
+
+  :root:not(.dark) ::-webkit-scrollbar-corner {
+    background: #e8e4f4;
+  }
+}
+
+/* ============================================================
+   INLINE TAILWIND & SPECIFIC HOME SECTIONS OVERRIDES
+   ============================================================ */
+
+/* 1. ClientMarqueeSection ("Where our work made a difference.") */
+:root:not(.dark) section.bg-\[\#060912\],
+:root:not(.dark) section[class*="bg-[#060912]"] {
+  background-color: #f4f1f9 !important;
+}
+
+:root:not(.dark) div.bg-gradient-to-r.from-\[\#060912\] {
+  background-image: linear-gradient(to right, #f4f1f9, transparent) !important;
+}
+
+:root:not(.dark) div.bg-gradient-to-l.from-\[\#060912\] {
+  background-image: linear-gradient(to left, #f4f1f9, transparent) !important;
+}
+
+:root:not(.dark) div.bg-\[\#0a0f1a\] {
+  background-color: #ffffff !important;
+  border-color: rgba(93, 75, 139, 0.2) !important;
+  box-shadow: 0 4px 20px rgba(62, 50, 93, 0.08) !important;
+}
+
+/* 2. VideoSection ("We engineer meaning. Not just products.") */
+:root:not(.dark) .aspect-video {
+  background-color: #ffffff !important;
+  border-color: rgba(93, 75, 139, 0.2) !important;
+  box-shadow: 0 30px 80px rgba(62, 50, 93, 0.15) !important;
+}
+
+:root:not(.dark) .aspect-video>div.bg-gradient-to-t {
+  background-image: linear-gradient(to top, rgba(244, 241, 249, 0.9), transparent) !important;
+}
+
+/* 3. FAQSection ("Questions? Answers.") */
+:root:not(.dark) section.border-t.border-\[rgba\(255\,255\,255\,0\.05\)\] {
+  border-top-color: rgba(93, 75, 139, 0.15) !important;
+}
+
+:root:not(.dark) div.border.rounded-2xl {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(93, 75, 139, 0.18) !important;
+}
+
+:root:not(.dark) div.border.rounded-2xl.bg-\[\#0a0f1a\] {
+  background-color: #ffffff !important;
+  border-color: rgba(93, 75, 139, 0.4) !important;
+  box-shadow: 0 8px 30px rgba(62, 50, 93, 0.12) !important;
+}
+
+/* 4. ProcessSection ("Our Process") */
+:root:not(.dark) div.bg-\[\#0a0a0a\] {
+  background-color: #ffffff !important;
+  border-color: rgba(93, 75, 139, 0.4) !important;
+}
+
+/* 5. ServicesEnhanced ("Our Services") hover image preview card */
+:root:not(.dark) div.bg-\[\#02040a\],
+:root:not(.dark) div[class*="bg-[#02040a]"] {
+  background-color: #ffffff !important;
+}
+
+:root:not(.dark) .border-white\/10 {
+  border-color: rgba(93, 75, 139, 0.18) !important;
+}
+
+:root:not(.dark) .border-white\/20 {
+  border-color: rgba(93, 75, 139, 0.25) !important;
+}
+
+/* Sitewide Text Color Fixes for Light Mode */
+:root:not(.dark) .text-white {
+  color: #1e1830 !important;
+}
+
+:root:not(.dark) .text-white\/60,
+:root:not(.dark) .text-white\/50,
+:root:not(.dark) .text-white\/40,
+:root:not(.dark) .text-white\/30,
+:root:not(.dark) .text-white\/70,
+:root:not(.dark) .text-white\/80 {
+  color: rgba(30, 24, 48, 0.72) !important;
+}
+
+:root:not(.dark) .text-white\/5 {
+  color: rgba(93, 75, 139, 0.08) !important;
+}
+
+/* Keep active/gradient accent texts vibrant & legible in light mode */
+:root:not(.dark) .text-\[\#00d4ff\],
+:root:not(.dark) .text-\[\#9fe8ff\],
+:root:not(.dark) .text-\[\#8ef3ff\],
+:root:not(.dark) .text-\[\#a3f0ff\],
+:root:not(.dark) .text-\[\#d8b4fe\] {
+  color: #5D4B8B !important;
+}
+
+:root:not(.dark) .bg-clip-text {
+  background-image: linear-gradient(to right, #5D4B8B, #3E325D) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* ============================================================
+   PAGE SHELL, FIVERR SECTIONS & IMAGE OVERLAY FIXES
+   ============================================================ */
+:root:not(.dark) .homepage-shell {
+  background-color: #f4f1f9 !important;
+  color: #1e1830 !important;
+}
+
+/* Hardcoded dark backgrounds in page sections */
+:root:not(.dark) .bg-black\/40,
+:root:not(.dark) .bg-black\/70,
+:root:not(.dark) .bg-black\/80,
+:root:not(.dark) .bg-black\/90,
+:root:not(.dark) div[style*="background: #020509"],
+:root:not(.dark) div[style*="#020509"] {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(93, 75, 139, 0.18) !important;
+  color: #1e1830 !important;
+}
+
+/* Fiverr CTA section card background */
+:root:not(.dark) div[style*="linear-gradient(135deg, #050810"],
+:root:not(.dark) div[style*="#050810"] {
+  background: linear-gradient(135deg, #ffffff 0%, #f4f1f9 100%) !important;
+  border-color: rgba(93, 75, 139, 0.22) !important;
+  box-shadow: 0 20px 60px rgba(62, 50, 93, 0.12) !important;
+}
+
+/* Dark gradient overlays on background images -> Light gradient overlays */
+:root:not(.dark) .bg-gradient-to-b.from-\[\#02040a\]\/10,
+:root:not(.dark) .bg-gradient-to-b.from-\[\#02040a\],
+:root:not(.dark) .bg-gradient-to-t.from-black\/80,
+:root:not(.dark) .bg-gradient-to-t.from-black {
+  background-image: linear-gradient(to top, rgba(244, 241, 249, 0.92) 0%, rgba(244, 241, 249, 0.2) 60%, transparent 100%) !important;
+}
+
+:root:not(.dark) .bg-gradient-to-b.from-\[\#02040a\] {
+  background-image: linear-gradient(to bottom, rgba(244, 241, 249, 0.4) 0%, rgba(244, 241, 249, 0.95) 100%) !important;
+}
+
+/* Borders in light mode */
+:root:not(.dark) .border-white\/5,
+:root:not(.dark) .border-white\/10,
+:root:not(.dark) .border-white\/20 {
+  border-color: rgba(93, 75, 139, 0.16) !important;
+}
+
+/* Badges & tags in light mode */
+:root:not(.dark) .bg-white\/5 {
+  background-color: rgba(93, 75, 139, 0.08) !important;
+  border-color: rgba(93, 75, 139, 0.18) !important;
+  color: #3E325D !important;
+}
+
+/* ============================================================
+   FIVERR CTA CARD — Light Mode
+   ============================================================ */
+:root:not(.dark) .fiverr-cta-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f4f1f9 100%) !important;
+  border-color: rgba(93, 75, 139, 0.22) !important;
+  box-shadow: 0 20px 60px rgba(62, 50, 93, 0.10) !important;
+}
+
+/* glass-card base for light mode */
+:root:not(.dark) .glass-card {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(93, 75, 139, 0.18) !important;
+  box-shadow: 0 16px 48px rgba(62, 50, 93, 0.09) !important;
+}
+
+/* Text inside fiverr/glass cards */
+:root:not(.dark) .fiverr-cta-card .text-white\/30,
+:root:not(.dark) .fiverr-cta-card .text-white\/40,
+:root:not(.dark) .fiverr-cta-card .text-white\/60 {
+  color: rgba(30, 24, 48, 0.55) !important;
+}
+
+/* ============================================================
+   PORTFOLIO PAGE — Remove dark image overlay in light mode
+   ============================================================ */
+
+/* The dark to-transparent gradient on portfolio card images */
+:root:not(.dark) .bg-gradient-to-t.from-black\/90 {
+  background-image: linear-gradient(to top,
+      rgba(244, 241, 249, 0.9) 0%,
+      rgba(244, 241, 249, 0.1) 50%,
+      transparent 100%) !important;
+}
+
+/* Portfolio card outer container */
+:root:not(.dark) .bg-black\/40.backdrop-blur-sm,
+:root:not(.dark) div.bg-black\/40 {
+  background-color: #ffffff !important;
+  border-color: rgba(93, 75, 139, 0.16) !important;
+  box-shadow: 0 8px 28px rgba(62, 50, 93, 0.08) !important;
+}
+
+/* Portfolio card hover glow */
+:root:not(.dark) div:hover.bg-black\/40,
+:root:not(.dark) div.hover\:shadow-\[0_0_30px_rgba\(0\,212\,255\,0\.1\)\]:hover {
+  box-shadow: 0 12px 40px rgba(93, 75, 139, 0.15) !important;
+  border-color: rgba(93, 75, 139, 0.3) !important;
+}
+
+/* Category label inside portfolio cards */
+:root:not(.dark) .text-\[\#00d4ff\].font-mono {
+  color: #7c3aed !important;
+}
+
+/* Portfolio "View Project" text */
+:root:not(.dark) .text-\[\#00d4ff\].text-sm.font-medium {
+  color: #7c3aed !important;
+}
+
+/* Search input field */
+:root:not(.dark) input.bg-white\/5 {
+  background-color: #ffffff !important;
+  border-color: rgba(93, 75, 139, 0.2) !important;
+  color: #1e1830 !important;
+}
+
+:root:not(.dark) input.bg-white\/5::placeholder {
+  color: rgba(30, 24, 48, 0.4) !important;
+}
+
+/* Category filter pills */
+:root:not(.dark) button.bg-white\/5 {
+  background-color: rgba(93, 75, 139, 0.07) !important;
+  border-color: rgba(93, 75, 139, 0.18) !important;
+  color: rgba(30, 24, 48, 0.7) !important;
+}
+
+/* ============================================================
+   PORTFOLIO CARDS — Precise semantic-class overrides
+   ============================================================ */
+
+/* Card container */
+:root:not(.dark) .portfolio-card {
+  background: #ffffff !important;
+  border-color: rgba(93, 75, 139, 0.15) !important;
+  box-shadow: 0 6px 24px rgba(62, 50, 93, 0.07) !important;
+}
+
+:root:not(.dark) .portfolio-card:hover {
+  border-color: rgba(93, 75, 139, 0.3) !important;
+  box-shadow: 0 12px 40px rgba(93, 75, 139, 0.13) !important;
+}
+
+/* Image gradient overlay — replace dark with light in light mode */
+:root:not(.dark) .portfolio-img-overlay {
+  background-image: linear-gradient(to top,
+      rgba(244, 241, 249, 0.85) 0%,
+      rgba(244, 241, 249, 0.08) 50%,
+      transparent 100%) !important;
+}
+
+/* Card text in light mode */
+:root:not(.dark) .portfolio-card h3 {
+  color: #1e1830 !important;
+}
+
+:root:not(.dark) .portfolio-card .group-hover\:text-\[\#00d4ff\] {
+  color: #7c3aed !important;
+}
+
+:root:not(.dark) .portfolio-card span.font-mono {
+  color: #7c3aed !important;
+}
+
+:root:not(.dark) .portfolio-card p {
+  color: rgba(30, 24, 48, 0.6) !important;
+}
+
+:root:not(.dark) .portfolio-card .text-\[\#00d4ff\] {
+  color: #7c3aed !important;
+}
+
+/* ============================================================
+   PAGE DETAIL SHELL — Service & Portfolio detail pages
+   ============================================================ */
+
+/* Dark mode base (always-on dark for detail pages) */
+.page-detail-shell {
+  background: #060912;
+  color: #ffffff;
+}
+
+.page-detail-hero {
+  background: #0a0a0a;
+}
+
+/* Light mode overrides */
+:root:not(.dark) .page-detail-shell {
+  background: #f4f1f9 !important;
+  color: #1e1830 !important;
+}
+
+:root:not(.dark) .page-detail-hero {
+  background: #e8e3f5 !important;
+}
+
+/* Dark mode hero overlay */
+.page-hero-overlay {
+  background: linear-gradient(to top, #060912 0%, rgba(6, 9, 18, 0.6) 50%, transparent 100%);
+}
+
+/* Light mode hero overlay */
+:root:not(.dark) .page-hero-overlay {
+  background: linear-gradient(to top,
+      rgba(244, 241, 249, 0.95) 0%,
+      rgba(244, 241, 249, 0.4) 55%,
+      transparent 100%) !important;
+}
+
+/* Services page background image card overlay */
+.photo-card-overlay {
+  background: linear-gradient(to top right, rgba(0, 0, 0, 0.8), transparent, rgba(124, 58, 237, 0.2));
+}
+
+:root:not(.dark) .photo-card-overlay {
+  background: linear-gradient(to top right,
+      rgba(244, 241, 249, 0.5),
+      transparent,
+      rgba(124, 58, 237, 0.08)) !important;
+}
+
+/* Services page cinematic hero overlay */
+.page-hero-overlay.services-hero {
+  background: linear-gradient(to bottom, rgba(2, 4, 10, 0.1) 0%, rgba(2, 4, 10, 0.8) 60%, rgba(2, 4, 10, 1) 100%);
+}
+
+/* Detail page text colors */
+:root:not(.dark) .page-detail-shell h2 {
+  color: #1e1830 !important;
+}
+
+:root:not(.dark) .page-detail-shell .text-white\/70,
+:root:not(.dark) .page-detail-shell .text-white\/60 {
+  color: rgba(30, 24, 48, 0.7) !important;
+}
+
+:root:not(.dark) .page-detail-shell .text-white\/40 {
+  color: rgba(30, 24, 48, 0.5) !important;
+}
+
+:root:not(.dark) .page-detail-shell .text-white\/90,
+:root:not(.dark) .page-detail-shell .text-white\/80 {
+  color: rgba(30, 24, 48, 0.85) !important;
+}
+
+:root:not(.dark) .page-detail-shell .text-\[\#00d4ff\] {
+  color: #7c3aed !important;
+}
+
+:root:not(.dark) .page-detail-shell .border-white\/10 {
+  border-color: rgba(93, 75, 139, 0.16) !important;
+}
+
+/* Detail page image gallery cells */
+.detail-gallery-cell {
+  background: #0a0a0a;
+}
+
+:root:not(.dark) .detail-gallery-cell {
+  background: #e8e3f5 !important;
+  border-radius: 24px;
+}
+
+/* ============================================================
+   CONTACT PAGE MAP SECTION
+   ============================================================ */
+
+/* Dark mode fades matching dark bg */
+.map-fade-top {
+  background: linear-gradient(to bottom, #02040a, transparent);
+}
+
+.map-fade-bottom {
+  background: linear-gradient(to top, #02040a, transparent);
+}
+
+/* Light mode fades matching light bg */
+:root:not(.dark) .map-fade-top {
+  background: linear-gradient(to bottom, #f4f1f9, transparent) !important;
+}
+
+:root:not(.dark) .map-fade-bottom {
+  background: linear-gradient(to top, #f4f1f9, transparent) !important;
+}
+
+/* Dark mode map: invert to dark style */
+.map-iframe {
+  filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(90%);
+}
+
+/* Light mode map: show normal Google Maps colors */
+:root:not(.dark) .map-iframe {
+  filter: none !important;
+  opacity: 0.9;
+}
+
+/* Map section border */
+:root:not(.dark) .map-section {
+  border-color: rgba(93, 75, 139, 0.16) !important;
+}
