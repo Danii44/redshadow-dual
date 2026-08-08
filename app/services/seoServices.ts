@@ -12,131 +12,242 @@ export type ServiceData = {
 
 export const servicesData: ServiceData[] = [
   {
+    slug: 'feasibility-test',
+    title: 'Feasibility Test',
+    description: 'Early-stage concept validation to verify manufacturability, mechanical integrity, and assembly feasibility.',
+    keywords: ['feasibility study', 'design validation', 'manufacturability assessment', 'engineering feasibility'],
+    tools: ['SolidWorks', 'ANSYS', 'Fusion 360'],
+    deliverables: ['Feasibility report', 'Risk analysis', 'Concept validation models'],
+    longDescription:
+      'Our feasibility test service evaluates concepts before detailed design begins. We analyze manufacturability, mechanical fit, and production risk so you can move forward with confidence.',
+    heroImage: '/assets/images/services/cad-1.jpg',
+    faq: [
+      {
+        question: 'What is included in a feasibility test?',
+        answer: 'We review the concept, identify manufacturing risks, validate key dimensions, and provide a technical report with recommended next steps.',
+      },
+      {
+        question: 'When should I request a feasibility test?',
+        answer: 'Request it before detailed CAD work when you need clarity on whether a product idea is viable and manufacturable.',
+      },
+      {
+        question: 'Do you assess production methods?',
+        answer: 'Yes. We compare injection molding, CNC machining, and additive manufacturing risks for the proposed design.',
+      },
+      {
+        question: 'Will I receive actionable feedback?',
+        answer: 'Yes. You receive clear, prioritized changes to reduce cost, improve assembly, and lower production risk.',
+      },
+    ],
+  },
+  {
     slug: 'cad-design',
     title: 'CAD Design',
-    description: 'Precision CAD design services for mechanical, industrial, and product engineering projects using SolidWorks, Fusion 360, and Rhino.',
+    description: 'Precision CAD modeling for mechanical, industrial, and product engineering projects, delivered as production-ready geometry.',
     keywords: ['CAD Design Islamabad', 'SolidWorks modeling', 'parametric CAD design', 'engineering CAD services'],
     tools: ['SolidWorks', 'Fusion 360', 'Rhino', 'AutoCAD'],
     deliverables: ['STEP', 'IGES', 'STL', 'DWG', 'PDF drawings'],
     longDescription:
-      'Red Shadow Designs offers precision CAD design services for mechanical engineering, industrial product development, and manufacturing-ready models. We ensure tolerance compliance, assembly accuracy, and fully documented technical geometry.',
+      'We build detailed CAD models that are ready for manufacturing, simulation, and assembly. Every design is created with tolerance control, motion clearance, and technical documentation in mind.',
     heroImage: '/assets/images/services/cad-design.jpg',
     faq: [
       {
-        question: 'What file formats do you deliver for CAD Design projects?',
-        answer: 'We deliver STEP, IGES, STL, DWG, and PDF drawings so your design is ready for manufacturing, CNC machining, and 3D printing.',
+        question: 'What CAD formats do you deliver?',
+        answer: 'We deliver STEP, IGES, STL, DWG, and PDF drawings for manufacturing, simulation, and review.',
       },
       {
-        question: 'How fast can I get a CAD Design model from Red Shadow Designs?',
-        answer: 'Standard delivery is 5–7 business days for CAD design projects, with rush turnaround available for urgent mechanical and product engineering work.',
+        question: 'Can you model assemblies with moving parts?',
+        answer: 'Yes. We model full assemblies and validate mechanisms, interference, and kinematic motion.',
       },
       {
-        question: 'Can you produce manufacturing-ready CAD files?',
-        answer: 'Yes. Every CAD model is built with manufacturing constraints in mind and delivered as production-ready STEP and STL files.',
+        question: 'Do you provide manufacturing-ready geometry?',
+        answer: 'Yes. Every CAD model is built for production with clean part structures and proper mating conditions.',
       },
       {
-        question: 'Do you support detailed assembly and part-level drawings?',
-        answer: 'Absolutely. We provide fully documented assemblies, exploded views, and part-level drawings with tolerance and fit annotations.',
+        question: 'How detailed are the CAD deliverables?',
+        answer: 'Our deliverables include fully constrained part and assembly files, plus annotated drawings when required.',
       },
     ],
   },
   {
-    slug: '3d-rendering',
-    title: '3D Rendering',
-    description: 'Photorealistic 3D rendering and visualization services for product marketing, packaging, and design validation.',
-    keywords: ['3D rendering studio Islamabad', 'photorealistic rendering', 'product visualization', 'Blender 3D renders'],
-    tools: ['Blender', 'KeyShot', 'Cinema 4D', 'Unreal Engine'],
-    deliverables: ['PNG', 'JPEG', 'TIFF', 'MP4', 'MOV'],
-    longDescription:
-      'Red Shadow Designs delivers photorealistic 3D rendering services for product visuals, marketing assets, packaging concepts, and engineering review. We use advanced lighting, materials, and compositing for polished results.',
-    heroImage: '/assets/images/services/3d-rendering.jpg',
-    faq: [
-      {
-        question: 'What is included in your 3D Rendering service?',
-        answer: 'Our 3D Rendering service includes realistic lighting, texture, camera composition, and final high-resolution imagery for product marketing and investor pitches.',
-      },
-      {
-        question: 'Which render engines do you use?',
-        answer: 'We use Blender Cycles, KeyShot, Cinema 4D, and Unreal Engine for high-quality photorealistic rendering and animation.',
-      },
-      {
-        question: 'How long does a single 3D render take?',
-        answer: 'Typical render turnaround is 4–8 business days depending on scene complexity and asset preparation.',
-      },
-      {
-        question: 'Can I get animation or turntable renders?',
-        answer: 'Yes. We produce animated product turntables, exploded view sequences, and motion-ready MP4 or MOV files.',
-      },
-    ],
-  },
-  {
-    slug: 'product-design',
-    title: 'Product Design',
-    description: 'Industrial product design services that merge aesthetics, ergonomics, and manufacturability for hardware and consumer products.',
-    keywords: ['product design Islamabad', 'industrial design studio', 'ergonomic product design', 'product development services'],
-    tools: ['SolidWorks', 'Fusion 360', 'Rhino', 'KeyShot'],
-    deliverables: ['STEP', 'STL', 'FBX', 'PNG', 'PDF'],
-    longDescription:
-      'Red Shadow Designs provides industrial product design from concept through production-ready CAD geometry. We optimize for usability, aesthetics, and manufacturing viability.',
-    heroImage: '/assets/images/services/product-design.jpg',
-    faq: [
-      {
-        question: 'Can Red Shadow Designs help with product concept development?',
-        answer: 'Yes. We develop product concepts with user ergonomics, manufacturability, and brand positioning in mind.',
-      },
-      {
-        question: 'What deliverables are included for Product Design?',
-        answer: 'We deliver concept models, CAD geometry, render-ready visuals, and manufacturing-ready files such as STEP, STL, FBX, and PDF documentation.',
-      },
-      {
-        question: 'Do you provide DFM reviews for product design?',
-        answer: 'Yes. Our workflow includes design for manufacturing checks and manufacturability feedback for injection molding, CNC, and sheet metal.',
-      },
-      {
-        question: 'How do you balance aesthetics and engineering in product design?',
-        answer: 'We combine industrial design with engineering validation so products look premium while remaining manufacturable and cost-efficient.',
-      },
-    ],
-  },
-  {
-    slug: 'engineering',
-    title: 'Engineering',
-    description: 'Mechanical and industrial engineering services for assemblies, mechanisms, and manufacturing-ready CAD workflows.',
-    keywords: ['engineering services Islamabad', 'mechanical engineering design', 'manufacturing-ready CAD', 'DFM engineering'],
+    slug: 'mechanical-engineering',
+    title: 'Mechanical Engineering',
+    description: 'Engineering-driven design of mechanisms, assemblies, and performance-critical systems for reliable product operation.',
+    keywords: ['mechanical engineering', 'DFM engineering', 'mechanism design', 'assembly engineering'],
     tools: ['SolidWorks', 'AutoCAD', 'ANSYS', 'Fusion 360'],
-    deliverables: ['STEP', 'IGES', 'CAD assembly', 'STL', '2D drawings'],
+    deliverables: ['Assembly CAD', 'Mechanism diagrams', 'Engineering report'],
     longDescription:
-      'Red Shadow Designs delivers engineering services for mechanical assemblies, mechanisms, and production-ready CAD models, backed by DFM and tolerance-aware design.',
+      'We design mechanical systems with a focus on strength, motion, and manufacturability. Our engineering service delivers production-ready assemblies and validated mechanisms.',
     heroImage: '/assets/images/services/engineering.jpg',
     faq: [
       {
-        question: 'What engineering services do you offer?',
-        answer: 'We offer mechanical engineering, assembly modeling, tolerance analysis, DFM validation, and manufacturing-ready CAD deliverables.',
+        question: 'What engineering work do you offer?',
+        answer: 'We offer mechanism design, assembly engineering, tolerance analysis, and production-ready technical documentation.',
       },
       {
-        question: 'Do you provide 2D manufacturing drawings?',
-        answer: 'Yes. We can provide detailed 2D drawings, BOMs, and annotation-rich documentation for production release.',
+        question: 'Can you help with moving assemblies?',
+        answer: 'Yes. We model motion, kinematics, and load-bearing components to ensure reliable operation.',
       },
       {
-        question: 'What tools do you use for engineering design?',
-        answer: 'We use SolidWorks, AutoCAD, Fusion 360, and ANSYS for engineering models and analysis-ready CAD workflows.',
+        question: 'Do you validate for manufacturing?',
+        answer: 'Absolutely. Our engineering reviews include manufacturability checks and assembly guidance.',
       },
       {
-        question: 'Are your engineering models ready for CNC and 3D printing?',
-        answer: 'Yes. All models are validated for CNC machining and 3D printing and delivered as STEP, IGES, and STL files.',
+        question: 'What format are the engineering deliverables?',
+        answer: 'We deliver CAD assemblies, part-level files, and engineering notes that support production release.',
+      },
+    ],
+  },
+  {
+    slug: 'rapid-prototyping',
+    title: 'Rapid Prototyping',
+    description: 'Fast functional prototypes ready for testing and iteration using additive and subtractive manufacturing geometry.',
+    keywords: ['rapid prototyping', 'prototype design', '3D print ready', 'CNC prototype'],
+    tools: ['Fusion 360', 'SolidWorks', 'Rhino'],
+    deliverables: ['Prototype-ready CAD', 'STL files', '3D printable models'],
+    longDescription:
+      'We help you move from concept to physical prototype quickly. Our prototype-ready models are optimized for 3D printing, CNC machining, and quick-turn validation.',
+    heroImage: '/assets/images/services/cad-2.jpg',
+    faq: [
+      {
+        question: 'What is included in rapid prototyping?',
+        answer: 'We prepare models for fast physical builds, checking geometry, fit, and material constraints for prototype manufacturing.',
+      },
+      {
+        question: 'Which prototype methods do you support?',
+        answer: 'We support SLA, FDM, SLS, and CNC-ready prototypes with printer-friendly geometry.',
+      },
+      {
+        question: 'Can you refine prototypes after testing?',
+        answer: 'Yes. We iterate quickly based on feedback to improve fit, strength, and function.',
+      },
+      {
+        question: 'Do you include assembly-ready prototypes?',
+        answer: 'Yes. We prepare prototypes with clearances and assembly fit for functional testing.',
+      },
+    ],
+  },
+  {
+    slug: '3d-printing',
+    title: '3D Printing',
+    description: 'Print-ready CAD optimization and mesh preparation for SLA, FDM, and SLS prototyping and production.',
+    keywords: ['3D printing design', '3D printable model', 'SLA optimization', 'FDM mesh preparation'],
+    tools: ['Fusion 360', 'Blender', 'MeshLab'],
+    deliverables: ['3D-printable STL', 'Support-ready model', 'Print validation report'],
+    longDescription:
+      'Our 3D printing service prepares your design for reliable additive manufacturing. We optimize wall thickness, support structure, and fit tolerance for clean prints.',
+    heroImage: '/assets/images/services/3d-viz-1.jpg',
+    faq: [
+      {
+        question: 'Do you prepare models for SLA and FDM printers?',
+        answer: 'Yes. We optimize geometry for resin and filament printing with correct wall thickness and support placement.',
+      },
+      {
+        question: 'What makes a model 3D-print ready?',
+        answer: 'A print-ready model has clean topology, proper supports, and manufacturable wall thickness for the chosen process.',
+      },
+      {
+        question: 'Do you provide support placement guidance?',
+        answer: 'Yes. We deliver models ready for slicing with recommended support structures and print orientation.',
+      },
+      {
+        question: 'Can you validate part tolerances for assemblable prints?',
+        answer: 'Absolutely. We verify clearances and tolerances so printed parts fit reliably.',
+      },
+    ],
+  },
+  {
+    slug: 'design-for-manufacturing',
+    title: 'Design for Manufacturing',
+    description: 'Manufacturing-ready design review and optimization for injection molding, CNC machining, and production assembly.',
+    keywords: ['DFM review', 'manufacturing-ready design', 'tooling optimization', 'production design'],
+    tools: ['SolidWorks', 'AutoCAD', 'KeyShot'],
+    deliverables: ['DFM report', 'Optimized CAD files', 'Manufacturing notes'],
+    longDescription:
+      'We review designs for production viability and optimize part geometry, draft, tolerances, and assembly to reduce cost and improve manufacturability.',
+    heroImage: '/assets/images/services/cad-1.jpg',
+    faq: [
+      {
+        question: 'What is design for manufacturing?',
+        answer: 'It is the process of adjusting product design so it can be made reliably and cost-effectively at scale.',
+      },
+      {
+        question: 'Do you review injection molded parts?',
+        answer: 'Yes. We review draft, wall thickness, parting lines, and toolability for molded components.',
+      },
+      {
+        question: 'Will you recommend the best manufacturing method?',
+        answer: 'Yes. We suggest the most efficient process based on volume, material, and product requirements.',
+      },
+      {
+        question: 'Do you provide tooling-ready documentation?',
+        answer: 'Yes. We deliver optimized CAD and notes for molding, machining, and assembly handoff.',
+      },
+    ],
+  },
+  {
+    slug: 'product-visualization-renders',
+    title: 'Product Visualization / Renders',
+    description: 'Cinematic product visuals and marketing-ready render imagery for packaging, campaigns, and presentations.',
+    keywords: ['product visualization', 'marketing renders', 'photorealistic rendering', 'product imagery'],
+    tools: ['Blender', 'KeyShot', 'Cinema 4D'],
+    deliverables: ['High-res renders', 'PNG / JPEG assets', 'Composite files'],
+    longDescription:
+      'We create polished product visuals from CAD and concept assets. Our renders are tailored for launch campaigns, investor decks, and digital marketing.',
+    heroImage: '/assets/images/services/3d-viz-2.jpg',
+    faq: [
+      {
+        question: 'What is included in product visualization?',
+        answer: 'We deliver photorealistic images with realistic materials, lighting, and composition optimized for your brand and use case.',
+      },
+      {
+        question: 'Can you render packaging and hero shots?',
+        answer: 'Yes. We create studio-quality hero shots and packaging visuals for product launches.',
+      },
+      {
+        question: 'Do you work from CAD or concept sketches?',
+        answer: 'Yes. We can work from sketches, CAD models, or existing 3D data.',
+      },
+      {
+        question: 'What output formats do you deliver?',
+        answer: 'We deliver high-resolution PNG, JPEG, TIFF, and layered source files as needed.',
+      },
+    ],
+  },
+  {
+    slug: 'product-animations',
+    title: 'Product Animations',
+    description: 'Exploded views, turntables, and motion sequences that showcase product function and assembly behavior.',
+    keywords: ['product animation', 'turntable video', 'exploded view', 'motion render'],
+    tools: ['Blender', 'KeyShot', 'After Effects'],
+    deliverables: ['MP4', 'MOV', 'Animated GIFs'],
+    longDescription:
+      'We bring product designs to life through motion. Our animations explain functionality, assembly, and user experience for pitches and presentations.',
+    heroImage: '/assets/images/services/3d-viz-3.jpg',
+    faq: [
+      {
+        question: 'What types of animations do you create?',
+        answer: 'We create turntables, exploded views, assembly sequences, and functional motion videos.',
+      },
+      {
+        question: 'What file formats are delivered?',
+        answer: 'We deliver MP4, MOV, and optimized animated GIFs for web or presentations.',
+      },
+      {
+        question: 'Can animations show mechanism behavior?',
+        answer: 'Yes. We animate moving parts and mechanisms to clearly communicate product function.',
+      },
+      {
+        question: 'Do you add labels and motion graphics?',
+        answer: 'Yes. We can include callouts and simple motion graphics to highlight key features.',
       },
     ],
   },
 ];
 
 const serviceAliases: Record<string, string> = {
-  'feasibility-test': 'cad-design',
-  'mechanical-engineering': 'engineering',
-  'rapid-prototyping': 'product-design',
-  '3d-printing': '3d-rendering',
-  'design-for-manufacturing': 'engineering',
-  'product-visualization-renders': '3d-rendering',
-  'product-animations': '3d-rendering',
+  engineering: 'mechanical-engineering',
+  '3d-rendering': 'product-visualization-renders',
 };
 
 export const serviceSlugs = [
