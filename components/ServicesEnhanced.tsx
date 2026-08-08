@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 const services = [
   {
+    slug: 'cad-design',
     id: 'feasibility-test',
     title: 'Feasibility Test',
     description: 'Initial structural, mechanical, and dimensional assessment to evaluate concept viability.',
@@ -17,6 +18,7 @@ const services = [
     ],
   },
   {
+    slug: 'cad-design',
     id: 'cad-design',
     title: 'CAD Design',
     description: 'Precision parametric 3D modeling and technical drawing creation tailored to exact specifications.',
@@ -28,6 +30,7 @@ const services = [
     ],
   },
   {
+    slug: 'engineering',
     id: 'mechanical-engineering',
     title: 'Mechanical Engineering',
     description: 'Complex mechanical assemblies, thermal management, kinematic testing, and load-bearing design.',
@@ -39,6 +42,7 @@ const services = [
     ],
   },
   {
+    slug: 'product-design',
     id: 'rapid-prototyping',
     title: 'Rapid Prototyping',
     description: 'Optimized digital modeling for quick physical validation, iteration, and fit testing.',
@@ -50,6 +54,7 @@ const services = [
     ],
   },
   {
+    slug: '3d-rendering',
     id: '3d-printing',
     title: '3D Printing',
     description: 'SLA/FDM/SLS print-ready CAD optimization, wall thickness validation, and mesh slicing support.',
@@ -61,6 +66,7 @@ const services = [
     ],
   },
   {
+    slug: 'engineering',
     id: 'design-for-manufacturing',
     title: 'Design for Manufacturing (DFM)',
     description: 'Production-ready file conversion (STEP, IGES, STL), draft angles, tooling analysis, and DFM compliance.',
@@ -72,6 +78,7 @@ const services = [
     ],
   },
   {
+    slug: '3d-rendering',
     id: 'product-visualization-renders',
     title: 'Product Visualization/Renders',
     description: 'Studio lighting, photorealistic textures, materials, and cinematic hero renders for marketing and launch campaigns.',
@@ -83,6 +90,7 @@ const services = [
     ],
   },
   {
+    slug: '3d-rendering',
     id: 'product-animations',
     title: 'Product Animations',
     description: 'Exploded view animations, 360-degree turntables, and functional mechanism walk-through videos.',
@@ -136,7 +144,7 @@ export default function ServicesEnhanced() {
             return (
               <div key={service.id} className="relative w-full overflow-visible">
                 <Link 
-                  href={`/services/${service.id}`} 
+                  href={`/services/${service.slug}`} 
                   className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 md:py-12 border-b border-white/10 cursor-pointer transition-colors hover:border-[rgba(0,212,255,0.3)]"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}

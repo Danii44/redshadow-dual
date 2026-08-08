@@ -1,16 +1,6 @@
 "use client";
 
-/**
- * PortfolioEnhanced.tsx - Horizontal portfolio showcase section
- *
- * Features:
- * - ScrollTrigger-pinned horizontal gallery within a vertical flow
- * - Parallax motion on project imagery while the horizontal deck moves
- * - Responsive glassmorphism card layout
- * - Links to individual project pages
- */
-
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -74,96 +64,117 @@ export function PortfolioEnhanced() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const horizontalRef = useRef<HTMLDivElement | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const section = sectionRef.current;
     const track = horizontalRef.current;
 
     if (!section || !track) return;
 
-    const ctx = gsap.context(() => {
-      const getScrollAmount = () => {
-        const sectionWidth = section.getBoundingClientRect().width;
-        return Math.max(track.scrollWidth - sectionWidth + 100, 0);
-      };
+    let ctx: gsap.Context | null = null;
+    let isActive = true;
 
-      gsap.set(track, {
-        width: 'max-content',
-        minWidth: 'max-content',
-        x: 0,
-        willChange: 'transform',
-        force3D: true,
+    const clearExistingTriggers = () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === section || trigger.trigger === track) {
+          trigger.kill();
+        }
       });
+    };
 
-      const totalX = getScrollAmount();
+    const initScrollTrigger = () => {
+      if (!isActive) return;
+      clearExistingTriggers();
 
-      gsap.to(track, {
-        x: () => -getScrollAmount(),
-        ease: 'none',
-        force3D: true,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          // Pin for the horizontal scroll distance plus viewport height to ensure proper release
-          end: () => `+=${getScrollAmount() + window.innerHeight}`,
-          scrub: 0.8,
-          pin: section,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          fastScrollEnd: true,
-        },
-      });
+      ctx = gsap.context(() => {
+        // Calculate precise scrollable distance
+        const getScrollAmount = () => {
+          return Math.max(track.scrollWidth - window.innerWidth, 0);
+        };
 
-      const onLoad = () => ScrollTrigger.refresh();
-      const onResize = () => ScrollTrigger.refresh();
-
-      window.addEventListener('load', onLoad);
-      window.addEventListener('resize', onResize);
-      const refreshTimeout = window.setTimeout(() => ScrollTrigger.refresh(), 200);
-
-      const cards = gsap.utils.toArray<HTMLElement>('.portfolio-item-wrapper', track);
-      cards.forEach((card, index) => {
-        const image = card.querySelector('.portfolio-item-img') as HTMLElement | null;
-        if (!image) return;
-
-        gsap.fromTo(
-          image,
-          {
-            yPercent: index % 2 === 0 ? -6 : 6,
-            scale: 1.05,
+        // Master timeline that controls both track movement AND image parallax
+        const mainTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${getScrollAmount()}`,
+            pin: true,
+            pinSpacing: true,
+            scrub: 1,
+            anticipatePin: 1,
+            refreshPriority: 2,
+            invalidateOnRefresh: true,
           },
-          {
-            yPercent: index % 2 === 0 ? 6 : -6,
-            scale: 1.12,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top top',
-              end: () => `+=${getScrollAmount() + 300}`,
-              scrub: true,
+        });
+
+        // 1. Move horizontal track
+        mainTl.to(track, {
+          x: () => -getScrollAmount(),
+          ease: 'none',
+        }, 0);
+
+        // 2. Animate inner image parallax attached directly to the main timeline (NO separate ScrollTriggers)
+        const cards = gsap.utils.toArray<HTMLElement>('.portfolio-item-wrapper', track);
+        cards.forEach((card, index) => {
+          const image = card.querySelector('.portfolio-item-img') as HTMLElement | null;
+          if (!image) return;
+
+          mainTl.fromTo(
+            image,
+            {
+              xPercent: index % 2 === 0 ? -10 : 10,
+              scale: 1.05,
             },
-          },
-        );
+            {
+              xPercent: index % 2 === 0 ? 10 : -10,
+              scale: 1.12,
+              ease: 'none',
+            },
+            0 // Synchronize with the main timeline start
+          );
+        });
+
+      }, section);
+
+      ScrollTrigger.refresh();
+    };
+
+    // Preload & decode all images to ensure correct scrollWidth calculation
+    const images = Array.from(track.querySelectorAll('img'));
+    const imagePromises = images.map((img) => {
+      if (img.complete) {
+        return img.decode().catch(() => Promise.resolve());
+      }
+      return new Promise<void>((resolve) => {
+        img.onload = () => img.decode().then(() => resolve()).catch(() => resolve());
+        img.onerror = () => resolve();
       });
+    });
 
-      return () => {
-        window.removeEventListener('load', onLoad);
-        window.removeEventListener('resize', onResize);
-        window.clearTimeout(refreshTimeout);
-      };
-    }, section);
+    Promise.all(imagePromises).then(() => {
+      // Small tick delay for Next.js layout engine to paint dimensions
+      requestAnimationFrame(() => {
+        initScrollTrigger();
+      });
+    });
 
-    return () => ctx.revert();
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      isActive = false;
+      window.removeEventListener('resize', onResize);
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (
-    <section ref={sectionRef} id="portfolio" className="portfolio-section-wrapper">
+    <section ref={sectionRef} id="portfolio" className="portfolio-section-wrapper overflow-hidden">
       <div className="portfolio-parallax-bg">
         <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop" alt="Background" />
         <div className="portfolio-bg-overlay"></div>
       </div>
 
-      <div className="portfolio-sticky-content">
+      <div className="portfolio-sticky-content h-screen flex flex-col justify-between py-12">
         <div className="portfolio-header-container">
           <motion.div
             className="portfolio-header"
@@ -173,14 +184,14 @@ export function PortfolioEnhanced() {
             viewport={{ once: true }}
           >
             <div className="portfolio-pill">Immersive showcases</div>
-            <h2 className="portfolio-title">Featured Projects</h2>
-            <p className="portfolio-subtitle">Scroll to explore our engineering excellence through cinematic product stories.</p>
+            <h2 className="portfolio-enhanced-title">Featured Projects</h2>
+            <p className="portfolio-enhanced-subtitle">Scroll to explore our engineering excellence through cinematic product stories.</p>
           </motion.div>
         </div>
 
-        <div ref={horizontalRef} className="portfolio-horizontal-container">
+        <div ref={horizontalRef} className="portfolio-horizontal-container flex flex-nowrap w-max gap-8 px-12">
           {portfolioItems.map((item) => (
-            <div key={item.id} className="portfolio-item-wrapper">
+            <div key={item.id} className="portfolio-item-wrapper flex-shrink-0">
               <Link href={`/portfolio/${item.id}`} className="block w-full h-full">
                 <motion.div
                   className="portfolio-item glass-card h-full"

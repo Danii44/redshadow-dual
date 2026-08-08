@@ -101,7 +101,7 @@ export function Portfolio() {
               </div>
               <div className="portfolio-content">
                 <span className="portfolio-category">{project.category}</span>
-                <h3 className="portfolio-title">{project.title}</h3>
+                <h3 className="portfolio-card-title">{project.title}</h3>
                 <p className="portfolio-description">{project.description}</p>
               </div>
               <div className="portfolio-glow"></div>

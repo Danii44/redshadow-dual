@@ -1,11 +1,11 @@
 /**
- * Portfolio.css - Portfolio Section Styling
+ * Portfolio.css - Portfolio Standard Grid Styling
  * 
- * Design: Immersive glass presentations with depth
+ * Design: Immersive glass presentations with scoped classes and responsive depth
  */
 
 .portfolio-section {
-  position: relative;
+  position: relative; 
   padding: 120px 20px;
   background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0a 100%);
   overflow: hidden;
@@ -34,7 +34,7 @@
 
 .section-subtitle {
   font-size: 1.125rem;
-  color: rgba(232, 232, 232, 0.6);
+  color: rgba(232, 232, 232, 0.7);
   margin: 0;
   letter-spacing: 1px;
 }
@@ -50,27 +50,37 @@
 /* Portfolio Card */
 .portfolio-card {
   position: relative;
-  height: 400px;
+  min-height: 400px; /* Use min-height so content never clips */
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(0, 212, 255, 0.15);
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease, 
+              background-color 0.4s ease;
   display: flex;
   flex-direction: column;
+  /* Promote to GPU layer to fix backdrop-filter hover jitter */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .portfolio-card:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(0, 212, 255, 0.4);
-  box-shadow: 0 0 40px rgba(0, 212, 255, 0.25), inset 0 0 30px rgba(0, 212, 255, 0.08);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 212, 255, 0.2);
 }
 
 /* Portfolio Image Placeholder */
 .portfolio-image-placeholder {
-  flex: 1;
+  width: 100%;
+  height: 200px; /* Fixed height for image container to prevent squishing */
+  flex-shrink: 0;
   background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
   display: flex;
   align-items: center;
@@ -83,9 +93,10 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.2), transparent);
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.25), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .portfolio-card:hover .portfolio-image-placeholder::before {
@@ -93,13 +104,14 @@
 }
 
 .placeholder-icon {
-  font-size: 4rem;
-  opacity: 0.6;
-  transition: transform 0.4s ease;
+  font-size: 3.5rem;
+  opacity: 0.75;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
 }
 
 .portfolio-card:hover .placeholder-icon {
-  transform: scale(1.2) rotate(10deg);
+  transform: scale(1.15) rotate(8deg);
 }
 
 /* Portfolio Content */
@@ -107,7 +119,8 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  flex-grow: 1;
   position: relative;
   z-index: 2;
 }
@@ -116,28 +129,29 @@
 .portfolio-category {
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #00d4ff;
   font-family: 'Space Mono', monospace;
 }
 
-/* Portfolio Title */
-.portfolio-title {
+/* Renamed from .portfolio-title to .portfolio-card-title to prevent collisions */
+.portfolio-card-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #e8e8e8;
+  color: #ffffff;
   margin: 0;
   font-family: 'Inter', sans-serif;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
+  line-height: 1.35;
 }
 
 /* Portfolio Description */
 .portfolio-description {
-  font-size: 0.9rem;
-  color: rgba(232, 232, 232, 0.6);
+  font-size: 0.92rem;
+  color: rgba(232, 232, 232, 0.68);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
   font-family: 'Inter', sans-serif;
 }
 
@@ -145,7 +159,7 @@
 .portfolio-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.15), transparent);
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.12), transparent 70%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -167,27 +181,33 @@
   }
 
   .section-header {
-    margin-bottom: 60px;
+    margin-bottom: 48px;
   }
 
   .portfolio-card {
-    height: 300px;
+    min-height: 340px;
+  }
+
+  .portfolio-image-placeholder {
+    height: 170px;
   }
 
   .portfolio-content {
-    padding: 16px;
+    padding: 18px;
   }
 
   .placeholder-icon {
-    font-size: 3rem;
+    font-size: 2.75rem;
   }
 }
 
-/* Reduced Motion */
+/* Accessibility / Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .portfolio-card,
   .placeholder-icon,
-  .portfolio-glow {
-    transition: none;
+  .portfolio-glow,
+  .portfolio-image-placeholder::before {
+    transition: none !important;
+    transform: none !important;
   }
 }

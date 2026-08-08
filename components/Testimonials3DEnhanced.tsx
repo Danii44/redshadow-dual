@@ -34,7 +34,6 @@ const testimonials = [
 
 export default function Testimonials3DEnhanced() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
@@ -46,53 +45,60 @@ export default function Testimonials3DEnhanced() {
   const isLight = mounted && theme === 'light';
 
   useEffect(() => {
-    if (!mounted || !sectionRef.current || !containerRef.current) return;
+    if (!mounted || !sectionRef.current) return;
+    const section = sectionRef.current;
 
-    let refreshTimeout = 0;
-    const onLoad = () => ScrollTrigger.refresh();
-    const onResize = () => ScrollTrigger.refresh();
+    // Reset array to ensure clean ref collection in React Strict Mode
+    cardsRef.current = cardsRef.current.slice(0, testimonials.length);
+
+    const clearExistingTriggers = () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === section) {
+          trigger.kill();
+        }
+      });
+    };
+
+    clearExistingTriggers();
 
     const ctx = gsap.context(() => {
       const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
       if (cards.length === 0) return;
 
-      // Ensure the pinned section has enough height to host the scroll animation
-      const sectionHeight = Math.max(window.innerHeight * (cards.length + 0.8), window.innerHeight + cards.length * 280);
-      sectionRef.current!.style.minHeight = `${sectionHeight}px`;
-
-      // Position all cards at center stacked
+      // Initial layout reset for stacked cards in the exact center of 100vh
       gsap.set(cards, {
         position: 'absolute',
-        top: '50%',
+        top: '55%', // Positioned in the vertical center area
         left: '50%',
         xPercent: -50,
         yPercent: -50,
         opacity: 0,
-        y: 180,
+        y: 120,
         scale: 1,
         filter: 'blur(0px)',
         willChange: 'transform, opacity, filter',
         zIndex: (i) => i + 1,
       });
 
-      // First card starts fully visible
+      // Reveal first card
       if (cards[0]) {
         gsap.set(cards[0], { opacity: 1, y: 0 });
       }
 
-      const totalScroll = window.innerHeight * (cards.length + 0.75);
+      // Total scroll distance based on viewport heights
+      const totalScroll = window.innerHeight * (cards.length * 0.85);
 
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: section,
           start: 'top top',
           end: `+=${totalScroll}`,
-          pin: sectionRef.current,
+          pin: true,
           pinSpacing: true,
           scrub: 0.8,
           anticipatePin: 1,
+          refreshPriority: 1,
           invalidateOnRefresh: true,
-          fastScrollEnd: true,
         },
       });
 
@@ -101,7 +107,7 @@ export default function Testimonials3DEnhanced() {
         const currentCard = cards[index];
         if (!currentCard) return;
 
-        // Animate new card in from bottom
+        // Animate incoming card from bottom
         tl.to(currentCard, {
           opacity: 1,
           y: 0,
@@ -109,7 +115,7 @@ export default function Testimonials3DEnhanced() {
           ease: 'power2.out',
         });
 
-        // Stack previous cards with scale, shift, opacity & depth-of-field blur
+        // Push previous cards back in 3D stack space
         for (let j = 0; j < index; j++) {
           const prevCard = cards[j];
           if (prevCard) {
@@ -117,60 +123,57 @@ export default function Testimonials3DEnhanced() {
             tl.to(
               prevCard,
               {
-                scale: Math.max(1 - depth * 0.05, 0.8),
-                y: -(depth * 24),
-                opacity: Math.max(1 - depth * 0.22, 0.3),
+                scale: Math.max(1 - depth * 0.05, 0.82),
+                y: -(depth * 28),
+                opacity: Math.max(1 - depth * 0.25, 0.25),
                 filter: `blur(${depth * 2.5}px)`,
                 duration: 1,
                 ease: 'power2.out',
               },
-              '<'
+              '<' // Run simultaneously with card reveal
             );
           }
         }
-        tl.to({}, { duration: 0.4 });
+        tl.to({}, { duration: 0.3 }); // Small pause between cards
       });
 
-      // Refresh ScrollTrigger after images or other resources settle
-      window.addEventListener('load', onLoad);
-      window.addEventListener('resize', onResize);
-      window.addEventListener('resize', onResize);
-      refreshTimeout = window.setTimeout(() => ScrollTrigger.refresh(), 200);
-
-      return () => {
-        window.removeEventListener('load', onLoad);
-        window.removeEventListener('resize', onResize);
-        window.clearTimeout(refreshTimeout);
-      };
     }, sectionRef);
 
+    const handleResize = () => ScrollTrigger.refresh();
+    window.addEventListener('resize', handleResize);
+
     return () => {
-      window.removeEventListener('load', onLoad);
-      window.clearTimeout(refreshTimeout);
+      window.removeEventListener('resize', handleResize);
       ctx.revert();
     };
   }, [mounted]);
-
-  if (!mounted) return null;
 
   return (
     <section
       ref={sectionRef}
       id="testimonials"
-      className="relative w-full min-h-screen overflow-visible z-10"
-      style={{ background: isLight ? '#f8f6ff' : '#060912' }}
+      className="relative w-full h-screen overflow-hidden z-10 flex flex-col justify-between py-12"
+      style={{ 
+        background: isLight ? '#f8f6ff' : '#060912',
+        visibility: mounted ? 'visible' : 'hidden' // Prevents Layout Shift while preventing hydration flash
+      }}
     >
+      {/* Background Ambient Glows */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[90px] ${isLight ? 'bg-[rgba(124,58,237,0.1)]' : 'bg-[rgba(0,212,255,0.15)]'}`} />
         <div className={`absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[90px] ${isLight ? 'bg-[rgba(99,102,241,0.08)]' : 'bg-[rgba(124,58,237,0.12)]'}`} />
       </div>
 
-      <div className="absolute top-[8%] left-0 w-full text-center z-20 px-4">
-        <div className={`inline-block mb-3 px-4 py-1 rounded-full text-[0.66rem] uppercase tracking-[0.16em] font-semibold border ${isLight ? 'border-[rgba(124,58,237,0.3)] bg-[rgba(124,58,237,0.08)] text-[#7c3aed]' : 'border-[rgba(0,212,255,0.3)] bg-[rgba(0,212,255,0.08)] text-[#a3f0ff]'
-          }`}>
+      {/* Header */}
+      <div className="relative top-0 left-0 w-full text-center z-20 px-4 pt-4">
+        <div className={`inline-block mb-3 px-4 py-1 rounded-full text-[0.66rem] uppercase tracking-[0.16em] font-semibold border ${
+          isLight 
+            ? 'border-[rgba(124,58,237,0.3)] bg-[rgba(124,58,237,0.08)] text-[#7c3aed]' 
+            : 'border-[rgba(0,212,255,0.3)] bg-[rgba(0,212,255,0.08)] text-[#a3f0ff]'
+        }`}>
           Client Signal
         </div>
-        <h2 className="text-3xl md:text-5xl font-bold font-mono tracking-tight mb-3">
+        <h2 className="text-3xl md:text-5xl font-bold font-mono tracking-tight mb-2">
           Proven Impact
         </h2>
         <p className={`max-w-2xl mx-auto text-xs md:text-sm leading-relaxed ${isLight ? 'text-[#3E325D]/80' : 'text-white/60'}`}>
@@ -178,31 +181,34 @@ export default function Testimonials3DEnhanced() {
         </p>
       </div>
 
-      <div ref={containerRef} className="relative w-full h-full max-w-4xl mx-auto z-10 pt-[14vh]">
+      {/* Stacked Cards Area */}
+      <div className="relative w-full flex-1 max-w-4xl mx-auto z-10">
         {testimonials.map((testimonial, i) => (
           <div
             key={i}
-            ref={(el) => { if (el) cardsRef.current[i] = el; }}
-            className="w-[90%] max-w-[680px] rounded-3xl p-6 md:p-10 flex flex-col gap-6 relative"
+            ref={(el) => { cardsRef.current[i] = el; }}
+            className="w-[90%] max-w-[680px] rounded-3xl p-6 md:p-8 flex flex-col gap-4 relative"
             style={{
               background: isLight ? 'rgba(255, 255, 255, 0.95)' : '#060912',
-              boxShadow: isLight ? '0 24px 80px rgba(62, 50, 93, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.8)' : '0 24px 80px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1)',
+              boxShadow: isLight 
+                ? '0 24px 80px rgba(62, 50, 93, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.8)' 
+                : '0 24px 80px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1)',
               border: isLight ? '1px solid rgba(124, 58, 237, 0.2)' : '1px solid rgba(0, 212, 255, 0.2)'
             }}
           >
-            <div className="absolute top-6 left-6 w-16 h-1 bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] rounded-full" />
-            <div className="mt-3">
-              <p className={`text-base md:text-xl leading-relaxed font-light italic ${isLight ? 'text-[#1e1830]' : 'text-white/90'}`}>
+            <div className="w-16 h-1 bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] rounded-full" />
+            <div>
+              <p className={`text-base md:text-lg leading-relaxed font-light italic ${isLight ? 'text-[#1e1830]' : 'text-white/90'}`}>
                 "{testimonial.content}"
               </p>
             </div>
-            <div className={`flex items-center gap-4 mt-2 pt-4 border-t ${isLight ? 'border-purple-100' : 'border-white/10'}`}>
-              <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#00d4ff] flex items-center justify-center text-white font-bold text-lg shrink-0">
+            <div className={`flex items-center gap-4 pt-3 border-t ${isLight ? 'border-purple-100' : 'border-white/10'}`}>
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#00d4ff] flex items-center justify-center text-white font-bold text-base shrink-0">
                 {testimonial.name.charAt(0)}
               </div>
               <div>
-                <h4 className={`font-bold text-base md:text-lg ${isLight ? 'text-[#1e1830]' : 'text-white'}`}>{testimonial.name}</h4>
-                <p className={`text-xs md:text-sm ${isLight ? 'text-[#5D4B8B]' : 'text-white/60'}`}>{testimonial.role}</p>
+                <h4 className={`font-bold text-sm md:text-base ${isLight ? 'text-[#1e1830]' : 'text-white'}`}>{testimonial.name}</h4>
+                <p className={`text-xs ${isLight ? 'text-[#5D4B8B]' : 'text-white/60'}`}>{testimonial.role}</p>
               </div>
             </div>
           </div>

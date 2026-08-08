@@ -1,13 +1,13 @@
 /**
- * PortfolioEnhanced.css - Cinematic parallax portfolio showcase
+ * PortfolioEnhanced.css - Fixed for GSAP ScrollTrigger Pinning
  */
 
 .portfolio-section-wrapper {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  /* allow pinned children to create spacing and release properly */
-  overflow: visible;
+  /* CRITICAL: Prevents horizontal track from causing body overflow/glitches before GSAP pins */
+  overflow: hidden; 
   background:
     radial-gradient(circle at top left, rgba(0, 212, 255, 0.12), transparent 24%),
     radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.18), transparent 38%),
@@ -42,23 +42,25 @@
 
 .portfolio-sticky-content {
   position: relative;
-  min-height: 100dvh;
+  height: 100vh; /* Fixed 100vh prevents height shifting on scroll */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   z-index: 1;
-  padding: 5rem 0 4rem;
+  padding: 4rem 0 3rem;
+  box-sizing: border-box;
 }
 
 .portfolio-header-container {
   padding: 0 5%;
-  margin-bottom: 2.75rem;
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
 }
 
 .portfolio-pill {
   display: inline-flex;
   padding: 0.4rem 0.85rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   border: 1px solid rgba(0, 212, 255, 0.28);
   border-radius: 999px;
   background: rgba(0, 212, 255, 0.08);
@@ -68,8 +70,8 @@
   letter-spacing: 0.16em;
 }
 
-.portfolio-title {
-  font-size: clamp(2.2rem, 5vw, 4rem);
+.portfolio-enhanced-title {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   color: #fff;
@@ -80,39 +82,40 @@
   margin: 0;
 }
 
-.portfolio-subtitle {
+.portfolio-enhanced-subtitle {
   max-width: 760px;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   color: rgba(255, 255, 255, 0.68);
-  margin-top: 0.7rem;
-  line-height: 1.7;
+  margin-top: 0.5rem;
+  line-height: 1.6;
 }
 
 .portfolio-horizontal-container {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 0 5% 0 5%;
+  padding: 0 5vw;
   width: max-content;
   min-width: max-content;
-  overflow: visible;
   will-change: transform;
+  /* Ensure parent overflow clipping isn't overridden */
+  overflow: visible; 
 }
 
 .portfolio-item-wrapper {
   flex-shrink: 0;
   width: min(28rem, 72vw);
   perspective: 1200px;
-  scroll-snap-align: start;
+  /* REMOVED: scroll-snap-align conflicts with GSAP transform */
 }
 
 .portfolio-item {
-  height: 32rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   border-radius: 28px;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
   border: 1px solid rgba(0, 212, 255, 0.2);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(5, 10, 20, 0.92));
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.34);
@@ -120,7 +123,7 @@
 
 .portfolio-item-image-box {
   position: relative;
-  height: 58%;
+  height: 55%;
   overflow: hidden;
 }
 
@@ -128,11 +131,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.72s ease;
+  will-change: transform;
 }
 
 .portfolio-item:hover .portfolio-item-img {
-  transform: scale(1.09);
+  transform: scale(1.08);
 }
 
 .portfolio-item-icon-overlay {
@@ -152,7 +155,7 @@
 }
 
 .portfolio-item-info {
-  padding: 1.5rem;
+  padding: 1.35rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -165,21 +168,21 @@
   letter-spacing: 0.18em;
   color: #8ef3ff;
   font-weight: 600;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.6rem;
 }
 
 .portfolio-item-title {
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #fff;
-  margin: 0 0 0.9rem 0;
+  margin: 0 0 0.6rem 0;
 }
 
 .portfolio-item-description {
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.66);
-  line-height: 1.68;
-  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 .portfolio-item-footer {
@@ -192,22 +195,23 @@
   }
 
   .portfolio-item {
-    height: 29rem;
+    height: 27rem;
   }
 }
 
 @media (max-width: 768px) {
   .portfolio-sticky-content {
-    padding-top: 4rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2rem;
   }
 
   .portfolio-header-container {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
   }
 
   .portfolio-horizontal-container {
-    padding: 0 1rem;
-    gap: 1rem;
+    padding: 0 1.25rem;
+    gap: 1.25rem;
   }
 
   .portfolio-item-wrapper {
@@ -215,7 +219,7 @@
   }
 
   .portfolio-item {
-    height: 27rem;
+    height: 25rem;
   }
 
   .portfolio-item-title {
@@ -229,10 +233,10 @@
   }
 
   .portfolio-item {
-    height: 25rem;
+    height: 24rem;
   }
 
   .portfolio-item-info {
-    padding: 1.1rem;
+    padding: 1rem;
   }
 }

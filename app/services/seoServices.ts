@@ -129,8 +129,21 @@ export const servicesData: ServiceData[] = [
   },
 ];
 
-export const serviceSlugs = servicesData.map((service) => service.slug);
+const serviceAliases: Record<string, string> = {
+  'feasibility-test': 'cad-design',
+  'mechanical-engineering': 'engineering',
+  'rapid-prototyping': 'product-design',
+  '3d-printing': '3d-rendering',
+  'design-for-manufacturing': 'engineering',
+  'product-visualization-renders': '3d-rendering',
+  'product-animations': '3d-rendering',
+};
+
+export const serviceSlugs = [
+  ...new Set([...servicesData.map((service) => service.slug), ...Object.keys(serviceAliases)]),
+];
 
 export function getServiceBySlug(slug: string) {
-  return servicesData.find((service) => service.slug === slug) ?? null;
+  const normalizedSlug = serviceAliases[slug] ?? slug;
+  return servicesData.find((service) => service.slug === normalizedSlug) ?? null;
 }
