@@ -11,7 +11,7 @@ type Props = {
   modelPath?: string;
 };
 
-function WatchModel({ isDark, modelPath = '/models/watch.glb' }: { isDark: boolean; modelPath?: string }) {
+function WatchModel({ isDark, modelPath = '/assets/Watch.glb' }: { isDark: boolean; modelPath?: string }) {
   const gltf = useGLTF(modelPath) as any;
   const nodes = gltf?.nodes as Record<string, any> | undefined;
 
@@ -89,7 +89,7 @@ function WatchModel({ isDark, modelPath = '/models/watch.glb' }: { isDark: boole
   );
 }
 
-export const WatchHeroCanvas: React.FC<Props> = ({ className, modelPath = '/models/watch.glb' }) => {
+export const WatchHeroCanvas: React.FC<Props> = ({ className, modelPath = '/assets/Watch.glb' }) => {
   const { theme, resolvedTheme } = useTheme();
   // next-themes: consider resolvedTheme or theme; treat 'dark' as dark
   const isDark = (resolvedTheme || theme) === 'dark';

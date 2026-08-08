@@ -82,7 +82,8 @@ export function PortfolioEnhanced() {
 
     const ctx = gsap.context(() => {
       const getScrollAmount = () => {
-        return Math.max(track.scrollWidth - window.innerWidth + 120, 0);
+        const sectionWidth = section.getBoundingClientRect().width;
+        return Math.max(track.scrollWidth - sectionWidth + 100, 0);
       };
 
       gsap.set(track, {
@@ -114,7 +115,10 @@ export function PortfolioEnhanced() {
       });
 
       const onLoad = () => ScrollTrigger.refresh();
+      const onResize = () => ScrollTrigger.refresh();
+
       window.addEventListener('load', onLoad);
+      window.addEventListener('resize', onResize);
       const refreshTimeout = window.setTimeout(() => ScrollTrigger.refresh(), 200);
 
       const cards = gsap.utils.toArray<HTMLElement>('.portfolio-item-wrapper', track);
@@ -144,6 +148,7 @@ export function PortfolioEnhanced() {
 
       return () => {
         window.removeEventListener('load', onLoad);
+        window.removeEventListener('resize', onResize);
         window.clearTimeout(refreshTimeout);
       };
     }, section);

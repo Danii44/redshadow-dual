@@ -2,6 +2,7 @@
 
 import { type CSSProperties, useEffect, useState } from 'react';
 import ContactEnhanced from '@/components/ContactEnhanced';
+import Link from 'next/link';
 
 export default function ContactPageClient() {
   const [scrollY, setScrollY] = useState(0);
@@ -28,6 +29,13 @@ export default function ContactPageClient() {
 
         {/* Page Header */}
         <section className="pt-32 pb-12 text-center px-4">
+          <div className="mb-6 text-sm text-white/50 flex items-center justify-center gap-2">
+            <Link href="/" className="hover:text-white transition-colors">
+              Home
+            </Link>
+            <span className="text-white/30">/</span>
+            <span className="text-white">Contact</span>
+          </div>
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[rgba(0,212,255,0.3)] bg-[rgba(0,212,255,0.08)] text-[#00d4ff] uppercase tracking-[0.2em] text-[0.7rem] font-bold">
             Get In Touch
           </div>

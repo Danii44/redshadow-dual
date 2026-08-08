@@ -54,6 +54,13 @@ export default function AboutPageClient() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative z-10 text-center px-4 max-w-4xl mx-auto"
           >
+            <div className="mb-6 text-sm text-white/50 flex items-center justify-center gap-2">
+              <Link href="/" className="hover:text-white transition-colors">
+                Home
+              </Link>
+              <span className="text-white/30">/</span>
+              <span className="text-white">About</span>
+            </div>
             <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-[rgba(0,212,255,0.3)] bg-[rgba(0,212,255,0.08)] text-[#00d4ff] uppercase tracking-[0.2em] text-[0.7rem] font-bold">
               The Studio
             </div>

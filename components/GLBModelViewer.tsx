@@ -114,7 +114,12 @@ function CanvasClearColor({ isLight }: { isLight: boolean }) {
 
 export function GLBModelViewer() {
   const [webglReady, setWebglReady] = useState(true);
-  const [modelUrl] = useState('/assets/Watch.glb');
+  const [modelUrl] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return new URL('/assets/Watch.glb', window.location.origin).href;
+    }
+    return '/assets/Watch.glb';
+  });
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
 

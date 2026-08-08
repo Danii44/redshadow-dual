@@ -50,23 +50,28 @@ export default function Testimonials3DEnhanced() {
 
     let refreshTimeout = 0;
     const onLoad = () => ScrollTrigger.refresh();
+    const onResize = () => ScrollTrigger.refresh();
 
     const ctx = gsap.context(() => {
       const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
       if (cards.length === 0) return;
 
+      // Ensure the pinned section has enough height to host the scroll animation
+      const sectionHeight = Math.max(window.innerHeight * (cards.length + 0.8), window.innerHeight + cards.length * 280);
+      sectionRef.current!.style.minHeight = `${sectionHeight}px`;
+
       // Position all cards at center stacked
       gsap.set(cards, {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
         xPercent: -50,
         yPercent: -50,
         opacity: 0,
         y: 180,
         scale: 1,
-        filter: "blur(0px)",
-        willChange: "transform, opacity, filter",
+        filter: 'blur(0px)',
+        willChange: 'transform, opacity, filter',
         zIndex: (i) => i + 1,
       });
 
@@ -75,15 +80,13 @@ export default function Testimonials3DEnhanced() {
         gsap.set(cards[0], { opacity: 1, y: 0 });
       }
 
-      const totalScroll = cards.length * 350;
+      const totalScroll = window.innerHeight * (cards.length + 0.75);
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          // explicit end equal to total visual scroll distance
           end: `+=${totalScroll}`,
-          // pin the section element explicitly and ensure spacing is created
           pin: sectionRef.current,
           pinSpacing: true,
           scrub: 0.8,
@@ -103,7 +106,7 @@ export default function Testimonials3DEnhanced() {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power2.out",
+          ease: 'power2.out',
         });
 
         // Stack previous cards with scale, shift, opacity & depth-of-field blur
@@ -119,9 +122,9 @@ export default function Testimonials3DEnhanced() {
                 opacity: Math.max(1 - depth * 0.22, 0.3),
                 filter: `blur(${depth * 2.5}px)`,
                 duration: 1,
-                ease: "power2.out",
+                ease: 'power2.out',
               },
-              "<"
+              '<'
             );
           }
         }
@@ -130,10 +133,13 @@ export default function Testimonials3DEnhanced() {
 
       // Refresh ScrollTrigger after images or other resources settle
       window.addEventListener('load', onLoad);
+      window.addEventListener('resize', onResize);
+      window.addEventListener('resize', onResize);
       refreshTimeout = window.setTimeout(() => ScrollTrigger.refresh(), 200);
 
       return () => {
         window.removeEventListener('load', onLoad);
+        window.removeEventListener('resize', onResize);
         window.clearTimeout(refreshTimeout);
       };
     }, sectionRef);
