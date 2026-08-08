@@ -3,7 +3,7 @@
 import React, { Suspense, useEffect, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, ContactShadows, OrbitControls, useGLTF } from '@react-three/drei';
-import { useTheme } from 'next-themes';
+import { useTheme } from '@/contexts/ThemeContext';
 import * as THREE from 'three';
 
 type Props = {
@@ -90,9 +90,8 @@ function WatchModel({ isDark, modelPath = '/assets/Watch.glb' }: { isDark: boole
 }
 
 export const WatchHeroCanvas: React.FC<Props> = ({ className, modelPath = '/assets/Watch.glb' }) => {
-  const { theme, resolvedTheme } = useTheme();
-  // next-themes: consider resolvedTheme or theme; treat 'dark' as dark
-  const isDark = (resolvedTheme || theme) === 'dark';
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   // Preload model (non-blocking)
   useEffect(() => {

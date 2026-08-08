@@ -8,7 +8,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { services } from '@/lib/services';
+import { serviceMenu } from '@/lib/serviceMenu';
 import './Footer.css';
 
 export function Footer() {
@@ -60,8 +60,8 @@ export function Footer() {
           >
             <h4>Core Services</h4>
             <ul>
-              {services.slice(0, 4).map((s) => (
-                <li key={s.slug}><Link href={`/services/${s.slug}`}>{s.title}</Link></li>
+              {serviceMenu.slice(0, 8).map((service) => (
+                <li key={service.slug}><Link href={`/services/${service.slug}`}>{service.title}</Link></li>
               ))}
             </ul>
           </motion.div>

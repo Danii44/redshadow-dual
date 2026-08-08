@@ -1,11 +1,11 @@
 "use client";
 
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function VideoSection() {
-  const { theme, resolvedTheme } = useTheme();
-  const isLight = (resolvedTheme || theme) === 'light';
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
   const sectionBg = isLight ? 'bg-[#f4f1f9]' : 'bg-[#060912]';
   const textColor = isLight ? 'text-[#1e1830]' : 'text-white';
   const subtitleColor = isLight ? 'text-[#3e325d]/80' : 'text-white/60';
