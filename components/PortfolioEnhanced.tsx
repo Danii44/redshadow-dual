@@ -10,7 +10,7 @@
  * - Links to individual project pages
  */
 
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -74,7 +74,7 @@ export function PortfolioEnhanced() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const horizontalRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const section = sectionRef.current;
     const track = horizontalRef.current;
 
@@ -113,6 +113,10 @@ export function PortfolioEnhanced() {
         },
       });
 
+      const onLoad = () => ScrollTrigger.refresh();
+      window.addEventListener('load', onLoad);
+      const refreshTimeout = window.setTimeout(() => ScrollTrigger.refresh(), 200);
+
       const cards = gsap.utils.toArray<HTMLElement>('.portfolio-item-wrapper', track);
       cards.forEach((card, index) => {
         const image = card.querySelector('.portfolio-item-img') as HTMLElement | null;
@@ -137,6 +141,11 @@ export function PortfolioEnhanced() {
           },
         );
       });
+
+      return () => {
+        window.removeEventListener('load', onLoad);
+        window.clearTimeout(refreshTimeout);
+      };
     }, section);
 
     return () => ctx.revert();

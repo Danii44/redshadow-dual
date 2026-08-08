@@ -605,14 +605,14 @@
 }
 
 :root:not(.dark) .footer-logo-wrap {
-  background: linear-gradient(135deg, rgba(93, 75, 139, 0.2), rgba(62, 50, 93, 0.2));
-  border-color: rgba(93, 75, 139, 0.3);
-  box-shadow: 0 12px 36px rgba(93, 75, 139, 0.15);
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
 :root:not(.dark) .footer-logo-image {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 20px rgba(93, 75, 139, 0.1);
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 :root:not(.dark) .footer-brand h3 {

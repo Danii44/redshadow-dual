@@ -134,10 +134,10 @@ export default function ServicesEnhanced() {
             const isHovered = hoveredIndex === index;
 
             return (
-              <div key={service.id} className="relative w-full">
+              <div key={service.id} className="relative w-full overflow-visible">
                 <Link 
                   href={`/services/${service.id}`} 
-                  className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 md:py-12 border-b border-white/10 cursor-pointer transition-colors hover:border-[rgba(0,212,255,0.3)] z-10"
+                  className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 md:py-12 border-b border-white/10 cursor-pointer transition-colors hover:border-[rgba(0,212,255,0.3)]"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -157,48 +157,46 @@ export default function ServicesEnhanced() {
                       {service.description}
                     </p>
                   </div>
-
-                  {/* Desktop Hover Reveal Image Sequence (Opaque Dark Overlay & High z-index to cover background text) */}
-                  <AnimatePresence>
-                    {isHovered && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9, x: 20 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, x: 20 }}
-                        transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[240px] md:w-[520px] md:h-[340px] rounded-2xl overflow-hidden pointer-events-none z-50 shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-white/20 hidden md:block bg-[#02040a]"
-                      >
-                        <div className="absolute inset-0 bg-[#02040a]" />
-                        
-                        {service.images.map((img, i) => {
-                          const isActive = i === (imageIndex % service.images.length);
-                          return (
-                            <motion.img 
-                              key={img}
-                              src={img} 
-                              alt={`${service.title} preview ${i}`}
-                              initial={false}
-                              animate={{ 
-                                opacity: isActive ? 1 : 0,
-                                scale: isActive ? 1 : 1.05
-                              }}
-                              transition={{ duration: 0 }}
-                              className="absolute inset-0 w-full h-full object-cover"
-                            />
-                          );
-                        })}
-                        
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/80 z-10">
-                          <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[#00d4ff]">
-                            {service.title}
-                          </span>
-                          <span className="text-white/60">0{imageIndex % service.images.length + 1} / 0{service.images.length}</span>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </Link>
+
+                {/* Desktop Hover Reveal Image Sequence (Opaque Dark Overlay & High z-index to cover background text) */}
+                <AnimatePresence>
+                  {isHovered && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                      animate={{ opacity: 1, scale: 1, x: 0 }}
+                      exit={{ opacity: 0, scale: 0.9, x: 20 }}
+                      transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[240px] md:w-[520px] md:h-[340px] rounded-2xl overflow-hidden pointer-events-none z-[999] shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-white/20 hidden md:block bg-[#02040a]"
+                    >
+                      <div className="absolute inset-0 bg-[#02040a]" />
+                      {service.images.map((img, i) => {
+                        const isActive = i === (imageIndex % service.images.length);
+                        return (
+                          <motion.img 
+                            key={img}
+                            src={img} 
+                            alt={`${service.title} preview ${i}`}
+                            initial={false}
+                            animate={{ 
+                              opacity: isActive ? 1 : 0,
+                              scale: isActive ? 1 : 1.05
+                            }}
+                            transition={{ duration: 0 }}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        );
+                      })}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/80 z-10">
+                        <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[#00d4ff]">
+                          {service.title}
+                        </span>
+                        <span className="text-white/60">0{imageIndex % service.images.length + 1} / 0{service.images.length}</span>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Mobile View Card Display: Shows service preview image directly inline under title on mobile screens */}
                 <div className="block md:hidden my-4 rounded-xl overflow-hidden border border-white/10 bg-black/40 h-48 relative">

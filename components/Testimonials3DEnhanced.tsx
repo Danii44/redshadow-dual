@@ -48,6 +48,9 @@ export default function Testimonials3DEnhanced() {
   useEffect(() => {
     if (!mounted || !sectionRef.current || !containerRef.current) return;
 
+    let refreshTimeout = 0;
+    const onLoad = () => ScrollTrigger.refresh();
+
     const ctx = gsap.context(() => {
       const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
       if (cards.length === 0) return;
@@ -126,17 +129,18 @@ export default function Testimonials3DEnhanced() {
       });
 
       // Refresh ScrollTrigger after images or other resources settle
-      const onLoad = () => ScrollTrigger.refresh();
       window.addEventListener('load', onLoad);
-      // Also schedule a short timeout refresh for quick layout changes
-      const refreshTimeout = window.setTimeout(() => ScrollTrigger.refresh(), 200);
+      refreshTimeout = window.setTimeout(() => ScrollTrigger.refresh(), 200);
 
-      // cleanup listeners/timeouts in ctx.revert() via return below
+      return () => {
+        window.removeEventListener('load', onLoad);
+        window.clearTimeout(refreshTimeout);
+      };
     }, sectionRef);
 
     return () => {
-      window.clearTimeout(refreshTimeout);
       window.removeEventListener('load', onLoad);
+      window.clearTimeout(refreshTimeout);
       ctx.revert();
     };
   }, [mounted]);
