@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: Props) {
   }
 
   return (
-    <main className="max-w-6xl mx-auto py-20 px-6">
+    <main className="max-w-6xl mx-auto pt-28 pb-20 px-6 md:pt-32">
       <section className="relative overflow-hidden rounded-[2rem] bg-[#090b15] shadow-[0_35px_120px_rgba(0,0,0,0.35)] mb-16">
         {project.image && (
           <div className="relative h-[55vh] md:h-[65vh] overflow-hidden">

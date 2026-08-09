@@ -10,7 +10,7 @@ export default function VideoSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const thumbnailImagePath = '/assets/images/backgrounds/hero-bg.jpg';
+  const thumbnailImagePath = '/assets/images/thumbnail.png';
 
   const sectionBg = isLight ? 'bg-[#f4f1f9]' : 'bg-[#060912]';
   const textColor = isLight ? 'text-[#1e1830]' : 'text-white';

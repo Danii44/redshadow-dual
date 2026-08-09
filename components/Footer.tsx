@@ -75,7 +75,9 @@ export function Footer() {
           >
             <h4>Follow Us</h4>
             <div className="social-icons">
-              <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr">F</a>
+              <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr">
+                <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-4 w-4" />
+              </a>
               <a href="#" className="social-icon" title="LinkedIn">in</a>
               <a href="#" className="social-icon" title="Instagram">📷</a>
               <a href="#" className="social-icon" title="Twitter">𝕏</a>

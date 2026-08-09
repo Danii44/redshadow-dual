@@ -144,8 +144,12 @@ export default function AboutPageClient() {
               <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
                 {/* Avatar */}
                 <div className="flex-shrink-0">
-                  <div className="w-36 h-36 md:w-44 md:h-44 rounded-2xl border-2 border-[rgba(0,212,255,0.3)] overflow-hidden shadow-[0_0_40px_rgba(0,212,255,0.15)] bg-gradient-to-br from-[#0a1628] to-[#1a0033] flex items-center justify-center">
-                    <span className="text-7xl">👨‍💻</span>
+                  <div className="w-36 h-36 md:w-44 md:h-44 rounded-2xl border-2 border-[rgba(0,212,255,0.3)] overflow-hidden shadow-[0_0_40px_rgba(0,212,255,0.15)] bg-gradient-to-br from-[#0a1628] to-[#1a0033]">
+                    <img
+                      src="/assets/images/Profile.jpg"
+                      alt="Daniyal Ahmad"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   {/* Top-rated badge */}
                   <div className="mt-3 text-center">
@@ -175,7 +179,7 @@ export default function AboutPageClient() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 px-6 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-[#00d4ff] to-[#7c3aed] hover:shadow-[0_0_30px_rgba(0,212,255,0.4)] transition-all duration-300"
                   >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.004 15.588a.995.995 0 1 0 .002-1.99.995.995 0 0 0-.002 1.99zm-2.01-4.742c0 1.805-.577 3.101-1.761 3.101-1.22 0-1.831-1.237-1.831-3.13 0-1.893.636-3.083 1.831-3.083 1.195 0 1.761 1.149 1.761 3.112zM18.24 8.52h-2.016v7.05H18.24zm.19-2.555c0 .588-.449 1.062-1.007 1.062-.558 0-1.006-.474-1.006-1.062 0-.588.448-1.062 1.006-1.062.558 0 1.007.474 1.007 1.062zm-3.935 3.13v-3.13h-1.993V5.12h-2.016v.846h-.916v1.931h.916v4.327c0 1.787.884 2.547 2.614 2.547.45 0 .876-.059 1.28-.154v-1.837c-.26.071-.52.118-.787.118-.592 0-.93-.307-.93-.916V7.095h1.832zm-6.09 4.02V7.095H6.412v1.048C6.012 7.46 5.26 6.937 4.28 6.937 2.503 6.937 1.23 8.32 1.23 10.3c0 2.012 1.224 3.378 3.018 3.378 1.02 0 1.79-.534 2.167-1.178v1.07c0 1.178-.487 1.753-1.573 1.753-.81 0-1.408-.261-1.93-.697l-1.088 1.48c.765.627 1.784.968 2.985.968 2.228 0 3.396-1.107 3.396-3.406z"/></svg>
+                    <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-5 w-5" />
                     View Fiverr Profile
                   </a>
                 </div>
@@ -227,7 +231,7 @@ export default function AboutPageClient() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white text-lg bg-gradient-to-r from-[#1dbf73] to-[#19a463] hover:shadow-[0_0_40px_rgba(29,191,115,0.4)] transition-all duration-300 hover:scale-105"
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.004 15.588a.995.995 0 1 0 .002-1.99.995.995 0 0 0-.002 1.99zm-2.01-4.742c0 1.805-.577 3.101-1.761 3.101-1.22 0-1.831-1.237-1.831-3.13 0-1.893.636-3.083 1.831-3.083 1.195 0 1.761 1.149 1.761 3.112zM18.24 8.52h-2.016v7.05H18.24zm.19-2.555c0 .588-.449 1.062-1.007 1.062-.558 0-1.006-.474-1.006-1.062 0-.588.448-1.062 1.006-1.062.558 0 1.007.474 1.007 1.062zm-3.935 3.13v-3.13h-1.993V5.12h-2.016v.846h-.916v1.931h.916v4.327c0 1.787.884 2.547 2.614 2.547.45 0 .876-.059 1.28-.154v-1.837c-.26.071-.52.118-.787.118-.592 0-.93-.307-.93-.916V7.095h1.832zm-6.09 4.02V7.095H6.412v1.048C6.012 7.46 5.26 6.937 4.28 6.937 2.503 6.937 1.23 8.32 1.23 10.3c0 2.012 1.224 3.378 3.018 3.378 1.02 0 1.79-.534 2.167-1.178v1.07c0 1.178-.487 1.753-1.573 1.753-.81 0-1.408-.261-1.93-.697l-1.088 1.48c.765.627 1.784.968 2.985.968 2.228 0 3.396-1.107 3.396-3.406z"/></svg>
+                <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-5 w-5" />
                 Contact on Fiverr
               </a>
               <p className="text-white/30 text-xs mt-4">Secured by Fiverr Buyer Protection. Fast response guaranteed.</p>
