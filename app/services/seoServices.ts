@@ -49,7 +49,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['STEP', 'IGES', 'STL', 'DWG', 'PDF drawings'],
     longDescription:
       'We build detailed CAD models that are ready for manufacturing, simulation, and assembly. Every design is created with tolerance control, motion clearance, and technical documentation in mind.',
-    heroImage: '/assets/images/services/cad-design.jpg',
+    heroImage: '/assets/images/services/cad-2.jpg',
     faq: [
       {
         question: 'What CAD formats do you deliver?',
@@ -78,7 +78,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['Assembly CAD', 'Mechanism diagrams', 'Engineering report'],
     longDescription:
       'We design mechanical systems with a focus on strength, motion, and manufacturability. Our engineering service delivers production-ready assemblies and validated mechanisms.',
-    heroImage: '/assets/images/services/engineering.jpg',
+    heroImage: '/assets/images/services/3d-viz-4.jpg',
     faq: [
       {
         question: 'What engineering work do you offer?',

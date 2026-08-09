@@ -921,7 +921,9 @@
 :root:not(.dark) .bg-gradient-to-b.from-\[\#02040a\]\/10,
 :root:not(.dark) .bg-gradient-to-b.from-\[\#02040a\],
 :root:not(.dark) .bg-gradient-to-t.from-black\/80,
-:root:not(.dark) .bg-gradient-to-t.from-black {
+:root:not(.dark) .bg-gradient-to-t.from-black,
+:root:not(.dark) .bg-gradient-to-t.from-\[\#02040a\]\/90,
+:root:not(.dark) .bg-gradient-to-t.from-\[\#02040a\] {
   background-image: linear-gradient(to top, rgba(244, 241, 249, 0.92) 0%, rgba(244, 241, 249, 0.2) 60%, transparent 100%) !important;
 }
 
@@ -1122,6 +1124,10 @@
 
 /* Detail page text colors */
 :root:not(.dark) .page-detail-shell h2 {
+  color: #1e1830 !important;
+}
+
+:root:not(.dark) .page-detail-shell .text-white {
   color: #1e1830 !important;
 }
 
