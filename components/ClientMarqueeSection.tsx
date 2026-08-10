@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { Hexagon, Box, Triangle, Circle, Zap, Cloud, Globe, Cpu, Layers } from "lucide-react";
 
 type Category = "All" | "CAD" | "3D Modeling" | "Rendering";
@@ -149,33 +148,6 @@ export default function ClientMarqueeSection() {
         </div>
       </div>
 
-      {/* CLIENT PARTNERS GRID */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-16">
-        <div className="flex items-center gap-4 mb-8">
-          <h3 className="text-sm font-mono text-slate-500 dark:text-slate-400 uppercase tracking-widest whitespace-nowrap">
-            Trusted Industry Partners
-          </h3>
-          <div className="w-full h-[1px] bg-gradient-to-r from-slate-200 dark:from-white/10 to-transparent" />
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {clients.map((client) => {
-            const Icon = client.icon;
-            return (
-              <div 
-                key={`client-${client.id}`}
-                className="flex items-center gap-3 p-4 rounded-xl border border-slate-200/80 dark:border-white/5 bg-white/70 dark:bg-white/[0.02] hover:bg-white dark:hover:bg-white/[0.05] hover:border-slate-300 dark:hover:border-white/15 shadow-sm dark:shadow-none transition-all duration-300 group"
-              >
-                <Icon className="w-5 h-5 text-cyan-600 dark:text-cyan-400 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors truncate">
-                  {client.name}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
       {/* SOFTWARE MARQUEE WITH CATEGORY FILTER */}
       <div className="mt-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
@@ -201,11 +173,7 @@ export default function ClientMarqueeSection() {
                   }`}
                 >
                   {activeCategory === cat && (
-                    <motion.span
-                      layoutId="activeFilterBg"
-                      className="absolute inset-0 bg-slate-200/80 dark:bg-gradient-to-r dark:from-cyan-500/20 dark:to-purple-500/20 border border-slate-300 dark:border-cyan-500/40 rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
+                    <span className="absolute inset-0 bg-slate-200/80 dark:bg-gradient-to-r dark:from-cyan-500/20 dark:to-purple-500/20 border border-slate-300 dark:border-cyan-500/40 rounded-full transition-opacity duration-300" />
                   )}
                   <span className="relative z-10">{cat}</span>
                 </button>
@@ -281,10 +249,11 @@ function SoftwareCard({ software }: { software: SoftwareItem }) {
     >
       <div className="relative w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-900/90 flex items-center justify-center overflow-hidden border border-slate-200 dark:border-white/10 group-hover:border-cyan-500/50 dark:group-hover:border-cyan-400/50 transition-colors">
         {!imgError ? (
-          <Image
+          <img
             src={software.icon}
             alt={software.name}
-            fill
+            width={28}
+            height={28}
             className="object-contain p-1"
             onError={() => setImgError(true)}
           />

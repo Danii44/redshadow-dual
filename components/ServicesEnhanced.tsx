@@ -96,10 +96,11 @@ export default function ServicesEnhanced() {
                 <AnimatePresence>
                   {isHovered && (
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.95, x: 20 }}
-                      animate={{ opacity: 1, scale: 1, x: 0 }}
-                      exit={{ opacity: 0, scale: 0.95, x: 20 }}
+                      initial={{ opacity: 0, scale: 0.6, x: 20 }}
+                      animate={{ opacity: 1, scale: 0.75, x: 0 }}
+                      exit={{ opacity: 0, scale: 0.6, x: 20 }}
                       transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+                      style={{ transformOrigin: 'top right' }}
                       className="absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[240px] md:w-[520px] md:h-[340px] rounded-2xl overflow-hidden pointer-events-none z-[999] shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-white/20 hidden md:block bg-[#02040a]"
                     >
                       <PreviewCarousel service={service} />

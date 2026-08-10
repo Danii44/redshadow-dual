@@ -1,17 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTheme } from '@/contexts/ThemeContext';
 import { projects } from '@/lib/projects';
 import './Portfolio.css';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const impactItems = [
   {
@@ -32,9 +26,8 @@ const impactItems = [
 ];
 
 export default function PortfolioShowcase() {
-  const sectionRef = useRef<HTMLElement | null>(null);
   const trackContainerRef = useRef<HTMLDivElement | null>(null);
-  const trackRef = useRef<HTMLDivElement | null>(null);
+  
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
 
@@ -43,156 +36,77 @@ export default function PortfolioShowcase() {
   }, []);
 
   useEffect(() => {
-    const section = sectionRef.current;
     const trackContainer = trackContainerRef.current;
-    const track = trackRef.current;
-    if (!section || !trackContainer || !track) return;
+    if (!trackContainer || !mounted) return;
 
-    // Track recent user interaction (wheel / touch) to avoid initializing pin while user is actively scrolling
-    const lastInteractionRef = { current: 0 } as { current: number };
-    const markInteraction = () => {
-      lastInteractionRef.current = Date.now();
-      try {
-        (window as any).__lastUserInteraction = lastInteractionRef.current;
-      } catch (e) {}
-    };
-    window.addEventListener('wheel', markInteraction, { passive: true });
-    window.addEventListener('touchstart', markInteraction, { passive: true });
-    window.addEventListener('touchmove', markInteraction, { passive: true });
+    const isTouch =
+      'ontouchstart' in window ||
+      (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) ||
+      window.matchMedia('(pointer: coarse)').matches;
 
-    let ctx: gsap.Context | null = null;
-    let isActive = true;
+    trackContainer.style.overflowX = 'auto';
+    trackContainer.style.overflowY = 'hidden';
+    trackContainer.style.scrollBehavior = 'smooth';
+    trackContainer.style.touchAction = 'pan-x';
+    (trackContainer.style as any).webkitOverflowScrolling = 'touch';
+    trackContainer.classList.add('portfolio-track-scrollable');
 
-    const getDistance = () => Math.max(track.scrollWidth - trackContainer.clientWidth, 0);
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
 
-    const clearTriggers = () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        const triggerEl = trigger.trigger as HTMLElement | null;
-        if (triggerEl === section || triggerEl === trackContainer || triggerEl === track) {
-          trigger.kill();
-        }
-      });
+    const onPointerDown = (event: PointerEvent) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      isDragging = true;
+      startX = event.clientX;
+      scrollStart = trackContainer.scrollLeft;
+      trackContainer.setPointerCapture(event.pointerId);
+      trackContainer.classList.add('dragging');
     };
 
-    const init = () => {
-      if (!isActive) return;
-      clearTriggers();
+    const onPointerMove = (event: PointerEvent) => {
+      if (!isDragging) return;
+      const deltaX = event.clientX - startX;
+      trackContainer.scrollLeft = scrollStart - deltaX;
+    };
 
-      const distance = getDistance();
-      // If there's nothing to scroll horizontally, don't create a pinning ScrollTrigger.
-      if (distance <= 0) return;
+    const endDrag = () => {
+      isDragging = false;
+      trackContainer.classList.remove('dragging');
+    };
 
-      // If the user interacted recently (wheel/touch), defer initialization briefly
-      if (Date.now() - lastInteractionRef.current < 350) {
-        setTimeout(() => {
-          if (isActive) init();
-        }, 400);
-        return;
+    const onWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+        event.preventDefault();
+        trackContainer.scrollLeft += event.deltaY;
       }
-
-      // Preserve current vertical scroll position to avoid jumps when ScrollTrigger refreshes
-      const prevScroll = typeof window !== 'undefined' ? window.scrollY : 0;
-
-      ctx = gsap.context(() => {
-        gsap.set(track, {
-          x: 0,
-          willChange: 'transform',
-        });
-
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: () => `+=${distance}`,
-            scrub: 1,
-            pin: true,
-            pinSpacing: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        }).to(track, {
-          x: () => -distance,
-          ease: 'none',
-        });
-      }, section);
-
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-        // restore vertical scroll to prevent unexpected jump in production builds
-        try {
-          window.scrollTo({ top: prevScroll, left: window.scrollX });
-        } catch (e) {
-          // ignore in environments where scrollTo may fail
-        }
-      });
     };
 
-    const preloadImages = async () => {
-      const images = Array.from(track.querySelectorAll<HTMLImageElement>('img'));
-      await Promise.all(
-        images.map(async (img) => {
-          if (img.complete) {
-            return img.decode().catch(() => undefined);
-          }
+    trackContainer.addEventListener('pointerdown', onPointerDown);
+    trackContainer.addEventListener('pointermove', onPointerMove);
+    trackContainer.addEventListener('pointerup', endDrag);
+    trackContainer.addEventListener('pointerleave', endDrag);
+    trackContainer.addEventListener('pointercancel', endDrag);
 
-          return new Promise<void>((resolve) => {
-            img.addEventListener('load', () => img.decode().catch(() => undefined).then(() => resolve()), { once: true });
-            img.addEventListener('error', () => resolve(), { once: true });
-          });
-        })
-      );
-    };
-
-    let io: IntersectionObserver | null = null;
-
-    const onReady = () => {
-      requestAnimationFrame(() => {
-        if (isActive) {
-          init();
-          console.info('PortfolioShowcase: ScrollTrigger initialized');
-        }
-      });
-    };
-
-    preloadImages().then(() => {
-      if (section.getBoundingClientRect().top < window.innerHeight) {
-        onReady();
-      } else {
-        io = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              onReady();
-              if (io) {
-                io.disconnect();
-                io = null;
-              }
-            }
-          });
-        }, { threshold: 0.15 });
-
-        io.observe(section);
-      }
-    });
-
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener('resize', handleResize);
+    if (!isTouch) {
+      trackContainer.addEventListener('wheel', onWheel, { passive: false });
+    }
 
     return () => {
-      isActive = false;
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('wheel', markInteraction);
-      window.removeEventListener('touchstart', markInteraction);
-      window.removeEventListener('touchmove', markInteraction);
-      if (ctx) ctx.revert();
-      if (io) io.disconnect();
-      clearTriggers();
+      trackContainer.removeEventListener('pointerdown', onPointerDown);
+      trackContainer.removeEventListener('pointermove', onPointerMove);
+      trackContainer.removeEventListener('pointerup', endDrag);
+      trackContainer.removeEventListener('pointerleave', endDrag);
+      trackContainer.removeEventListener('pointercancel', endDrag);
+      if (!isTouch) trackContainer.removeEventListener('wheel', onWheel);
+      trackContainer.classList.remove('portfolio-track-scrollable', 'dragging');
     };
-  }, []);
+  }, [mounted]);
 
   const activeTheme = mounted ? theme : 'dark';
 
   return (
-    <section id="portfolio" ref={sectionRef} className={`portfolio-section ${activeTheme}`}>
+    <section id="portfolio" className={`portfolio-section ${activeTheme}`}>
       <div className="portfolio-container">
         <motion.div
           className="section-header"
@@ -209,7 +123,7 @@ export default function PortfolioShowcase() {
         </motion.div>
 
         <div ref={trackContainerRef} className="portfolio-track-container">
-          <div ref={trackRef} className="portfolio-track">
+          <div className="portfolio-track">
             {projects.map((project) => (
               <motion.div
                 key={project.id}

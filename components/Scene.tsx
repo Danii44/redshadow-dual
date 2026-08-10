@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Environment, PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
+import R3fRendererConfig from './R3fRendererConfig';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -171,6 +172,7 @@ export function Scene() {
         background: 'transparent',
       }}
     >
+      <R3fRendererConfig />
       <PerspectiveCamera ref={cameraRef} position={[0, 2, 8]} fov={50} />
       <OrbitControls ref={controlsRef} enableZoom={false} />
       

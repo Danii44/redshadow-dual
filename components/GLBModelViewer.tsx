@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import R3fRendererConfig from './R3fRendererConfig';
 import { useGLTF, PresentationControls, Environment, ContactShadows } from '@react-three/drei';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -180,6 +181,7 @@ export function GLBModelViewer() {
           try { el.style.touchAction = 'pan-y'; } catch (e) { /* ignore */ }
         }}
       >
+        <R3fRendererConfig />
         <CanvasClearColor isLight={isLight} />
         <Suspense fallback={null}>
           <PresentationControls speed={isMobileDevice ? 3.5 : 1.5} global zoom={1} rotation={[0, 0, 0]}>

@@ -18,6 +18,8 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollTransitionController from './ScrollTransitionController';
 
+import R3fRendererConfig from './R3fRendererConfig';
+
 gsap.registerPlugin(ScrollTrigger);
 
 // Suppress console warnings for missing models
@@ -306,6 +308,7 @@ export function AdvancedScene() {
         background: 'transparent',
       }}
     >
+      <R3fRendererConfig />
       <PerspectiveCamera ref={cameraRef} position={[0, 2, 10]} fov={50} />
       <OrbitControls ref={controlsRef} enableZoom={false} autoRotate={false} />
 

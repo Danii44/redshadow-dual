@@ -10,6 +10,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import R3fRendererConfig from './R3fRendererConfig';
 import { useGLTF, PresentationControls, Environment, ContactShadows, Preload } from '@react-three/drei';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -114,6 +115,7 @@ export function ScrollRotatingModel({
           camera={{ position, fov: 50 }}
           style={{ width: '100%', height: '100%' }}
         >
+          <R3fRendererConfig />
           <PresentationControls
             speed={1.5}
             global
