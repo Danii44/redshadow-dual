@@ -66,6 +66,10 @@ export default function PortfolioShowcase() {
       if (!isActive) return;
       clearTriggers();
 
+      const distance = getDistance();
+      // If there's nothing to scroll horizontally, don't create a pinning ScrollTrigger.
+      if (distance <= 0) return;
+
       ctx = gsap.context(() => {
         gsap.set(track, {
           x: 0,
@@ -76,7 +80,7 @@ export default function PortfolioShowcase() {
           scrollTrigger: {
             trigger: section,
             start: 'top top',
-            end: () => `+=${getDistance()}`,
+            end: () => `+=${distance}`,
             scrub: 1,
             pin: true,
             pinSpacing: true,
@@ -84,7 +88,7 @@ export default function PortfolioShowcase() {
             invalidateOnRefresh: true,
           },
         }).to(track, {
-          x: () => -getDistance(),
+          x: () => -distance,
           ease: 'none',
         });
       }, section);
