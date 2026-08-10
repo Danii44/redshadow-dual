@@ -28,7 +28,10 @@ export default function Page() {
       ScrollTrigger.sort();
       ScrollTrigger.refresh();
 
-      if (window.location.hash === '#portfolio') {
+      // Only auto-scroll to the portfolio anchor on initial load when the page is at the top
+      // and the user hasn't recently interacted (wheel/touch) which indicates manual scrolling.
+      const lastInteraction = (window as any).__lastUserInteraction || 0;
+      if (window.location.hash === '#portfolio' && window.scrollY < 50 && Date.now() - lastInteraction > 300) {
         const section = document.getElementById('portfolio');
         section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }

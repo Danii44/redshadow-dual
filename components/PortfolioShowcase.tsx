@@ -48,6 +48,18 @@ export default function PortfolioShowcase() {
     const track = trackRef.current;
     if (!section || !trackContainer || !track) return;
 
+    // Track recent user interaction (wheel / touch) to avoid initializing pin while user is actively scrolling
+    const lastInteractionRef = { current: 0 } as { current: number };
+    const markInteraction = () => {
+      lastInteractionRef.current = Date.now();
+      try {
+        (window as any).__lastUserInteraction = lastInteractionRef.current;
+      } catch (e) {}
+    };
+    window.addEventListener('wheel', markInteraction, { passive: true });
+    window.addEventListener('touchstart', markInteraction, { passive: true });
+    window.addEventListener('touchmove', markInteraction, { passive: true });
+
     let ctx: gsap.Context | null = null;
     let isActive = true;
 
@@ -69,6 +81,17 @@ export default function PortfolioShowcase() {
       const distance = getDistance();
       // If there's nothing to scroll horizontally, don't create a pinning ScrollTrigger.
       if (distance <= 0) return;
+
+      // If the user interacted recently (wheel/touch), defer initialization briefly
+      if (Date.now() - lastInteractionRef.current < 350) {
+        setTimeout(() => {
+          if (isActive) init();
+        }, 400);
+        return;
+      }
+
+      // Preserve current vertical scroll position to avoid jumps when ScrollTrigger refreshes
+      const prevScroll = typeof window !== 'undefined' ? window.scrollY : 0;
 
       ctx = gsap.context(() => {
         gsap.set(track, {
@@ -93,7 +116,15 @@ export default function PortfolioShowcase() {
         });
       }, section);
 
-      requestAnimationFrame(() => ScrollTrigger.refresh());
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+        // restore vertical scroll to prevent unexpected jump in production builds
+        try {
+          window.scrollTo({ top: prevScroll, left: window.scrollX });
+        } catch (e) {
+          // ignore in environments where scrollTo may fail
+        }
+      });
     };
 
     const preloadImages = async () => {
@@ -149,6 +180,9 @@ export default function PortfolioShowcase() {
     return () => {
       isActive = false;
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('wheel', markInteraction);
+      window.removeEventListener('touchstart', markInteraction);
+      window.removeEventListener('touchmove', markInteraction);
       if (ctx) ctx.revert();
       if (io) io.disconnect();
       clearTriggers();
