@@ -54,7 +54,7 @@ function getPreviewImages(service: any) {
   if (projectImgs.length > 0) {
     const seed = (slug || '')
       .split('')
-      .reduce((s, ch) => s + ch.charCodeAt(0), 0);
+      .reduce((s: number, ch: string) => s + ch.charCodeAt(0), 0);
     for (let i = 0; i < projectImgs.length && selected.length < 4; i++) {
       const idx = (seed + i) % projectImgs.length;
       if (!selected.includes(projectImgs[idx])) selected.push(projectImgs[idx]);
