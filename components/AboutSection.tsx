@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion';
 import './AboutSection.css';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export function AboutSection() {
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
   return (
     <section className="about-section" id="about">
       <div className="about-background-glow" />
@@ -17,8 +20,7 @@ export function AboutSection() {
           viewport={{ once: true }}
         >
           {/* ORBAI Spherical Tech Drone 3D Exploded MP4 Video Container */}
-          <div className="relative w-full h-[400px] md:h-[480px] rounded-3xl overflow-hidden group shadow-[0_0_40px_rgba(0,212,255,0.25)] border border-white/10"
-            style={{ background: '#020509' }}>
+          <div className={`about-video-card relative w-full h-[400px] md:h-[480px] rounded-3xl overflow-hidden group shadow-[0_0_40px_rgba(0,212,255,0.25)] border`} style={{ background: isLight ? '#f7f5fb' : '#020509' }}>
 
             {/* High-Fidelity 3D Exploded Video Loop */}
             <video
@@ -30,8 +32,8 @@ export function AboutSection() {
               className="w-full h-full object-cover opacity-95"
             />
 
-            {/* Subtle Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10" />
+            {/* Subtle Gradient Overlay (theme-aware via CSS) */}
+            <div className="about-video-overlay absolute inset-0 pointer-events-none z-10" />
           </div>
 
           <div className="about-image-glow" />

@@ -162,6 +162,18 @@
   background: radial-gradient(circle at 50% 30%, rgba(93, 75, 139, 0.12), transparent 32%);
 }
 
+/* Light-mode video card and overlay adjustments to avoid heavy white bands */
+:root:not(.dark) .about-video-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f5fb 100%) !important;
+  border-color: rgba(93, 75, 139, 0.08) !important;
+  box-shadow: 0 18px 40px rgba(62, 50, 93, 0.06) !important;
+}
+
+:root:not(.dark) .about-video-overlay {
+  /* Gentle top-to-transparent white overlay allowing video detail to remain visible */
+  background: linear-gradient(to top, rgba(255,255,255,0.18), rgba(255,255,255,0.06) 45%, transparent 100%) !important;
+}
+
 /* ============================================================
    SERVICES SECTION
    ============================================================ */
@@ -1099,9 +1111,10 @@
 
 /* Light mode hero overlay */
 :root:not(.dark) .page-hero-overlay {
+  /* Reduce top white overlay opacity so background imagery remains visible */
   background: linear-gradient(to top,
-      rgba(244, 241, 249, 0.95) 0%,
-      rgba(244, 241, 249, 0.4) 55%,
+      rgba(244, 241, 249, 0.6) 0%,
+      rgba(244, 241, 249, 0.28) 55%,
       transparent 100%) !important;
 }
 
@@ -1111,10 +1124,26 @@
 }
 
 :root:not(.dark) .photo-card-overlay {
+  /* Lighter card overlay for light theme */
   background: linear-gradient(to top right,
-      rgba(244, 241, 249, 0.5),
+      rgba(244, 241, 249, 0.28),
       transparent,
-      rgba(124, 58, 237, 0.08)) !important;
+      rgba(124, 58, 237, 0.06)) !important;
+}
+
+/* FAQ / Common Questions cards inside service detail pages */
+:root:not(.dark) .page-detail-shell .rounded-3xl.border {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(93, 75, 139, 0.08) !important;
+  box-shadow: 0 12px 30px rgba(62, 50, 93, 0.06) !important;
+}
+
+:root:not(.dark) .page-detail-shell .rounded-3xl h4 {
+  color: #1e1830 !important;
+}
+
+:root:not(.dark) .page-detail-shell .rounded-3xl p {
+  color: rgba(30, 24, 48, 0.78) !important;
 }
 
 /* Services page cinematic hero overlay */

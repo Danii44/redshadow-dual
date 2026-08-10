@@ -10,6 +10,7 @@ export default function VideoSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const thumbnailImagePath = '/assets/images/thumbnail.png';
 
   const sectionBg = isLight ? 'bg-[#f4f1f9]' : 'bg-[#060912]';
@@ -22,20 +23,31 @@ export default function VideoSection() {
     : 'bg-[#0f1728]/95 text-white border border-white/10 shadow-[0_20px_60px_rgba(0,212,255,0.22)]';
   const iconColor = isLight ? 'border-l-[#1e1830]' : 'border-l-white';
 
-  const togglePlayback = async () => {
+  // autoplay when the video container is scrolled into view
+  useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const el = containerRef.current;
+    if (!video || !el || typeof IntersectionObserver === 'undefined') return;
 
-    try {
-      if (video.paused || video.ended) {
-        await video.play();
-      } else {
-        video.pause();
-      }
-    } catch (error) {
-      console.error('Video playback error:', error);
-    }
-  };
+    video.muted = true;
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(async (entry) => {
+        try {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.45) {
+            await video.play();
+          } else {
+            video.pause();
+          }
+        } catch (e) {
+          // autoplay may fail due to browser policies; ignore
+        }
+      });
+    }, { threshold: [0.45] });
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -77,44 +89,27 @@ export default function VideoSection() {
           We go beyond <strong className={`${isLight ? 'text-[#1e1830]' : 'text-white'} font-semibold`}>form and function</strong>, decode what a product needs to say, then build it <strong className={`${isLight ? 'text-[#1e1830]' : 'text-white'} font-semibold`}>to say it exactly right</strong>. Deep technical insight creates work that doesn't just perform. It <strong className="text-[#00d4ff] font-semibold">resonates</strong>.
         </p>
 
-        <div className={`relative w-full aspect-video rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] border ${cardBorder} ${cardBg}`}>
-          <div className="absolute inset-0 z-10 overflow-hidden">
-            <img
-              src={thumbnailImagePath}
-              alt="Video preview thumbnail"
-              className={`w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}
-            />
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
+        <div ref={containerRef} className={`relative w-full aspect-video rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] border ${cardBorder} ${cardBg}`}>
+          <img
+            src={thumbnailImagePath}
+            alt="Video preview thumbnail"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}
+          />
 
           <video
             ref={videoRef}
             src="/assets/video/3d-cad-design.mp4"
             playsInline
             preload="metadata"
+            muted
             className={`w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
             onPlay={() => setIsLoaded(true)}
             onLoadedData={() => setIsLoaded(true)}
+            onPause={() => setIsLoaded(true)}
           />
 
-          <div className="absolute inset-0 bg-black/10 dark:bg-black/20 pointer-events-none" />
-
-          <div className="absolute inset-0 flex items-center justify-center">
-            <button
-              type="button"
-              onClick={togglePlayback}
-              className={`relative z-20 inline-flex items-center gap-3 rounded-full px-6 py-4 transition-all duration-300 hover:scale-105 ${buttonStyle}`}
-            >
-              <span className={`block w-0 h-0 border-t-[11px] border-t-transparent border-b-[11px] border-b-transparent border-l-[18px] ${isPlaying ? 'opacity-0' : iconColor}`} />
-              <span className={`block w-5 h-5 rounded-full border border-current ${isPlaying ? 'bg-current' : 'bg-transparent'}`} />
-              <span className="text-sm font-semibold uppercase tracking-[0.24em]">
-                {isPlaying ? 'Pause video' : 'Play video'}
-              </span>
-            </button>
-          </div>
-
           {!isLoaded && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+            <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-white/90 text-sm tracking-[0.18em] uppercase">Loading video...</span>
             </div>
           )}

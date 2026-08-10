@@ -1,8 +1,21 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { Hexagon, Box, Triangle, Circle, Zap, Cloud, Globe, Cpu } from 'lucide-react';
+import { useState, useMemo, useEffect } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Hexagon, Box, Triangle, Circle, Zap, Cloud, Globe, Cpu, Layers } from "lucide-react";
 
+type Category = "All" | "CAD" | "3D Modeling" | "Rendering";
+
+interface SoftwareItem {
+  id: string;
+  name: string;
+  href: string;
+  icon: string;
+  category: "CAD" | "3D Modeling" | "Rendering";
+}
+
+// --- CLIENT DATA ---
 const clients = [
   { id: 1, icon: Hexagon, name: "HexaCorp Engineering" },
   { id: 2, icon: Box, name: "Cube Industrial" },
@@ -14,52 +27,282 @@ const clients = [
   { id: 8, icon: Cpu, name: "Neural Robotics" },
 ];
 
+// --- SOFTWARE DATA (Mapped to your exact public folder files) ---
+const software: SoftwareItem[] = [
+  { 
+    id: "solidworks", 
+    name: "SolidWorks", 
+    href: "https://www.solidworks.com/", 
+    icon: "/assets/icons/solidworks.png", // PNG
+    category: "CAD" 
+  },
+  { 
+    id: "fusion360", 
+    name: "Fusion 360", 
+    href: "https://www.autodesk.com/products/fusion-360/", 
+    icon: "/assets/icons/Fusion360.svg", // Capital F and S
+    category: "CAD" 
+  },
+  { 
+    id: "blender", 
+    name: "Blender", 
+    href: "https://www.blender.org/", 
+    icon: "/assets/icons/blender.svg", // SVG
+    category: "3D Modeling" 
+  },
+  { 
+    id: "cinema4d", 
+    name: "Cinema 4D", 
+    href: "https://www.maxon.net/", 
+    icon: "/assets/icons/cinema4d.svg", // SVG
+    category: "3D Modeling" 
+  },
+  { 
+    id: "keyshot", 
+    name: "KeyShot", 
+    href: "https://www.keyshot.com/", 
+    icon: "/assets/icons/keyshot.png", // PNG
+    category: "Rendering" 
+  },
+  { 
+    id: "rhino", 
+    name: "Rhino", 
+    href: "https://www.rhino3d.com/", 
+    icon: "/assets/icons/rhinoceros.svg", // SVG
+    category: "CAD" 
+  },
+  { 
+    id: "autocad", 
+    name: "AutoCAD", 
+    href: "https://www.autodesk.com/products/autocad/", 
+    icon: "/assets/icons/autocad.svg", // SVG
+    category: "CAD" 
+  },
+  { 
+    id: "substance", 
+    name: "Substance Painter", 
+    href: "https://www.adobe.com/products/substance3d-painter.html", 
+    icon: "/assets/icons/substance-painter.png", // PNG
+    category: "Rendering" 
+  },
+];
+
+const categories: Category[] = ["All", "CAD", "3D Modeling", "Rendering"];
+
 export default function ClientMarqueeSection() {
-  // Duplicate array to create a seamless infinite loop
-  const marqueeItems = [...clients, ...clients];
+  const [activeCategory, setActiveCategory] = useState<Category>("All");
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent client/server hydration DOM divergence
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const filteredSoftware = useMemo(() => {
+    if (activeCategory === "All") return software;
+    return software.filter((item) => item.category === activeCategory);
+  }, [activeCategory]);
+
+  const marqueeItems = useMemo(() => {
+    if (filteredSoftware.length < 6) {
+      return [...filteredSoftware, ...filteredSoftware, ...filteredSoftware, ...filteredSoftware];
+    }
+    return [...filteredSoftware, ...filteredSoftware];
+  }, [filteredSoftware]);
+
+  const reversedMarqueeItems = useMemo(() => [...marqueeItems].reverse(), [marqueeItems]);
+
+  if (!mounted) return null;
 
   return (
-    <section className="relative w-full py-32 bg-[#060912] z-10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-16">
-        <h2 className="text-3xl md:text-5xl font-bold font-mono tracking-tight text-white mb-6">
-          Where our work<br/>made a <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">difference</span>.
+    <section className="relative w-full py-28 md:py-36 bg-slate-50 dark:bg-[#060912] z-10 overflow-hidden text-slate-900 dark:text-white transition-colors duration-300">
+      
+      {/* SECTION HEADER & HERO COPY */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-20">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-600/30 dark:border-cyan-500/30 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest mb-6">
+          <span className="w-2 h-2 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse" />
+          Engineered For Excellence
+        </div>
+
+        <h2 className="text-4xl md:text-6xl font-bold font-mono tracking-tight leading-tight mb-8 text-slate-900 dark:text-white">
+          Crafting vision into <br className="hidden md:inline" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 dark:from-[#00d4ff] dark:via-[#3b82f6] dark:to-[#7c3aed]">
+            tangible reality
+          </span>.
         </h2>
-        <p className="text-white/60 max-w-3xl text-lg">
-          Your idea has a <span className="text-[#00d4ff]">soul</span>. Our job is to find it, then build it so precisely that anyone who touches your product understands it <strong className="text-white font-semibold">without a word</strong>.
-        </p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <p className="lg:col-span-8 text-slate-600 dark:text-slate-300 text-lg md:text-xl leading-relaxed">
+            Every product carries an identity. We refine raw concepts into engineered precision—building physical and digital experiences that speak clearly, function flawlessly, and elevate brand authority.
+          </p>
+
+          <div className="lg:col-span-4 grid grid-cols-2 gap-4 border-l border-slate-200 dark:border-white/10 pl-6">
+            <div>
+              <span className="block text-2xl md:text-3xl font-bold font-mono text-cyan-600 dark:text-[#00d4ff]">50+</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Products Built</span>
+            </div>
+            <div>
+              <span className="block text-2xl md:text-3xl font-bold font-mono text-purple-600 dark:text-purple-400">99.8%</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">CAD Accuracy</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Infinite Marquee Track */}
-      <div className="relative w-full overflow-hidden flex py-8">
-        {/* Fade gradients at edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#060912] to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#060912] to-transparent z-10" />
+      {/* CLIENT PARTNERS GRID */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-16">
+        <div className="flex items-center gap-4 mb-8">
+          <h3 className="text-sm font-mono text-slate-500 dark:text-slate-400 uppercase tracking-widest whitespace-nowrap">
+            Trusted Industry Partners
+          </h3>
+          <div className="w-full h-[1px] bg-gradient-to-r from-slate-200 dark:from-white/10 to-transparent" />
+        </div>
 
-        <motion.div 
-          className="flex gap-8 md:gap-16 whitespace-nowrap px-8"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          {marqueeItems.map((client, index) => {
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {clients.map((client) => {
             const Icon = client.icon;
             return (
               <div 
-                key={`${client.id}-${index}`} 
-                className="flex items-center justify-center shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-full bg-[#0a0f1a] border-2 border-[rgba(0,212,255,0.15)] shadow-[0_0_30px_rgba(124,58,237,0.1)] group hover:border-[#00d4ff] transition-colors duration-500"
+                key={`client-${client.id}`}
+                className="flex items-center gap-3 p-4 rounded-xl border border-slate-200/80 dark:border-white/5 bg-white/70 dark:bg-white/[0.02] hover:bg-white dark:hover:bg-white/[0.05] hover:border-slate-300 dark:hover:border-white/15 shadow-sm dark:shadow-none transition-all duration-300 group"
               >
-                <div className="flex flex-col items-center gap-2">
-                  <Icon className="w-10 h-10 md:w-12 md:h-12 text-white/40 group-hover:text-[#00d4ff] transition-colors duration-500" />
-                  {/* Optional: Add client name text underneath if desired, though Octane8 just uses logos */}
-                </div>
+                <Icon className="w-5 h-5 text-cyan-600 dark:text-cyan-400 group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors truncate">
+                  {client.name}
+                </span>
               </div>
             );
           })}
-        </motion.div>
+        </div>
+      </div>
+
+      {/* SOFTWARE MARQUEE WITH CATEGORY FILTER */}
+      <div className="mt-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-200 dark:border-white/10 pb-6">
+            <div className="flex items-center gap-3">
+              <Layers className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+              <h3 className="text-sm font-mono text-slate-500 dark:text-slate-400 uppercase tracking-widest whitespace-nowrap">
+                Production Tech Stack
+              </h3>
+            </div>
+
+            {/* FILTER BUTTONS */}
+            <div className="flex flex-wrap items-center gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={`cat-btn-${cat}`}
+                  type="button"
+                  onClick={() => setActiveCategory(cat)}
+                  className={`relative px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${
+                    activeCategory === cat
+                      ? "text-slate-900 dark:text-white font-semibold"
+                      : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-white/5"
+                  }`}
+                >
+                  {activeCategory === cat && (
+                    <motion.span
+                      layoutId="activeFilterBg"
+                      className="absolute inset-0 bg-slate-200/80 dark:bg-gradient-to-r dark:from-cyan-500/20 dark:to-purple-500/20 border border-slate-300 dark:border-cyan-500/40 rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{cat}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* MARQUEE ANIMATION CONTAINER */}
+        <div key={activeCategory} className="space-y-4">
+          {/* Row 1 (Left movement) */}
+          <div className="relative w-full overflow-hidden py-2 flex">
+            <div className="absolute inset-y-0 left-0 w-32 z-10 pointer-events-none bg-gradient-to-r from-slate-50 dark:from-[#060912] to-transparent" />
+            <div className="absolute inset-y-0 right-0 w-32 z-10 pointer-events-none bg-gradient-to-l from-slate-50 dark:from-[#060912] to-transparent" />
+
+            <motion.div
+              className="flex flex-shrink-0 w-max"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            >
+              <div className="flex items-center gap-4 pr-4">
+                {marqueeItems.map((s, idx) => (
+                  <SoftwareCard key={`r1-group1-${s.id}-${idx}-${activeCategory}`} software={s} />
+                ))}
+              </div>
+              <div className="flex items-center gap-4 pr-4">
+                {marqueeItems.map((s, idx) => (
+                  <SoftwareCard key={`r1-group2-${s.id}-${idx}-${activeCategory}`} software={s} />
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Row 2 (Right movement) */}
+          <div className="relative w-full overflow-hidden py-2 flex">
+            <div className="absolute inset-y-0 left-0 w-32 z-10 pointer-events-none bg-gradient-to-r from-slate-50 dark:from-[#060912] to-transparent" />
+            <div className="absolute inset-y-0 right-0 w-32 z-10 pointer-events-none bg-gradient-to-l from-slate-50 dark:from-[#060912] to-transparent" />
+
+            <motion.div
+              className="flex flex-shrink-0 w-max"
+              animate={{ x: ["-50%", "0%"] }}
+              transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+            >
+              <div className="flex items-center gap-4 pr-4">
+                {reversedMarqueeItems.map((s, idx) => (
+                  <SoftwareCard key={`r2-group1-${s.id}-${idx}-${activeCategory}`} software={s} />
+                ))}
+              </div>
+              <div className="flex items-center gap-4 pr-4">
+                {reversedMarqueeItems.map((s, idx) => (
+                  <SoftwareCard key={`r2-group2-${s.id}-${idx}-${activeCategory}`} software={s} />
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+// Reusable card with error fallback handling
+function SoftwareCard({ software }: { software: SoftwareItem }) {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <a
+      href={software.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-3.5 px-5 py-3.5 rounded-full border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-white/[0.03] backdrop-blur-md hover:border-cyan-500/50 dark:hover:border-cyan-500/40 hover:bg-white dark:hover:bg-white/[0.08] shadow-sm dark:shadow-none transition-all duration-300 group"
+      title={`${software.name} (${software.category})`}
+    >
+      <div className="relative w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-900/90 flex items-center justify-center overflow-hidden border border-slate-200 dark:border-white/10 group-hover:border-cyan-500/50 dark:group-hover:border-cyan-400/50 transition-colors">
+        {!imgError ? (
+          <Image
+            src={software.icon}
+            alt={software.name}
+            fill
+            className="object-contain p-1"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 font-mono">
+            {software.name.charAt(0)}
+          </span>
+        )}
+      </div>
+
+      <div className="flex flex-col">
+        <span className="text-slate-800 dark:text-slate-200 text-sm font-medium tracking-wide group-hover:text-slate-950 dark:group-hover:text-white transition-colors leading-none">
+          {software.name}
+        </span>
+        <span className="text-[10px] font-mono text-slate-500 dark:text-slate-500 mt-1 uppercase tracking-wider leading-none">
+          {software.category}
+        </span>
+      </div>
+    </a>
   );
 }

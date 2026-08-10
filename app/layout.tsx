@@ -49,7 +49,7 @@ export const metadata: Metadata = {
       'Premium industrial design studio. Expert CAD modeling, photorealistic 3D rendering, product design, and engineering visualization services.',
     images: [
       {
-        url: '/assets/images/backgrounds/hero-bg.jpg',
+        url: '/assets/logo.png',
         width: 1200,
         height: 630,
         alt: 'Red Shadow Designs – CAD & 3D Rendering Studio',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     title: 'Red Shadow Designs | CAD Modeling & 3D Rendering Studio',
     description:
       'Premium industrial design studio. Expert CAD modeling, photorealistic 3D rendering & engineering visualization — Islamabad, Pakistan.',
-    images: ['/assets/images/backgrounds/hero-bg.jpg'],
+    images: ['/assets/logo.png'],
     creator: '@redshadowdesigns',
   },
 
@@ -103,7 +103,7 @@ const structuredData = {
       url: BASE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: `${BASE_URL}/assets/images/backgrounds/hero-bg.jpg`,
+        url: `${BASE_URL}/assets/logo.png`,
       },
       contactPoint: {
         '@type': 'ContactPoint',

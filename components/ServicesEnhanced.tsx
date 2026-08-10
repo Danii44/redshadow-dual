@@ -1,12 +1,51 @@
 ﻿"use client";
 
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { servicesData } from '@/app/services/seoServices';
+import PreviewCarousel from './PreviewCarousel';
+import { projects } from '@/lib/projects';
 
 export default function ServicesEnhanced() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  function getPreviewImages(service: any) {
+    // Prefer explicit heroImage, then augment with category lookups
+    const pool = new Set<string>();
+    if (service.heroImage) pool.add(service.heroImage);
+
+    const slug = service.slug || '';
+    const title = (service.title || '').toLowerCase();
+
+    // Common local service images in public/assets/images/services
+    const viz = ['/assets/images/services/3d-viz-1.jpg', '/assets/images/services/3d-viz-2.jpg', '/assets/images/services/3d-viz-3.jpg', '/assets/images/services/3d-viz-4.jpg'];
+    const cad = ['/assets/images/services/cad-1.jpg', '/assets/images/services/cad-2.jpg'];
+
+    if (slug.includes('3d') || title.includes('render') || title.includes('visual')) viz.forEach(u => pool.add(u));
+    if (slug.includes('cad') || title.includes('cad') || title.includes('feasibility') || title.includes('design')) cad.forEach(u => pool.add(u));
+
+    // fallback: ensure there are up to 4 images
+    const fallback = [...viz, ...cad];
+    for (const f of fallback) {
+      if (pool.size >= 4) break;
+      pool.add(f);
+    }
+
+    // Supplement with project images to avoid repeating the same service visuals.
+    const projectImgs = projects.map((p) => p.image).filter(Boolean) as string[];
+    if (projectImgs.length > 0 && pool.size < 4) {
+      const seed = (slug || '')
+        .split('')
+        .reduce((s, ch) => s + ch.charCodeAt(0), 0);
+      for (let i = 0; i < projectImgs.length && pool.size < 4; i++) {
+        const idx = (seed + i) % projectImgs.length;
+        pool.add(projectImgs[idx]);
+      }
+    }
+
+    return Array.from(pool).slice(0, 4);
+  }
 
   return (
     <section id="services" className="relative w-full py-32 bg-transparent z-10 overflow-hidden">
@@ -55,20 +94,16 @@ export default function ServicesEnhanced() {
                 </Link>
 
                 <AnimatePresence>
-                  {isHovered && service.heroImage && (
+                  {isHovered && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95, x: 20 }}
                       animate={{ opacity: 1, scale: 1, x: 0 }}
                       exit={{ opacity: 0, scale: 0.95, x: 20 }}
-                      transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                      transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
                       className="absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[240px] md:w-[520px] md:h-[340px] rounded-2xl overflow-hidden pointer-events-none z-[999] shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-white/20 hidden md:block bg-[#02040a]"
                     >
-                      <img src={service.heroImage} alt={service.title} className="absolute inset-0 w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/80 z-10">
-                        <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[#00d4ff]">{service.title}</span>
-                        <span className="text-white/60">Preview</span>
-                      </div>
+                      <PreviewCarousel service={service} />
+                      {/* No text overlay on previews (clean images) */}
                     </motion.div>
                   )}
                 </AnimatePresence>

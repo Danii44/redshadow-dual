@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
+    "download-assets": "node scripts/download-assets.js",
     "build": "next build",
     "start": "next start",
     "preview": "next start",

@@ -1,6 +1,7 @@
 "use client";
 
 import { type CSSProperties, useEffect, useState } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -29,6 +30,9 @@ export default function AboutPageClient() {
     '--scroll-rise': `${Math.min(scrollY * 0.08, 70)}px`,
   } as CSSProperties;
 
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
+
   return (
     <div className="homepage-shell" style={ambientStyle}>
       <div className="ambient-layer ambient-layer-a" />
@@ -43,9 +47,9 @@ export default function AboutPageClient() {
             <img 
               src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop" 
               alt="Engineering Background" 
-              className="w-full h-full object-cover opacity-20 mix-blend-lighten"
+              className={`w-full h-full object-cover ${isLight ? 'opacity-60 mix-blend-normal' : 'opacity-20 mix-blend-lighten'}`}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#02040a]/10 via-[#02040a]/60 to-[#02040a]" />
+            <div className={`absolute inset-0 ${isLight ? 'bg-gradient-to-b from-white/60 via-white/30 to-transparent' : 'bg-gradient-to-b from-[#02040a]/10 via-[#02040a]/60 to-[#02040a]'}`} />
           </div>
           
           <motion.div 
@@ -272,7 +276,7 @@ export default function AboutPageClient() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 h-[400px] rounded-3xl overflow-hidden relative group">
               <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2670&auto=format&fit=crop" alt="Engineering Studio" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+              <div className={`absolute inset-0 ${isLight ? 'bg-gradient-to-t from-white/80 to-transparent' : 'bg-gradient-to-t from-black/80 to-transparent'}`} />
               <div className="absolute bottom-6 left-6">
                 <p className="text-[#00d4ff] font-mono text-xs tracking-widest uppercase mb-1">Facility</p>
                 <h3 className="text-2xl font-bold text-white">Rapid Prototyping Lab</h3>
@@ -281,7 +285,7 @@ export default function AboutPageClient() {
             
             <div className="h-[400px] rounded-3xl overflow-hidden relative group">
               <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=2564&auto=format&fit=crop" alt="3D Workstation" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+              <div className={`absolute inset-0 ${isLight ? 'bg-gradient-to-t from-white/80 to-transparent' : 'bg-gradient-to-t from-black/80 to-transparent'}`} />
               <div className="absolute bottom-6 left-6">
                 <p className="text-[#7c3aed] font-mono text-xs tracking-widest uppercase mb-1">Hardware</p>
                 <h3 className="text-2xl font-bold text-white">Render Farms</h3>
@@ -290,7 +294,7 @@ export default function AboutPageClient() {
 
             <div className="h-[400px] rounded-3xl overflow-hidden relative group">
               <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=2671&auto=format&fit=crop" alt="Design Team" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+              <div className={`absolute inset-0 ${isLight ? 'bg-gradient-to-t from-white/80 to-transparent' : 'bg-gradient-to-t from-black/80 to-transparent'}`} />
               <div className="absolute bottom-6 left-6">
                 <p className="text-[#00d4ff] font-mono text-xs tracking-widest uppercase mb-1">Team</p>
                 <h3 className="text-2xl font-bold text-white">Design Huddles</h3>
@@ -299,7 +303,7 @@ export default function AboutPageClient() {
 
             <div className="lg:col-span-2 h-[400px] rounded-3xl overflow-hidden relative group">
               <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?q=80&w=2670&auto=format&fit=crop" alt="CAD Screen" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+              <div className={`absolute inset-0 ${isLight ? 'bg-gradient-to-t from-white/80 to-transparent' : 'bg-gradient-to-t from-black/80 to-transparent'}`} />
               <div className="absolute bottom-6 left-6">
                 <p className="text-[#7c3aed] font-mono text-xs tracking-widest uppercase mb-1">Process</p>
                 <h3 className="text-2xl font-bold text-white">Parametric Modeling</h3>

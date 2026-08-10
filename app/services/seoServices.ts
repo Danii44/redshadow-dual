@@ -20,7 +20,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['Feasibility report', 'Risk analysis', 'Concept validation models'],
     longDescription:
       'Our feasibility test service evaluates concepts before detailed design begins. We analyze manufacturability, mechanical fit, and production risk so you can move forward with confidence.',
-    heroImage: '/assets/images/services/cad-1.jpg',
+    heroImage: '/assets/external/projects/compressor-chamber.png',
     faq: [
       {
         question: 'What is included in a feasibility test?',
@@ -49,7 +49,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['STEP', 'IGES', 'STL', 'DWG', 'PDF drawings'],
     longDescription:
       'We build detailed CAD models that are ready for manufacturing, simulation, and assembly. Every design is created with tolerance control, motion clearance, and technical documentation in mind.',
-    heroImage: '/assets/images/services/cad-2.jpg',
+    heroImage: '/assets/external/projects/open-assembly.png',
     faq: [
       {
         question: 'What CAD formats do you deliver?',
@@ -78,7 +78,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['Assembly CAD', 'Mechanism diagrams', 'Engineering report'],
     longDescription:
       'We design mechanical systems with a focus on strength, motion, and manufacturability. Our engineering service delivers production-ready assemblies and validated mechanisms.',
-    heroImage: '/assets/images/services/3d-viz-4.jpg',
+    heroImage: '/assets/external/projects/camera-housing.jpg',
     faq: [
       {
         question: 'What engineering work do you offer?',
@@ -107,7 +107,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['Prototype-ready CAD', 'STL files', '3D printable models'],
     longDescription:
       'We help you move from concept to physical prototype quickly. Our prototype-ready models are optimized for 3D printing, CNC machining, and quick-turn validation.',
-    heroImage: '/assets/images/services/cad-2.jpg',
+    heroImage: '/assets/external/projects/f1-car-keychain.png',
     faq: [
       {
         question: 'What is included in rapid prototyping?',
@@ -136,7 +136,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['3D-printable STL', 'Support-ready model', 'Print validation report'],
     longDescription:
       'Our 3D printing service prepares your design for reliable additive manufacturing. We optimize wall thickness, support structure, and fit tolerance for clean prints.',
-    heroImage: '/assets/images/services/3d-viz-1.jpg',
+    heroImage: '/assets/external/projects/bamboo-toothbrush.png',
     faq: [
       {
         question: 'Do you prepare models for SLA and FDM printers?',
@@ -165,7 +165,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['DFM report', 'Optimized CAD files', 'Manufacturing notes'],
     longDescription:
       'We review designs for production viability and optimize part geometry, draft, tolerances, and assembly to reduce cost and improve manufacturability.',
-    heroImage: '/assets/images/services/cad-1.jpg',
+    heroImage: '/assets/external/projects/bull-lock.png',
     faq: [
       {
         question: 'What is design for manufacturing?',
@@ -194,7 +194,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['High-res renders', 'PNG / JPEG assets', 'Composite files'],
     longDescription:
       'We create polished product visuals from CAD and concept assets. Our renders are tailored for launch campaigns, investor decks, and digital marketing.',
-    heroImage: '/assets/images/services/3d-viz-2.jpg',
+    heroImage: '/assets/external/projects/hero-render.png',
     faq: [
       {
         question: 'What is included in product visualization?',
@@ -223,7 +223,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['MP4', 'MOV', 'Animated GIFs'],
     longDescription:
       'We bring product designs to life through motion. Our animations explain functionality, assembly, and user experience for pitches and presentations.',
-    heroImage: '/assets/images/services/3d-viz-3.jpg',
+    heroImage: '/assets/external/projects/makeup-stick.png',
     faq: [
       {
         question: 'What types of animations do you create?',

@@ -46,6 +46,15 @@
   box-shadow: 0 35px 120px rgba(0, 0, 0, 0.45);
 }
 
+/* Video card and overlay (theme aware via light-mode overrides) */
+.about-video-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-video-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 35%);
+}
+
 .about-image img {
   width: 100%;
   height: 100%;

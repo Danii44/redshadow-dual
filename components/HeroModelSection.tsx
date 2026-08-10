@@ -52,7 +52,7 @@ export function HeroModelSection() {
 
       <ManusDialog
         title="Launch the Red Shadow demo"
-        logo="/assets/images/backgrounds/hero-bg.jpg"
+        logo="/assets/logo.png"
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
         onLogin={() => setIsDialogOpen(false)}

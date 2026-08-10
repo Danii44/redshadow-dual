@@ -35,11 +35,11 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
-      '@id': 'https://www.redshadowdesigns.com/#organization',
-      name: 'Red Shadow Designs',
-      url: 'https://www.redshadowdesigns.com',
-      logo: 'https://www.redshadowdesigns.com/assets/images/backgrounds/hero-bg.jpg',
+    '@type': 'Organization',
+    '@id': 'https://www.redshadowdesigns.com/#organization',
+    name: 'Red Shadow Designs',
+    url: 'https://www.redshadowdesigns.com',
+    logo: 'https://www.redshadowdesigns.com/assets/logo.png',
       contactPoint: [
         {
           '@type': 'ContactPoint',

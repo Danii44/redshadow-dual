@@ -51,7 +51,7 @@ export default function PortfolioShowcase() {
     let ctx: gsap.Context | null = null;
     let isActive = true;
 
-    const getDistance = () => Math.max(track.scrollWidth - trackContainer.clientWidth + 40, 0);
+    const getDistance = () => Math.max(track.scrollWidth - trackContainer.clientWidth, 0);
 
     const clearTriggers = () => {
       ScrollTrigger.getAll().forEach((trigger) => {
