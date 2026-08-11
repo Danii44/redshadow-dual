@@ -182,13 +182,17 @@
 }
 
 .portfolio-track-container {
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden;
   margin: 0 -24px 2rem;
   padding: 1rem 24px 2rem;
   position: relative;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+.portfolio-track-container.dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .portfolio-track {
@@ -197,6 +201,10 @@
   min-width: max-content;
   align-items: stretch;
   padding-bottom: 1rem;
+}
+
+.portfolio-track > * {
+  flex: 0 0 auto;
 }
 
 .portfolio-track-container::-webkit-scrollbar {

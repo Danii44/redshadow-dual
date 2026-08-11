@@ -25,9 +25,17 @@ const impactItems = [
   },
 ];
 
+const loopedProjects = [...projects, ...projects, ...projects];
+
 export default function PortfolioShowcase() {
   const trackContainerRef = useRef<HTMLDivElement | null>(null);
-  
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const offsetRef = useRef(0);
+  const startXRef = useRef(0);
+  const startOffsetRef = useRef(0);
+  const contentWidthRef = useRef(0);
+  const dragRef = useRef(false);
+
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
 
@@ -37,50 +45,84 @@ export default function PortfolioShowcase() {
 
   useEffect(() => {
     const trackContainer = trackContainerRef.current;
-    if (!trackContainer || !mounted) return;
+    const track = trackRef.current;
+    if (!trackContainer || !track || !mounted) return;
 
     const isTouch =
       'ontouchstart' in window ||
       (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) ||
       window.matchMedia('(pointer: coarse)').matches;
 
-    trackContainer.style.overflowX = 'auto';
-    trackContainer.style.overflowY = 'hidden';
-    trackContainer.style.scrollBehavior = 'smooth';
-    trackContainer.style.touchAction = 'pan-x';
-    (trackContainer.style as any).webkitOverflowScrolling = 'touch';
-    trackContainer.classList.add('portfolio-track-scrollable');
+    const updateTransform = (offset: number) => {
+      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    };
 
-    let isDragging = false;
-    let startX = 0;
-    let scrollStart = 0;
+    const initializeSizes = () => {
+      const fullWidth = track.scrollWidth;
+      const singleWidth = fullWidth / 3;
+      contentWidthRef.current = singleWidth;
+      offsetRef.current = singleWidth;
+      updateTransform(offsetRef.current);
+    };
+
+    const normalizeOffset = (rawOffset: number) => {
+      const width = contentWidthRef.current;
+      if (width <= 0) return rawOffset;
+
+      let next = rawOffset;
+      while (next < width * 0.25) next += width;
+      while (next > width * 2.75) next -= width;
+      return next;
+    };
+
+    const updateOffset = (rawOffset: number) => {
+      const normalized = normalizeOffset(rawOffset);
+      offsetRef.current = normalized;
+      updateTransform(normalized);
+    };
 
     const onPointerDown = (event: PointerEvent) => {
       if (event.pointerType === 'mouse' && event.button !== 0) return;
-      isDragging = true;
-      startX = event.clientX;
-      scrollStart = trackContainer.scrollLeft;
+      event.preventDefault();
+      dragRef.current = true;
+      startXRef.current = event.clientX;
+      startOffsetRef.current = offsetRef.current;
       trackContainer.setPointerCapture(event.pointerId);
       trackContainer.classList.add('dragging');
+      trackContainer.style.cursor = 'grabbing';
     };
 
     const onPointerMove = (event: PointerEvent) => {
-      if (!isDragging) return;
-      const deltaX = event.clientX - startX;
-      trackContainer.scrollLeft = scrollStart - deltaX;
+      if (!dragRef.current) return;
+      event.preventDefault();
+      const deltaX = event.clientX - startXRef.current;
+      updateOffset(startOffsetRef.current - deltaX);
     };
 
     const endDrag = () => {
-      isDragging = false;
+      if (!dragRef.current) return;
+      dragRef.current = false;
       trackContainer.classList.remove('dragging');
+      trackContainer.style.cursor = 'grab';
     };
 
     const onWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
         event.preventDefault();
-        trackContainer.scrollLeft += event.deltaY;
+        updateOffset(offsetRef.current + event.deltaY * 1.2);
       }
     };
+
+    const onResize = () => {
+      initializeSizes();
+    };
+
+    trackContainer.style.overflow = 'hidden';
+    trackContainer.style.touchAction = 'pan-x';
+    trackContainer.style.cursor = 'grab';
+
+    initializeSizes();
+    window.requestAnimationFrame(initializeSizes);
 
     trackContainer.addEventListener('pointerdown', onPointerDown);
     trackContainer.addEventListener('pointermove', onPointerMove);
@@ -91,6 +133,7 @@ export default function PortfolioShowcase() {
     if (!isTouch) {
       trackContainer.addEventListener('wheel', onWheel, { passive: false });
     }
+    window.addEventListener('resize', onResize);
 
     return () => {
       trackContainer.removeEventListener('pointerdown', onPointerDown);
@@ -99,7 +142,11 @@ export default function PortfolioShowcase() {
       trackContainer.removeEventListener('pointerleave', endDrag);
       trackContainer.removeEventListener('pointercancel', endDrag);
       if (!isTouch) trackContainer.removeEventListener('wheel', onWheel);
-      trackContainer.classList.remove('portfolio-track-scrollable', 'dragging');
+      window.removeEventListener('resize', onResize);
+      trackContainer.classList.remove('dragging');
+      trackContainer.style.cursor = '';
+      trackContainer.style.touchAction = '';
+      trackContainer.style.overflow = '';
     };
   }, [mounted]);
 
@@ -123,10 +170,10 @@ export default function PortfolioShowcase() {
         </motion.div>
 
         <div ref={trackContainerRef} className="portfolio-track-container">
-          <div className="portfolio-track">
-            {projects.map((project) => (
+          <div ref={trackRef} className="portfolio-track">
+            {loopedProjects.map((project, index) => (
               <motion.div
-                key={project.id}
+                key={`${project.id}-${index}`}
                 className="portfolio-card"
                 whileHover={{ y: -8, scale: 1.01 }}
                 transition={{ duration: 0.3, ease: 'easeOut' }}

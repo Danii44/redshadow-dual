@@ -49,23 +49,23 @@ export function AboutSection() {
           <span className="section-label">About Red Shadow Designs</span>
           <h2>Where engineering precision meets cinematic excellence</h2>
           <p>
-            Red Shadow Designs is a top-rated engineering studio founded by <strong style={{ color: '#00d4ff' }}>Daniyal Ahmad</strong> in Islamabad, Pakistan. We specialise in precision CAD modeling, photorealistic 3D rendering, and industrial product design — delivering production-ready files and cinematic visuals for clients across the globe.
+            Red Shadow Designs is a top-rated engineering studio specializing in precision 3D CAD modeling, photorealistic rendering, and DFM-optimized industrial design. We bridge the gap between initial concept and final production—delivering manufacturing-ready files and cinematic visuals for innovators and established brands.
           </p>
           <p>
-            From medical implants and mechanical assemblies to consumer products and hardware prototypes, we turn complex engineering concepts into assets that win investor pitches, power e-commerce listings, and drive product launches — with 99.9% dimensional accuracy and a 5.0-star track record on Fiverr.
+            From complex mechanical assemblies and medical devices to consumer hardware prototypes, we engineer solutions with strict adherence to ASME standards and GD&T practices. We turn your concepts into assets that win investor pitches, power e-commerce listings, and ensure a seamless handoff to your manufacturing partners—backed by a 99.9% dimensional accuracy guarantee and a flawless 5.0-star track record.
           </p>
           <div className="about-values">
             <div className="about-value-card">
-              <strong>500+ Projects</strong>
-              <span>Successfully delivered globally.</span>
+              <strong>500+ Products Engineered</strong>
+              <span>Successfully delivered to clients globally, from startup prototypes to enterprise hardware.</span>
             </div>
             <div className="about-value-card">
-              <strong>Top Rated</strong>
-              <span>5.0 ⭐ on Fiverr. 90% repeat buyers.</span>
+              <strong>Top Rated Studio</strong>
+              <span>5.0 ⭐ on Fiverr. Proven reliability with a high rate of repeat buyers.</span>
             </div>
             <div className="about-value-card">
-              <strong>DFM Ready</strong>
-              <span>STEP & STL files for direct manufacturing.</span>
+              <strong>DFM & ASME Compliant</strong>
+              <span>Flawless STEP & STL files optimized for direct manufacturing and rapid prototyping.</span>
             </div>
           </div>
         </motion.div>

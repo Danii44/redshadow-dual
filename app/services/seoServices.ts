@@ -14,12 +14,12 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'feasibility-test',
     title: 'Feasibility Test',
-    description: 'Early-stage concept validation to verify manufacturability, mechanical integrity, and assembly feasibility.',
+    description: 'Early-stage concept validation for manufacturability, mechanical integrity, and assembly logic.',
     keywords: ['feasibility study', 'design validation', 'manufacturability assessment', 'engineering feasibility'],
-    tools: ['SolidWorks', 'ANSYS', 'Fusion 360'],
+    tools: ['SolidWorks', 'PTC Creo'],
     deliverables: ['Feasibility report', 'Risk analysis', 'Concept validation models'],
     longDescription:
-      'Our feasibility test service evaluates concepts before detailed design begins. We analyze manufacturability, mechanical fit, and production risk so you can move forward with confidence.',
+      'We evaluate concepts before the costly detailed design phase begins. We analyze mechanical fit, material constraints, and production risks to ensure your idea is physically viable, functionally sound, and economically scalable.',
     heroImage: '/assets/external/projects/compressor-chamber.png',
     faq: [
       {
@@ -43,12 +43,12 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'cad-design',
     title: 'CAD Design',
-    description: 'Precision CAD modeling for mechanical, industrial, and product engineering projects, delivered as production-ready geometry.',
+    description: 'Precision parametric modeling for mechanical, industrial, and product engineering, delivered as production-ready geometry.',
     keywords: ['CAD Design Islamabad', 'SolidWorks modeling', 'parametric CAD design', 'engineering CAD services'],
-    tools: ['SolidWorks', 'Fusion 360', 'Rhino', 'AutoCAD'],
+    tools: ['SolidWorks', 'PTC Creo'],
     deliverables: ['STEP', 'IGES', 'STL', 'DWG', 'PDF drawings'],
     longDescription:
-      'We build detailed CAD models that are ready for manufacturing, simulation, and assembly. Every design is created with tolerance control, motion clearance, and technical documentation in mind.',
+      'We build detailed, native parametric models utilizing professional software including SolidWorks and PTC Creo. Every design is created with strict tolerance control, motion clearance analysis, and robust feature trees ready for simulation and manufacturing handoffs.',
     heroImage: '/assets/external/projects/open-assembly.png',
     faq: [
       {
@@ -72,12 +72,12 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'mechanical-engineering',
     title: 'Mechanical Engineering',
-    description: 'Engineering-driven design of mechanisms, assemblies, and performance-critical systems for reliable product operation.',
+    description: 'Engineering-driven design of robust mechanisms, complex assemblies, and performance-critical hardware.',
     keywords: ['mechanical engineering', 'DFM engineering', 'mechanism design', 'assembly engineering'],
-    tools: ['SolidWorks', 'AutoCAD', 'ANSYS', 'Fusion 360'],
+    tools: ['SolidWorks', 'PTC Creo'],
     deliverables: ['Assembly CAD', 'Mechanism diagrams', 'Engineering report'],
     longDescription:
-      'We design mechanical systems with a focus on strength, motion, and manufacturability. Our engineering service delivers production-ready assemblies and validated mechanisms.',
+      'We engineer dynamic mechanical systems with a focus on load distribution, kinematics, and manufacturability. Our deliverables include production-ready assemblies and comprehensive technical documentation compliant with strict ASME standards.',
     heroImage: '/assets/external/projects/camera-housing.jpg',
     faq: [
       {
@@ -101,12 +101,12 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'rapid-prototyping',
     title: 'Rapid Prototyping',
-    description: 'Fast functional prototypes ready for testing and iteration using additive and subtractive manufacturing geometry.',
+    description: 'Fast, functional prototype engineering for physical testing, validation, and iterative development.',
     keywords: ['rapid prototyping', 'prototype design', '3D print ready', 'CNC prototype'],
-    tools: ['Fusion 360', 'SolidWorks', 'Rhino'],
-    deliverables: ['Prototype-ready CAD', 'STL files', '3D printable models'],
+    tools: ['SolidWorks', 'Blender'],
+    deliverables: ['Prototype-ready CAD', 'STL files', '3D-printable models'],
     longDescription:
-      'We help you move from concept to physical prototype quickly. Our prototype-ready models are optimized for 3D printing, CNC machining, and quick-turn validation.',
+      'We bridge the gap between digital and physical. Our prototype-ready models are specifically optimized for CNC machining, sheet metal fabrication, and quick-turn hardware validation to accelerate your time-to-market and secure early stakeholder buy-in.',
     heroImage: '/assets/external/projects/f1-car-keychain.png',
     faq: [
       {
@@ -130,12 +130,12 @@ export const servicesData: ServiceData[] = [
   {
     slug: '3d-printing',
     title: '3D Printing',
-    description: 'Print-ready CAD optimization and mesh preparation for SLA, FDM, and SLS prototyping and production.',
+    description: 'Print-ready CAD optimization, mesh preparation, and slicing strategies for SLA, FDM, and SLS additive manufacturing.',
     keywords: ['3D printing design', '3D printable model', 'SLA optimization', 'FDM mesh preparation'],
-    tools: ['Fusion 360', 'Blender', 'MeshLab'],
+    tools: ['SolidWorks', 'Blender'],
     deliverables: ['3D-printable STL', 'Support-ready model', 'Print validation report'],
     longDescription:
-      'Our 3D printing service prepares your design for reliable additive manufacturing. We optimize wall thickness, support structure, and fit tolerance for clean prints.',
+      'We prepare your geometry for flawless additive manufacturing. We analyze and optimize wall thicknesses, design custom support structures, and adjust fit tolerances to ensure dimensional accuracy and structural integrity on every print.',
     heroImage: '/assets/external/projects/bamboo-toothbrush.png',
     faq: [
       {
@@ -159,12 +159,12 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'design-for-manufacturing',
     title: 'Design for Manufacturing',
-    description: 'Manufacturing-ready design review and optimization for injection molding, CNC machining, and production assembly.',
+    description: 'Rigorous design review and geometry optimization to reduce tooling costs and streamline high-volume production.',
     keywords: ['DFM review', 'manufacturing-ready design', 'tooling optimization', 'production design'],
-    tools: ['SolidWorks', 'AutoCAD', 'KeyShot'],
+    tools: ['SolidWorks', 'PTC Creo'],
     deliverables: ['DFM report', 'Optimized CAD files', 'Manufacturing notes'],
     longDescription:
-      'We review designs for production viability and optimize part geometry, draft, tolerances, and assembly to reduce cost and improve manufacturability.',
+      'We conduct exhaustive engineering reviews to ensure your design is viable for the factory floor. We optimize draft angles for injection molding, apply GD&T, and refine assemblies to minimize manufacturing costs without compromising the end-user experience.',
     heroImage: '/assets/external/projects/bull-lock.png',
     faq: [
       {
@@ -188,12 +188,12 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'product-visualization-renders',
     title: 'Product Visualization / Renders',
-    description: 'Cinematic product visuals and marketing-ready render imagery for packaging, campaigns, and presentations.',
+    description: 'Cinematic product visuals and marketing-ready imagery for packaging, investor pitch decks, and digital campaigns.',
     keywords: ['product visualization', 'marketing renders', 'photorealistic rendering', 'product imagery'],
-    tools: ['Blender', 'KeyShot', 'Cinema 4D'],
+    tools: ['Blender', 'KeyShot', 'Adobe Photoshop'],
     deliverables: ['High-res renders', 'PNG / JPEG assets', 'Composite files'],
     longDescription:
-      'We create polished product visuals from CAD and concept assets. Our renders are tailored for launch campaigns, investor decks, and digital marketing.',
+      'We create photorealistic, cinematic product visuals using advanced rendering engines like KeyShot and Blender. Our expert lighting and material texturing workflows deliver premium assets designed to drive e-commerce sales and secure funding.',
     heroImage: '/assets/external/projects/hero-render.png',
     faq: [
       {
@@ -217,12 +217,12 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'product-animations',
     title: 'Product Animations',
-    description: 'Exploded views, turntables, and motion sequences that showcase product function and assembly behavior.',
+    description: 'Exploded views, mechanical turntables, and high-fidelity motion sequences that showcase product functionality.',
     keywords: ['product animation', 'turntable video', 'exploded view', 'motion render'],
-    tools: ['Blender', 'KeyShot', 'After Effects'],
+    tools: ['Blender', 'Adobe After Effects'],
     deliverables: ['MP4', 'MOV', 'Animated GIFs'],
     longDescription:
-      'We bring product designs to life through motion. Our animations explain functionality, assembly, and user experience for pitches and presentations.',
+      'We bring static assemblies to life through precise mechanical animation. Our motion sequences effectively communicate complex internal mechanisms, step-by-step assembly procedures, and the overall user experience for B2B presentations and launch events.',
     heroImage: '/assets/external/projects/makeup-stick.png',
     faq: [
       {

@@ -73,9 +73,9 @@ export default function VideoSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-16">
           <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight leading-tight ${textColor}`}>
-            We engineer <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">meaning</span>.
+            Built to be pitched.
             <br />
-            Not just <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">products</span>.
+            Engineered to be made.
           </h2>
           <Link
             href="/portfolio"
@@ -85,9 +85,18 @@ export default function VideoSection() {
           </Link>
         </div>
 
-        <p className={`${subtitleColor} max-w-3xl mx-auto text-center mb-16 text-lg md:text-xl leading-relaxed`}>
-          We go beyond <strong className={`${isLight ? 'text-[#1e1830]' : 'text-white'} font-semibold`}>form and function</strong>, decode what a product needs to say, then build it <strong className={`${isLight ? 'text-[#1e1830]' : 'text-white'} font-semibold`}>to say it exactly right</strong>. Deep technical insight creates work that doesn't just perform. It <strong className="text-[#00d4ff] font-semibold">resonates</strong>.
+        <p className={`${subtitleColor} max-w-3xl mx-auto text-center mb-6 text-lg md:text-xl leading-relaxed`}>
+          We speak the language of both investors and manufacturers. Our studio delivers the photorealistic cinematic assets you need to secure funding, backed by the rigorous, dimensionally accurate CAD files required to actually build the product. No guesswork, just flawless execution at every stage of product development.
         </p>
+
+        <div className="flex justify-center mb-12">
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white/15 bg-white/10 text-white font-semibold tracking-wide hover:bg-white/15 transition-colors shadow-[0_10px_30px_rgba(0,212,255,0.16)]"
+          >
+            REQUEST A PROJECT QUOTE
+          </Link>
+        </div>
 
         <div ref={containerRef} className={`relative w-full aspect-video rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] border ${cardBorder} ${cardBg}`}>
           <img
