@@ -216,12 +216,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Anti-FOWT: apply stored theme before React hydrates */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light');}else{document.documentElement.classList.add('dark');document.documentElement.classList.remove('light');}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('themeMode');var theme='light';if(t==='light'){theme='light';}else if(t==='dark'){theme='dark';}else if(t==='system'){theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';}else{theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';}if(theme==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light');}else{document.documentElement.classList.add('dark');document.documentElement.classList.remove('light');}}catch(e){}})();`,
           }}
         />
       </head>
       <body>
-        <ThemeProvider defaultTheme="dark" switchable={true}>
+        <ThemeProvider defaultTheme="system" switchable={true}>
           <TooltipProvider>
             <SessionLoader />
             <Toaster />

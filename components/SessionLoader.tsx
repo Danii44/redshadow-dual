@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Settings } from "lucide-react";
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function SessionLoader() {
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
   const [showLoader, setShowLoader] = useState(false);
   const [isFading, setIsFading] = useState(false);
 
@@ -35,7 +38,7 @@ export default function SessionLoader() {
 
   return (
     <div 
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black overflow-hidden transition-opacity duration-700 ease-in-out ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center ${isLight ? 'bg-white text-slate-900' : 'bg-[#02040a] text-white'} overflow-hidden transition-opacity duration-700 ease-in-out ${
         isFading ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
@@ -44,7 +47,7 @@ export default function SessionLoader() {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative flex flex-col items-center justify-center"
+        className={`relative flex flex-col items-center justify-center ${isLight ? 'bg-white/95 border border-slate-200' : 'bg-[rgba(4,8,16,0.7)] border border-[rgba(0,212,255,0.25)]'} rounded-3xl p-10 shadow-[0_24px_80px_rgba(0,0,0,0.5)]`}
       >
         {/* Spinning Gear */}
         <div className="relative">
@@ -52,7 +55,7 @@ export default function SessionLoader() {
             animate={{ rotate: 360 }}
             transition={{ duration: 4, ease: "linear", repeat: Infinity }}
           >
-            <Settings className="w-16 h-16 text-[#00d4ff] drop-shadow-[0_0_15px_rgba(0,212,255,0.5)]" strokeWidth={1.5} />
+            <Settings className={`w-16 h-16 ${isLight ? 'text-[#7c3aed]' : 'text-[#00d4ff]'} drop-shadow-[0_0_15px_rgba(0,212,255,0.5)]`} strokeWidth={1.5} />
           </motion.div>
           
           {/* Pulsing Rings */}

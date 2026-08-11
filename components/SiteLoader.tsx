@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Settings } from "lucide-react";
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function SiteLoader() {
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -24,7 +27,7 @@ export default function SiteLoader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#02040a] overflow-hidden"
+          className={`fixed inset-0 z-[100] flex flex-col items-center justify-center ${isLight ? 'bg-white text-slate-900' : 'bg-[#02040a] text-white'} overflow-hidden`}
         >
           {/* Radial Gradients */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,212,255,0.1),transparent_25%),radial-gradient(circle_at_center,rgba(124,58,237,0.15),transparent_40%)]" />
@@ -34,7 +37,7 @@ export default function SiteLoader() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative flex flex-col items-center gap-6 p-10 rounded-3xl border border-[rgba(0,212,255,0.25)] bg-[rgba(4,8,16,0.7)] shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+            className={`relative flex flex-col items-center gap-6 p-10 rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-xl ${isLight ? 'border border-slate-200 bg-white/95' : 'border border-[rgba(0,212,255,0.25)] bg-[rgba(4,8,16,0.7)]'}`}
           >
             {/* Spinning Gear */}
             <div className="relative">
@@ -42,7 +45,7 @@ export default function SiteLoader() {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 4, ease: "linear", repeat: Infinity }}
               >
-                <Settings className="w-16 h-16 text-[#00d4ff] drop-shadow-[0_0_15px_rgba(0,212,255,0.5)]" strokeWidth={1.5} />
+                <Settings className={`w-16 h-16 ${isLight ? 'text-[#7c3aed]' : 'text-[#00d4ff]'} drop-shadow-[0_0_15px_rgba(0,212,255,0.5)]`} strokeWidth={1.5} />
               </motion.div>
               
               {/* Pulsing Rings */}
@@ -60,7 +63,7 @@ export default function SiteLoader() {
 
             {/* Loading Text */}
             <div className="flex flex-col items-center mt-4">
-              <p className="text-white/80 text-xs font-mono uppercase tracking-[0.3em]">
+              <p className={`${isLight ? 'text-slate-600' : 'text-white/80'} text-xs font-mono uppercase tracking-[0.3em]`}>
                 Initializing
               </p>
               <div className="mt-3 flex gap-1">
