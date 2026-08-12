@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import './AboutSection.css';
 import { useTheme } from '@/contexts/ThemeContext';
+import CTA from './ui/CTA';
 
 export function AboutSection() {
   const { theme } = useTheme();
@@ -54,12 +55,8 @@ export function AboutSection() {
           <p>
             From complex mechanical assemblies and medical devices to consumer hardware prototypes, we engineer solutions with strict adherence to ASME standards and GD&T practices. We turn your concepts into assets that win investor pitches, power e-commerce listings, and ensure a seamless handoff to your manufacturing partners—backed by a 99.9% dimensional accuracy guarantee and a flawless 5.0-star track record.
           </p>
-          <div className="about-ctas mt-6 flex flex-wrap gap-3">
-            <a href="mailto:hello@redshadowdesigns.com" className="cta-pill">Contact now</a>
-            <a href="/contact" className="cta-pill">Contact now</a>
-            <a href="/contact" className="cta-pill">Get in touch</a>
-            <a href="/contact?topic=dfm" className="cta-pill">Talk to our Engineer</a>
-            <a href="mailto:hello@redshadowdesigns.com" className="cta-pill">Talk to us</a>
+          <div className="about-ctas mt-6">
+            <CTA href="/contact">Get in touch</CTA>
           </div>
           <div className="about-values">
             <div className="about-value-card">

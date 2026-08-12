@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import './ContactEnhanced.css';
+import CTA from './ui/CTA';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,7 +130,7 @@ export function ContactEnhanced() {
                 <div className="contact-visual-ring" />
                 <div className="contact-visual-copy">
                     <span className="contact-visual-label">Availability</span>
-                    <a href="/contact" className="availability-button mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] text-white font-semibold">Booked for premium visual launches</a>
+                    <CTA href="/contact" className="availability-button mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] text-white font-semibold">Booked for premium visual launches</CTA>
                   </div>
               </div>
 

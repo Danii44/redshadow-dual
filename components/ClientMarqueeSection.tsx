@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Hexagon, Box, Triangle, Circle, Zap, Cloud, Globe, Cpu, Layers } from "lucide-react";
+import CTA from './ui/CTA';
 
 type Category = "All" | "CAD" | "3D Modeling" | "Rendering" | "Motion & Post-Production";
 
@@ -136,9 +137,8 @@ export default function ClientMarqueeSection() {
           </p>
 
           <div className="lg:col-span-4 grid grid-cols-2 gap-4 border-l border-slate-200 dark:border-white/10 pl-6">
-            <div className="col-span-2 flex flex-wrap gap-2 mb-2">
-              <a href="mailto:hello@redshadowdesigns.com" className="cta-pill">Have a query? Contact now</a>
-              <a href="/contact?topic=dfm" className="cta-pill">Need DFM Solutions? Talk to our Engineer</a>
+            <div className="col-span-2 mb-2">
+              <CTA href="mailto:hello@redshadowdesigns.com">Have a query? Contact now</CTA>
             </div>
             <div>
               <span className="block text-2xl md:text-3xl font-bold font-mono text-cyan-600 dark:text-[#00d4ff]">100+</span>

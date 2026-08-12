@@ -22,7 +22,7 @@ const steps = [
   {
     number: "",
     title: "Rapid Prototyping",
-    description: "Iterating and refining 3D digital prototypes for physical validation, ergonomics, and component fit testing. Deliverables include 3D print-ready files; typical turnaround may exceed 24 hours."
+    description: "Iterating and refining 3D digital prototypes for physical validation, ergonomics, and component fit testing. Deliverables include 3D print-ready files."
   },
   {
     number: "",
@@ -64,10 +64,8 @@ export default function ProcessSection() {
           <p className="text-white/60 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
             Our 7-step engineering & design workflow guarantees precision, manufacturing readiness, and stunning visual presentation.
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a href="mailto:hello@redshadowdesigns.com" className="cta-pill">Have a query? Contact now</a>
-            <a href="/contact?topic=estimate" className="cta-pill">Need an estimate? Contact now</a>
-            <a href="/contact" className="cta-pill">Have sketches? Get in touch</a>
+          <div className="mt-6 flex justify-center">
+            <CTA href="/contact?topic=estimate">Need an estimate? Contact now</CTA>
           </div>
         </div>
 

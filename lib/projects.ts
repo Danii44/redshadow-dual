@@ -14,7 +14,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 'orbai-spherical-drone',
-    title: 'ORBAI Spherical Drone',
+      title: 'ORBAI Spherical Drone – CAD Design & 3D Renders',
     category: 'CAD Design',
     description: 'Advanced spherical drone mechanical design, precision CAD modeling, and photorealistic rendering for an autonomous aerial platform.',
     image: '/assets/external/projects/orbai-spherical-drone.png',
@@ -26,7 +26,7 @@ export const projects: Project[] = [
   },
   {
     id: 'f1-car-keychain',
-    title: 'F1 Race Car Keychain',
+      title: 'Precision-Engineered F1 Race Car Keychain',
     category: 'CAD Design',
     description: 'Highly detailed, precision-engineered miniature F1 car model for CNC machining or SLA 3D printing.',
     image: '/assets/external/projects/f1-car-keychain.png',
@@ -38,7 +38,7 @@ export const projects: Project[] = [
   },
   {
     id: 'tkr-implant',
-    title: 'Knee Implant',
+      title: 'Total Knee Replacement (TKR) Implant',
     category: 'Medical',
     description: 'Anatomically accurate knee implant CAD model focusing on biomechanics, material specifications, and regulatory compliance.',
     image: '/assets/external/projects/tkr-implant.png',
@@ -50,7 +50,7 @@ export const projects: Project[] = [
   },
   {
     id: 'ketchup-cap',
-    title: 'Ketchup Dispensing Cap',
+      title: 'Multi-Mode Ketchup Dispenser Cap – 3D Design',
     category: 'Product Design',
     description: 'Innovative ketchup dispensing cap design with precise mating geometry, engineered for injection molding production.',
     image: '/assets/external/projects/ketchup-cap.png',
@@ -62,7 +62,7 @@ export const projects: Project[] = [
   },
   {
     id: 'bull-lock',
-    title: 'Bull Lock Mechanism',
+      title: 'Bull Lock Mechanism',
     category: 'Industrial Design',
     description: 'Heavy-duty bull lock mechanism with fully articulated locking geometry, designed for agricultural and industrial applications.',
     image: '/assets/external/projects/bull-lock.png',
@@ -74,7 +74,7 @@ export const projects: Project[] = [
   },
   {
     id: 'taupe-urn',
-    title: 'Decorative Urn',
+      title: 'Taupe Beverage Urn',
     category: '3D Rendering',
     description: 'Photorealistic 3D render of a premium taupe decorative urn with subsurface scattering material simulation.',
     image: '/assets/external/projects/taupe-urn.jpg',

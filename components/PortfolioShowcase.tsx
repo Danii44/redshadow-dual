@@ -21,7 +21,7 @@ const impactItems = [
   {
     value: '3D print-ready files',
     label: 'Rapid Prototyping',
-    detail: 'Includes 3D print-ready files; typical turnaround may exceed 24 hours.',
+    detail: 'Includes 3D print-ready files.',
   },
 ];
 
