@@ -4,14 +4,14 @@ import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Hexagon, Box, Triangle, Circle, Zap, Cloud, Globe, Cpu, Layers } from "lucide-react";
 
-type Category = "All" | "CAD" | "3D Modeling" | "Rendering";
+type Category = "All" | "CAD" | "3D Modeling" | "Rendering" | "Motion & Post-Production";
 
 interface SoftwareItem {
   id: string;
   name: string;
   href: string;
   icon: string;
-  category: "CAD" | "3D Modeling" | "Rendering";
+  category: "CAD" | "3D Modeling" | "Rendering" | "Motion & Post-Production";
 }
 
 // --- CLIENT DATA ---
@@ -28,65 +28,65 @@ const clients = [
 
 // --- SOFTWARE DATA (Mapped to your exact public folder files) ---
 const software: SoftwareItem[] = [
-  { 
-    id: "solidworks", 
-    name: "SolidWorks", 
-    href: "https://www.solidworks.com/", 
-    icon: "/assets/icons/solidworks.png", // PNG
-    category: "CAD" 
+  {
+    id: "solidworks",
+    name: "SolidWorks",
+    href: "https://www.solidworks.com/",
+    icon: "/assets/icons/solidworks.png",
+    category: "CAD",
   },
-  { 
-    id: "fusion360", 
-    name: "Fusion 360", 
-    href: "https://www.autodesk.com/products/fusion-360/", 
-    icon: "/assets/icons/Fusion360.svg", // Capital F and S
-    category: "CAD" 
+  {
+    id: "ptc-creo",
+    name: "PTC Creo",
+    href: "https://www.ptc.com/en/products/cad/creo",
+    icon: "/assets/icons/ptc-creo.svg",
+    category: "CAD",
   },
-  { 
-    id: "blender", 
-    name: "Blender", 
-    href: "https://www.blender.org/", 
-    icon: "/assets/icons/blender.svg", // SVG
-    category: "3D Modeling" 
+  {
+    id: "blender",
+    name: "Blender",
+    href: "https://www.blender.org/",
+    icon: "/assets/icons/blender.svg",
+    category: "3D Modeling",
   },
-  { 
-    id: "cinema4d", 
-    name: "Cinema 4D", 
-    href: "https://www.maxon.net/", 
-    icon: "/assets/icons/cinema4d.svg", // SVG
-    category: "3D Modeling" 
+  {
+    id: "keyshot",
+    name: "KeyShot",
+    href: "https://www.keyshot.com/",
+    icon: "/assets/icons/keyshot.png",
+    category: "Rendering",
   },
-  { 
-    id: "keyshot", 
-    name: "KeyShot", 
-    href: "https://www.keyshot.com/", 
-    icon: "/assets/icons/keyshot.png", // PNG
-    category: "Rendering" 
+  {
+    id: "after-effects",
+    name: "Adobe After Effects",
+    href: "https://www.adobe.com/products/aftereffects.html",
+    icon: "/assets/icons/after-effects.svg",
+    category: "Motion & Post-Production",
   },
-  { 
-    id: "rhino", 
-    name: "Rhino", 
-    href: "https://www.rhino3d.com/", 
-    icon: "/assets/icons/rhinoceros.svg", // SVG
-    category: "CAD" 
+  {
+    id: "photoshop",
+    name: "Adobe Photoshop",
+    href: "https://www.adobe.com/products/photoshop.html",
+    icon: "/assets/icons/photoshop.svg",
+    category: "Motion & Post-Production",
   },
-  { 
-    id: "autocad", 
-    name: "AutoCAD", 
-    href: "https://www.autodesk.com/products/autocad/", 
-    icon: "/assets/icons/autocad.svg", // SVG
-    category: "CAD" 
+  {
+    id: "illustrator",
+    name: "Adobe Illustrator",
+    href: "https://www.adobe.com/products/illustrator.html",
+    icon: "/assets/icons/illustrator.svg",
+    category: "Motion & Post-Production",
   },
-  { 
-    id: "substance", 
-    name: "Substance Painter", 
-    href: "https://www.adobe.com/products/substance3d-painter.html", 
-    icon: "/assets/icons/substance-painter.png", // PNG
-    category: "Rendering" 
+  {
+    id: "canva",
+    name: "Canva",
+    href: "https://www.canva.com/",
+    icon: "/assets/icons/canva.svg",
+    category: "Motion & Post-Production",
   },
 ];
 
-const categories: Category[] = ["All", "CAD", "3D Modeling", "Rendering"];
+const categories: Category[] = ["All", "CAD", "3D Modeling", "Rendering", "Motion & Post-Production"];
 
 export default function ClientMarqueeSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
@@ -136,13 +136,17 @@ export default function ClientMarqueeSection() {
           </p>
 
           <div className="lg:col-span-4 grid grid-cols-2 gap-4 border-l border-slate-200 dark:border-white/10 pl-6">
-            <div>
-              <span className="block text-2xl md:text-3xl font-bold font-mono text-cyan-600 dark:text-[#00d4ff]">50+</span>
-              <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Products Built</span>
+            <div className="col-span-2 flex flex-wrap gap-2 mb-2">
+              <a href="mailto:hello@redshadowdesigns.com" className="cta-pill">Have a query? Contact now</a>
+              <a href="/contact?topic=dfm" className="cta-pill">Need DFM Solutions? Talk to our Engineer</a>
             </div>
             <div>
-              <span className="block text-2xl md:text-3xl font-bold font-mono text-purple-600 dark:text-purple-400">99.8%</span>
-              <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">CAD Accuracy</span>
+              <span className="block text-2xl md:text-3xl font-bold font-mono text-cyan-600 dark:text-[#00d4ff]">100+</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Products</span>
+            </div>
+            <div>
+              <span className="block text-2xl md:text-3xl font-bold font-mono text-purple-600 dark:text-purple-400">800+</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Projects</span>
             </div>
           </div>
         </div>

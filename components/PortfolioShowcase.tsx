@@ -19,9 +19,9 @@ const impactItems = [
     detail: 'Conversion increases from interface refreshes and UX-driven visual storytelling.',
   },
   {
-    value: '24h',
-    label: 'Rapid Turnaround',
-    detail: 'Fast prototyping and iteration cycles for concept-to-delivery momentum.',
+    value: '3D print-ready files',
+    label: 'Rapid Prototyping',
+    detail: 'Includes 3D print-ready files; typical turnaround may exceed 24 hours.',
   },
 ];
 

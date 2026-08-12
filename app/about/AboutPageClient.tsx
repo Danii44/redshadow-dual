@@ -6,32 +6,37 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const techStack = [
-  { name: 'SolidWorks', icon: '⚙️' },
-  { name: 'Cinema4D', icon: '🎬' },
-  { name: 'AutoCAD', icon: '📐' },
-  { name: 'Blender', icon: '🎨' },
-  { name: 'Unreal Engine', icon: '🎮' },
-  { name: 'Next.js', icon: '⚛️' },
-  { name: 'WebGL', icon: '🌐' }
+  { name: 'SolidWorks (CAD)' },
+  { name: 'PTC Creo (CAD)' },
+  { name: 'Blender (3D MODELING)' },
+  { name: 'KeyShot (RENDERING)' },
+  { name: 'Adobe After Effects (ANIMATION / MOTION GRAPHICS)' },
+  { name: 'Adobe Photoshop (POST-PRODUCTION / GRAPHICS)' },
+  { name: 'Adobe Illustrator (VECTOR GRAPHICS)' },
+  { name: 'Canva (PITCH DECKS / PRESENTATIONS)' }
 ];
 
 export default function AboutPageClient() {
   const [scrollY, setScrollY] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
+    setMounted(true);
+
     const handleScroll = () => setScrollY(window.scrollY);
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Safe client-side check to prevent SSR/hydration mismatch
+  const isLight = mounted && theme === 'light';
+
   const ambientStyle = {
     '--scroll-offset': `${Math.min(scrollY * 0.12, 120)}px`,
     '--scroll-rise': `${Math.min(scrollY * 0.08, 70)}px`,
   } as CSSProperties;
-
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
 
   return (
     <div className="homepage-shell" style={ambientStyle}>
@@ -106,9 +111,9 @@ export default function AboutPageClient() {
               className="grid grid-cols-2 gap-4"
             >
               {[
-                { label: "Projects Delivered", value: "500+" },
+                { label: "Projects Delivered", value: "800+" },
                 { label: "Years Experience", value: "10+" },
-                { label: "Global Clients", value: "85+" },
+                { label: "Global Clients", value: "550+" },
                 { label: "Dimensional Accuracy", value: "99.9%" }
               ].map((stat, i) => (
                 <div key={i} className="glass-card p-8 rounded-2xl flex flex-col items-center justify-center text-center">
@@ -141,12 +146,10 @@ export default function AboutPageClient() {
             className="max-w-4xl mx-auto"
           >
             <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-black/40 backdrop-blur-sm p-8 md:p-12">
-              {/* Background glow */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-[rgba(124,58,237,0.12)] rounded-full blur-[80px] pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-[rgba(0,212,255,0.08)] rounded-full blur-[80px] pointer-events-none" />
 
               <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-                {/* Avatar */}
                 <div className="flex-shrink-0">
                   <div className="w-36 h-36 md:w-44 md:h-44 rounded-2xl border-2 border-[rgba(0,212,255,0.3)] overflow-hidden shadow-[0_0_40px_rgba(0,212,255,0.15)] bg-gradient-to-br from-[#0a1628] to-[#1a0033]">
                     <img
@@ -155,7 +158,6 @@ export default function AboutPageClient() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  {/* Top-rated badge */}
                   <div className="mt-3 text-center">
                     <span className="inline-block px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-bold uppercase tracking-widest">
                       ⭐ Top Rated Seller
@@ -163,12 +165,11 @@ export default function AboutPageClient() {
                   </div>
                 </div>
 
-                {/* Info */}
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-1">Daniyal Ahmad</h3>
                   <p className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest mb-4">Founder & CEO — Red Shadow Designs</p>
                   <p className="text-white/60 leading-relaxed mb-6">
-                    Daniyal is a mechanical engineer and precision 3D modelling specialist with over a decade of experience delivering production-ready CAD assemblies, cinematic renders, and complex industrial designs for clients across North America, Europe, and the Middle East. Rated as a Top Seller on Fiverr with 500+ successful projects delivered.
+                    Daniyal is a mechanical engineer and precision 3D modelling specialist with over a decade of experience delivering production-ready CAD assemblies, cinematic renders, and complex industrial designs for clients across North America, Europe, and the Middle East. Rated as a Top Seller on Fiverr with 800+ successful projects delivered.
                   </p>
                   <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-6">
                     {['Mechanical Engineering', 'SolidWorks', 'Blender', '3D Rendering', 'Product Design', 'DFM'].map((tag) => (
@@ -215,10 +216,9 @@ export default function AboutPageClient() {
               <p className="text-white/60 text-lg max-w-2xl mx-auto mb-4">
                 Red Shadow Designs is also available on Fiverr as a Top Rated Seller. Browse our gigs, view our full portfolio, and order directly — with Fiverr's buyer protection guarantee.
               </p>
-              {/* Stats row */}
               <div className="flex flex-wrap justify-center gap-8 my-8">
                 {[
-                  { label: 'Projects Completed', value: '500+' },
+                  { label: 'Projects Completed', value: '800+' },
                   { label: 'Rating', value: '5.0 ⭐' },
                   { label: 'Delivery', value: '4–8 Days' },
                   { label: 'Repeat Buyers', value: '90%' },
@@ -260,7 +260,6 @@ export default function AboutPageClient() {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 className="px-6 py-4 rounded-xl border border-white/10 bg-black/40 backdrop-blur-md flex items-center gap-3 hover:border-[#00d4ff]/50 transition-colors"
               >
-                <span className="text-2xl">{tech.icon}</span>
                 <span className="text-white font-medium">{tech.name}</span>
               </motion.div>
             ))}

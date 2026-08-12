@@ -128,9 +128,9 @@ export function ContactEnhanced() {
               <div className="contact-visual-panel">
                 <div className="contact-visual-ring" />
                 <div className="contact-visual-copy">
-                  <span className="contact-visual-label">Availability</span>
-                  <strong>Booked for premium visual launches</strong>
-                </div>
+                    <span className="contact-visual-label">Availability</span>
+                    <a href="/contact" className="availability-button mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] text-white font-semibold">Booked for premium visual launches</a>
+                  </div>
               </div>
 
               <div className="info-item">
@@ -174,10 +174,10 @@ export function ContactEnhanced() {
             viewport={{ once: true }}
           >
             {submitted ? (
-              <div className="glass-strong p-8 rounded-3xl text-center space-y-4">
+                <div className="glass-strong p-8 rounded-3xl text-center space-y-4">
                 <div className="text-5xl">✅</div>
                 <h3 className="text-2xl font-bold text-white">Message Sent Successfully!</h3>
-                <p className="text-white/60">Thank you for reaching out to Red Shadow Designs. We will respond within 24 hours.</p>
+                <p className="text-white/60">Thank you for reaching out to Red Shadow Designs. We will respond as soon as possible.</p>
                 <button onClick={() => setSubmitted(false)} className="glass-button-lg px-6 py-2 text-sm mt-4">
                   Send Another Message
                 </button>
@@ -246,7 +246,7 @@ export function ContactEnhanced() {
                     {submitting ? "Sending..." : "Send Message"}
                     <span className="button-glow"></span>
                   </button>
-                  <p className="contact-form-note">Response in under 24 hours for qualified inquiries.</p>
+                  <p className="contact-form-note">We aim to respond promptly; response times may vary.</p>
                 </div>
               </form>
             )}
