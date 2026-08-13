@@ -193,55 +193,7 @@ export default function AboutPageClient() {
           </motion.div>
         </section>
 
-        {/* Fiverr CTA Section */}
-        <section className="py-24 px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative rounded-3xl overflow-hidden border border-[rgba(0,212,255,0.2)] p-10 md:p-16 text-center glass-card fiverr-cta-card"
-          >
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-32 bg-[rgba(0,212,255,0.06)] blur-[60px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-32 bg-[rgba(124,58,237,0.08)] blur-[60px] rounded-full pointer-events-none" />
 
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-sm font-bold">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                Available on Fiverr — Top Rated Seller
-              </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-                Start Your Project on <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">Fiverr</span>
-              </h2>
-              <p className="text-white/60 text-lg max-w-2xl mx-auto mb-4">
-                Red Shadow Designs is also available on Fiverr as a Top Rated Seller. Browse our gigs, view our full portfolio, and order directly — with Fiverr's buyer protection guarantee.
-              </p>
-              <div className="flex flex-wrap justify-center gap-8 my-8">
-                {[
-                  { label: 'Projects Completed', value: '800+' },
-                  { label: 'Rating', value: '5.0 ⭐' },
-                  { label: 'Delivery', value: '4–8 Days' },
-                  { label: 'Repeat Buyers', value: '90%' },
-                ].map((s) => (
-                  <div key={s.label} className="text-center">
-                    <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">{s.value}</div>
-                    <div className="text-white/40 text-xs uppercase tracking-widest mt-1">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-              <a
-                href="https://www.fiverr.com/daniyalahmad7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white text-lg bg-gradient-to-r from-[#1dbf73] to-[#19a463] hover:shadow-[0_0_40px_rgba(29,191,115,0.4)] transition-all duration-300 hover:scale-105"
-              >
-                <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-5 w-5" />
-                Contact on Fiverr
-              </a>
-              <p className="text-white/30 text-xs mt-4">Secured by Fiverr Buyer Protection. Fast response guaranteed.</p>
-            </div>
-          </motion.div>
-        </section>
 
         {/* Software & Tech Stack */}
         <section className="py-24 border-y border-white/5 bg-white/[0.02]">

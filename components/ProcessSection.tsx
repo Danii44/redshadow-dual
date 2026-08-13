@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import CTA from './ui/CTA';
 
 const steps = [
   {
