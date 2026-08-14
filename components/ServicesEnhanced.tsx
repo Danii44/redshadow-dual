@@ -10,7 +10,8 @@ import { useTheme } from '@/contexts/ThemeContext';
 export default function ServicesEnhanced() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const { theme } = useTheme();
-  const isLight = theme === 'light';
+  // We'll force these cards to look bright and high-contrast like Octane 8 regardless of theme,
+  // or adapt them nicely. Let's use bright distinct colors for the stack.
 
   return (
     <section id="services" className="relative w-full py-24 lg:py-32 bg-transparent z-10">
@@ -34,56 +35,58 @@ export default function ServicesEnhanced() {
             return (
               <div 
                 key={service.slug} 
-                className={`relative w-full border-b border-white/10 transition-colors duration-500 ${isHovered ? 'bg-white/5 border-[rgba(0,212,255,0.2)]' : ''}`}
+                className={`relative w-full border-b border-white/10 transition-colors duration-500 ${isHovered ? 'bg-white/[0.02]' : ''}`}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group relative flex flex-col md:flex-row items-center py-8 md:py-12 cursor-pointer"
+                  className="group relative flex flex-col md:flex-row items-center py-10 md:py-16 cursor-pointer"
                 >
                   
-                  {/* LEFT SIDE: Tilted Image Stack in line with service */}
-                  <div className="w-full md:w-1/3 flex justify-center md:justify-start mb-8 md:mb-0 md:pl-4">
-                    <div className="relative w-[260px] h-[180px] xl:w-[320px] xl:h-[220px]">
-                      {/* Background tilted cards ("foam") */}
-                      <div className={`absolute inset-0 rounded-2xl border ${isLight ? 'bg-gray-800 border-gray-700' : 'bg-[#050914] border-white/10'} rotate-[6deg] scale-[0.95] translate-x-[10px] translate-y-[8px] shadow-xl transition-all duration-500 ${isHovered ? 'rotate-[8deg] translate-x-[15px]' : ''}`} />
-                      <div className={`absolute inset-0 rounded-2xl border ${isLight ? 'bg-gray-200 border-gray-300' : 'bg-[#1a1f2e] border-white/5'} rotate-[-4deg] scale-[0.98] translate-x-[-8px] translate-y-[4px] shadow-lg transition-all duration-500 ${isHovered ? 'rotate-[-6deg] translate-x-[-12px]' : ''}`} />
+                  {/* LEFT SIDE: Highly visible tilted card stack (Octane 8 style) */}
+                  <div className="w-full md:w-2/5 flex justify-center md:justify-start mb-12 md:mb-0 md:pl-4">
+                    <div className="relative w-[280px] h-[190px] xl:w-[360px] xl:h-[240px]">
+                      
+                      {/* Deepest Card (e.g. Maroon/Dark Red like Octane 8) */}
+                      <div className={`absolute inset-0 rounded-2xl bg-[#5C161E] border border-white/10 rotate-[8deg] scale-[0.9] translate-x-[25px] translate-y-[15px] shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all duration-500 ${isHovered ? 'rotate-[12deg] translate-x-[35px] translate-y-[20px]' : ''}`} />
+                      
+                      {/* Middle Card (e.g. Clean White/Light Gray) */}
+                      <div className={`absolute inset-0 rounded-2xl bg-[#e2e8f0] border border-white/20 rotate-[-5deg] scale-[0.95] translate-x-[-15px] translate-y-[5px] shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-500 ${isHovered ? 'rotate-[-8deg] translate-x-[-25px] translate-y-[10px]' : ''}`} />
 
-                      {/* Main active image card with Fast Changing Carousel */}
-                      <div className={`absolute inset-0 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border ${isLight ? 'border-gray-200 bg-white' : 'border-white/20 bg-[#02040a]'} transition-transform duration-500 ${isHovered ? 'scale-105' : 'scale-100'}`}>
-                        {/* Only show the fast-changing carousel if hovered to save performance, otherwise static image */}
+                      {/* Top Active Image Card (Bright White border, strong shadow) */}
+                      <div className={`absolute inset-0 rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] bg-white border-[6px] border-white transition-transform duration-500 ${isHovered ? 'scale-110 rotate-[2deg]' : 'scale-100 rotate-0'}`}>
+                        {/* Show fast-changing carousel on hover, otherwise static hero image */}
                         {isHovered ? (
                           <PreviewCarousel service={service} />
                         ) : (
                           <img 
                             src={service.heroImage} 
                             alt={service.title}
-                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                            className="w-full h-full object-cover transition-opacity"
                           />
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent pointer-events-none" />
                       </div>
                     </div>
                   </div>
 
                   {/* RIGHT SIDE: Number, Title, Description */}
-                  <div className="w-full md:w-2/3 flex flex-col sm:flex-row gap-4 sm:gap-8 md:pl-8 lg:pl-16">
-                    <span className={`font-mono text-lg sm:text-xl transition-colors duration-300 mt-1 ${isHovered ? 'text-[#00d4ff]' : 'text-white/30 group-hover:text-[#00d4ff]'}`}>
+                  <div className="w-full md:w-3/5 flex flex-col sm:flex-row gap-4 sm:gap-8 md:pl-8 lg:pl-12">
+                    <span className={`font-mono text-xl md:text-2xl transition-colors duration-300 mt-1 font-bold ${isHovered ? 'text-[#00d4ff]' : 'text-white/30 group-hover:text-[#00d4ff]'}`}>
                       {index + 1 < 10 ? `0${index + 1}` : index + 1}
                     </span>
                     
                     <div>
-                      <h3 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight transition-all duration-300 mb-3
+                      <h3 className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight transition-all duration-300 mb-4
                         ${isHovered 
-                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed] translate-x-2' 
-                          : 'text-white'
+                          ? 'text-white translate-x-3 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]' 
+                          : 'text-white/80 group-hover:translate-x-3'
                         }`}
                       >
                         {service.title}
                       </h3>
                       
-                      <p className="text-white/60 text-sm md:text-base max-w-xl leading-relaxed mb-4">
+                      <p className={`text-sm md:text-lg max-w-xl leading-relaxed mb-4 transition-colors ${isHovered ? 'text-white/80' : 'text-white/50'}`}>
                         {service.description}
                       </p>
                       
@@ -96,7 +99,7 @@ export default function ServicesEnhanced() {
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            <p className="text-white/40 text-sm mt-2 max-w-xl">
+                            <p className="text-[#00d4ff] text-sm md:text-base mt-2 max-w-xl font-medium">
                               {service.longDescription}
                             </p>
                           </motion.div>
