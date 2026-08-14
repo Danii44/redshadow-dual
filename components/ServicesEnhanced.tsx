@@ -64,22 +64,23 @@ export default function ServicesEnhanced() {
 
   return (
     <section id="services" className="services-section-wrapper">
-      <div className="services-content-container max-w-7xl mx-auto w-full">
-        <motion.div
-          className="services-header-panel"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          viewport={{ once: true }}
-        >
-          <span className="services-pill">Our Services</span>
-          <h2 className="services-heading">End-to-end engineering solutions</h2>
-          <p className="services-subtitle">
-            From early-stage concept validation to production-ready deliverables.
-          </p>
-        </motion.div>
+      {/* HEADER */}
+      <motion.div
+        className="services-header-panel"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        viewport={{ once: true }}
+      >
+        <span className="services-pill">Our Services</span>
+        <h2 className="services-heading">End-to-end engineering solutions</h2>
+        <p className="services-subtitle">
+          From early-stage concept validation to production-ready deliverables.
+        </p>
+      </motion.div>
 
-        <div className="services-interaction" onMouseLeave={() => setActiveIndex(null)}>
+      {/* INTERACTIVE LIST */}
+      <div className="services-interaction" onMouseLeave={() => setActiveIndex(null)}>
         {/* List of words */}
         <nav className="services-title-list">
           {(servicesData as Service[]).map((service, index) => {
@@ -182,7 +183,6 @@ export default function ServicesEnhanced() {
             );
           })}
         </nav>
-      </div>
       </div>
     </section>
   );
