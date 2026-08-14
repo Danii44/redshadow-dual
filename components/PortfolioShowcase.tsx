@@ -48,11 +48,6 @@ export default function PortfolioShowcase() {
     const track = trackRef.current;
     if (!trackContainer || !track || !mounted) return;
 
-    const isTouch =
-      'ontouchstart' in window ||
-      (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) ||
-      window.matchMedia('(pointer: coarse)').matches;
-
     const updateTransform = (offset: number) => {
       track.style.transform = `translate3d(${-offset}px, 0, 0)`;
     };
@@ -106,13 +101,6 @@ export default function PortfolioShowcase() {
       trackContainer.style.cursor = 'grab';
     };
 
-    const onWheel = (event: WheelEvent) => {
-      if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
-        event.preventDefault();
-        updateOffset(offsetRef.current + event.deltaY * 1.2);
-      }
-    };
-
     const onResize = () => {
       initializeSizes();
     };
@@ -124,15 +112,24 @@ export default function PortfolioShowcase() {
     initializeSizes();
     window.requestAnimationFrame(initializeSizes);
 
+    let animationFrameId: number;
+    const autoScrollSpeed = 0.5;
+
+    const loop = () => {
+      if (!dragRef.current) {
+        updateOffset(offsetRef.current + autoScrollSpeed);
+      }
+      animationFrameId = window.requestAnimationFrame(loop);
+    };
+
+    animationFrameId = window.requestAnimationFrame(loop);
+
     trackContainer.addEventListener('pointerdown', onPointerDown);
     trackContainer.addEventListener('pointermove', onPointerMove);
     trackContainer.addEventListener('pointerup', endDrag);
     trackContainer.addEventListener('pointerleave', endDrag);
     trackContainer.addEventListener('pointercancel', endDrag);
 
-    if (!isTouch) {
-      trackContainer.addEventListener('wheel', onWheel, { passive: false });
-    }
     window.addEventListener('resize', onResize);
 
     return () => {
@@ -141,8 +138,8 @@ export default function PortfolioShowcase() {
       trackContainer.removeEventListener('pointerup', endDrag);
       trackContainer.removeEventListener('pointerleave', endDrag);
       trackContainer.removeEventListener('pointercancel', endDrag);
-      if (!isTouch) trackContainer.removeEventListener('wheel', onWheel);
       window.removeEventListener('resize', onResize);
+      window.cancelAnimationFrame(animationFrameId);
       trackContainer.classList.remove('dragging');
       trackContainer.style.cursor = '';
       trackContainer.style.touchAction = '';

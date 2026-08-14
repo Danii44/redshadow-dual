@@ -125,7 +125,7 @@ export default function SessionLoader() {
 
           {/* Logo below gear (smaller) */}
           <motion.img
-            src="/assets/logo.png"
+            src="/assets/logo.webp"
             alt="Red Shadow Designs"
             className="w-8 h-8 object-contain"
             animate={{ scale: [1, 1.1, 1] }}

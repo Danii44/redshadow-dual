@@ -29,7 +29,7 @@ export function Footer() {
             viewport={{ once: true }}
           >
             <div className="footer-logo-wrap">
-              <img src="/assets/logo.png" alt="Red Shadow Design" className="footer-logo-image" />
+              <img src="/assets/logo.webp" alt="Red Shadow Design" className="footer-logo-image" />
             </div>
             <h3>Red Shadow Designs</h3>
             <p>Premium CAD modeling, 3D rendering and industrial design studio — Islamabad, Pakistan.</p>

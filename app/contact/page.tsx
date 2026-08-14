@@ -39,7 +39,7 @@ const structuredData = {
     '@id': 'https://www.redshadowdesigns.com/#organization',
     name: 'Red Shadow Designs',
     url: 'https://www.redshadowdesigns.com',
-    logo: 'https://www.redshadowdesigns.com/assets/logo.png',
+    logo: 'https://www.redshadowdesigns.com/assets/logo.webp',
       contactPoint: [
         {
           '@type': 'ContactPoint',

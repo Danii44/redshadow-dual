@@ -33,7 +33,7 @@ const software: SoftwareItem[] = [
     id: "solidworks",
     name: "SolidWorks",
     href: "https://www.solidworks.com/",
-    icon: "/assets/icons/solidworks.png",
+    icon: "/assets/icons/solidworks.webp",
     category: "CAD",
   },
   {
@@ -54,7 +54,7 @@ const software: SoftwareItem[] = [
     id: "keyshot",
     name: "KeyShot",
     href: "https://www.keyshot.com/",
-    icon: "/assets/icons/keyshot.png",
+    icon: "/assets/icons/keyshot.webp",
     category: "Rendering",
   },
   {

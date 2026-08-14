@@ -49,7 +49,7 @@ export const metadata: Metadata = {
       'Premium industrial design studio. Expert CAD modeling, photorealistic 3D rendering, product design, and engineering visualization services.',
     images: [
       {
-        url: '/assets/logo.png',
+        url: '/assets/logo.webp',
         width: 1200,
         height: 630,
         alt: 'Red Shadow Designs – CAD & 3D Rendering Studio',
@@ -95,7 +95,7 @@ const structuredData = {
       url: BASE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: `${BASE_URL}/assets/logo.png`,
+        url: `${BASE_URL}/assets/logo.webp`,
       },
       contactPoint: {
         '@type': 'ContactPoint',
@@ -199,10 +199,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* JSON-LD Structured Data for SEO, AEO & GEO */}
         {/* Favicon and touch icons (generated) */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.webp" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.webp" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

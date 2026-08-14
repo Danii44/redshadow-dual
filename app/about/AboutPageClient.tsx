@@ -153,7 +153,7 @@ export default function AboutPageClient() {
                 <div className="flex-shrink-0">
                   <div className="w-36 h-36 md:w-44 md:h-44 rounded-2xl border-2 border-[rgba(0,212,255,0.3)] overflow-hidden shadow-[0_0_40px_rgba(0,212,255,0.15)] bg-gradient-to-br from-[#0a1628] to-[#1a0033]">
                     <img
-                      src="/assets/images/Profile.jpg"
+                      src="/assets/images/Profile.webp"
                       alt="Daniyal Ahmad"
                       className="w-full h-full object-cover"
                     />

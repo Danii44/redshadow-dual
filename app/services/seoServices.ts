@@ -20,7 +20,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['Feasibility report', 'Risk analysis', 'Concept validation models'],
     longDescription:
       'We evaluate concepts before the costly detailed design phase begins. We analyze mechanical fit, material constraints, and production risks to ensure your idea is physically viable, functionally sound, and economically scalable.',
-    heroImage: '/assets/external/projects/compressor-chamber.png',
+    heroImage: '/assets/external/projects/compressor-chamber.webp',
     faq: [
       {
         question: 'What is included in a feasibility test?',
@@ -49,7 +49,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['STEP', 'IGES', 'STL', 'DWG', 'PDF drawings'],
     longDescription:
       'We build detailed, native parametric models utilizing professional software including SolidWorks and PTC Creo. Every design is created with strict tolerance control, motion clearance analysis, and robust feature trees ready for simulation and manufacturing handoffs.',
-    heroImage: '/assets/external/projects/open-assembly.png',
+    heroImage: '/assets/external/projects/open-assembly.webp',
     faq: [
       {
         question: 'What CAD formats do you deliver?',
@@ -78,7 +78,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['Assembly CAD', 'Mechanism diagrams', 'Engineering report'],
     longDescription:
       'We engineer dynamic mechanical systems with a focus on load distribution, kinematics, and manufacturability. Our deliverables include production-ready assemblies and comprehensive technical documentation compliant with strict ASME standards.',
-    heroImage: '/assets/external/projects/camera-housing.jpg',
+    heroImage: '/assets/external/projects/camera-housing.webp',
     faq: [
       {
         question: 'What engineering work do you offer?',
@@ -107,7 +107,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['Prototype-ready CAD', 'STL files', '3D-printable models'],
     longDescription:
       'We bridge the gap between digital and physical. Our prototype-ready models are specifically optimized for CNC machining, sheet metal fabrication, and quick-turn hardware validation to accelerate your time-to-market and secure early stakeholder buy-in.',
-    heroImage: '/assets/external/projects/f1-car-keychain.png',
+    heroImage: '/assets/external/projects/f1-car-keychain.webp',
     faq: [
       {
         question: 'What is included in rapid prototyping?',
@@ -136,7 +136,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['3D-printable STL', 'Support-ready model', 'Print validation report'],
     longDescription:
       'We prepare your geometry for flawless additive manufacturing. We analyze and optimize wall thicknesses, design custom support structures, and adjust fit tolerances to ensure dimensional accuracy and structural integrity on every print.',
-    heroImage: '/assets/external/projects/bamboo-toothbrush.png',
+    heroImage: '/assets/external/projects/bamboo-toothbrush.webp',
     faq: [
       {
         question: 'Do you prepare models for SLA and FDM printers?',
@@ -165,7 +165,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['DFM report', 'Optimized CAD files', 'Manufacturing notes'],
     longDescription:
       'We conduct exhaustive engineering reviews to ensure your design is viable for the factory floor. We optimize draft angles for injection molding, apply GD&T, and refine assemblies to minimize manufacturing costs without compromising the end-user experience.',
-    heroImage: '/assets/external/projects/bull-lock.png',
+    heroImage: '/assets/external/projects/bull-lock.webp',
     faq: [
       {
         question: 'What is design for manufacturing?',
@@ -194,7 +194,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['High-res renders', 'PNG / JPEG assets', 'Composite files'],
     longDescription:
       'We create photorealistic, cinematic product visuals using advanced rendering engines like KeyShot and Blender. Our expert lighting and material texturing workflows deliver premium assets designed to drive e-commerce sales and secure funding.',
-    heroImage: '/assets/external/projects/hero-render.png',
+    heroImage: '/assets/external/projects/hero-render.webp',
     faq: [
       {
         question: 'What is included in product visualization?',
@@ -223,7 +223,7 @@ export const servicesData: ServiceData[] = [
     deliverables: ['MP4', 'MOV', 'Animated GIFs'],
     longDescription:
       'We bring static assemblies to life through precise mechanical animation. Our motion sequences effectively communicate complex internal mechanisms, step-by-step assembly procedures, and the overall user experience for B2B presentations and launch events.',
-    heroImage: '/assets/external/projects/makeup-stick.png',
+    heroImage: '/assets/external/projects/makeup-stick.webp',
     faq: [
       {
         question: 'What types of animations do you create?',

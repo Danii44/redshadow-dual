@@ -11,7 +11,7 @@ export default function VideoSection() {
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const thumbnailImagePath = '/assets/images/thumbnail.png';
+  const thumbnailImagePath = '/assets/images/thumbnail.webp';
 
   const sectionBg = isLight ? 'bg-[#f4f1f9]' : 'bg-[#060912]';
   const textColor = isLight ? 'text-[#1e1830]' : 'text-white';

@@ -94,7 +94,7 @@ export function ContactEnhanced() {
   return (
     <section ref={sectionRef} id="contact" className="contact-section-wrapper">
       <div ref={bgRef} className="contact-parallax-bg">
-        <img src="/assets/images/services/3d-viz-4.jpg" alt="Background" loading="lazy" decoding="async" />
+        <img src="/assets/images/services/3d-viz-4.webp" alt="Background" loading="lazy" decoding="async" />
         <div className="contact-bg-overlay"></div>
       </div>
 

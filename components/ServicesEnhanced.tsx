@@ -19,8 +19,8 @@ export default function ServicesEnhanced() {
     const title = (service.title || '').toLowerCase();
 
     // Common local service images in public/assets/images/services
-    const viz = ['/assets/images/services/3d-viz-1.jpg', '/assets/images/services/3d-viz-2.jpg', '/assets/images/services/3d-viz-3.jpg', '/assets/images/services/3d-viz-4.jpg'];
-    const cad = ['/assets/images/services/cad-1.jpg', '/assets/images/services/cad-2.jpg'];
+    const viz = ['/assets/images/services/3d-viz-1.webp', '/assets/images/services/3d-viz-2.webp', '/assets/images/services/3d-viz-3.webp', '/assets/images/services/3d-viz-4.webp'];
+    const cad = ['/assets/images/services/cad-1.webp', '/assets/images/services/cad-2.webp'];
 
     if (slug.includes('3d') || title.includes('render') || title.includes('visual')) viz.forEach(u => pool.add(u));
     if (slug.includes('cad') || title.includes('cad') || title.includes('feasibility') || title.includes('design')) cad.forEach(u => pool.add(u));

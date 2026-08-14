@@ -72,7 +72,7 @@ export function NavigationResponsive() {
         >
           <Link href="/" className="nav-logo-link">
             <img
-              src={isDark ? '/assets/logo.png' : '/assets/logo.png'}
+              src={isDark ? '/assets/logo.webp' : '/assets/logo.webp'}
               alt="Red Shadow Designs"
               className={`logo-image ${isDark ? 'logo-dark' : 'logo-light'}`}
             />

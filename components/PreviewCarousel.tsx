@@ -16,7 +16,7 @@ export default function PreviewCarousel({ service }: { service: any }) {
     return () => clearInterval(interval);
   }, [service.slug, images.join('|')]);
 
-  const src = images.length ? images[idx] : '/assets/images/thumbnail.png';
+  const src = images.length ? images[idx] : '/assets/images/thumbnail.webp';
 
   return (
     <div className="w-full h-full relative">
@@ -32,22 +32,22 @@ function getPreviewImages(service: any) {
   const explicit = service.heroImage ? [service.heroImage] : [];
 
   const mapping: Record<string, string[]> = {
-    'feasibility-test': ['/assets/images/services/cad-1.jpg','/assets/images/services/cad-2.jpg','/assets/images/services/3d-viz-1.jpg'],
-    'cad-design': ['/assets/images/services/cad-2.jpg','/assets/images/services/cad-1.jpg','/assets/images/services/3d-viz-1.jpg'],
-    'mechanical-engineering': ['/assets/images/services/cad-1.jpg','/assets/images/services/cad-2.jpg'],
-    'rapid-prototyping': ['/assets/images/services/cad-2.jpg','/assets/images/services/3d-viz-1.jpg'],
-    '3d-printing': ['/assets/images/services/3d-viz-1.jpg','/assets/images/services/3d-viz-2.jpg'],
-    'design-for-manufacturing': ['/assets/images/services/cad-1.jpg','/assets/images/services/cad-2.jpg'],
-    'product-visualization-renders': ['/assets/images/services/3d-viz-2.jpg','/assets/images/services/3d-viz-3.jpg','/assets/images/services/3d-viz-1.jpg'],
-    'product-animations': ['/assets/images/services/3d-viz-3.jpg','/assets/images/services/3d-viz-4.jpg'],
+    'feasibility-test': ['/assets/images/services/cad-1.webp','/assets/images/services/cad-2.webp','/assets/images/services/3d-viz-1.webp'],
+    'cad-design': ['/assets/images/services/cad-2.webp','/assets/images/services/cad-1.webp','/assets/images/services/3d-viz-1.webp'],
+    'mechanical-engineering': ['/assets/images/services/cad-1.webp','/assets/images/services/cad-2.webp'],
+    'rapid-prototyping': ['/assets/images/services/cad-2.webp','/assets/images/services/3d-viz-1.webp'],
+    '3d-printing': ['/assets/images/services/3d-viz-1.webp','/assets/images/services/3d-viz-2.webp'],
+    'design-for-manufacturing': ['/assets/images/services/cad-1.webp','/assets/images/services/cad-2.webp'],
+    'product-visualization-renders': ['/assets/images/services/3d-viz-2.webp','/assets/images/services/3d-viz-3.webp','/assets/images/services/3d-viz-1.webp'],
+    'product-animations': ['/assets/images/services/3d-viz-3.webp','/assets/images/services/3d-viz-4.webp'],
   };
 
   // Start with explicit hero image (if present), but always supplement with
   // curated mapping or sensible fallbacks so the carousel has multiple frames.
   let selected: string[] = [...explicit];
   if (mapping[slug]) selected = [...selected, ...mapping[slug]];
-  else if (slug.includes('3d') || slug.includes('render') || (service.title||'').toLowerCase().includes('render')) selected = [...selected, '/assets/images/services/3d-viz-1.jpg','/assets/images/services/3d-viz-2.jpg'];
-  else selected = [...selected, '/assets/images/services/cad-1.jpg','/assets/images/services/cad-2.jpg','/assets/images/services/3d-viz-1.jpg'];
+  else if (slug.includes('3d') || slug.includes('render') || (service.title||'').toLowerCase().includes('render')) selected = [...selected, '/assets/images/services/3d-viz-1.webp','/assets/images/services/3d-viz-2.webp'];
+  else selected = [...selected, '/assets/images/services/cad-1.webp','/assets/images/services/cad-2.webp','/assets/images/services/3d-viz-1.webp'];
 
   // Supplement with project images to avoid repeats
   const projectImgs = projects.map((p) => p.image).filter(Boolean) as string[];
