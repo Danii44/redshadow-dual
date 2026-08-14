@@ -1,227 +1,200 @@
-/**
- * ServicesEnhanced.css - Services Section with Glassmorphism
- */
-
 .services-section-wrapper {
   position: relative;
   width: 100%;
-  padding: 8rem 0 8rem;
   overflow: hidden;
-  background: rgba(7, 12, 24, 0.92);
-  z-index: 0;
+  padding: 4rem 2rem 8rem;
+  color: var(--foreground);
+  background: transparent;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* ============================================================================
-   CONTENT CONTAINER
-   ============================================================================ */
-
-.services-content-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  background: rgba(10, 12, 20, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 36px;
-  backdrop-filter: blur(20px);
-}
-
-.services-header {
+.services-header-panel {
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 5rem;
+  gap: 1.25rem;
 }
 
-.services-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #fff;
-  font-family: 'Space Mono', monospace;
-  background: linear-gradient(135deg, #00c8ff 0%, #7c3aed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.services-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 9999px;
+  background: rgba(128, 128, 128, 0.1);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.services-heading {
   margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(2.25rem, 4vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--foreground);
+  line-height: 1.05;
 }
 
 .services-subtitle {
+  margin: 0;
+  color: var(--muted-foreground);
+  line-height: 1.75;
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 0.75rem;
+  max-width: 600px;
 }
 
-.services-header-accent {
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #00c8ff, transparent);
-  margin: 2rem auto 0;
-}
-
-/* ============================================================================
-   SERVICES GRID
-   ============================================================================ */
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 6rem;
-}
-
-.service-card {
-  padding: 2rem;
-  border-radius: 24px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background: rgba(7, 12, 26, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
-}
-
-.service-card-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  height: 100%;
-}
-
-.service-icon {
-  font-size: 3.5rem;
-  width: 70px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), rgba(124, 58, 237, 0.1));
-  border-radius: 16px;
-  border: 1px solid rgba(0, 200, 255, 0.2);
-  transition: all 0.3s ease;
-}
-
-.service-card:hover .service-icon {
-  background: linear-gradient(135deg, rgba(0, 200, 255, 0.2), rgba(124, 58, 237, 0.2));
-  border-color: rgba(0, 200, 255, 0.5);
-  box-shadow: 0 0 20px rgba(0, 200, 255, 0.2);
-}
-
-.service-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-  margin: 0;
-}
-
-.service-description {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.6;
-}
-
-.service-features {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.service-feature-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.85rem;
-  color: rgba(0, 200, 255, 0.8);
-}
-
-.feature-dot {
-  width: 5px;
-  height: 5px;
-  background: #00c8ff;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #00c8ff;
-}
-
-.service-border {
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #00c8ff, #7c3aed);
-  transition: width 0.4s ease;
-  margin-top: auto;
-}
-
-.service-card:hover .service-border {
+.services-interaction {
+  position: relative;
+  flex: 1;
   width: 100%;
 }
 
-/* ============================================================================
-   CTA SECTION
-   ============================================================================ */
-
-.services-cta {
-  text-align: center;
-  padding: 4rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 32px;
-  backdrop-filter: blur(20px);
+.services-title-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 5;
 }
 
-.services-cta-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 1rem;
+.services-title-link {
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
 }
 
-.services-cta-text {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 2.5rem;
+.services-title-center {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ============================================================================
-   RESPONSIVE
-   ============================================================================ */
+.services-title-text {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--muted-foreground);
+  opacity: 0.5;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover States */
+.services-title-link:hover .services-title-text,
+.services-title-link:focus-visible .services-title-text,
+.services-title-link.is-active .services-title-text {
+  color: var(--foreground);
+  opacity: 1;
+}
+
+.services-title-link.is-dimmed .services-title-text {
+  opacity: 0.15;
+}
+
+/* LEFT PANEL (DESCRIPTION) */
+.services-active-desc {
+  position: absolute;
+  left: 5%;
+  width: 250px;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.95rem;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  pointer-events: none;
+  text-align: left;
+}
+
+/* BADGE */
+.services-action-badge {
+  position: absolute;
+  bottom: 0;
+  right: -1rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.25rem;
+  color: var(--primary-foreground);
+  background: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* RIGHT PANEL (IMAGE LOOP CONTAINER) */
+.services-stack-card-container {
+  position: absolute;
+  right: 5%;
+  width: 320px;
+  height: 200px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.services-stack-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0,0,0,0.1);
+  background: var(--card);
+  border: 4px solid var(--card);
+}
+
+.services-stack-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .services-active-desc {
+    display: none; /* Hide descriptions on tablets/mobile */
+  }
+  
+  .services-stack-card-container {
+    position: relative;
+    right: auto;
+    width: 280px;
+    height: 180px;
+    margin-top: 1.5rem;
+  }
+  
+  .services-title-link {
+    flex-direction: column;
+    padding: 1.5rem 0;
+  }
+}
 
 @media (max-width: 768px) {
   .services-section-wrapper {
-    padding: 5rem 0;
-  }
-
-  .services-content-container {
-    padding: 0 1.25rem;
-    border-radius: 24px;
+    padding: 3rem 1rem 6rem;
   }
   
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .service-card {
-    padding: 1.5rem;
-  }
-  
-  .services-cta {
-    padding: 2rem 1.25rem;
-    border-radius: 20px;
-  }
-
-  .services-title {
-    font-size: 2rem;
+  .services-header-panel {
+    padding-left: 0;
+    text-align: center;
   }
 }
-
-@media (max-width: 480px) {
-  .services-content-container {
-    padding: 0 1rem;
-    border-radius: 16px;
-  }
-
-  .service-card {
-    padding: 1.25rem;
-  }
-}
-
