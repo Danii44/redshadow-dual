@@ -26,7 +26,7 @@ export default function ServicesPageClient() {
       <div className="ambient-layer ambient-layer-b" />
       <div className="ambient-grid" />
 
-      <main className="homepage-main pt-24 relative z-10">
+      <main className="homepage-main pt-[100px] md:pt-24 relative z-10">
         
         {/* Cinematic Hero Section for Services */}
         <section className="relative w-full min-h-[55vh] flex items-center justify-center overflow-hidden">

@@ -57,15 +57,7 @@ export const metadata: Metadata = {
     ],
   },
 
-  // Twitter / X Cards
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Red Shadow Designs | CAD Modeling & 3D Rendering Studio',
-    description:
-      'Premium industrial design studio. Expert CAD modeling, photorealistic 3D rendering & engineering visualization — Islamabad, Pakistan.',
-    images: ['/assets/logo.png'],
-    creator: '@redshadowdesigns',
-  },
+
 
   // Canonical & alternates
   alternates: {
@@ -120,6 +112,8 @@ const structuredData = {
       },
       sameAs: [
         'https://www.fiverr.com/users/daniyalahmad7',
+        'https://www.linkedin.com/company/red-shadow-designs/',
+        'https://www.behance.net/redshadowdesigns',
       ],
     },
     {
@@ -198,6 +192,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Resource preconnect hints — tell browser to resolve DNS early */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://api.web3forms.com" />
+
         {/* JSON-LD Structured Data for SEO, AEO & GEO */}
         {/* Favicon and touch icons (generated) */}
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />

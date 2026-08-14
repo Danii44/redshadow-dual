@@ -33,7 +33,7 @@ export default function PortfolioPageClient() {
       <div className="ambient-layer ambient-layer-b" />
       <div className="ambient-grid" />
       <main className="homepage-main relative z-10">
-        <section className="pt-32 pb-16 text-center px-4">
+        <section className="pt-28 md:pt-32 pb-16 text-center px-4">
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[rgba(0,212,255,0.3)] bg-[rgba(0,212,255,0.08)] text-[#00d4ff] uppercase tracking-[0.2em] text-[0.7rem] font-bold">Our Work</div>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tighter">Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">Portfolio</span></h1>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">Explore our full range of engineering and design projects. From precision CAD models to cinematic renders.</p>

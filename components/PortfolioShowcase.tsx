@@ -11,7 +11,7 @@ const impactItems = [
   {
     value: '4.9/5',
     label: 'Client Rating',
-    detail: 'Average score from 120+ verified client reviews.',
+    detail: 'Average score from 500+ verified client reviews.',
   },
   {
     value: '+65%',
@@ -21,7 +21,7 @@ const impactItems = [
   {
     value: '3D print-ready files',
     label: 'Rapid Prototyping',
-    detail: 'Includes 3D print-ready files.',
+    detail: 'Files for rapid prototyping and fast turn around time.',
   },
 ];
 
@@ -180,7 +180,7 @@ export default function PortfolioShowcase() {
               >
                 <Link href={`/portfolio/${project.id}`} className="block h-full">
                   <div className="portfolio-image-placeholder">
-                    <img src={project.image} alt={project.title} className="portfolio-card-img" />
+                    <img src={project.image} alt={project.title} className="portfolio-card-img" loading="lazy" decoding="async" />
                   </div>
                   <div className="portfolio-content">
                     <span className="portfolio-category">{project.category}</span>

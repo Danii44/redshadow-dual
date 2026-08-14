@@ -94,7 +94,7 @@ export function ContactEnhanced() {
   return (
     <section ref={sectionRef} id="contact" className="contact-section-wrapper">
       <div ref={bgRef} className="contact-parallax-bg">
-        <img src="/assets/images/services/3d-viz-4.jpg" alt="Background" />
+        <img src="/assets/images/services/3d-viz-4.jpg" alt="Background" loading="lazy" decoding="async" />
         <div className="contact-bg-overlay"></div>
       </div>
 
@@ -129,9 +129,9 @@ export function ContactEnhanced() {
               <div className="contact-visual-panel">
                 <div className="contact-visual-ring" />
                 <div className="contact-visual-copy">
-                    <span className="contact-visual-label">Availability</span>
-                    <CTA href="/contact" className="availability-button mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] text-white font-semibold">Booked for premium visual launches</CTA>
-                  </div>
+                  <span className="contact-visual-label">Availability</span>
+                  <CTA href="/contact" className="availability-button mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] text-white font-semibold">Book us for premium</CTA>
+                </div>
               </div>
 
               <div className="info-item">
@@ -160,9 +160,10 @@ export function ContactEnhanced() {
                 <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr">
                   <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-4 w-4" />
                 </a>
-                <a href="#" className="social-icon" title="LinkedIn">in</a>
-                <a href="#" className="social-icon" title="Instagram">📸</a>
-                <a href="#" className="social-icon" title="X">𝕏</a>
+                <a href="https://www.linkedin.com/company/red-shadow-designs/" className="social-icon" title="LinkedIn">in</a>
+                <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr">
+                  <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-4 w-4" />
+                </a>
               </div>
             </div>
           </motion.div>
@@ -175,7 +176,7 @@ export function ContactEnhanced() {
             viewport={{ once: true }}
           >
             {submitted ? (
-                <div className="glass-strong p-8 rounded-3xl text-center space-y-4">
+              <div className="glass-strong p-8 rounded-3xl text-center space-y-4">
                 <div className="text-5xl">✅</div>
                 <h3 className="text-2xl font-bold text-white">Message Sent Successfully!</h3>
                 <p className="text-white/60">Thank you for reaching out to Red Shadow Designs. We will respond as soon as possible.</p>

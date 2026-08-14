@@ -78,9 +78,8 @@ export function Footer() {
               <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr">
                 <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-4 w-4" />
               </a>
-              <a href="#" className="social-icon" title="LinkedIn">in</a>
-              <a href="#" className="social-icon" title="Instagram">📷</a>
-              <a href="#" className="social-icon" title="Twitter">𝕏</a>
+              <a href="https://www.linkedin.com/company/red-shadow-designs/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">in</a>
+              <a href="https://www.behance.net/redshadowdesigns" target="_blank" rel="noopener noreferrer" className="social-icon" title="Behance">Be</a>
             </div>
           </motion.div>
         </div>

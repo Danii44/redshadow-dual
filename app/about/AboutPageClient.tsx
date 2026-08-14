@@ -45,19 +45,19 @@ export default function AboutPageClient() {
       <div className="ambient-grid" />
 
       <main className="homepage-main pt-24 relative z-10">
-        
+
         {/* Cinematic Hero Section */}
         <section className="relative w-full min-h-[60vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
-            <img 
-              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop" 
-              alt="Engineering Background" 
+            <img
+              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop"
+              alt="Engineering Background"
               className={`w-full h-full object-cover ${isLight ? 'opacity-60 mix-blend-normal' : 'opacity-20 mix-blend-lighten'}`}
             />
             <div className={`absolute inset-0 ${isLight ? 'bg-gradient-to-b from-white/60 via-white/30 to-transparent' : 'bg-gradient-to-b from-[#02040a]/10 via-[#02040a]/60 to-[#02040a]'}`} />
           </div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -77,7 +77,7 @@ export default function AboutPageClient() {
               Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">Precision</span>.
             </h1>
             <p className="text-xl md:text-2xl text-white/60 font-light max-w-2xl mx-auto">
-              We bridge the gap between heavy industrial design and digital cinematic artistry.
+              We bridge the Gap between sketches to complete DFM (Manufacturing-Ready files) and digital visualization.
             </p>
           </motion.div>
         </section>
@@ -201,10 +201,10 @@ export default function AboutPageClient() {
             <h2 className="text-3xl font-bold text-white tracking-tight">Our Arsenal</h2>
             <p className="text-white/50 mt-4 max-w-2xl mx-auto">We leverage industry-leading software to transition seamlessly from parametric modeling to photorealistic rendering.</p>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto px-4">
             {techStack.map((tech, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -223,7 +223,7 @@ export default function AboutPageClient() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white tracking-tight">The Studio</h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 h-[400px] rounded-3xl overflow-hidden relative group">
               <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2670&auto=format&fit=crop" alt="Engineering Studio" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -233,7 +233,7 @@ export default function AboutPageClient() {
                 <h3 className="text-2xl font-bold text-white">Rapid Prototyping Lab</h3>
               </div>
             </div>
-            
+
             <div className="h-[400px] rounded-3xl overflow-hidden relative group">
               <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=2564&auto=format&fit=crop" alt="3D Workstation" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className={`absolute inset-0 ${isLight ? 'bg-gradient-to-t from-white/80 to-transparent' : 'bg-gradient-to-t from-black/80 to-transparent'}`} />

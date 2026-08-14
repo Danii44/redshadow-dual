@@ -846,3 +846,69 @@
   }
 }
 
+/* ============================================================================
+   MOBILE PERFORMANCE — reduce GPU-heavy effects on small screens
+   ============================================================================ */
+
+@media (max-width: 767px) {
+  /* Replace backdrop-blur (GPU-heavy paint) with solid semi-transparent bg */
+  .glass-card,
+  .glass-strong,
+  .info-card,
+  [class*="glass"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(8, 8, 18, 0.92) !important;
+  }
+
+  /* Reduce ambient gradient layers — these force full-page repaints */
+  .ambient-layer,
+  .ambient-grid,
+  .footer-grid-glow,
+  .contact-grid-orbit,
+  .hero-background-glow,
+  .about-background-glow {
+    display: none !important;
+  }
+
+  /* Simplify box-shadows on mobile */
+  .glass-card,
+  .info-card,
+  .glass-strong {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Disable mix-blend-mode (forces stacking context + GPU compositing) */
+  .contact-parallax-bg img {
+    mix-blend-mode: normal !important;
+  }
+
+  /* Shorten animation durations on mobile for snappier feel */
+  .scroll-fade-in.active,
+  .scroll-zoom-in.active {
+    transition-duration: 0.3s !important;
+  }
+
+  /* Disable parallax — scroll-linked transforms are expensive on mobile */
+  .contact-parallax-bg {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* Contain layout to reduce reflow scope */
+  section {
+    contain: layout style;
+  }
+}
+
+/* Respect OS-level reduce-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

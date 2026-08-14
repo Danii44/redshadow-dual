@@ -30,6 +30,7 @@ export function AboutSection() {
               loop
               muted
               playsInline
+              preload="none"
               className="w-full h-full object-cover opacity-95"
             />
 

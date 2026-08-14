@@ -152,15 +152,23 @@ export function GLBModelViewer() {
   }
 
   const isMobileDevice = typeof window !== 'undefined' && window.innerWidth < 768;
+  const isTabletDevice = typeof window !== 'undefined' && window.innerWidth < 1024;
 
   return (
     <div style={{ height: '100%', width: '100%', overflow: 'hidden', background: wrapperBackground, transition: 'background 0.45s ease' }}>
       <Canvas
-        camera={{ position: [0, 0, 4], fov: 42 }}
-        dpr={isMobileDevice ? [1, 1] : [1, 1.5]}
-        shadows={!isMobileDevice}
+        camera={{ position: [0, 0, 4], fov: isMobileDevice ? 48 : 42 }}
+        dpr={isMobileDevice ? 1 : isTabletDevice ? [1, 1.2] : [1, 1.5]}
+        shadows={false}
         tabIndex={-1}
-        gl={{ antialias: !isMobileDevice, alpha: false, powerPreference: 'high-performance', premultipliedAlpha: false }}
+        gl={{
+          antialias: !isMobileDevice,
+          alpha: false,
+          powerPreference: isMobileDevice ? 'default' : 'high-performance',
+          premultipliedAlpha: false,
+          // Lower precision on mobile saves GPU memory
+          precision: isMobileDevice ? 'lowp' : 'highp',
+        }}
         style={{
           width: '100%',
           height: '100%',
@@ -170,7 +178,7 @@ export function GLBModelViewer() {
         }}
         onCreated={(state) => {
           state.gl.setClearColor(new THREE.Color(isLight ? '#f4f1f9' : '#0a0813'), 1);
-          state.gl.setPixelRatio(isMobileDevice ? 1 : Math.min(window.devicePixelRatio, 1.5));
+          state.gl.setPixelRatio(isMobileDevice ? Math.min(window.devicePixelRatio, 1) : Math.min(window.devicePixelRatio, 1.5));
           const el = state.gl.domElement;
           el.tabIndex = -1;
           el.style.border = 'none';
@@ -188,22 +196,31 @@ export function GLBModelViewer() {
             <Model url={modelUrl} isLight={isLight} />
           </PresentationControls>
 
-          <ambientLight intensity={isLight ? 1.2 : 0.95} color={isLight ? '#f8f6ff' : '#c9d9ff'} />
-          <hemisphereLight intensity={isLight ? 0.9 : 1.05} color={isLight ? '#efe9ff' : '#a7e4ff'} groundColor={isLight ? '#e6def6' : '#06070a'} />
-          <directionalLight position={[5, 8, 5]} intensity={isLight ? 1.4 : 2.4} castShadow color="#ffffff" />
-          <directionalLight position={[-5, 4, -3]} intensity={isLight ? 0.6 : 0.6} color={isLight ? '#e9e2ff' : '#3b0764'} />
-          <spotLight position={[0, 10, 6]} angle={0.5} penumbra={0.8} intensity={isLight ? 1.0 : 3.0} color={isLight ? '#fffaf8' : '#00c8ff'} />
+          {/* Lights — simplified on mobile to reduce GPU load */}
+          <ambientLight intensity={isMobileDevice ? (isLight ? 1.6 : 1.4) : (isLight ? 1.2 : 0.95)} color={isLight ? '#f8f6ff' : '#c9d9ff'} />
+          <directionalLight position={[5, 8, 5]} intensity={isLight ? 1.4 : 2.4} color="#ffffff" />
+          {!isMobileDevice && (
+            <>
+              <hemisphereLight intensity={isLight ? 0.9 : 1.05} color={isLight ? '#efe9ff' : '#a7e4ff'} groundColor={isLight ? '#e6def6' : '#06070a'} />
+              <directionalLight position={[-5, 4, -3]} intensity={isLight ? 0.6 : 0.6} color={isLight ? '#e9e2ff' : '#3b0764'} />
+              <spotLight position={[0, 10, 6]} angle={0.5} penumbra={0.8} intensity={isLight ? 1.0 : 3.0} color={isLight ? '#fffaf8' : '#00c8ff'} />
+            </>
+          )}
 
-          <Environment preset={isLight ? "apartment" : "city"} />
+          {/* Environment — use cheaper preset on mobile */}
+          <Environment preset={isMobileDevice ? 'warehouse' : (isLight ? 'apartment' : 'city')} />
 
-          <ContactShadows 
-            position={[0, -1.45, 0]} 
-            opacity={isLight ? 0.35 : 0.5} 
-            scale={14} 
-            blur={isLight ? 3.5 : 2.5} 
-            far={isLight ? 3.0 : 2} 
-            color={isLight ? "#4a3366" : "#000000"} 
-          />
+          {/* Contact shadows — desktop only (expensive blur pass) */}
+          {!isMobileDevice && (
+            <ContactShadows
+              position={[0, -1.45, 0]}
+              opacity={isLight ? 0.35 : 0.5}
+              scale={14}
+              blur={isLight ? 3.5 : 2.5}
+              far={isLight ? 3.0 : 2}
+              color={isLight ? '#4a3366' : '#000000'}
+            />
+          )}
         </Suspense>
       </Canvas>
     </div>

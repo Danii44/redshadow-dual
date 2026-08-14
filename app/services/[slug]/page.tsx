@@ -78,7 +78,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="page-detail-shell min-h-screen pb-24">
-      <div className="page-detail-hero relative w-full h-[60vh] md:h-[75vh] overflow-hidden">
+      {/* pt-[100px] clears the fixed nav (82px height + 1.1rem top offset) on all screen sizes */}
+      <div className="page-detail-hero relative w-full h-[60vh] md:h-[75vh] overflow-hidden pt-[100px]">
         <img
           src={service.heroImage}
           alt={service.title}
