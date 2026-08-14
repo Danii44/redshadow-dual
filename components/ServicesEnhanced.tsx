@@ -1,56 +1,21 @@
-﻿"use client";
+"use client";
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { servicesData } from '@/app/services/seoServices';
 import PreviewCarousel from './PreviewCarousel';
-import { projects } from '@/lib/projects';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function ServicesEnhanced() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  function getPreviewImages(service: any) {
-    // Prefer explicit heroImage, then augment with category lookups
-    const pool = new Set<string>();
-    if (service.heroImage) pool.add(service.heroImage);
-
-    const slug = service.slug || '';
-    const title = (service.title || '').toLowerCase();
-
-    // Common local service images in public/assets/images/services
-    const viz = ['/assets/images/services/3d-viz-1.webp', '/assets/images/services/3d-viz-2.webp', '/assets/images/services/3d-viz-3.webp', '/assets/images/services/3d-viz-4.webp'];
-    const cad = ['/assets/images/services/cad-1.webp', '/assets/images/services/cad-2.webp'];
-
-    if (slug.includes('3d') || title.includes('render') || title.includes('visual')) viz.forEach(u => pool.add(u));
-    if (slug.includes('cad') || title.includes('cad') || title.includes('feasibility') || title.includes('design')) cad.forEach(u => pool.add(u));
-
-    // fallback: ensure there are up to 4 images
-    const fallback = [...viz, ...cad];
-    for (const f of fallback) {
-      if (pool.size >= 4) break;
-      pool.add(f);
-    }
-
-    // Supplement with project images to avoid repeating the same service visuals.
-    const projectImgs = projects.map((p) => p.image).filter(Boolean) as string[];
-    if (projectImgs.length > 0 && pool.size < 4) {
-      const seed = (slug || '')
-        .split('')
-        .reduce((s: number, ch: string) => s + ch.charCodeAt(0), 0);
-      for (let i = 0; i < projectImgs.length && pool.size < 4; i++) {
-        const idx = (seed + i) % projectImgs.length;
-        pool.add(projectImgs[idx]);
-      }
-    }
-
-    return Array.from(pool).slice(0, 4);
-  }
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
 
   return (
-    <section id="services" className="relative w-full py-32 bg-transparent z-10 overflow-hidden">
+    <section id="services" className="relative w-full py-24 lg:py-32 bg-transparent z-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-        <div className="mb-24">
+        <div className="mb-16 lg:mb-24">
           <div className="inline-flex mb-4 px-4 py-1 rounded-full border border-[rgba(0,212,255,0.3)] bg-[rgba(0,212,255,0.08)] text-[#00d4ff] uppercase tracking-[0.16em] text-[0.66rem] font-bold">
             Capabilities
           </div>
@@ -62,52 +27,85 @@ export default function ServicesEnhanced() {
           </p>
         </div>
 
-        <div className="flex flex-col relative w-full">
+        <div className="flex flex-col w-full">
           {servicesData.map((service, index) => {
             const isHovered = hoveredIndex === index;
 
             return (
-              <div key={service.slug} className="relative w-full overflow-visible">
+              <div 
+                key={service.slug} 
+                className={`relative w-full border-b border-white/10 transition-colors duration-500 ${isHovered ? 'bg-white/5 border-[rgba(0,212,255,0.2)]' : ''}`}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 md:py-12 border-b border-white/10 cursor-pointer transition-colors hover:border-[rgba(0,212,255,0.3)]"
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
+                  className="group relative flex flex-col md:flex-row items-center py-8 md:py-12 cursor-pointer"
                 >
-                  <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 w-full md:w-2/3">
-                    <span className="text-white/30 font-mono text-sm md:text-lg transition-colors group-hover:text-[#00d4ff]">
-                      {index + 1 < 10 ? `0${index + 1}` : index + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#00d4ff] group-hover:to-[#7c3aed] group-hover:translate-x-4">
-                        {service.title}
-                      </h3>
-                      <p className="text-white/60 mt-3 max-w-2xl">{service.description}</p>
+                  
+                  {/* LEFT SIDE: Tilted Image Stack in line with service */}
+                  <div className="w-full md:w-1/3 flex justify-center md:justify-start mb-8 md:mb-0 md:pl-4">
+                    <div className="relative w-[260px] h-[180px] xl:w-[320px] xl:h-[220px]">
+                      {/* Background tilted cards ("foam") */}
+                      <div className={`absolute inset-0 rounded-2xl border ${isLight ? 'bg-gray-800 border-gray-700' : 'bg-[#050914] border-white/10'} rotate-[6deg] scale-[0.95] translate-x-[10px] translate-y-[8px] shadow-xl transition-all duration-500 ${isHovered ? 'rotate-[8deg] translate-x-[15px]' : ''}`} />
+                      <div className={`absolute inset-0 rounded-2xl border ${isLight ? 'bg-gray-200 border-gray-300' : 'bg-[#1a1f2e] border-white/5'} rotate-[-4deg] scale-[0.98] translate-x-[-8px] translate-y-[4px] shadow-lg transition-all duration-500 ${isHovered ? 'rotate-[-6deg] translate-x-[-12px]' : ''}`} />
+
+                      {/* Main active image card with Fast Changing Carousel */}
+                      <div className={`absolute inset-0 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border ${isLight ? 'border-gray-200 bg-white' : 'border-white/20 bg-[#02040a]'} transition-transform duration-500 ${isHovered ? 'scale-105' : 'scale-100'}`}>
+                        {/* Only show the fast-changing carousel if hovered to save performance, otherwise static image */}
+                        {isHovered ? (
+                          <PreviewCarousel service={service} />
+                        ) : (
+                          <img 
+                            src={service.heroImage} 
+                            alt={service.title}
+                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent pointer-events-none" />
+                      </div>
                     </div>
                   </div>
 
-                  <div className="mt-4 md:mt-0 w-full md:w-1/3 md:text-right">
-                    <p className="text-white/50 text-sm transition-opacity duration-300 md:group-hover:opacity-0 md:pr-8">
-                      {service.longDescription}
-                    </p>
+                  {/* RIGHT SIDE: Number, Title, Description */}
+                  <div className="w-full md:w-2/3 flex flex-col sm:flex-row gap-4 sm:gap-8 md:pl-8 lg:pl-16">
+                    <span className={`font-mono text-lg sm:text-xl transition-colors duration-300 mt-1 ${isHovered ? 'text-[#00d4ff]' : 'text-white/30 group-hover:text-[#00d4ff]'}`}>
+                      {index + 1 < 10 ? `0${index + 1}` : index + 1}
+                    </span>
+                    
+                    <div>
+                      <h3 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight transition-all duration-300 mb-3
+                        ${isHovered 
+                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed] translate-x-2' 
+                          : 'text-white'
+                        }`}
+                      >
+                        {service.title}
+                      </h3>
+                      
+                      <p className="text-white/60 text-sm md:text-base max-w-xl leading-relaxed mb-4">
+                        {service.description}
+                      </p>
+                      
+                      <AnimatePresence>
+                        {isHovered && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-white/40 text-sm mt-2 max-w-xl">
+                              {service.longDescription}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </div>
-                </Link>
 
-                <AnimatePresence>
-                  {isHovered && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.6, x: 20 }}
-                      animate={{ opacity: 1, scale: 0.75, x: 0 }}
-                      exit={{ opacity: 0, scale: 0.6, x: 20 }}
-                      transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-                      style={{ transformOrigin: 'top right' }}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[240px] md:w-[520px] md:h-[340px] rounded-2xl overflow-hidden pointer-events-none z-[999] shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-white/20 hidden md:block bg-[#02040a]"
-                    >
-                      <PreviewCarousel service={service} />
-                      {/* No text overlay on previews (clean images) */}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                </Link>
               </div>
             );
           })}
