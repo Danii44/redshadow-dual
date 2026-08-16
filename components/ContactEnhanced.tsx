@@ -129,8 +129,8 @@ export function ContactEnhanced() {
               <div className="contact-visual-panel">
                 <div className="contact-visual-ring" />
                 <div className="contact-visual-copy">
-                  <span className="contact-visual-label">Availability</span>
-                  <CTA href="/contact" className="availability-button mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] text-white font-semibold">Book a Technical Consultation or Schedule a Discovery Call</CTA>
+
+                  <CTA href="/contact" className="">Book a Technical Consultation or Schedule a Discovery Call</CTA>
                 </div>
               </div>
 
