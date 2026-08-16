@@ -27,19 +27,19 @@ export default function ServicesPageClient() {
       <div className="ambient-grid" />
 
       <main className="homepage-main pt-[100px] md:pt-24 relative z-10">
-        
+
         {/* Cinematic Hero Section for Services */}
         <section className="relative w-full min-h-[55vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
-            <img 
-              src="https://images.unsplash.com/photo-1614729939124-03290b56c9ce?q=80&w=2574&auto=format&fit=crop" 
-              alt="Services Background" 
+            <img
+              src="https://images.unsplash.com/photo-1614729939124-03290b56c9ce?q=80&w=2574&auto=format&fit=crop"
+              alt="Services Background"
               className="w-full h-full object-cover opacity-10 mix-blend-lighten"
             />
             <div className="page-hero-overlay absolute inset-0" />
           </div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -49,7 +49,7 @@ export default function ServicesPageClient() {
               Capabilities
             </div>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tighter">
-              Engineering <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">Unleashed</span>.
+              Engineering <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">Unleashed</span>.
             </h1>
             <p className="text-xl md:text-2xl text-white/60 font-light max-w-2xl mx-auto">
               From parametric CAD modeling to photorealistic cinematic rendering, we provide end-to-end industrial design services.
@@ -75,14 +75,15 @@ export default function ServicesPageClient() {
                 The Red Shadow <br /> Advantage
               </h2>
               <p className="text-white/60 text-lg leading-relaxed mb-6">
-                Most agencies do either engineering or artistry. We do both. Our dual-disciplinary approach means that the models we build for your marketing materials are structurally sound enough to be sent directly to manufacturing.
-              </p>
+                We provide a true end-to-end product development pipeline. Most agencies do either engineering or artistry, forcing you to manage multiple vendors. We do both under one roof. Our dual-disciplinary approach means the models we engineer for strict manufacturing standards are exactly what we use to generate cinematic marketing materials.              </p>
               <ul className="space-y-4">
                 {[
+                  "End-to-End Product Pipeline",
+                  "Rigorous FEA & CFD Simulation",
                   "Production-Ready STEP & STL Files",
+                  "Seamless DFM (Design for Manufacturing) Handoff",
                   "99.9% Dimensional Accuracy",
-                  "Cinematic Lighting & Texturing",
-                  "Seamless DFM (Design for Manufacturing) Handoff"
+                  "Cinematic Lighting & Texturing"
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-white/80">
                     <span className="text-[#00d4ff]">✓</span> {item}
@@ -98,9 +99,9 @@ export default function ServicesPageClient() {
               transition={{ duration: 0.6 }}
               className="relative h-[400px] rounded-3xl overflow-hidden border border-white/10"
             >
-              <img 
-                src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=2670&auto=format&fit=crop" 
-                alt="Engineering Accuracy" 
+              <img
+                src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=2670&auto=format&fit=crop"
+                alt="Engineering Accuracy"
                 className="w-full h-full object-cover"
               />
               <div className="photo-card-overlay absolute inset-0" />
@@ -112,7 +113,7 @@ export default function ServicesPageClient() {
         <section className="py-24 border-t border-white/5">
           <ContactEnhanced />
         </section>
-        
+
       </main>
     </div>
   );

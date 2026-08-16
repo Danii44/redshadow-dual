@@ -26,27 +26,6 @@ export default function ContactPageClient() {
       <div className="ambient-grid" />
 
       <main className="homepage-main relative z-10">
-
-        {/* Page Header */}
-        <section className="pt-32 pb-12 text-center px-4">
-          <div className="mb-6 text-sm text-white/50 flex items-center justify-center gap-2">
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
-            <span className="text-white/30">/</span>
-            <span className="text-white">Contact</span>
-          </div>
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[rgba(0,212,255,0.3)] bg-[rgba(0,212,255,0.08)] text-[#00d4ff] uppercase tracking-[0.2em] text-[0.7rem] font-bold">
-            Get In Touch
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tighter">
-            Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">Connect</span>.
-          </h1>
-          <p className="text-white/50 text-lg max-w-xl mx-auto">
-            We're based in Islamabad, Pakistan — and we work with clients worldwide.
-          </p>
-        </section>
-
         {/* Contact Form & Info Section */}
         <ContactEnhanced />
 

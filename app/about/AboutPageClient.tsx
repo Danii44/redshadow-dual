@@ -169,7 +169,7 @@ export default function AboutPageClient() {
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-1">Daniyal Ahmad</h3>
                   <p className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest mb-4">Founder & CEO — Red Shadow Designs</p>
                   <p className="text-white/60 leading-relaxed mb-6">
-                    Daniyal is a mechanical engineer and precision 3D modelling specialist with over a decade of experience delivering production-ready CAD assemblies, cinematic renders, and complex industrial designs for clients across North America, Europe, and the Middle East. Rated as a Top Seller on Fiverr with 800+ successful projects delivered.
+                    As a Master’s qualified and Registered Mechanical Engineer, Daniyal leads Red Shadow Designs with a strict focus on manufacturing viability. With deep expertise in SolidWorks parametric modeling, advanced surfacing, and sheet metal design, he bridges the gap between conceptual industrial design and production-ready geometry. Under his leadership, the studio consistently delivers DFM-optimized assemblies for CNC machining and plastic injection molding workflows—earning him Top Rated Seller status on Fiverr and a flawless track record across the globe.
                   </p>
                   <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-6">
                     {['Mechanical Engineering', 'SolidWorks', 'Blender', '3D Rendering', 'Product Design', 'DFM'].map((tag) => (
@@ -218,7 +218,7 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        {/* Cinematic Gallery Grid */}
+        {/* Cinematic Gallery Grid 
         <section className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white tracking-tight">The Studio</h2>
@@ -262,7 +262,7 @@ export default function AboutPageClient() {
             </div>
           </div>
         </section>
-
+        */}
       </main>
     </div>
   );

@@ -32,7 +32,7 @@ export function Footer() {
               <img src="/assets/logo.webp" alt="Red Shadow Design" className="footer-logo-image" />
             </div>
             <h3>Red Shadow Designs</h3>
-            <p>Premium CAD modeling, 3D rendering and industrial design studio — Islamabad, Pakistan.</p>
+            <p>An elite engineering studio specializing in production-ready CAD, strict DFM standards, and cinematic 3D product visualization for innovators worldwide.</p>
           </motion.div>
 
           <motion.div
@@ -45,9 +45,11 @@ export function Footer() {
             <h4>Quick Links</h4>
             <ul>
               <li><Link href="/">Home</Link></li>
+              <li><Link href="/about">About</Link></li>
               <li><Link href="/services">Services</Link></li>
               <li><Link href="/portfolio">Portfolio</Link></li>
               <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/careers">Careers</Link></li>
             </ul>
           </motion.div>
 

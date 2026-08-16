@@ -110,9 +110,9 @@ export function ContactEnhanced() {
           viewport={{ once: true }}
         >
           <div className="contact-pill">Launch your next digital prototype</div>
-          <h2 className="contact-title">Get In Touch</h2>
+          <h2 className="contact-title">Let’s Engineer Your Vision.</h2>
           <p className="contact-subtitle">
-            Let’s wire together a cinematic product vision, a polished prototype, or a production-ready design system.
+            Whether you require early-stage feasibility testing, cinematic renders for your next investor pitch, or ASME-compliant CAD files ready for the manufacturing floor, our team is ready to execute. Submit your brief below to start the conversation.
           </p>
           <div className="contact-header-accent"></div>
         </motion.div>
@@ -130,7 +130,7 @@ export function ContactEnhanced() {
                 <div className="contact-visual-ring" />
                 <div className="contact-visual-copy">
                   <span className="contact-visual-label">Availability</span>
-                  <CTA href="/contact" className="availability-button mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] text-white font-semibold">Book us for premium</CTA>
+                  <CTA href="/contact" className="availability-button mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#00d4ff] text-white font-semibold">Book a Technical Consultation or Schedule a Discovery Call</CTA>
                 </div>
               </div>
 
@@ -156,14 +156,12 @@ export function ContactEnhanced() {
                 </div>
               </div>
 
-              <div className="social-links">
+              <div className="social-icons">
                 <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr">
                   <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-4 w-4" />
                 </a>
-                <a href="https://www.linkedin.com/company/red-shadow-designs/" className="social-icon" title="LinkedIn">in</a>
-                <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr">
-                  <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-4 w-4" />
-                </a>
+                <a href="https://www.linkedin.com/company/red-shadow-designs/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">in</a>
+                <a href="https://www.behance.net/redshadowdesigns" target="_blank" rel="noopener noreferrer" className="social-icon" title="Behance">Be</a>
               </div>
             </div>
           </motion.div>
@@ -234,7 +232,7 @@ export function ContactEnhanced() {
                   <textarea
                     id="message"
                     name="message"
-                    placeholder="Tell us about your project..."
+                    placeholder="Describe your product concept, timeline, and any specific manufacturing requirements (e.g., CNC, Injection Molding, DFM standards) we should consider..."
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}

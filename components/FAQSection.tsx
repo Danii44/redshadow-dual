@@ -6,24 +6,24 @@ import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    question: "What CAD and rendering software do you specialize in?",
-    answer: "We primarily utilize SolidWorks, Fusion 360, and Rhino for precision parametric and surface modeling. For cinematic rendering and visualization, we rely on Cinema 4D, Blender, and Unreal Engine 5 to achieve photorealistic results."
+    question: "Are your CAD files actually ready for manufacturing (CNC, Injection Molding, etc.)?",
+    answer: "Absolutely. We are engineers first. We don't just create concepts that look good on screen; we build highly accurate parametric models using SolidWorks and PTC Creo. Every design undergoes strict Design for Manufacturability (DFM) review to ensure correct tolerances, draft angles, and assembly clearances."
   },
   {
-    question: "How do you ensure manufacturing tolerances are met?",
-    answer: "Every mechanical design undergoes rigorous tolerance analysis and DFM (Design for Manufacturing) checks. We simulate assemblies and kinematic movements to guarantee that all parts fit and function perfectly before any prototyping begins."
+    question: "I only have a rough sketch or a basic idea. Is that enough to get started?",
+    answer: "Yes. We specialize in taking raw concepts and engineering them into tangible realities. Whether you have a comprehensive technical brief or just a sketch on a napkin, our team will guide you through feasibility testing, dimensioning, and the entire product development cycle."
   },
   {
-    question: "Do you handle the prototyping phase?",
-    answer: "Yes. We work closely with trusted manufacturing partners to produce high-fidelity prototypes using advanced SLA/SLS 3D printing, CNC machining, and rapid tooling. We oversee the iteration process until the prototype perfectly matches the digital twin."
+    question: "I need to pitch my product to investors before we manufacture it. Can you help?",
+    answer: "Yes, this is one of our core specialties. Because our engineering and visualization pipelines are fully integrated, we take the exact CAD geometry and use Blender and KeyShot to generate cinematic, photorealistic renders and motion animations. You get production-ready files and pitch-ready marketing assets from a single studio."
   },
   {
-    question: "What is your typical turnaround time for a product visualization?",
-    answer: "For standard photorealistic product renders (studio lighting, multiple angles), we typically deliver within 1 to 2 weeks. Complex animations or highly technical exploded-view mechanical breakdowns may take 3 to 4 weeks depending on the complexity of the CAD assembly."
+    question: "What happens if the design needs adjustments during the process?",
+    answer: "Iteration is a natural part of hardware development. We build our CAD models with robust, adaptable feature trees, making revisions efficient. We map out clear project milestones and structured revision rounds in our initial quotes, so you always know exactly what to expect and when."
   },
   {
-    question: "Can you reverse engineer an existing physical part?",
-    answer: "Absolutely. We utilize high-resolution 3D scanning and manual precision measurement to reverse engineer physical components, delivering highly accurate, fully editable parametric CAD files ready for modification or mass production."
+    question: "Do you sign Non-Disclosure Agreements (NDAs) to protect my intellectual property?",
+    answer: "100%. We understand that for hardware innovators, your IP is your most valuable asset. All client communications and project files are strictly confidential, and we are happy to sign standard NDAs before you share any sensitive briefs or proprietary concepts with our team."
   }
 ];
 
@@ -37,7 +37,7 @@ export default function FAQSection() {
   return (
     <section className="relative w-full py-32 bg-[#060912] z-10 border-t border-[rgba(255,255,255,0.05)]">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight text-white mb-4">
@@ -53,11 +53,10 @@ export default function FAQSection() {
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div 
+              <div
                 key={index}
-                className={`border rounded-2xl overflow-hidden transition-colors duration-300 ${
-                  isOpen ? 'bg-[#0a0f1a] border-[rgba(0,212,255,0.3)]' : 'bg-transparent border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)]'
-                }`}
+                className={`border rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen ? 'bg-[#0a0f1a] border-[rgba(0,212,255,0.3)]' : 'bg-transparent border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)]'
+                  }`}
               >
                 <button
                   onClick={() => toggleOpen(index)}

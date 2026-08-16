@@ -79,16 +79,14 @@ export default function ServicesEnhanced() {
         </p>
       </motion.div>
 
-      {/* INTERACTIVE LIST */}
-      <div className="services-interaction" onMouseLeave={() => setActiveIndex(null)}>
-        {/* List of words */}
+      {/* DESKTOP / TABLET — Interactive hover list */}
+      <div className="services-interaction services-desktop-list" onMouseLeave={() => setActiveIndex(null)}>
         <nav className="services-title-list">
           {(servicesData as Service[]).map((service, index) => {
             const isActive = activeIndex === index;
             const isDimmed = activeIndex !== null && !isActive;
             const images = getAllServiceImages(service);
 
-            // Keep the current image and the 2 previous ones for the stack
             const visibleItems = [
               absoluteLoopIndex - 2,
               absoluteLoopIndex - 1,
@@ -103,7 +101,7 @@ export default function ServicesEnhanced() {
                 onMouseEnter={() => setActiveIndex(index)}
                 onFocus={() => setActiveIndex(index)}
               >
-                {/* Left Side: Description inline with the row */}
+                {/* Left: Description */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
@@ -118,6 +116,7 @@ export default function ServicesEnhanced() {
                   )}
                 </AnimatePresence>
 
+                {/* Center: Title */}
                 <div className="services-title-center">
                   <span className="services-title-text">{service.title}</span>
                   <AnimatePresence>
@@ -135,7 +134,7 @@ export default function ServicesEnhanced() {
                   </AnimatePresence>
                 </div>
 
-                {/* Right Side: Image Loop inline with the row */}
+                {/* Right: Image Stack */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
@@ -149,24 +148,19 @@ export default function ServicesEnhanced() {
                         {visibleItems.map((itemIndex) => {
                           const imageIndex = itemIndex % images.length;
                           const currentImage = images[imageIndex];
-                          const stackPosition = absoluteLoopIndex - itemIndex; // 0 is top, 1 is middle, 2 is back
+                          const stackPosition = absoluteLoopIndex - itemIndex;
 
                           return (
                             <motion.div
                               key={itemIndex}
                               className="services-stack-card"
-                              initial={{ 
-                                opacity: 0, 
-                                scale: 1.1, 
-                                rotate: (itemIndex % 2 === 0 ? 15 : -15),
-                                y: -30 
-                              }}
-                              animate={{ 
-                                opacity: 1 - (stackPosition * 0.15), // Top=1, Middle=0.85, Back=0.7
-                                scale: 1 - (stackPosition * 0.05), // Top=1, Middle=0.95, Back=0.9
+                              initial={{ opacity: 0, scale: 1.1, rotate: (itemIndex % 2 === 0 ? 15 : -15), y: -30 }}
+                              animate={{
+                                opacity: 1 - (stackPosition * 0.15),
+                                scale: 1 - (stackPosition * 0.05),
                                 rotate: (itemIndex % 2 === 0 ? 4 : -4) + (stackPosition * (itemIndex % 2 === 0 ? -2 : 2)),
                                 y: 0,
-                                zIndex: 10 - stackPosition 
+                                zIndex: 10 - stackPosition
                               }}
                               exit={{ opacity: 0, scale: 0.8 }}
                               transition={{ duration: 0.3, type: 'spring', bounce: 0.2 }}
@@ -183,6 +177,38 @@ export default function ServicesEnhanced() {
             );
           })}
         </nav>
+      </div>
+
+      {/* MOBILE — Static card grid: image → title → description */}
+      <div className="services-mobile-cards">
+        {(servicesData as Service[]).map((service, index) => {
+          const images = getAllServiceImages(service);
+          const heroImage = images[0];
+          return (
+            <motion.div
+              key={service.slug}
+              className="services-mobile-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.05, ease: 'easeOut' }}
+              viewport={{ once: true }}
+            >
+              <Link href={`/services/${service.slug}`} className="services-mobile-card-link">
+                {/* Image */}
+                <div className="services-mobile-card-img">
+                  <img src={heroImage} alt={service.title} />
+                  <span className="services-mobile-card-badge">
+                    {actionLabels[index] ?? 'EXPLORE IT'}
+                  </span>
+                </div>
+                {/* Title */}
+                <h3 className="services-mobile-card-title">{service.title}</h3>
+                {/* Description */}
+                <p className="services-mobile-card-desc">{service.description}</p>
+              </Link>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
