@@ -40,14 +40,14 @@ const software: SoftwareItem[] = [
     id: "ptc-creo",
     name: "PTC Creo",
     href: "https://www.ptc.com/en/products/cad/creo",
-    icon: "/assets/icons/ptc-creo.svg",
+    icon: "/assets/icons/ptc-creo.webp",
     category: "CAD",
   },
   {
     id: "blender",
     name: "Blender",
     href: "https://www.blender.org/",
-    icon: "/assets/icons/blender.svg",
+    icon: "/assets/icons/blender.webp",
     category: "3D Modeling",
   },
   {
@@ -61,28 +61,28 @@ const software: SoftwareItem[] = [
     id: "after-effects",
     name: "Adobe After Effects",
     href: "https://www.adobe.com/products/aftereffects.html",
-    icon: "/assets/icons/after-effects.svg",
+    icon: "/assets/icons/after-effects.webp",
     category: "Motion & Post-Production",
   },
   {
     id: "photoshop",
     name: "Adobe Photoshop",
     href: "https://www.adobe.com/products/photoshop.html",
-    icon: "/assets/icons/photoshop.svg",
+    icon: "/assets/icons/photoshop.webp",
     category: "Motion & Post-Production",
   },
   {
     id: "illustrator",
     name: "Adobe Illustrator",
     href: "https://www.adobe.com/products/illustrator.html",
-    icon: "/assets/icons/illustrator.svg",
+    icon: "/assets/icons/illustrator.webp",
     category: "Motion & Post-Production",
   },
   {
     id: "canva",
     name: "Canva",
     href: "https://www.canva.com/",
-    icon: "/assets/icons/canva.svg",
+    icon: "/assets/icons/canva.webp",
     category: "Motion & Post-Production",
   },
 ];
@@ -116,7 +116,7 @@ export default function ClientMarqueeSection() {
 
   return (
     <section className="relative w-full py-28 md:py-36 bg-slate-50 dark:bg-[#060912] z-10 overflow-hidden text-slate-900 dark:text-white transition-colors duration-300">
-      
+
       {/* SECTION HEADER & HERO COPY */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-20">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-600/30 dark:border-cyan-500/30 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-widest mb-6">
@@ -174,11 +174,10 @@ export default function ClientMarqueeSection() {
                   key={`cat-btn-${cat}`}
                   type="button"
                   onClick={() => setActiveCategory(cat)}
-                  className={`relative px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${
-                    activeCategory === cat
-                      ? "text-slate-900 dark:text-white font-semibold"
-                      : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-white/5"
-                  }`}
+                  className={`relative px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${activeCategory === cat
+                    ? "text-slate-900 dark:text-white font-semibold"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-white/5"
+                    }`}
                 >
                   {activeCategory === cat && (
                     <span className="absolute inset-0 bg-slate-200/80 dark:bg-gradient-to-r dark:from-cyan-500/20 dark:to-purple-500/20 border border-slate-300 dark:border-cyan-500/40 rounded-full transition-opacity duration-300" />
