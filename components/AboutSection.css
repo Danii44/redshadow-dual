@@ -48,7 +48,13 @@
 
 /* Video card and overlay (theme aware via light-mode overrides) */
 .about-video-card {
+  background: #020509;
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:root:not(.dark) .about-video-card {
+  background: #f7f5fb !important;
+  border-color: rgba(93, 75, 139, 0.16) !important;
 }
 
 .about-video-overlay {

@@ -4,6 +4,7 @@
 
 .footer {
   position: relative;
+  margin-top: auto;
   padding: 70px 20px 36px;
   background:
     radial-gradient(circle at top left, rgba(0, 212, 255, 0.1), transparent 25%),

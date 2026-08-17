@@ -136,8 +136,8 @@ export default function ClientMarqueeSection() {
             Every product carries an identity. We refine raw concepts into engineered precision—building physical and digital experiences that speak clearly, function flawlessly, and elevate brand authority.
           </p>
 
-          <div className="lg:col-span-4 grid grid-cols-2 gap-4 border-l border-slate-200 dark:border-white/10 pl-6">
-            <div className="col-span-2 mb-2">
+          <div className="lg:col-span-4 grid grid-cols-3 gap-3 border-l border-slate-200 dark:border-white/10 pl-6">
+            <div className="col-span-3 mb-2">
               <CTA href="mailto:hello@redshadowdesigns.com">Have a query? Contact now</CTA>
             </div>
             <div>
@@ -147,6 +147,10 @@ export default function ClientMarqueeSection() {
             <div>
               <span className="block text-2xl md:text-3xl font-bold font-mono text-purple-600 dark:text-purple-400">800+</span>
               <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Projects</span>
+            </div>
+            <div>
+              <span className="block text-2xl md:text-3xl font-bold font-mono text-emerald-600 dark:text-emerald-400">550+</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Clients</span>
             </div>
           </div>
         </div>

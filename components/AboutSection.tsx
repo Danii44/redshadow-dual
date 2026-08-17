@@ -2,12 +2,9 @@
 
 import { motion } from 'framer-motion';
 import './AboutSection.css';
-import { useTheme } from '@/contexts/ThemeContext';
 import CTA from './ui/CTA';
 
 export function AboutSection() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
   return (
     <section className="about-section" id="about">
       <div className="about-background-glow" />
@@ -21,7 +18,7 @@ export function AboutSection() {
           viewport={{ once: true }}
         >
           {/* ORBAI Spherical Tech Drone 3D Exploded MP4 Video Container */}
-          <div className={`about-video-card relative w-full h-[400px] md:h-[480px] rounded-3xl overflow-hidden group shadow-[0_0_40px_rgba(0,212,255,0.25)] border`} style={{ background: isLight ? '#f7f5fb' : '#020509' }}>
+          <div className="about-video-card relative w-full h-[400px] md:h-[480px] rounded-3xl overflow-hidden group shadow-[0_0_40px_rgba(0,212,255,0.25)] border">
 
             {/* High-Fidelity 3D Exploded Video Loop */}
             <video

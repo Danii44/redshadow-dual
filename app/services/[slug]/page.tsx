@@ -83,7 +83,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <img
           src={service.heroImage}
           alt={service.title}
-          className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-lighten"
+          className="page-hero-image absolute inset-0 w-full h-full object-cover"
         />
         <div className="page-hero-overlay absolute inset-0" />
         <div className="absolute inset-0 flex flex-col justify-end max-w-7xl mx-auto px-6 lg:px-8 pb-16 md:pb-24">

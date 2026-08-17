@@ -9,22 +9,21 @@
   transform: translateX(-50%);
   width: min(1180px, calc(100% - 2rem));
   z-index: 1000;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  background: transparent;
-  border: 1px solid transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  background: rgba(10, 14, 26, 0);
+  border: 1px solid rgba(0, 212, 255, 0);
   border-radius: 28px;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   transition:
-    width 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-    top 0.65s ease,
-    background 0.45s ease,
-    border-color 0.45s ease,
-    box-shadow 0.45s ease,
-    opacity 0.45s ease,
-    transform 0.65s ease,
-    backdrop-filter 0.45s ease;
+    width 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    backdrop-filter 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    -webkit-backdrop-filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   padding: 0.9rem 1.35rem;
-  box-shadow: none;
   opacity: 1;
   animation: navBootReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -38,7 +37,6 @@
   border-color: rgba(0, 212, 255, 0.25);
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  opacity: 1;
 }
 
 .nav-container {
@@ -49,13 +47,12 @@
   align-items: center;
   justify-content: space-between;
   height: 82px;
-  transition: height 0.35s ease, padding 0.35s ease;
+  transition: height 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav-responsive.scrolled .nav-container {
   height: 68px;
   padding: 0 1.5rem;
-  transition: height 0.6s ease, padding 0.6s ease;
 }
 
 /* Logo */
@@ -189,8 +186,8 @@
   z-index: 50;
 }
 
-.nav-menu-desktop li.has-dropdown:hover .nav-dropdown,
-.nav-menu-desktop li.has-dropdown:focus-within .nav-dropdown {
+.nav-menu-desktop li.has-dropdown.dropdown-active .nav-dropdown,
+.nav-menu-desktop li.has-dropdown .nav-dropdown.show {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -497,13 +494,13 @@
   }
 }
 
-/* Light mode nav bar base styling */
+/* Light mode nav bar base styling — transparent at top, animates on scroll */
 .nav-responsive.theme-light {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-color: rgba(93, 75, 139, 0.18);
-  box-shadow: 0 8px 30px rgba(62, 50, 93, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: rgba(244, 241, 249, 0);
+  border: 1px solid rgba(93, 75, 139, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  box-shadow: 0 0 0 rgba(62, 50, 93, 0);
 }
 
 .nav-responsive.scrolled.theme-light {
@@ -511,6 +508,8 @@
   border-color: rgba(93, 75, 139, 0.28);
   box-shadow: 0 26px 80px rgba(62, 50, 93, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .nav-responsive.theme-light .nav-menu-desktop li a {

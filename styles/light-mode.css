@@ -822,6 +822,21 @@
 }
 
 /* 2. VideoSection ("We engineer meaning. Not just products.") */
+:root:not(.dark) .video-section {
+  background-color: #f4f1f9 !important;
+}
+
+:root:not(.dark) .video-section-title,
+:root:not(.dark) .video-section h2 {
+  color: #1e1830 !important;
+}
+
+:root:not(.dark) .video-section-subtitle,
+:root:not(.dark) .video-section p {
+  color: rgba(30, 24, 48, 0.72) !important;
+}
+
+:root:not(.dark) .video-card-container,
 :root:not(.dark) .aspect-video {
   background-color: #ffffff !important;
   border-color: rgba(93, 75, 139, 0.2) !important;
@@ -1040,44 +1055,57 @@
    ============================================================ */
 
 /* Card container */
-:root:not(.dark) .portfolio-card {
+:root:not(.dark) .portfolio-card,
+:root:not(.dark) .portfolio-grid-card {
   background: #ffffff !important;
   border-color: rgba(93, 75, 139, 0.15) !important;
   box-shadow: 0 6px 24px rgba(62, 50, 93, 0.07) !important;
 }
 
-:root:not(.dark) .portfolio-card:hover {
-  border-color: rgba(93, 75, 139, 0.3) !important;
-  box-shadow: 0 12px 40px rgba(93, 75, 139, 0.13) !important;
+:root:not(.dark) .portfolio-card:hover,
+:root:not(.dark) .portfolio-grid-card:hover,
+:root:not(.dark) .group:hover .portfolio-grid-card {
+  border-color: rgba(93, 75, 139, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(93, 75, 139, 0.14) !important;
 }
 
 /* Image gradient overlay — replace dark with light in light mode */
 :root:not(.dark) .portfolio-img-overlay {
   background-image: linear-gradient(to top,
-      rgba(244, 241, 249, 0.85) 0%,
-      rgba(244, 241, 249, 0.08) 50%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.08) 50%,
       transparent 100%) !important;
 }
 
 /* Card text in light mode */
-:root:not(.dark) .portfolio-card h3 {
+:root:not(.dark) .portfolio-card h3,
+:root:not(.dark) .portfolio-grid-card h3 {
   color: #1e1830 !important;
 }
 
-:root:not(.dark) .portfolio-card .group-hover\:text-\[\#00d4ff\] {
+:root:not(.dark) .portfolio-card .group-hover\:text-\[\#00d4ff\],
+:root:not(.dark) .portfolio-grid-card .group-hover\:text-\[\#00d4ff\],
+:root:not(.dark) .group:hover .portfolio-grid-card h3 {
   color: #7c3aed !important;
 }
 
-:root:not(.dark) .portfolio-card span.font-mono {
+:root:not(.dark) .portfolio-card span.font-mono,
+:root:not(.dark) .portfolio-grid-card span.font-mono {
   color: #7c3aed !important;
 }
 
-:root:not(.dark) .portfolio-card p {
-  color: rgba(30, 24, 48, 0.6) !important;
+:root:not(.dark) .portfolio-card p,
+:root:not(.dark) .portfolio-grid-card p {
+  color: rgba(30, 24, 48, 0.65) !important;
 }
 
-:root:not(.dark) .portfolio-card .text-\[\#00d4ff\] {
+:root:not(.dark) .portfolio-card .text-\[\#00d4ff\],
+:root:not(.dark) .portfolio-grid-card .text-\[\#00d4ff\] {
   color: #7c3aed !important;
+}
+
+:root:not(.dark) .portfolio-grid-card .border-white\/5 {
+  border-color: rgba(93, 75, 139, 0.1) !important;
 }
 
 /* ============================================================
@@ -1094,6 +1122,11 @@
   background: #0a0a0a;
 }
 
+.page-hero-image {
+  opacity: 0.4;
+  mix-blend-mode: lighten;
+}
+
 /* Light mode overrides */
 :root:not(.dark) .page-detail-shell {
   background: #f4f1f9 !important;
@@ -1102,6 +1135,12 @@
 
 :root:not(.dark) .page-detail-hero {
   background: #e8e3f5 !important;
+}
+
+:root:not(.dark) .page-hero-image {
+  opacity: 0.38 !important;
+  mix-blend-mode: multiply !important;
+  filter: contrast(1.1) saturate(1.1) !important;
 }
 
 /* Dark mode hero overlay */
@@ -1228,4 +1267,58 @@
 /* Map section border */
 :root:not(.dark) .map-section {
   border-color: rgba(93, 75, 139, 0.16) !important;
+}
+
+/* ============================================================
+   SERVICE DETAIL PAGE — Tool grid & checklist items
+   ============================================================ */
+
+/* Tool grid cells inside service detail */
+:root:not(.dark) .page-detail-shell .rounded-2xl.border {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(93, 75, 139, 0.14) !important;
+  color: #1e1830 !important;
+}
+
+/* Checklist items */
+:root:not(.dark) .page-detail-shell ul li {
+  color: rgba(30, 24, 48, 0.82) !important;
+}
+
+/* Back link & accent link in hero */
+:root:not(.dark) .page-detail-shell a.text-\[\#00d4ff\] {
+  color: #5D4B8B !important;
+}
+
+/* CheckCircle icon & other cyan accent elements */
+:root:not(.dark) .page-detail-shell .text-\[\#00d4ff\] {
+  color: #7c3aed !important;
+}
+
+/* ============================================================
+   CAREERS & OTHER PAGES — Universal fallback overrides
+   ============================================================ */
+
+/* Any remaining hardcoded white text on light backgrounds */
+:root:not(.dark) .homepage-main h1.text-white,
+:root:not(.dark) .homepage-main h2.text-white,
+:root:not(.dark) .homepage-main h3.text-white,
+:root:not(.dark) .homepage-main p.text-white {
+  color: #1e1830 !important;
+}
+
+/* Navigation dropdown in light mode */
+:root:not(.dark) .nav-dropdown {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(93, 75, 139, 0.18) !important;
+  box-shadow: 0 8px 32px rgba(62, 50, 93, 0.12) !important;
+}
+
+:root:not(.dark) .nav-dropdown li a {
+  color: rgba(30, 24, 48, 0.75) !important;
+}
+
+:root:not(.dark) .nav-dropdown li a:hover {
+  color: #5D4B8B !important;
+  background: rgba(93, 75, 139, 0.06) !important;
 }

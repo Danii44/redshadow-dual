@@ -13,7 +13,7 @@ export type ServiceData = {
 export const servicesData: ServiceData[] = [
   {
     slug: 'feasibility-test',
-    title: 'Feasibility Test',
+    title: 'Feasibility',
     description: 'Early-stage concept validation for manufacturability, mechanical integrity, and assembly logic.',
     keywords: ['feasibility study', 'design validation', 'manufacturability assessment', 'engineering feasibility'],
     tools: ['SolidWorks', 'PTC Creo'],
@@ -42,7 +42,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     slug: 'cad-design',
-    title: 'CAD Design',
+    title: 'CAD',
     description: 'Precision parametric modeling for mechanical, industrial, and product engineering, delivered as production-ready geometry.',
     keywords: ['CAD Design Islamabad', 'SolidWorks modeling', 'parametric CAD design', 'engineering CAD services'],
     tools: ['SolidWorks', 'PTC Creo'],
@@ -71,7 +71,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     slug: 'mechanical-engineering',
-    title: 'Mechanical Engineering',
+    title: 'Engineering',
     description: 'Engineering-driven design of robust mechanisms, complex assemblies, and performance-critical hardware.',
     keywords: ['mechanical engineering', 'DFM engineering', 'mechanism design', 'assembly engineering'],
     tools: ['SolidWorks', 'PTC Creo'],
@@ -100,7 +100,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     slug: 'rapid-prototyping',
-    title: 'Rapid Prototyping',
+    title: 'Prototyping',
     description: 'Fast, functional prototype engineering for physical testing, validation, and iterative development.',
     keywords: ['rapid prototyping', 'prototype design', '3D print ready', 'CNC prototype'],
     tools: ['SolidWorks', 'Blender'],
@@ -158,7 +158,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     slug: 'design-for-manufacturing',
-    title: 'Design for Manufacturing',
+    title: 'DFM',
     description: 'Rigorous design review and geometry optimization to reduce tooling costs and streamline high-volume production.',
     keywords: ['DFM review', 'manufacturing-ready design', 'tooling optimization', 'production design'],
     tools: ['SolidWorks', 'PTC Creo'],
@@ -187,7 +187,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     slug: 'product-visualization-renders',
-    title: 'Product Visualization / Renders',
+    title: 'Rendering',
     description: 'Cinematic product visuals and marketing-ready imagery for packaging, investor pitch decks, and digital campaigns.',
     keywords: ['product visualization', 'marketing renders', 'photorealistic rendering', 'product imagery'],
     tools: ['Blender', 'KeyShot', 'Adobe Photoshop'],
@@ -216,7 +216,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     slug: 'product-animations',
-    title: 'Product Animations',
+    title: 'Animation',
     description: 'Exploded views, mechanical turntables, and high-fidelity motion sequences that showcase product functionality.',
     keywords: ['product animation', 'turntable video', 'exploded view', 'motion render'],
     tools: ['Blender', 'Adobe After Effects'],

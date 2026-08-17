@@ -11,7 +11,7 @@ const impactItems = [
   {
     value: '4.9/5',
     label: 'Client Rating',
-    detail: 'Average score from 500+ verified client reviews.',
+    detail: 'Average score from 550+ verified client reviews.',
   },
   {
     value: '+65%',

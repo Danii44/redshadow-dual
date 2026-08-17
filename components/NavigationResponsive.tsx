@@ -15,6 +15,7 @@ import './NavigationResponsive.css';
 export function NavigationResponsive() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
@@ -22,6 +23,20 @@ export function NavigationResponsive() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Automatically close both mobile menu and desktop dropdown on route change
+  useEffect(() => {
+    setIsOpen(false);
+    setIsDropdownOpen(false);
+  }, [pathname]);
+
+  const closeMenus = () => {
+    setIsOpen(false);
+    setIsDropdownOpen(false);
+    if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+  };
 
   const routeMap: Record<string, string> = {
     '/': 'Home',
@@ -70,7 +85,7 @@ export function NavigationResponsive() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link href="/" className="nav-logo-link">
+          <Link href="/" className="nav-logo-link" onClick={closeMenus}>
             <img
               src={isDark ? '/assets/logo.webp' : '/assets/logo.webp'}
               alt="Red Shadow Designs"
@@ -86,26 +101,42 @@ export function NavigationResponsive() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          {menuItems.map((item, index) => (
-            <li key={index} className={item.label === 'Services' ? 'has-dropdown' : ''}>
-              <Link href={item.href} className={activeItem === item.label ? 'active' : ''}>
-                {item.label}
-              </Link>
-              {item.label === 'Services' && (
-                <ul className="nav-dropdown">
-                  {serviceMenu.map((service) => (
-                    <li key={service.slug}>
-                      <Link href={`/services/${service.slug}`}>{service.title}</Link>
+          {menuItems.map((item, index) => {
+            const isServices = item.label === 'Services';
+            return (
+              <li
+                key={index}
+                className={`${isServices ? 'has-dropdown' : ''} ${isServices && isDropdownOpen ? 'dropdown-active' : ''}`}
+                onMouseEnter={() => isServices && setIsDropdownOpen(true)}
+                onMouseLeave={() => isServices && setIsDropdownOpen(false)}
+              >
+                <Link
+                  href={item.href}
+                  className={activeItem === item.label ? 'active' : ''}
+                  onClick={closeMenus}
+                >
+                  {item.label}
+                </Link>
+                {isServices && (
+                  <ul className={`nav-dropdown ${isDropdownOpen ? 'show' : ''}`}>
+                    {serviceMenu.map((service) => (
+                      <li key={service.slug}>
+                        <Link href={`/services/${service.slug}`} onClick={closeMenus}>
+                          {service.title}
+                        </Link>
+                      </li>
+                    ))}
+                    <li className="divider" />
+                    <li>
+                      <Link href="/services" onClick={closeMenus}>
+                        All Services
+                      </Link>
                     </li>
-                  ))}
-                  <li className="divider" />
-                  <li>
-                    <Link href="/services">All Services</Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-          ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })}
         </motion.ul>
 
         {/* Theme Toggle + CTA (desktop) */}

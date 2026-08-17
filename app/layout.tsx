@@ -219,13 +219,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body>
+      <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider defaultTheme="system" switchable={true}>
           <TooltipProvider>
             <SessionLoader />
             <Toaster />
             <NavigationResponsive />
-            {children}
+            <div className="flex-1 w-full min-h-screen flex flex-col relative">
+              {children}
+            </div>
             <Footer />
           </TooltipProvider>
         </ThemeProvider>

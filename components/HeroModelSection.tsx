@@ -12,9 +12,14 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import GLBModelViewer from '@/components/GLBModelViewer';
+import dynamic from 'next/dynamic';
 import { ManusDialog } from '@/components/ManusDialog';
 import './HeroModelSection.css';
+
+const GLBModelViewer = dynamic(() => import('@/components/GLBModelViewer'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full min-h-[500px]" />,
+});
 
 
 export function HeroModelSection() {

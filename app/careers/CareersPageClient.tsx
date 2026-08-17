@@ -12,102 +12,128 @@ const openRoles = [
     id: 'cad-engineer',
     title: 'Senior CAD Engineer',
     type: 'Full-time',
-    location: 'Islamabad, PK',
+    location: 'Rawalpindi, PK',
     department: 'Engineering',
     icon: '⚙️',
     tag: 'Engineering',
     description:
-      'Design precision parametric models using SolidWorks and AutoCAD for industrial, medical, and consumer products. You will collaborate closely with clients and lead DFM validation.',
+      'Design precision parametric models using SolidWorks and PTC Creo for industrial and consumer products. You will collaborate closely with clients and lead DFM optimization for plastic injection molding and CNC machining workflows.',
     requirements: [
-      '3+ years with SolidWorks or equivalent parametric CAD',
-      'Strong understanding of GD&T and manufacturing tolerances',
-      'Experience with STEP/IGES/STL export workflows',
-      'Familiarity with sheet metal and injection moulding design',
+      '3+ years of professional experience with SolidWorks or PTC Creo.',
+      'Strong understanding of ASME standards, GD&T, and manufacturing tolerances.',
+      'Experience with STEP/STL export workflows for seamless manufacturing handoffs.',
+      'Familiarity with sheet metal design and advanced surfacing.',
     ],
-    niceToHave: ['Experience with Fusion 360', 'FEA simulation background'],
+    niceToHave: ['FEA & CFD simulation background.'],
   },
   {
     id: '3d-artist',
     title: '3D Visualisation Artist',
     type: 'Full-time',
-    location: 'Islamabad, PK',
+    location: 'Rawalpindi, PK',
     department: 'Creative',
     icon: '🎨',
     tag: 'Creative',
     description:
-      'Create photorealistic product renders and animations using Blender and Cinema 4D. You will work on packaging visuals, investor decks, and marketing campaigns for international clients.',
+      'Create photorealistic product renders and cinematic visual assets using Blender and KeyShot. You will work on packaging visuals, investor decks, and digital marketing campaigns for international clients.',
     requirements: [
-      '2+ years professional 3D rendering experience',
-      'Proficiency in Blender (Cycles/EEVEE) or Cinema 4D',
-      'Strong portfolio of product visualizations',
-      'Understanding of lighting, materials, and compositing',
+      '2+ years of professional 3D rendering experience.',
+      'Expert proficiency in Blender and KeyShot.',
+      'Strong portfolio demonstrating mastery over lighting, materials, and compositing.',
+      'Proficiency in Adobe Photoshop for post-production.',
     ],
-    niceToHave: ['Unreal Engine experience', 'Motion graphics skills'],
+    niceToHave: ['Experience with Canva for pitch deck assembly.'],
   },
   {
-    id: 'industrial-designer',
-    title: 'Industrial Designer',
+    id: 'junior-mechanical-designer',
+    title: 'Junior Mechanical Designer',
     type: 'Full-time',
-    location: 'Islamabad, PK',
-    department: 'Design',
-    icon: '✏️',
-    tag: 'Design',
+    location: 'Rawalpindi, PK',
+    department: 'Engineering',
+    icon: '📐',
+    tag: 'Engineering',
     description:
-      'Concept, sketch, and develop innovative product designs from early ideation to manufacturing-ready deliverables. You will work across consumer electronics, medical devices, and lifestyle products.',
+      'Handle technical drawings, delivery file formatting, and model revisions under the guidance of our senior engineers. You will help bridge the gap between initial concepts and manufacturing-ready deliverables.',
     requirements: [
-      'Degree in Industrial Design or Product Design',
-      '2+ years of professional industrial design experience',
-      'Proficiency in Rhino or Alias Surface Modelling',
-      'Strong sketching and ideation skills',
+      'Degree in Mechanical Engineering or a related technical field.',
+      'Proficiency in 3D mechanical CAD design using SolidWorks.',
+      'Strong understanding of mechanical assemblies and geometric constraints.',
+      'Ability to prepare detailed 2D drafts and production-ready geometry.',
     ],
-    niceToHave: ['Experience with CMF (Colour, Material, Finish)', 'Keyshot rendering skills'],
+    niceToHave: [
+      'Hands-on experience with FDM desktop 3D printers (e.g., Bambu Lab A1) for in-house prototyping.',
+    ],
   },
   {
     id: 'motion-designer',
     title: 'Motion & Animation Designer',
-    type: 'Part-time / Freelance',
-    location: 'Remote',
+    type: 'Full-time',
+    location: 'Rawalpindi, PK',
     department: 'Creative',
     icon: '🎬',
     tag: 'Creative',
     description:
-      'Produce cinematic product animations, explainer videos, and brand motion content. Collaborating with our 3D team to bring products to life for marketing and investor presentations.',
+      'Produce cinematic product animations, mechanical exploded views, and motion sequences that showcase product function and assembly behavior for B2B pitches.',
     requirements: [
-      'Strong reel demonstrating product animation',
-      'Expertise in After Effects and Premiere Pro',
-      '3D animation experience (Blender or Cinema 4D)',
-      'Ability to work to tight deadlines',
+      'Strong reel demonstrating hardware and product animation.',
+      'Expertise in Blender and Adobe After Effects.',
+      'Ability to bring static CAD assemblies to life through precise mechanical kinematics.',
     ],
-    niceToHave: ['Sound design basics', 'Experience with 360° video'],
+    niceToHave: ['Experience with Adobe Illustrator for vector graphic integration.'],
   },
   {
-    id: 'project-manager',
-    title: 'Client Project Manager',
+    id: 'office-project-manager',
+    title: 'Office & Project Manager',
     type: 'Full-time',
-    location: 'Islamabad, PK',
+    location: 'Rawalpindi, PK',
     department: 'Operations',
     icon: '📋',
     tag: 'Operations',
     description:
-      'Own client relationships from onboarding to delivery. You will coordinate between designers, engineers, and clients — keeping projects on time and stakeholders informed.',
+      'Own studio operations and client relationships from onboarding to final delivery. You will coordinate between the CAD and rendering teams, ensuring projects stay on timeline and strict quality standards are met.',
     requirements: [
-      '3+ years in project or account management',
-      'Experience in a creative or engineering environment',
-      'Excellent written and verbal English communication',
-      'Familiarity with project management tools (Notion, Linear, etc.)',
+      'Experience in a creative, technical, or engineering studio environment.',
+      'Excellent written and verbal English communication.',
+      'Ability to manage logistics and operations for a 24-hour private commercial office space.',
     ],
-    niceToHave: ['PMP or PRINCE2 certification', 'Exposure to CAD/design workflows'],
+    niceToHave: [
+      'Exposure to digital freelance marketplaces like Fiverr and tracking volume-driven project tiers.',
+    ],
   },
 ];
 
 /* ── Perks Data ────────────────────────────────────────── */
 const perks = [
-  { icon: '🌍', title: 'International Clients', desc: 'Work on projects for brands across North America, Europe, and the Middle East.' },
-  { icon: '🚀', title: 'Fast Growth', desc: 'Join at an exciting growth phase and shape the culture and direction of the studio.' },
-  { icon: '🎓', title: 'Learning Budget', desc: 'Annual learning budget for courses, software licences, and conferences.' },
-  { icon: '🏠', title: 'Flexible Hours', desc: 'Core hours with flexible start/end times. Remote options for eligible roles.' },
-  { icon: '💡', title: 'Creative Freedom', desc: 'Bring your ideas to the table. We value initiative and creative thinking.' },
-  { icon: '🤝', title: 'Collaborative Team', desc: 'A small, tight-knit team where your work has a visible, direct impact.' },
+  {
+    icon: '🌍',
+    title: 'Global Engineering Reach',
+    desc: 'Work on high-stakes, production-ready projects for hardware startups and enterprise clients across the US, Europe, and the Middle East.',
+  },
+  {
+    icon: '🖥️',
+    title: 'High-End Hardware Stack',
+    desc: 'Never wait on slow render times. You will be equipped with dedicated, high-performance workstations, including optimized 3060 12GB rendering rigs.',
+  },
+  {
+    icon: '🖨️',
+    title: 'Hands-On 3D Printing',
+    desc: 'Bring your CAD files into physical reality immediately. Our studio is equipped with a Bambu Lab A1 FDM printer for rapid, in-house mechanical testing.',
+  },
+  {
+    icon: '🏢',
+    title: '24/7 Commercial Studio',
+    desc: 'Work in a dedicated, secure, 8-person commercial office space. Enjoy the flexibility of a 24-hour accessible environment tailored for deep, focused engineering work.',
+  },
+  {
+    icon: '📈',
+    title: 'Merit-Based Career Growth',
+    desc: 'We reward competence and execution. Prove your mechanical insight and reliability, and transition quickly from probationary periods to highly compensated permanent roles.',
+  },
+  {
+    icon: '🛡️',
+    title: 'Zero-Toxicity Environment',
+    desc: 'Join a tight-knit team with strict professional boundaries. We protect our studio culture so you can focus 100% on delivering exceptional design work without office politics.',
+  },
 ];
 
 /* ── Tag colors ────────────────────────────────────────── */
@@ -313,7 +339,7 @@ export default function CareersPageClient() {
     '--scroll-rise': `${Math.min(scrollY * 0.08, 70)}px`,
   } as CSSProperties;
 
-  const filters = ['All', 'Engineering', 'Creative', 'Design', 'Operations'];
+  const filters = ['All', 'Engineering', 'Creative', 'Operations'];
   const filteredRoles = activeFilter === 'All' ? openRoles : openRoles.filter((r) => r.tag === activeFilter);
 
   return (
@@ -384,9 +410,9 @@ export default function CareersPageClient() {
         {/* ── Stats bar ───────────────────────────────────── */}
         <section className="careers-stats">
           {[
-            { value: '5+', label: 'Years of Studio Experience' },
-            { value: '200+', label: 'Projects Delivered' },
-            { value: '30+', label: 'Countries Served' },
+            { value: '100+', label: 'Products Delivered' },
+            { value: '800+', label: 'Projects Completed' },
+            { value: '550+', label: 'Global Clients' },
             { value: '5', label: 'Open Positions' },
           ].map((stat, i) => (
             <motion.div

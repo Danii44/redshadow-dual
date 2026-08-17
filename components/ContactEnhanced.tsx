@@ -130,7 +130,7 @@ export function ContactEnhanced() {
                 <div className="contact-visual-ring" />
                 <div className="contact-visual-copy">
 
-                  <CTA href="/contact" className="">Book a Technical Consultation or Schedule a Discovery Call</CTA>
+                  <CTA href="/contact" className="">Book a Technical Consultation</CTA>
                 </div>
               </div>
 

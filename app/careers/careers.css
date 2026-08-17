@@ -881,29 +881,327 @@
 }
 
 /* ── Light mode overrides ────────────────────────────── */
-:root.light .careers-hero-title { color: var(--foreground); }
-:root.light .modal-panel { background: #fff; border-color: rgba(0,0,0,0.1); }
-:root.light .modal-header { background: #fff; border-color: rgba(0,0,0,0.07); }
-:root.light .modal-title { color: var(--foreground); }
-:root.light .form-field label { color: var(--foreground); }
+:root:not(.dark) .careers-hero-title,
+:root.light .careers-hero-title {
+  color: #1e1830;
+}
+
+:root:not(.dark) .careers-breadcrumb,
+:root:not(.dark) .careers-breadcrumb a,
+:root.light .careers-breadcrumb,
+:root.light .careers-breadcrumb a {
+  color: rgba(30, 24, 48, 0.55);
+}
+
+:root:not(.dark) .careers-breadcrumb a:hover,
+:root.light .careers-breadcrumb a:hover {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .careers-hero-badge,
+:root.light .careers-hero-badge {
+  border-color: rgba(93, 75, 139, 0.3);
+  background: rgba(93, 75, 139, 0.08);
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .careers-hero-badge::before,
+:root.light .careers-hero-badge::before {
+  background: #5D4B8B;
+}
+
+:root:not(.dark) .careers-gradient,
+:root.light .careers-gradient {
+  background: linear-gradient(135deg, #5D4B8B 0%, #3E325D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+:root:not(.dark) .careers-hero-sub,
+:root.light .careers-hero-sub {
+  color: rgba(30, 24, 48, 0.65);
+}
+
+:root:not(.dark) .careers-email-cta,
+:root.light .careers-email-cta {
+  border-color: rgba(93, 75, 139, 0.35);
+  background: rgba(93, 75, 139, 0.08);
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .careers-email-cta:hover,
+:root.light .careers-email-cta:hover {
+  background: rgba(93, 75, 139, 0.15);
+  border-color: #5D4B8B;
+}
+
+:root:not(.dark) .careers-stats,
+:root.light .careers-stats {
+  border-color: rgba(93, 75, 139, 0.12);
+  background: rgba(93, 75, 139, 0.03);
+}
+
+:root:not(.dark) .stat-item,
+:root.light .stat-item {
+  border-right-color: rgba(93, 75, 139, 0.12);
+}
+
+:root:not(.dark) .stat-value,
+:root.light .stat-value {
+  background: linear-gradient(135deg, #5D4B8B, #3E325D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+:root:not(.dark) .stat-label,
+:root.light .stat-label {
+  color: rgba(30, 24, 48, 0.55);
+}
+
+:root:not(.dark) .section-label,
+:root.light .section-label {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .section-title,
+:root.light .section-title {
+  color: #1e1830;
+}
+
+:root:not(.dark) .perk-card,
+:root.light .perk-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(93, 75, 139, 0.14);
+  box-shadow: 0 4px 20px rgba(62, 50, 93, 0.05);
+}
+
+:root:not(.dark) .perk-card:hover,
+:root.light .perk-card:hover {
+  background: #ffffff;
+  border-color: rgba(93, 75, 139, 0.3);
+  box-shadow: 0 8px 30px rgba(62, 50, 93, 0.1);
+}
+
+:root:not(.dark) .perk-title,
+:root.light .perk-title {
+  color: #1e1830;
+}
+
+:root:not(.dark) .perk-desc,
+:root.light .perk-desc {
+  color: rgba(30, 24, 48, 0.65);
+}
+
+:root:not(.dark) .filter-pill,
+:root.light .filter-pill {
+  border-color: rgba(93, 75, 139, 0.18);
+  background: rgba(93, 75, 139, 0.04);
+  color: rgba(30, 24, 48, 0.7);
+}
+
+:root:not(.dark) .filter-pill:hover,
+:root.light .filter-pill:hover {
+  border-color: rgba(93, 75, 139, 0.35);
+  color: #1e1830;
+}
+
+:root:not(.dark) .filter-pill.active,
+:root.light .filter-pill.active {
+  background: rgba(93, 75, 139, 0.12);
+  border-color: #5D4B8B;
+  color: #5D4B8B;
+  font-weight: 700;
+}
+
+:root:not(.dark) .role-card,
+:root.light .role-card {
+  background: #ffffff;
+  border-color: rgba(93, 75, 139, 0.14);
+  box-shadow: 0 6px 24px rgba(62, 50, 93, 0.06);
+}
+
+:root:not(.dark) .role-card:hover,
+:root.light .role-card:hover {
+  border-color: rgba(93, 75, 139, 0.3);
+  box-shadow: 0 12px 36px rgba(62, 50, 93, 0.1);
+}
+
+:root:not(.dark) .role-icon-wrap,
+:root.light .role-icon-wrap {
+  background: rgba(93, 75, 139, 0.08);
+  border-color: rgba(93, 75, 139, 0.15);
+}
+
+:root:not(.dark) .role-title,
+:root.light .role-title {
+  color: #1e1830;
+}
+
+:root:not(.dark) .role-desc,
+:root.light .role-desc {
+  color: rgba(30, 24, 48, 0.65);
+}
+
+:root:not(.dark) .role-card-bottom,
+:root.light .role-card-bottom {
+  border-top-color: rgba(93, 75, 139, 0.1);
+}
+
+:root:not(.dark) .req-heading,
+:root.light .req-heading {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .req-heading.nice,
+:root.light .req-heading.nice {
+  color: #7c3aed;
+}
+
+:root:not(.dark) .role-reqs li,
+:root.light .role-reqs li {
+  color: rgba(30, 24, 48, 0.75);
+}
+
+:root:not(.dark) .nice-list li,
+:root.light .nice-list li {
+  color: rgba(93, 75, 139, 0.9);
+}
+
+:root:not(.dark) .btn-apply,
+:root.light .btn-apply {
+  background: linear-gradient(135deg, #5D4B8B, #3E325D);
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(93, 75, 139, 0.25);
+}
+
+:root:not(.dark) .btn-apply:hover,
+:root.light .btn-apply:hover {
+  background: linear-gradient(135deg, #4d3d75, #2f2549);
+  box-shadow: 0 6px 22px rgba(93, 75, 139, 0.38);
+}
+
+:root:not(.dark) .general-cta-card,
+:root.light .general-cta-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f4f1f9 100%);
+  border-color: rgba(93, 75, 139, 0.2);
+  box-shadow: 0 20px 60px rgba(62, 50, 93, 0.08);
+}
+
+:root:not(.dark) .cta-eyebrow,
+:root.light .cta-eyebrow {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .cta-title,
+:root.light .cta-title {
+  color: #1e1830;
+}
+
+:root:not(.dark) .cta-desc,
+:root.light .cta-desc {
+  color: rgba(30, 24, 48, 0.65);
+}
+
+:root:not(.dark) .cta-email-link,
+:root.light .cta-email-link {
+  background: linear-gradient(135deg, #5D4B8B, #3E325D);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(93, 75, 139, 0.25);
+}
+
+/* Modal light mode */
+:root:not(.dark) .modal-panel,
+:root.light .modal-panel {
+  background: #ffffff;
+  border-color: rgba(93, 75, 139, 0.2);
+  box-shadow: 0 30px 90px rgba(62, 50, 93, 0.2);
+}
+
+:root:not(.dark) .modal-header,
+:root.light .modal-header {
+  background: #ffffff;
+  border-bottom-color: rgba(93, 75, 139, 0.1);
+}
+
+:root:not(.dark) .modal-eyebrow,
+:root.light .modal-eyebrow {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .modal-title,
+:root.light .modal-title {
+  color: #1e1830;
+}
+
+:root:not(.dark) .modal-meta,
+:root.light .modal-meta {
+  color: rgba(30, 24, 48, 0.55);
+}
+
+:root:not(.dark) .modal-close,
+:root.light .modal-close {
+  color: rgba(30, 24, 48, 0.6);
+  border-color: rgba(93, 75, 139, 0.2);
+}
+
+:root:not(.dark) .modal-close:hover,
+:root.light .modal-close:hover {
+  background: rgba(93, 75, 139, 0.08);
+  color: #1e1830;
+}
+
+:root:not(.dark) .form-field label,
+:root.light .form-field label {
+  color: #5D4B8B;
+}
+
+:root:not(.dark) .form-field input,
+:root:not(.dark) .form-field textarea,
+:root:not(.dark) .form-field select,
 :root.light .form-field input,
 :root.light .form-field textarea,
 :root.light .form-field select {
-  background: rgba(0,0,0,0.03);
-  border-color: rgba(0,0,0,0.12);
-  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(93, 75, 139, 0.2);
+  color: #1e1830;
 }
+
+:root:not(.dark) .form-field input:focus,
+:root:not(.dark) .form-field textarea:focus,
+:root:not(.dark) .form-field select:focus,
+:root.light .form-field input:focus,
+:root.light .form-field textarea:focus,
+:root.light .form-field select:focus {
+  border-color: #5D4B8B;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(93, 75, 139, 0.12);
+}
+
+:root:not(.dark) .form-field input::placeholder,
+:root:not(.dark) .form-field textarea::placeholder,
 :root.light .form-field input::placeholder,
-:root.light .form-field textarea::placeholder { color: rgba(0,0,0,0.3); }
-:root.light .modal-success h3 { color: var(--foreground); }
-:root.light .stat-value { -webkit-text-fill-color: var(--foreground); }
-:root.light .section-title { color: var(--foreground); }
-:root.light .role-title { color: var(--foreground); }
-:root.light .perk-title { color: var(--foreground); }
-:root.light .cta-title { color: var(--foreground); }
-:root.light .role-card,
-:root.light .perk-card { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
-:root.light .role-desc,
-:root.light .perk-desc,
-:root.light .cta-desc { color: var(--muted-foreground); }
-:root.light .role-reqs li { color: var(--muted-foreground); }
+:root.light .form-field textarea::placeholder {
+  color: rgba(30, 24, 48, 0.4);
+}
+
+:root:not(.dark) .form-field select option,
+:root.light .form-field select option {
+  background: #ffffff;
+  color: #1e1830;
+}
+
+:root:not(.dark) .btn-primary,
+:root.light .btn-primary {
+  background: linear-gradient(135deg, #5D4B8B, #3E325D);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(93, 75, 139, 0.25);
+}
+
+:root:not(.dark) .btn-primary:hover:not(:disabled),
+:root.light .btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4d3d75, #2f2549);
+}
+

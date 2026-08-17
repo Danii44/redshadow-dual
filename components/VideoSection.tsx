@@ -2,26 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useTheme } from '@/contexts/ThemeContext';
 
 export default function VideoSection() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const thumbnailImagePath = '/assets/images/thumbnail.webp';
-
-  const sectionBg = isLight ? 'bg-[#f4f1f9]' : 'bg-[#060912]';
-  const textColor = isLight ? 'text-[#1e1830]' : 'text-white';
-  const subtitleColor = isLight ? 'text-[#3e325d]/80' : 'text-white/60';
-  const cardBg = isLight ? 'bg-white' : 'bg-[#090b14]';
-  const cardBorder = isLight ? 'border-[rgba(93,75,139,0.15)]' : 'border-[rgba(0,212,255,0.15)]';
-  const buttonStyle = isLight
-    ? 'bg-white/95 text-[#1e1830] border border-[#7c3aed]/20 shadow-[0_20px_60px_rgba(124,58,237,0.18)]'
-    : 'bg-[#0f1728]/95 text-white border border-white/10 shadow-[0_20px_60px_rgba(0,212,255,0.22)]';
-  const iconColor = isLight ? 'border-l-[#1e1830]' : 'border-l-white';
 
   // autoplay when the video container is scrolled into view
   useEffect(() => {
@@ -69,10 +56,10 @@ export default function VideoSection() {
   }, []);
 
   return (
-    <section className={`relative w-full py-32 ${sectionBg} z-10`}>
+    <section className="video-section relative w-full py-32 bg-[#060912] z-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-16">
-          <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight leading-tight ${textColor}`}>
+          <h2 className="video-section-title text-4xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight leading-tight text-white">
             Built to be pitched.
             <br />
             Engineered to be made.
@@ -85,7 +72,7 @@ export default function VideoSection() {
           </Link>
         </div>
 
-        <p className={`${subtitleColor} max-w-3xl mx-auto text-center mb-6 text-lg md:text-xl leading-relaxed`}>
+        <p className="video-section-subtitle text-white/60 max-w-3xl mx-auto text-center mb-6 text-lg md:text-xl leading-relaxed">
           We speak the language of both investors and manufacturers. Our studio delivers the photorealistic cinematic assets you need to secure funding, backed by the rigorous, dimensionally accurate CAD files required to actually build the product. No guesswork, just flawless execution at every stage of product development.
         </p>
 
@@ -98,7 +85,7 @@ export default function VideoSection() {
           </Link>
         </div>
 
-        <div ref={containerRef} className={`relative w-full aspect-video rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] border ${cardBorder} ${cardBg}`}>
+        <div ref={containerRef} className="video-card-container relative w-full aspect-video rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] border border-[rgba(0,212,255,0.15)] bg-[#090b14]">
           <img
             src={thumbnailImagePath}
             alt="Video preview thumbnail"

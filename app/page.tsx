@@ -1,26 +1,21 @@
 "use client";
 
-import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import HeroModelSection from '@/components/HeroModelSection';
+import AboutSection from '@/components/AboutSection';
+import VideoSection from '@/components/VideoSection';
+import ServicesEnhanced from '@/components/ServicesEnhanced';
+import ClientMarqueeSection from '@/components/ClientMarqueeSection';
+import PortfolioShowcase from '@/components/PortfolioShowcase';
+import ProcessSection from '@/components/ProcessSection';
+import FAQSection from '@/components/FAQSection';
+import ContactEnhanced from '@/components/ContactEnhanced';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-// Dynamically import all sections with ssr:false — this is the permanent fix
-// for the removeChild hydration mismatch crash on mobile.
-// SSR renders nothing for these; client mounts them cleanly after hydration.
-const HeroModelSection   = dynamic(() => import('@/components/HeroModelSection'),    { ssr: false });
-const AboutSection       = dynamic(() => import('@/components/AboutSection'),         { ssr: false });
-const VideoSection       = dynamic(() => import('@/components/VideoSection'),         { ssr: false });
-const ServicesEnhanced     = dynamic(() => import('@/components/ServicesEnhanced'),     { ssr: false });
-const ClientMarqueeSection = dynamic(() => import('@/components/ClientMarqueeSection'), { ssr: false });
-const PortfolioShowcase    = dynamic(() => import('@/components/PortfolioShowcase'),    { ssr: false });
-const ProcessSection       = dynamic(() => import('@/components/ProcessSection'),       { ssr: false });
-const FAQSection           = dynamic(() => import('@/components/FAQSection'),           { ssr: false });
-const ContactEnhanced      = dynamic(() => import('@/components/ContactEnhanced'),      { ssr: false });
 
 export default function Page() {
   useEffect(() => {

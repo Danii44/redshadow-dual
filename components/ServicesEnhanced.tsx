@@ -13,19 +13,19 @@ type Service = (typeof servicesData)[number] & {
 };
 
 const actionLabels = [
-  'DESIGN IT',
-  'PROTOTYPE IT',
-  'MAKE IT REAL',
-  'BRAND IT',
-  'MARKET IT',
-  'FUND IT',
-  'SHOW IT',
-  'ANIMATE IT',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
 ];
 
 function getAllServiceImages(service: Service) {
   const baseImage = service.heroImage;
-  
+
   // Gather other images
   const otherImages = servicesData
     .filter((s) => s.slug !== service.slug)
@@ -39,7 +39,7 @@ function getAllServiceImages(service: Service) {
     ...otherImages.slice(offset),
     ...otherImages.slice(0, offset)
   ].slice(0, 4);
-  
+
   return [baseImage, ...uniqueOtherImages].filter(Boolean);
 }
 
@@ -53,7 +53,7 @@ export default function ServicesEnhanced() {
       setAbsoluteLoopIndex(0);
       return;
     }
-    
+
     // Sweet spot speed: 400 milliseconds per image
     const interval = setInterval(() => {
       setAbsoluteLoopIndex((prev) => prev + 1);
@@ -106,9 +106,9 @@ export default function ServicesEnhanced() {
                   {isActive && (
                     <motion.div
                       className="services-active-desc"
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -10 }}
+                      initial={{ opacity: 0, x: -10, y: '-50%' }}
+                      animate={{ opacity: 1, x: 0, y: '-50%' }}
+                      exit={{ opacity: 0, x: -10, y: '-50%' }}
                       transition={{ duration: 0.3 }}
                     >
                       <p>{service.description}</p>
@@ -139,9 +139,9 @@ export default function ServicesEnhanced() {
                   {isActive && (
                     <motion.div
                       className="services-stack-card-container"
-                      initial={{ opacity: 0, x: 40 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 20 }}
+                      initial={{ opacity: 0, x: 40, y: '-50%' }}
+                      animate={{ opacity: 1, x: 0, y: '-50%' }}
+                      exit={{ opacity: 0, x: 20, y: '-50%' }}
                       transition={{ duration: 0.5, type: 'spring', bounce: 0.3 }}
                     >
                       <AnimatePresence>

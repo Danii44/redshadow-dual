@@ -4,12 +4,12 @@ export type ServiceMenuItem = {
 };
 
 export const serviceMenu: ServiceMenuItem[] = [
-  { slug: 'feasibility-test', title: 'Feasibility Test' },
-  { slug: 'cad-design', title: 'CAD Design' },
-  { slug: 'mechanical-engineering', title: 'Mechanical Engineering' },
-  { slug: 'rapid-prototyping', title: 'Rapid Prototyping' },
+  { slug: 'feasibility-test', title: 'Feasibility' },
+  { slug: 'cad-design', title: 'CAD' },
+  { slug: 'mechanical-engineering', title: 'Engineering' },
+  { slug: 'rapid-prototyping', title: 'Prototyping' },
   { slug: '3d-printing', title: '3D Printing' },
-  { slug: 'design-for-manufacturing', title: 'Design for Manufacturing' },
-  { slug: 'product-visualization-renders', title: 'Product Visualization / Renders' },
-  { slug: 'product-animations', title: 'Product Animations' },
+  { slug: 'design-for-manufacturing', title: 'DFM' },
+  { slug: 'product-visualization-renders', title: 'Rendering' },
+  { slug: 'product-animations', title: 'Animation' },
 ];
