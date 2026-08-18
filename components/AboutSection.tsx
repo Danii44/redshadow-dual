@@ -46,12 +46,12 @@ export function AboutSection() {
           viewport={{ once: true }}
         >
           <span className="section-label">About Red Shadow Designs</span>
-          <h2>Where engineering precision meets cinematic excellence</h2>
+          <h2>From precise CAD to production-ready parts</h2>
           <p>
-            Red Shadow Designs is a top-rated engineering studio specializing in precision 3D CAD modeling, photorealistic rendering, and DFM-optimized industrial design. We bridge the gap between initial concept and final production—delivering manufacturing-ready files and cinematic visuals for innovators and established brands.
+            Red Shadow Designs is a top-rated engineering studio specializing in precision 3D CAD modeling, photorealistic rendering, and DFM-optimized industrial design. We bridge the gap between initial concept and final production—delivering manufacturing-ready files and high-fidelity visualization for product teams and hardware startups.
           </p>
           <p>
-            From complex mechanical assemblies and medical devices to consumer hardware prototypes, we engineer solutions with strict adherence to ASME standards and GD&T practices. We turn your concepts into assets that win investor pitches, power e-commerce listings, and ensure a seamless handoff to your manufacturing partners—backed by a 99.9% dimensional accuracy guarantee and a flawless 5.0-star track record.
+            From complex mechanical assemblies and medical devices to consumer hardware prototypes, we engineer solutions with strict adherence to ASME standards and GD&T practices. We turn your concepts into assets that win investor pitches, power e-commerce listings, and ensure a seamless handoff to your manufacturing partners—backed by strict dimensional accuracy standards and a proven 5.0-star track record.
           </p>
           <div className="about-ctas mt-6">
             <CTA href="/contact">Get in touch</CTA>

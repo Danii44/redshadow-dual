@@ -73,7 +73,7 @@ export default function VideoSection() {
         </div>
 
         <p className="video-section-subtitle text-white/60 max-w-3xl mx-auto text-center mb-6 text-lg md:text-xl leading-relaxed">
-          We speak the language of both investors and manufacturers. Our studio delivers the photorealistic cinematic assets you need to secure funding, backed by the rigorous, dimensionally accurate CAD files required to actually build the product. No guesswork, just flawless execution at every stage of product development.
+          We speak the language of both investors and manufacturers. Our studio delivers the professional visual assets you need for stakeholder review, backed by the rigorous, dimensionally accurate CAD files required to actually build the product. No guesswork, just strict adherence to DFM standards at every stage of product development.
         </p>
 
         <div className="flex justify-center mb-12">

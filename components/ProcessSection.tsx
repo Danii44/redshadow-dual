@@ -6,37 +6,30 @@ import CTA from './ui/CTA';
 
 const steps = [
   {
-    number: "01",
     title: "Requirements and Dimensions",
     description: "We analyze technical drawings, customer specifications, envelope dimensions, and tolerance limits to define exact engineering parameters."
   },
   {
-    number: "02",
     title: "Feasibility Test",
     description: "Evaluating structural viability, stress performance, and material suitability before committing to full 3D modeling."
   },
   {
-    number: "03",
     title: "Draft Design",
     description: "Creating initial parametric 3D CAD models and spatial layouts for early design review and geometric alignment."
   },
   {
-    number: "04",
     title: "Rapid Prototyping",
     description: "Iterating and refining 3D digital prototypes for physical validation, ergonomics, and component fit testing. Deliverables include 3D print-ready files."
   },
   {
-    number: "05",
     title: "DFM (Manufacturing Ready Model)",
     description: "Finalizing production-grade CAD models with draft angles, wall thicknesses, and STEP/STL exports for injection molding, CNC, or 3D printing."
   },
   {
-    number: "06",
     title: "Renders",
     description: "Producing studio-quality photorealistic product visualizations with realistic materials, textures, and lighting environments."
   },
   {
-    number: "07",
     title: "Animations",
     description: "Delivering exploded view assembly animations, 360° turntables, and functional mechanism videos for marketing and investor decks."
   }
@@ -97,12 +90,7 @@ export default function ProcessSection() {
                       transition={{ duration: 0.6, delay: 0.05 }}
                       className="glass-strong p-6 md:p-8 rounded-3xl relative overflow-hidden group transition-colors duration-500 w-full"
                     >
-                      <div className="absolute -right-4 -top-4 text-7xl font-black text-white/5 font-mono pointer-events-none select-none">
-                        {step.number}
-                      </div>
-
                       <h3 className="text-xl md:text-2xl font-bold text-white mb-3 flex items-center gap-3">
-                        <span className="text-[#00d4ff] font-mono text-sm">{step.number}.</span>
                         {step.title}
                       </h3>
                       <p className="text-white/60 leading-relaxed text-sm md:text-base">

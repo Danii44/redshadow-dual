@@ -61,12 +61,12 @@ export default function ServicesPageClient() {
             <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tighter ${
               isLight ? 'text-[#1e1830]' : 'text-white'
             }`}>
-              Engineering <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5D4B8B] to-[#3E325D]">Unleashed</span>.
+              Engineering &amp; <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5D4B8B] to-[#3E325D]">Design</span>.
             </h1>
             <p className={`text-xl md:text-2xl font-light max-w-2xl mx-auto ${
               isLight ? 'text-[#1e1830]/65' : 'text-white/60'
             }`}>
-              From parametric CAD modeling to photorealistic cinematic rendering, we provide end-to-end industrial design services.
+              From parametric CAD modeling and DFM analysis to high-fidelity product rendering, we provide end-to-end industrial design services.
             </p>
           </motion.div>
         </section>
@@ -91,7 +91,7 @@ export default function ServicesPageClient() {
                 The Red Shadow <br /> Advantage
               </h2>
               <p className={`text-lg leading-relaxed mb-6 ${isLight ? 'text-[#1e1830]/65' : 'text-white/60'}`}>
-                We provide a true end-to-end product development pipeline. Most agencies do either engineering or artistry, forcing you to manage multiple vendors. We do both under one roof. Our dual-disciplinary approach means the models we engineer for strict manufacturing standards are exactly what we use to generate cinematic marketing materials.              </p>
+                We provide a true end-to-end product development pipeline. Most agencies do either engineering or artistry, forcing you to manage multiple vendors. We do both under one roof. Our dual-disciplinary approach means the models we engineer for strict manufacturing standards are the exact same files we use to generate your product visualization materials.              </p>
               <ul className="space-y-4">
                 {[
                   "End-to-End Product Pipeline",
@@ -99,7 +99,7 @@ export default function ServicesPageClient() {
                   "Production-Ready STEP & STL Files",
                   "Seamless DFM (Design for Manufacturing) Handoff",
                   "99.9% Dimensional Accuracy",
-                  "Cinematic Lighting & Texturing"
+                  "Studio-Grade Product Rendering"
                 ].map((item, i) => (
                   <li key={i} className={`flex items-center gap-3 ${isLight ? 'text-[#1e1830]/80' : 'text-white/80'}`}>
                     <span className={isLight ? 'text-[#5D4B8B]' : 'text-[#00d4ff]'}>✓</span> {item}

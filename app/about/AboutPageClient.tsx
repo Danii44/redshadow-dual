@@ -93,10 +93,10 @@ export default function AboutPageClient() {
                 Beyond traditional <br />CAD modeling.
               </h2>
               <p className={`text-lg leading-relaxed mb-6 ${isLight ? 'text-[#1e1830]/65' : 'text-white/60'}`}>
-                Red Shadow Designs was founded on a simple premise: industrial engineering doesn't have to look industrial. We take raw mechanical concepts, complex assemblies, and visionary hardware, and we render them with the visual fidelity of a blockbuster film.
+                Red Shadow Designs was founded on a simple premise: industrial engineering doesn't have to look industrial. We take raw mechanical concepts, complex assemblies, and visionary hardware, and we develop them with strict manufacturing tolerances and visualize them with professional studio-grade rendering.
               </p>
               <p className={`text-lg leading-relaxed ${isLight ? 'text-[#1e1830]/65' : 'text-white/60'}`}>
-                Whether you're presenting a new autonomous drone to investors, or need precise tooling documentation for a medical device, our hybrid team of mechanical engineers and 3D artists ensures your product is built accurately and presented flawlessly.
+                Whether you're presenting a new autonomous drone to investors, or need precise tooling documentation for a medical device, our hybrid team of mechanical engineers and 3D artists ensures your product is engineered accurately for manufacturing and presented clearly for stakeholder review.
               </p>
             </motion.div>
 
@@ -176,7 +176,7 @@ export default function AboutPageClient() {
                   <h3 className={`text-3xl md:text-4xl font-bold mb-1 ${isLight ? 'text-[#1e1830]' : 'text-white'}`}>Daniyal Ahmad</h3>
                   <p className={`font-mono text-sm uppercase tracking-widest mb-4 ${isLight ? 'text-[#5D4B8B]' : 'text-[#00d4ff]'}`}>Founder & CEO — Red Shadow Designs</p>
                   <p className={`leading-relaxed mb-6 ${isLight ? 'text-[#1e1830]/65' : 'text-white/60'}`}>
-                    As a Master's qualified and Registered Mechanical Engineer, Daniyal leads Red Shadow Designs with a strict focus on manufacturing viability. With deep expertise in SolidWorks parametric modeling, advanced surfacing, and sheet metal design, he bridges the gap between conceptual industrial design and production-ready geometry. Under his leadership, the studio consistently delivers DFM-optimized assemblies for CNC machining and plastic injection molding workflows—earning him Top Rated Seller status on Fiverr and a flawless track record across the globe.
+                    As a Master's qualified and Registered Mechanical Engineer, Daniyal leads Red Shadow Designs with a strict focus on manufacturing viability. With deep expertise in SolidWorks parametric modeling, advanced surfacing, and sheet metal design, he bridges the gap between conceptual industrial design and production-ready geometry. Under his leadership, the studio consistently delivers DFM-optimized assemblies for CNC machining and plastic injection molding workflows—earning him Top Rated Seller status on Fiverr and a consistent track record of successful client deployments.
                   </p>
                   <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-6">
                     {['Mechanical Engineering', 'SolidWorks', 'Blender', '3D Rendering', 'Product Design', 'DFM'].map((tag) => (
