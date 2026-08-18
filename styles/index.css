@@ -219,7 +219,6 @@
   /* Give all direct section wrappers horizontal padding */
   .services-content-container,
   .portfolio-header-container,
-  .contact-content-container,
   .about-container {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
@@ -247,7 +246,6 @@
 @media (max-width: 480px) {
   .services-content-container,
   .portfolio-header-container,
-  .contact-content-container,
   .about-container {
     padding-left: 1rem !important;
     padding-right: 1rem !important;

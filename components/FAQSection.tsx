@@ -28,7 +28,7 @@ const faqs = [
 ];
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0); // First one open by default
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleOpen = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -40,10 +40,46 @@ export default function FAQSection() {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight text-slate-900 dark:text-white mb-4">
-            Questions? <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">Answers.</span>
+          {/* Section pill — matches all other sections */}
+          <div
+            className="inline-flex mb-4 items-center gap-2 rounded-full uppercase font-semibold"
+            style={{
+              padding: '0.45rem 1rem',
+              fontSize: '0.72rem',
+              letterSpacing: '0.16em',
+              border: '1px solid rgba(0,212,255,0.3)',
+              background: 'rgba(0,212,255,0.06)',
+              color: 'var(--primary, #00d4ff)',
+            }}
+          >
+            FAQ
+          </div>
+
+          {/* h2 — site standard: clamp(2.25rem, 4.5vw, 3.75rem), weight 700 */}
+          <h2
+            className="font-mono tracking-tight mb-4 text-slate-900 dark:text-white"
+            style={{
+              fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)',
+              fontWeight: 700,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.1,
+              margin: '0 0 1rem',
+            }}
+          >
+            Questions?{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">
+              Answers.
+            </span>
           </h2>
-          <p className="text-slate-600 dark:text-white/60 text-lg">
+
+          {/* Subtitle — site standard */}
+          <p
+            className="text-slate-600 dark:text-white/60"
+            style={{
+              fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)',
+              lineHeight: 1.8,
+            }}
+          >
             Everything you need to know about our engineering and design process.
           </p>
         </div>
@@ -66,7 +102,15 @@ export default function FAQSection() {
                   aria-controls={`faq-answer-${index}`}
                   className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00d4ff] focus-visible:ring-inset"
                 >
-                  <span className={`text-lg md:text-xl font-semibold transition-colors duration-300 ${isOpen ? 'text-[#00d4ff]' : 'text-slate-900 dark:text-white'}`}>
+                  {/* Question — h3-level importance, consistent weight */}
+                  <span
+                    className={`font-semibold transition-colors duration-300 ${isOpen ? 'text-[#00d4ff]' : 'text-slate-900 dark:text-white'}`}
+                    style={{
+                      fontSize: 'clamp(1rem, 2vw, 1.15rem)',
+                      lineHeight: 1.4,
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
                     {faq.question}
                   </span>
                   <motion.div
@@ -87,7 +131,13 @@ export default function FAQSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-6 md:px-8 pb-8 pt-0 text-slate-600 dark:text-white/60 text-base md:text-lg leading-relaxed">
+                      <div
+                        className="px-6 md:px-8 pb-8 pt-0 text-slate-600 dark:text-white/60"
+                        style={{
+                          fontSize: 'clamp(0.9rem, 1.4vw, 1rem)',
+                          lineHeight: 1.8,
+                        }}
+                      >
                         {faq.answer}
                       </div>
                     </motion.div>

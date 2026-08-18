@@ -198,6 +198,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://api.web3forms.com" />
 
+        {/* Preload the hero 3D model so the browser fetches it immediately at parse time */}
+        <link rel="preload" href="/assets/Watch.glb" as="fetch" crossOrigin="anonymous" />
+
         {/* JSON-LD Structured Data for SEO, AEO & GEO */}
         {/* Favicon and touch icons (generated) */}
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.webp" />

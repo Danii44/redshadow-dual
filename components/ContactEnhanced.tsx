@@ -178,7 +178,7 @@ export function ContactEnhanced() {
                 <div className="text-5xl">✅</div>
                 <h3 className="text-2xl font-bold text-white">Message Sent Successfully!</h3>
                 <p className="text-white/60">Thank you for reaching out to Red Shadow Designs. We will respond as soon as possible.</p>
-                <button onClick={() => setSubmitted(false)} className="glass-button-lg px-6 py-2 text-sm mt-4">
+                <button onClick={() => setSubmitted(false)} className="glass-button glass-button-lg px-6 py-2 text-sm mt-4">
                   Send Another Message
                 </button>
               </div>
@@ -246,7 +246,7 @@ export function ContactEnhanced() {
                 </div>
 
                 <div className="contact-form-actions">
-                  <button type="submit" disabled={submitting} className="glass-button-lg w-full">
+                  <button type="submit" disabled={submitting} className="glass-button glass-button-lg w-full">
                     {submitting ? "Sending..." : "Send Message"}
                     <span className="button-glow"></span>
                   </button>

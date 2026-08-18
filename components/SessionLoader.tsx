@@ -19,15 +19,19 @@ export default function SessionLoader() {
     document.documentElement.style.overflow = 'hidden';
 
     const MIN_DISPLAY_MS = 1200; // always show for at least 1.2s so the animation isn't jarring
-    const MAX_DISPLAY_MS = 8000; // safety cap — never block longer than 8s
+    const MAX_DISPLAY_MS = 10000; // safety cap — never block longer than 10s
     const startTime = Date.now();
 
     let progressInterval: ReturnType<typeof setInterval>;
     let maxTimer: ReturnType<typeof setTimeout>;
+    let dismissed = false;
 
     const dismiss = () => {
+      if (dismissed) return;
+      dismissed = true;
       clearInterval(progressInterval);
       clearTimeout(maxTimer);
+      window.removeEventListener('glb:ready' as any, onGlbReady);
       const elapsed = Date.now() - startTime;
       const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
 
@@ -39,39 +43,50 @@ export default function SessionLoader() {
       }, remaining + 400); // +400ms for the fill animation to complete
     };
 
+    // We need BOTH page load AND the GLB model to be ready before dismissing
+    let pageLoaded = false;
+    let glbReady = false;
+
+    const tryDismiss = () => {
+      if (pageLoaded && glbReady) dismiss();
+    };
+
+    const onPageLoad = () => {
+      pageLoaded = true;
+      tryDismiss();
+    };
+
+    const onGlbReady = () => {
+      glbReady = true;
+      tryDismiss();
+    };
+
     // Simulate realistic progress ticking (fast at start, slow near end)
-    let tick = 0;
     progressInterval = setInterval(() => {
-      tick += 1;
       setProgress(prev => {
-        // Exponential ease-out: fast at start, approaches 90% asymptotically
         const next = prev + (90 - prev) * 0.07;
         return Math.min(next, 90);
       });
     }, 120);
 
-    // Safety max timer
+    // Safety max timer — dismiss no matter what after MAX_DISPLAY_MS
     maxTimer = setTimeout(dismiss, MAX_DISPLAY_MS);
 
-    // Track real page readiness
-    const checkReady = () => {
-      if (document.readyState === 'complete') {
-        dismiss();
-      }
-    };
+    // Listen for the GLB model ready event from GLBModelViewer
+    window.addEventListener('glb:ready' as any, onGlbReady, { once: true });
 
+    // Track page load readiness
     if (document.readyState === 'complete') {
-      // Page already loaded — still respect MIN_DISPLAY_MS
-      dismiss();
+      pageLoaded = true;
     } else {
-      document.addEventListener('readystatechange', checkReady);
-      window.addEventListener('load', dismiss, { once: true });
+      window.addEventListener('load', onPageLoad, { once: true });
     }
 
     return () => {
       clearInterval(progressInterval);
       clearTimeout(maxTimer);
-      document.removeEventListener('readystatechange', checkReady);
+      window.removeEventListener('load', onPageLoad);
+      window.removeEventListener('glb:ready' as any, onGlbReady);
       document.documentElement.style.overflow = '';
     };
   }, []);

@@ -18,6 +18,14 @@ function Model({ url, isLight }: { url: string; isLight: boolean }) {
   const { scene } = useGLTF(url);
   const { size } = useThree();
   const scrollProgress = useRef(0);
+  const modelReadyFired = useRef(false);
+
+  // Fire a one-shot event so SessionLoader knows the GLB is fully parsed & ready
+  useEffect(() => {
+    if (modelReadyFired.current) return;
+    modelReadyFired.current = true;
+    window.dispatchEvent(new CustomEvent('glb:ready'));
+  }, []);
 
   const model = useMemo(() => {
     const clonedScene = scene.clone();
