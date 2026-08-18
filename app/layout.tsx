@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/sonner';
 import NavigationResponsive from '@/components/NavigationResponsive';
 import Footer from '@/components/Footer';
 import SessionLoader from '@/components/SessionLoader';
+import Chatbot from '@/components/Chatbot';
 
 const BASE_URL = 'https://www.redshadowdesigns.com';
 
@@ -229,6 +230,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
             </div>
             <Footer />
+            <Chatbot />
           </TooltipProvider>
         </ThemeProvider>
       </body>
