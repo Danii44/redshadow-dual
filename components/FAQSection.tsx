@@ -35,15 +35,15 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="relative w-full py-32 bg-[#060912] z-10 border-t border-[rgba(255,255,255,0.05)]">
+    <section className="relative w-full py-32 bg-slate-50 dark:bg-[#060912] z-10 border-t border-slate-200/60 dark:border-[rgba(255,255,255,0.05)] transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
 
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight text-white mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight text-slate-900 dark:text-white mb-4">
             Questions? <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#7c3aed]">Answers.</span>
           </h2>
-          <p className="text-white/60 text-lg">
+          <p className="text-slate-600 dark:text-white/60 text-lg">
             Everything you need to know about our engineering and design process.
           </p>
         </div>
@@ -55,20 +55,24 @@ export default function FAQSection() {
             return (
               <div
                 key={index}
-                className={`border rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen ? 'bg-[#0a0f1a] border-[rgba(0,212,255,0.3)]' : 'bg-transparent border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)]'
-                  }`}
+                className={`border rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen
+                  ? 'bg-slate-100 dark:bg-[#0a0f1a] border-[rgba(0,212,255,0.3)]'
+                  : 'bg-transparent border-slate-200 dark:border-[rgba(255,255,255,0.1)] hover:border-slate-300 dark:hover:border-[rgba(255,255,255,0.2)]'
+                }`}
               >
                 <button
                   onClick={() => toggleOpen(index)}
-                  className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
+                  className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00d4ff] focus-visible:ring-inset"
                 >
-                  <span className={`text-lg md:text-xl font-semibold transition-colors duration-300 ${isOpen ? 'text-[#00d4ff]' : 'text-white'}`}>
+                  <span className={`text-lg md:text-xl font-semibold transition-colors duration-300 ${isOpen ? 'text-[#00d4ff]' : 'text-slate-900 dark:text-white'}`}>
                     {faq.question}
                   </span>
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className={`shrink-0 ml-4 p-2 rounded-full ${isOpen ? 'bg-[rgba(0,212,255,0.1)] text-[#00d4ff]' : 'bg-[rgba(255,255,255,0.05)] text-white/60'}`}
+                    className={`shrink-0 ml-4 p-2 rounded-full ${isOpen ? 'bg-[rgba(0,212,255,0.1)] text-[#00d4ff]' : 'bg-slate-100 dark:bg-[rgba(255,255,255,0.05)] text-slate-500 dark:text-white/60'}`}
                   >
                     <ChevronDown className="w-5 h-5" />
                   </motion.div>
@@ -77,12 +81,13 @@ export default function FAQSection() {
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
+                      id={`faq-answer-${index}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-6 md:px-8 pb-8 pt-0 text-white/60 text-base md:text-lg leading-relaxed">
+                      <div className="px-6 md:px-8 pb-8 pt-0 text-slate-600 dark:text-white/60 text-base md:text-lg leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>

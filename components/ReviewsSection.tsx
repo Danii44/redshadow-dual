@@ -38,16 +38,14 @@ const reviews = [
 ];
 
 const softwareStack = [
+  'SolidWorks',
+  'PTC Creo',
   'Blender',
-  'Cinema 4D',
-  'Substance 3D',
-  'Unreal Engine',
-  'Autodesk Maya',
-  'ZBrush',
+  'KeyShot',
   'After Effects',
-  'Adobe Dimension',
-  'Houdini',
-  'Figma',
+  'Adobe Photoshop',
+  'Adobe Illustrator',
+  'Canva',
 ];
 
 export function ReviewsSection() {

@@ -11,17 +11,17 @@ const impactItems = [
   {
     value: '4.9/5',
     label: 'Client Rating',
-    detail: 'Average score from 550+ verified client reviews.',
+    detail: 'Average score from 550+ verified client reviews across Fiverr and direct engagements.',
   },
   {
     value: '+65%',
-    label: 'Engagement Lift',
-    detail: 'Conversion increases from interface refreshes and UX-driven visual storytelling.',
+    label: 'Faster Approvals',
+    detail: 'Clients report significantly faster stakeholder sign-off when presenting photorealistic renders over traditional drawings.',
   },
   {
     value: '3D print-ready files',
     label: 'Rapid Prototyping',
-    detail: 'Files for rapid prototyping and fast turn around time.',
+    detail: 'STL and STEP files optimized for SLA, FDM, and CNC — ready for fast physical validation.',
   },
 ];
 
@@ -254,9 +254,9 @@ export default function PortfolioShowcase() {
         >
           <div className="proven-impact-header">
             <span className="portfolio-pill">Proven Impact</span>
-            <h3 className="portfolio-impact-title">Results that feel as polished as the experience.</h3>
+            <h3 className="portfolio-impact-title">Engineering precision that drives real results.</h3>
             <p className="portfolio-impact-copy">
-              Our work combines aesthetic clarity with functional engineering to deliver confident digital experiences and stronger product storytelling.
+              Our work combines manufacturing-ready CAD accuracy with cinematic visualization to accelerate product approval, investor buy-in, and time to market.
             </p>
           </div>
 

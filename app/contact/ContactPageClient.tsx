@@ -26,7 +26,9 @@ export default function ContactPageClient() {
       <div className="ambient-grid" />
 
       <main className="homepage-main relative z-10">
-        {/* Contact Form & Info Section */}
+        {/* SEO h1 — visually hidden, present for screen readers and search engines */}
+        <h1 className="sr-only">Contact Red Shadow Designs — CAD Modeling &amp; Engineering Studio, Islamabad, Pakistan</h1>
+        {/* Contact Form &amp; Info Section */}
         <ContactEnhanced />
 
         {/* Full-Width Map */}

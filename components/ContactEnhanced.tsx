@@ -109,7 +109,7 @@ export function ContactEnhanced() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="contact-pill">Launch your next digital prototype</div>
+          <div className="contact-pill">Start your next engineering project</div>
           <h2 className="contact-title">Let’s Engineer Your Vision.</h2>
           <p className="contact-subtitle">
             Whether you require early-stage feasibility testing, cinematic renders for your next investor pitch, or ASME-compliant CAD files ready for the manufacturing floor, our team is ready to execute. Submit your brief below to start the conversation.
@@ -195,6 +195,7 @@ export function ContactEnhanced() {
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      aria-required="true"
                       className="glass-input"
                     />
                   </div>
@@ -208,6 +209,7 @@ export function ContactEnhanced() {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      aria-required="true"
                       className="glass-input"
                     />
                   </div>
@@ -223,6 +225,7 @@ export function ContactEnhanced() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
+                    aria-required="true"
                     className="glass-input"
                   />
                 </div>
@@ -237,6 +240,7 @@ export function ContactEnhanced() {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    aria-required="true"
                     className="glass-input"
                   ></textarea>
                 </div>

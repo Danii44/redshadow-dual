@@ -29,7 +29,7 @@ export function Footer() {
             viewport={{ once: true }}
           >
             <div className="footer-logo-wrap">
-              <img src="/assets/logo.webp" alt="Red Shadow Design" className="footer-logo-image" />
+              <img src="/assets/logo.webp" alt="Red Shadow Designs" className="footer-logo-image" />
             </div>
             <h3>Red Shadow Designs</h3>
             <p>An elite engineering studio specializing in production-ready CAD, strict DFM standards, and cinematic 3D product visualization for innovators worldwide.</p>
@@ -75,13 +75,22 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4>Follow Us</h4>
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="mailto:hello@redshadowdesigns.com" className="footer-contact-link">hello@redshadowdesigns.com</a>
+              </li>
+              <li>
+                <a href="tel:+923338917021" className="footer-contact-link">+92 333 891 7021</a>
+              </li>
+            </ul>
+            <h4 className="mt-4">Follow Us</h4>
             <div className="social-icons">
-              <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr">
+              <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr" aria-label="Fiverr profile">
                 <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-4 w-4" />
               </a>
-              <a href="https://www.linkedin.com/company/red-shadow-designs/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">in</a>
-              <a href="https://www.behance.net/redshadowdesigns" target="_blank" rel="noopener noreferrer" className="social-icon" title="Behance">Be</a>
+              <a href="https://www.linkedin.com/company/red-shadow-designs/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn" aria-label="LinkedIn company page">in</a>
+              <a href="https://www.behance.net/redshadowdesigns" target="_blank" rel="noopener noreferrer" className="social-icon" title="Behance" aria-label="Behance portfolio">Be</a>
             </div>
           </motion.div>
         </div>
@@ -89,9 +98,9 @@ export function Footer() {
         <div className="footer-bottom">
           <p>&copy; {currentYear} Red Shadow Designs. All rights reserved.</p>
           <div className="footer-legal">
-            <a href="#privacy">Privacy Policy</a>
+            <a href="/privacy">Privacy Policy</a>
             <span>•</span>
-            <a href="#terms">Terms of Service</a>
+            <a href="/terms">Terms of Service</a>
           </div>
         </div>
       </div>

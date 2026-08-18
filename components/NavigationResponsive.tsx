@@ -211,6 +211,8 @@ export function NavigationResponsive() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
+            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isOpen}
           >
             <span className={isOpen ? 'active' : ''}></span>
             <span className={isOpen ? 'active' : ''}></span>

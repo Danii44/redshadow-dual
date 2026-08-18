@@ -6,37 +6,37 @@ import CTA from './ui/CTA';
 
 const steps = [
   {
-    number: "",
+    number: "01",
     title: "Requirements and Dimensions",
     description: "We analyze technical drawings, customer specifications, envelope dimensions, and tolerance limits to define exact engineering parameters."
   },
   {
-    number: "",
+    number: "02",
     title: "Feasibility Test",
     description: "Evaluating structural viability, stress performance, and material suitability before committing to full 3D modeling."
   },
   {
-    number: "",
+    number: "03",
     title: "Draft Design",
     description: "Creating initial parametric 3D CAD models and spatial layouts for early design review and geometric alignment."
   },
   {
-    number: "",
+    number: "04",
     title: "Rapid Prototyping",
     description: "Iterating and refining 3D digital prototypes for physical validation, ergonomics, and component fit testing. Deliverables include 3D print-ready files."
   },
   {
-    number: "",
+    number: "05",
     title: "DFM (Manufacturing Ready Model)",
     description: "Finalizing production-grade CAD models with draft angles, wall thicknesses, and STEP/STL exports for injection molding, CNC, or 3D printing."
   },
   {
-    number: "",
+    number: "06",
     title: "Renders",
     description: "Producing studio-quality photorealistic product visualizations with realistic materials, textures, and lighting environments."
   },
   {
-    number: "",
+    number: "07",
     title: "Animations",
     description: "Delivering exploded view assembly animations, 360° turntables, and functional mechanism videos for marketing and investor decks."
   }

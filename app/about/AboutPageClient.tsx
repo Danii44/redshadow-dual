@@ -75,7 +75,7 @@ export default function AboutPageClient() {
             </h1>
             <p className={`text-xl md:text-2xl font-light max-w-2xl mx-auto ${isLight ? 'text-[#1e1830]/65' : 'text-white/60'
               }`}>
-              We bridge the Gap between sketches to complete DFM (Manufacturing-Ready files) and digital visualization.
+              We bridge the gap between sketches to complete DFM (Manufacturing-Ready files) and digital visualization.
             </p>
           </motion.div>
         </section>

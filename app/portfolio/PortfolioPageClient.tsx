@@ -42,11 +42,16 @@ export default function PortfolioPageClient() {
           <div className="relative mb-8">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/40"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
             <input type="text" placeholder="Search projects, categories..." value={search} onChange={e => setSearch(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white placeholder-white/30 focus:outline-none focus:border-[#00d4ff]/50 transition-all text-base" />
-            {search && <button onClick={() => setSearch('')} className="absolute inset-y-0 right-4 flex items-center text-white/40 hover:text-white transition-colors">✕</button>}
+            {search && <button onClick={() => setSearch('')} aria-label="Clear search" className="absolute inset-y-0 right-4 flex items-center text-white/40 hover:text-white transition-colors">✕</button>}
           </div>
           <div className="flex flex-wrap gap-3">
             {ALL_CATEGORIES.map(cat => (
-              <button key={cat} onClick={() => setActiveCategory(cat)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === cat ? 'bg-gradient-to-r from-[#00d4ff] to-[#7c3aed] text-white shadow-[0_0_20px_rgba(0,212,255,0.3)]' : 'bg-white/5 border border-white/10 text-white/60 hover:border-white/30 hover:text-white'}`}>{cat}</button>
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                aria-pressed={activeCategory === cat}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === cat ? 'bg-gradient-to-r from-[#00d4ff] to-[#7c3aed] text-white shadow-[0_0_20px_rgba(0,212,255,0.3)]' : 'bg-white/5 border border-white/10 text-white/60 hover:border-white/30 hover:text-white'}`}
+              >{cat}</button>
             ))}
             <span className="ml-auto self-center text-white/30 text-sm">{filtered.length} project{filtered.length !== 1 ? 's' : ''}</span>
           </div>
