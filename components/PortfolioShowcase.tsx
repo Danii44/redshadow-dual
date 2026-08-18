@@ -76,7 +76,9 @@ export default function PortfolioShowcase() {
       updateTransform(normalized);
     };
 
+    // ─── Mouse / Stylus (pointer events) ───────────────────────────────────
     const onPointerDown = (event: PointerEvent) => {
+      if (event.pointerType === 'touch') return; // handled by touch events below
       if (event.pointerType === 'mouse' && event.button !== 0) return;
       event.preventDefault();
       dragRef.current = true;
@@ -88,17 +90,59 @@ export default function PortfolioShowcase() {
     };
 
     const onPointerMove = (event: PointerEvent) => {
+      if (event.pointerType === 'touch') return;
       if (!dragRef.current) return;
       event.preventDefault();
       const deltaX = event.clientX - startXRef.current;
       updateOffset(startOffsetRef.current - deltaX);
     };
 
-    const endDrag = () => {
+    const endPointerDrag = () => {
       if (!dragRef.current) return;
       dragRef.current = false;
       trackContainer.classList.remove('dragging');
       trackContainer.style.cursor = 'grab';
+    };
+
+    // ─── Touch events (mobile) ──────────────────────────────────────────────
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartOffset = 0;
+    let isHorizontalSwipe: boolean | null = null;
+
+    const onTouchStart = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      touchStartOffset = offsetRef.current;
+      isHorizontalSwipe = null;
+      dragRef.current = true;
+    };
+
+    const onTouchMove = (event: TouchEvent) => {
+      if (!dragRef.current) return;
+      const touch = event.touches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+
+      // Determine swipe direction on the first significant movement
+      if (isHorizontalSwipe === null) {
+        if (Math.abs(dx) > Math.abs(dy) + 4) {
+          isHorizontalSwipe = true;
+        } else if (Math.abs(dy) > Math.abs(dx) + 4) {
+          isHorizontalSwipe = false;
+        }
+      }
+
+      if (isHorizontalSwipe) {
+        event.preventDefault(); // only prevent scroll when clearly swiping horizontally
+        updateOffset(touchStartOffset - dx);
+      }
+    };
+
+    const onTouchEnd = () => {
+      dragRef.current = false;
+      isHorizontalSwipe = null;
     };
 
     const onResize = () => {
@@ -106,7 +150,7 @@ export default function PortfolioShowcase() {
     };
 
     trackContainer.style.overflow = 'hidden';
-    trackContainer.style.touchAction = 'pan-x';
+    trackContainer.style.touchAction = 'pan-y'; // allow vertical page scroll; we handle horizontal ourselves
     trackContainer.style.cursor = 'grab';
 
     initializeSizes();
@@ -126,18 +170,28 @@ export default function PortfolioShowcase() {
 
     trackContainer.addEventListener('pointerdown', onPointerDown);
     trackContainer.addEventListener('pointermove', onPointerMove);
-    trackContainer.addEventListener('pointerup', endDrag);
-    trackContainer.addEventListener('pointerleave', endDrag);
-    trackContainer.addEventListener('pointercancel', endDrag);
+    trackContainer.addEventListener('pointerup', endPointerDrag);
+    trackContainer.addEventListener('pointerleave', endPointerDrag);
+    trackContainer.addEventListener('pointercancel', endPointerDrag);
+
+    // Touch listeners need passive:false so we can call preventDefault on horizontal swipes
+    trackContainer.addEventListener('touchstart', onTouchStart, { passive: true });
+    trackContainer.addEventListener('touchmove', onTouchMove, { passive: false });
+    trackContainer.addEventListener('touchend', onTouchEnd, { passive: true });
+    trackContainer.addEventListener('touchcancel', onTouchEnd, { passive: true });
 
     window.addEventListener('resize', onResize);
 
     return () => {
       trackContainer.removeEventListener('pointerdown', onPointerDown);
       trackContainer.removeEventListener('pointermove', onPointerMove);
-      trackContainer.removeEventListener('pointerup', endDrag);
-      trackContainer.removeEventListener('pointerleave', endDrag);
-      trackContainer.removeEventListener('pointercancel', endDrag);
+      trackContainer.removeEventListener('pointerup', endPointerDrag);
+      trackContainer.removeEventListener('pointerleave', endPointerDrag);
+      trackContainer.removeEventListener('pointercancel', endPointerDrag);
+      trackContainer.removeEventListener('touchstart', onTouchStart);
+      trackContainer.removeEventListener('touchmove', onTouchMove);
+      trackContainer.removeEventListener('touchend', onTouchEnd);
+      trackContainer.removeEventListener('touchcancel', onTouchEnd);
       window.removeEventListener('resize', onResize);
       window.cancelAnimationFrame(animationFrameId);
       trackContainer.classList.remove('dragging');

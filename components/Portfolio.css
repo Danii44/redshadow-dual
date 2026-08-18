@@ -187,7 +187,7 @@
   padding: 1rem 24px 2rem;
   position: relative;
   cursor: grab;
-  touch-action: pan-x;
+  touch-action: pan-y; /* vertical page scroll works; JS handles horizontal swipe */
 }
 
 .portfolio-track-container.dragging {

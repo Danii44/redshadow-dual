@@ -16,6 +16,7 @@ export function NavigationResponsive() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
@@ -28,11 +29,13 @@ export function NavigationResponsive() {
   useEffect(() => {
     setIsOpen(false);
     setIsDropdownOpen(false);
+    setMobileServicesOpen(false);
   }, [pathname]);
 
   const closeMenus = () => {
     setIsOpen(false);
     setIsDropdownOpen(false);
+    setMobileServicesOpen(false);
     if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
@@ -234,25 +237,47 @@ export function NavigationResponsive() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                 >
-                  <Link
-                    href={item.href}
-                    className={activeItem === item.label ? 'active' : ''}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                  {item.label === 'Services' && (
-                    <ul className="nav-mobile-sublist">
-                      {serviceMenu.map((service) => (
-                        <li key={service.slug}>
-                          <Link href={`/services/${service.slug}`} onClick={() => setIsOpen(false)}>{service.title}</Link>
+                  {item.label === 'Services' ? (
+                    <>
+                      {/* Accordion toggle button for Services */}
+                      <button
+                        className={`nav-mobile-services-toggle ${mobileServicesOpen ? 'active' : ''}`}
+                        onClick={() => setMobileServicesOpen((prev) => !prev)}
+                        aria-expanded={mobileServicesOpen}
+                      >
+                        <span>Services</span>
+                        <svg
+                          className="nav-mobile-chevron"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </button>
+                      <ul className={`nav-mobile-sublist ${mobileServicesOpen ? 'open' : ''}`}>
+                        {serviceMenu.map((service) => (
+                          <li key={service.slug}>
+                            <Link href={`/services/${service.slug}`} onClick={() => { setIsOpen(false); setMobileServicesOpen(false); }}>{service.title}</Link>
+                          </li>
+                        ))}
+                        <li className="divider" />
+                        <li>
+                          <Link href="/services" onClick={() => { setIsOpen(false); setMobileServicesOpen(false); }}>All Services</Link>
                         </li>
-                      ))}
-                      <li className="divider" />
-                      <li>
-                        <Link href="/services" onClick={() => setIsOpen(false)}>All Services</Link>
-                      </li>
-                    </ul>
+                      </ul>
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={activeItem === item.label ? 'active' : ''}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
                   )}
                 </motion.li>
               ))}
