@@ -1322,3 +1322,233 @@
   color: #5D4B8B !important;
   background: rgba(93, 75, 139, 0.06) !important;
 }
+
+/* ============================================================
+   MOBILE LIGHT-MODE OVERRIDES
+   Explicit fixes for sections that remain dark on mobile
+   in light mode. Scoped to max-width: 767px so desktop is
+   unaffected.
+   ============================================================ */
+
+/* ── FAQ Section ─────────────────────────────────────── */
+/* The section wrapper has a hardcoded dark bg — override it */
+:root:not(.dark) .faq-section,
+:root:not(.dark) section.border-t.border-\[rgba\(255\,255\,255\,0\.05\)\] {
+  background-color: #f4f1f9 !important;
+  background-image: none !important;
+}
+
+/* FAQ accordion items */
+:root:not(.dark) .faq-item,
+:root:not(.dark) div.border.rounded-2xl {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(93, 75, 139, 0.18) !important;
+}
+
+/* Open FAQ item */
+:root:not(.dark) div.border.rounded-2xl.bg-\[\#0a0f1a\] {
+  background-color: #ffffff !important;
+  border-color: rgba(93, 75, 139, 0.4) !important;
+  box-shadow: 0 8px 30px rgba(62, 50, 93, 0.1) !important;
+}
+
+/* FAQ answer text */
+:root:not(.dark) div.border.rounded-2xl .text-white\/60 {
+  color: rgba(30, 24, 48, 0.72) !important;
+}
+
+/* FAQ chevron icon container */
+:root:not(.dark) div.border.rounded-2xl .bg-\[rgba\(255\,255\,255\,0\.05\)\] {
+  background-color: rgba(93, 75, 139, 0.08) !important;
+}
+
+/* ── ProcessSection ── */
+:root:not(.dark) .process-section,
+:root:not(.dark) section.relative.w-full.py-32.bg-transparent.z-10 {
+  background: transparent !important;
+}
+
+/* Process timeline dot */
+:root:not(.dark) div.bg-\[\#0a0a0a\].rounded-full {
+  background-color: #ffffff !important;
+  border-color: rgba(93, 75, 139, 0.5) !important;
+  box-shadow: 0 0 12px rgba(93, 75, 139, 0.2) !important;
+}
+
+/* Process timeline dot inner gradient (keep vibrant) */
+:root:not(.dark) div.bg-\[\#0a0a0a\].rounded-full div.bg-gradient-to-r {
+  opacity: 1 !important;
+}
+
+/* Process card glass-strong background */
+:root:not(.dark) .process-step .glass-strong,
+:root:not(.dark) .space-y-12 .glass-strong {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(93, 75, 139, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(62, 50, 93, 0.08) !important;
+}
+
+/* Process timeline line */
+:root:not(.dark) div.bg-white\/10.absolute.left-0 {
+  background-color: rgba(93, 75, 139, 0.15) !important;
+}
+
+/* ── VideoSection ── */
+:root:not(.dark) .video-section {
+  background-color: #f4f1f9 !important;
+}
+
+/* ── ReviewsSection mobile ── */
+@media (max-width: 767px) {
+  :root:not(.dark) .reviews-section {
+    background: linear-gradient(
+      180deg,
+      rgba(237, 232, 246, 0.95) 0%,
+      #f4f1f9 100%
+    ) !important;
+  }
+
+  :root:not(.dark) .reviews-shell {
+    background: rgba(255, 255, 255, 0.88) !important;
+    border-color: rgba(93, 75, 139, 0.14) !important;
+    box-shadow: 0 12px 40px rgba(62, 50, 93, 0.1) !important;
+  }
+
+  :root:not(.dark) .review-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(93, 75, 139, 0.16) !important;
+    box-shadow: 0 12px 40px rgba(62, 50, 93, 0.1) !important;
+  }
+
+  /* Reviews stage: let height be auto on mobile */
+  .reviews-stage {
+    height: auto !important;
+    min-height: 420px;
+  }
+}
+
+/* ── AboutSection mobile ── */
+@media (max-width: 767px) {
+  :root:not(.dark) .about-section {
+    background: linear-gradient(180deg, #e8e3f4 0%, #ede8f6 100%) !important;
+  }
+
+  :root:not(.dark) .about-value-card {
+    background: rgba(255, 255, 255, 0.82) !important;
+    border-color: rgba(93, 75, 139, 0.18) !important;
+  }
+}
+
+/* ── ServicesSection mobile ── */
+@media (max-width: 767px) {
+  :root:not(.dark) .services-mobile-card {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(93, 75, 139, 0.15) !important;
+    box-shadow: 0 4px 16px rgba(62, 50, 93, 0.08) !important;
+  }
+
+  :root:not(.dark) .services-mobile-card-title {
+    color: #1e1830 !important;
+  }
+
+  :root:not(.dark) .services-mobile-card-desc {
+    color: rgba(30, 24, 48, 0.68) !important;
+  }
+}
+
+/* ── ContactSection mobile ── */
+@media (max-width: 767px) {
+  :root:not(.dark) .info-card {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(93, 75, 139, 0.18) !important;
+    box-shadow: 0 8px 28px rgba(62, 50, 93, 0.1) !important;
+  }
+
+  :root:not(.dark) .contact-form {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(93, 75, 139, 0.18) !important;
+    box-shadow: 0 8px 28px rgba(62, 50, 93, 0.1) !important;
+  }
+
+  :root:not(.dark) .glass-input {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(93, 75, 139, 0.2) !important;
+    color: #1e1830 !important;
+  }
+}
+
+/* ── FooterSection mobile ── */
+@media (max-width: 767px) {
+  :root:not(.dark) .footer-container {
+    background: rgba(255, 255, 255, 0.65) !important;
+    border-color: rgba(93, 75, 139, 0.14) !important;
+  }
+}
+
+/* ── Mobile VideoSection layout fix ── */
+@media (max-width: 767px) {
+  /* On mobile the title+button row should stack nicely */
+  .video-section .flex.flex-col.md\\:flex-row {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Reduce oversized py-32 vertical padding on mobile */
+  .video-section.py-32 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  /* FAQ section mobile padding */
+  section.border-t.border-\[rgba\(255\,255\,255\,0\.05\)\] {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  /* FAQ title size on mobile */
+  section.border-t h2.text-4xl {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* ProcessSection timeline — avoid horizontal clipping */
+  .relative.max-w-3xl.mx-auto.pl-8 {
+    padding-left: 2.5rem !important;
+  }
+}
+
+/* ── Ensure FAQ section bg is fully light on mobile too ── */
+@media (max-width: 767px) {
+  :root:not(.dark) section.bg-\[\#060912\] {
+    background-color: #f4f1f9 !important;
+    background-image: none !important;
+  }
+
+  /* All hardcoded dark section bgs */
+  :root:not(.dark) section[class*="bg-[#060912]"],
+  :root:not(.dark) section[class*="bg-[#060"] {
+    background-color: #f4f1f9 !important;
+    background-image: none !important;
+  }
+
+  /* FAQ accordion items must have white bg not transparent */
+  :root:not(.dark) div.bg-transparent.border.rounded-2xl {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  /* ProcessSection glass-strong cards */
+  :root:not(.dark) .space-y-12 .glass-strong {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid rgba(93, 75, 139, 0.15) !important;
+    box-shadow: 0 4px 20px rgba(62, 50, 93, 0.08) !important;
+  }
+
+  /* ProcessSection cards text */
+  :root:not(.dark) .space-y-12 h3 {
+    color: #1e1830 !important;
+  }
+
+  :root:not(.dark) .space-y-12 p {
+    color: rgba(30, 24, 48, 0.72) !important;
+  }
+}
