@@ -129,7 +129,7 @@ export function NavigationResponsive() {
                         </Link>
                       </li>
                     ))}
-                    <li className="divider" />
+                    <li role="separator" aria-hidden="true" className="divider" />
                     <li>
                       <Link href="/services" onClick={closeMenus}>
                         All Services
@@ -185,6 +185,15 @@ export function NavigationResponsive() {
 
         {/* Mobile: Theme toggle + Hamburger */}
         <div className="nav-mobile-controls">
+          <motion.a
+            href="/contact"
+            className="nav-cta-mobile"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Quote
+          </motion.a>
           <motion.button
             className="theme-toggle theme-toggle-mobile"
             onClick={toggleTheme}
@@ -266,7 +275,7 @@ export function NavigationResponsive() {
                             <Link href={`/services/${service.slug}`} onClick={() => { setIsOpen(false); setMobileServicesOpen(false); }}>{service.title}</Link>
                           </li>
                         ))}
-                        <li className="divider" />
+                        <li role="separator" aria-hidden="true" className="divider" />
                         <li>
                           <Link href="/services" onClick={() => { setIsOpen(false); setMobileServicesOpen(false); }}>All Services</Link>
                         </li>

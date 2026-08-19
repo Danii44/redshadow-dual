@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { findProject } from '@/lib/projects';
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.redshadowdesigns.com';
+
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -11,11 +13,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${project.title} | Red Shadow Designs`,
     description: project.description,
+    alternates: { canonical: `${BASE_URL}/portfolio/${project.id}` },
     openGraph: {
       title: project.title,
       description: project.description,
-      url: `https://www.redshadowdesigns.com/portfolio/${project.id}`,
-      images: project.image ? [{ url: project.image }] : undefined,
+      url: `${BASE_URL}/portfolio/${project.id}`,
+      images: project.image ? [{ url: `${BASE_URL}${project.image}` }] : undefined,
     },
   };
 }
@@ -33,8 +36,54 @@ export default async function ProjectPage({ params }: Props) {
     );
   }
 
+  const projectJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CreativeWork',
+        '@id': `${BASE_URL}/portfolio/${project.id}#project`,
+        name: project.title,
+        description: project.description,
+        creator: {
+          '@type': 'LocalBusiness',
+          name: 'Red Shadow Designs',
+          url: BASE_URL,
+        },
+        genre: project.category,
+        keywords: project.tools?.join(', '),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: BASE_URL,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Portfolio',
+            item: `${BASE_URL}/portfolio`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: project.title,
+            item: `${BASE_URL}/portfolio/${project.id}`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <main className="max-w-6xl mx-auto pt-28 pb-20 px-6 md:pt-32 page-detail-shell">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+      />
       <section className="relative overflow-hidden rounded-[2rem] page-detail-hero shadow-[0_35px_120px_rgba(0,0,0,0.35)] mb-16">
         {project.image && (
           <div className="relative h-[55vh] md:h-[65vh] overflow-hidden">

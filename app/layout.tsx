@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 import SessionLoader from '@/components/SessionLoader';
 import Chatbot from '@/components/Chatbot';
 
-const BASE_URL = 'https://www.redshadowdesigns.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.redshadowdesigns.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -18,23 +18,6 @@ export const metadata: Metadata = {
   },
   description:
     'Red Shadow Designs is a premium industrial design studio. We specialise in parametric CAD modeling, photorealistic 3D rendering, medical device modeling, product design, and engineering visualizations for clients worldwide.',
-  keywords: [
-    'CAD modeling Pakistan',
-    '3D rendering services',
-    'industrial design Islamabad',
-    'product design Pakistan',
-    'photorealistic rendering',
-    'SolidWorks modeling',
-    'Blender 3D rendering',
-    'mechanical engineering design',
-    'medical device CAD',
-    'Red Shadow Designs',
-    '3D product visualization',
-    'engineering design studio',
-    'parametric modeling',
-    'manufacturing-ready designs',
-    'DFM engineering',
-  ],
   authors: [{ name: 'Red Shadow Designs', url: BASE_URL }],
   creator: 'Red Shadow Designs',
   publisher: 'Red Shadow Designs',
@@ -45,12 +28,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: BASE_URL,
     siteName: 'Red Shadow Designs',
-    title: 'Red Shadow Designs | CAD Modeling & 3D Rendering Studio',
+    title: 'Red Shadow Designs | CAD Modeling, 3D Rendering & Industrial Design – Islamabad, Pakistan',
     description:
       'Premium industrial design studio. Expert CAD modeling, photorealistic 3D rendering, product design, and engineering visualization services.',
     images: [
       {
-        url: '/assets/logo.webp',
+        url: '/assets/og-hero.webp',
         width: 1200,
         height: 630,
         alt: 'Red Shadow Designs – CAD & 3D Rendering Studio',
@@ -58,7 +41,12 @@ export const metadata: Metadata = {
     ],
   },
 
-
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Red Shadow Designs | CAD Modeling, 3D Rendering & Industrial Design – Islamabad, Pakistan',
+    description: 'Premium industrial design studio. Expert CAD modeling, photorealistic 3D rendering, product design, and engineering visualization services.',
+    images: ['/assets/og-hero.webp'],
+  },
 
   // Canonical & alternates
   alternates: {
@@ -90,7 +78,7 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
+      '@type': 'LocalBusiness',
       '@id': `${BASE_URL}/#organization`,
       name: 'Red Shadow Designs',
       url: BASE_URL,
@@ -154,34 +142,50 @@ const structuredData = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'What CAD software does Red Shadow Designs use?',
+          name: 'What CAD software and tools does Red Shadow Designs use?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Red Shadow Designs uses industry-leading tools including SolidWorks, AutoCAD, Blender, Cinema 4D, and Unreal Engine to produce precision-engineered models and photorealistic renders.',
+            text: 'Red Shadow Designs uses industry-standard engineering tools including SolidWorks, PTC Creo, Autodesk Inventor, AutoCAD, Blender, Cinema 4D, KeyShot, and Unreal Engine 5 to produce precision-engineered 3D CAD models, manufacturing drawings, and photorealistic renders.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Where is Red Shadow Designs located?',
+          name: 'Where is Red Shadow Designs located and do you work with international clients?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Red Shadow Designs is based in Islamabad, Pakistan, and works with clients globally across North America, Europe, the Middle East, and Asia.',
+            text: 'Red Shadow Designs is based in Islamabad, Pakistan, and works with hardware startups, engineering firms, and product designers worldwide across the United States, Canada, the United Kingdom, Europe, the Middle East, and Australia.',
           },
         },
         {
           '@type': 'Question',
-          name: 'How long does a 3D rendering project take?',
+          name: 'What file formats are delivered for manufacturing and 3D printing?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Typical delivery for a 3D rendering project is 4–8 business days depending on complexity. Rush delivery options are available.',
+            text: 'We deliver neutral 3D CAD files (STEP, STP, IGES, Parasolid X_T), native CAD files (SolidWorks SLDPRT/SLDASM, Inventor), 3D printing meshes (STL, OBJ, 3MF), and 2D engineering manufacturing drawings with ASME Y14.5 GD&T (PDF, DWG, DXF).',
           },
         },
         {
           '@type': 'Question',
-          name: 'Can Red Shadow Designs produce manufacturing-ready CAD files?',
+          name: 'Can Red Shadow Designs produce manufacturing-ready (DFM) CAD files?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. All CAD assemblies are DFM-validated and delivered as production-ready STEP and STL files compatible with CNC machining and 3D printing.',
+            text: 'Yes. All CAD models and assemblies are validated for Design for Manufacturing (DFM), including draft angle analysis, uniform wall thickness checks, rib/boss design for injection molding, CNC machining tool access, and sheet metal bend calculations.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Do you sign Non-Disclosure Agreements (NDAs) to protect intellectual property?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. We sign mutual NDAs prior to receiving confidential project files. Full, exclusive intellectual property ownership transfers 100% to the client upon project completion.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How long does a typical CAD modeling or 3D rendering project take?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Standard delivery for parametric CAD models and 3D product renders is 4–8 business days depending on complexity. Expedited rush turnaround (24–48 hours) is also available.',
           },
         },
       ],

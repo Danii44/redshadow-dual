@@ -188,15 +188,6 @@ export default function AboutPageClient() {
                       </span>
                     ))}
                   </div>
-                  <a
-                    href="https://www.fiverr.com/daniyalahmad7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 px-6 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-[#5D4B8B] to-[#3E325D] hover:shadow-[0_0_30px_rgba(93,75,139,0.4)] transition-all duration-300"
-                  >
-                    <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-5 w-5" />
-                    View Fiverr Profile
-                  </a>
                 </div>
               </div>
             </div>

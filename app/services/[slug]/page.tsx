@@ -3,7 +3,7 @@ import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { getServiceBySlug, serviceSlugs, ServiceData } from '../seoServices';
 
-const BASE_URL = 'https://www.redshadowdesigns.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.redshadowdesigns.com';
 
 export function generateStaticParams() {
   return serviceSlugs.map((slug) => ({ slug }));
@@ -76,9 +76,78 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     );
   }
 
+  // Structured Data for AEO & GEO
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${BASE_URL}/services/${slug}#service`,
+        name: service.title,
+        description: service.description,
+        provider: {
+          '@type': 'LocalBusiness',
+          name: 'Red Shadow Designs',
+          url: BASE_URL,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Islamabad',
+            addressCountry: 'PK',
+          },
+        },
+        areaServed: 'Worldwide',
+        serviceType: service.title,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: BASE_URL,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Services',
+            item: `${BASE_URL}/services`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: service.title,
+            item: `${BASE_URL}/services/${slug}`,
+          },
+        ],
+      },
+      ...(service.faq && service.faq.length > 0
+        ? [
+            {
+              '@type': 'FAQPage',
+              mainEntity: service.faq.map((item) => ({
+                '@type': 'Question',
+                name: item.question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: item.answer,
+                },
+              })),
+            },
+          ]
+        : []),
+    ],
+  };
+
   return (
     <div className="page-detail-shell min-h-screen pb-24">
-      {/* pt-[100px] clears the fixed nav (82px height + 1.1rem top offset) on all screen sizes */}
+      {/* Structured data injection for AEO / GEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+
+      {/* Hero section */}
       <div className="page-detail-hero relative w-full h-[60vh] md:h-[75vh] overflow-hidden pt-[100px]">
         <img
           src={service.heroImage}

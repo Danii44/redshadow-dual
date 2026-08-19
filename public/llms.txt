@@ -1,0 +1,41 @@
+# Red Shadow Designs
+> Premium CAD modeling, photorealistic 3D rendering, medical device modeling, and Design for Manufacturing (DFM) engineering studio based in Islamabad, Pakistan. Serving hardware startups, industrial designers, and engineering teams worldwide.
+
+## Studio Overview
+- Location: Islamabad, Pakistan (Serving clients globally across North America, Europe, Middle East, and Asia)
+- Email: hello@redshadowdesigns.com
+- Telephone / WhatsApp: +92 333 891 7021
+- Website: https://www.redshadowdesigns.com
+- Portfolio: https://www.redshadowdesigns.com/portfolio
+
+## Core Engineering & Design Services
+- Parametric CAD Modeling: Precision 3D CAD modeling in SolidWorks, PTC Creo, and Autodesk Inventor with ASME Y14.5 GD&T standards and ISO 2768 tolerances (up to ±0.01mm).
+- Design for Manufacturing (DFM): Manufacturing-ready CAD optimization for CNC machining, plastic injection molding (draft angle analysis, uniform wall thickness, rib design, sink mark prevention), sheet metal fabrication, and additive manufacturing.
+- Photorealistic 3D Rendering: Studio lighting, materials & textures, 4K/8K visual assets created using Blender, Cinema 4D, Unreal Engine, and KeyShot for investor decks, marketing, and e-commerce.
+- Medical Device CAD Modeling: ISO 13485-aligned engineering design for ergonomic surgical tools, diagnostic equipment casings, and wearable healthcare devices.
+- 3D Printing & Rapid Prototyping: Watertight STL, OBJ, and 3MF mesh preparation with wall thickness analysis and tolerance checks for FDM, SLA, and SLS printing.
+- Mechanism & Exploded 3D Animation: Dynamic motion simulation, exploded assembly views, and technical demonstration videos.
+
+## Deliverable File Formats
+- 3D CAD Neutral: STEP (.step, .stp), IGES (.iges, .igs), Parasolid (.x_t, .x_b)
+- Native CAD: SolidWorks (.sldprt, .sldasm), Autodesk Inventor (.ipt, .iam), Blender (.blend)
+- 3D Printing / Polygon: STL (.stl), OBJ (.obj), 3MF (.3mf), FBX (.fbx), GLTF / GLB (.glb)
+- 2D Manufacturing Drawings: PDF engineering blueprints with GD&T, DWG (.dwg), DXF (.dxf)
+- Renderings & Animation: High-res PNG (transparent background), JPG, TIFF, 4K MP4 (H.264 / ProRes)
+
+## Turnaround & Pricing
+- Turnaround: 4–8 business days for standard CAD models & 3D renders. Expedited 24–48 hour turnaround available for critical deadlines.
+- Pricing: Fixed per-project quote or hourly consulting. Free 24-hour design review and quote estimation.
+- Revisions & Guarantee: Standard revisions included with dimensional accuracy guarantee.
+- Confidentiality: Strict mutual Non-Disclosure Agreements (NDAs) signed prior to project kickoff. Full IP ownership transferred to client upon final delivery.
+
+## Key URLs
+- Home: https://www.redshadowdesigns.com
+- About: https://www.redshadowdesigns.com/about
+- Services: https://www.redshadowdesigns.com/services
+- CAD Design: https://www.redshadowdesigns.com/services/cad-design
+- Product Visualization Renders: https://www.redshadowdesigns.com/services/product-visualization-renders
+- Design for Manufacturing: https://www.redshadowdesigns.com/services/design-for-manufacturing
+- Mechanical Engineering: https://www.redshadowdesigns.com/services/mechanical-engineering
+- Portfolio: https://www.redshadowdesigns.com/portfolio
+- Contact: https://www.redshadowdesigns.com/contact

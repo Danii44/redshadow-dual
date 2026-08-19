@@ -157,11 +157,8 @@ export function ContactEnhanced() {
               </div>
 
               <div className="social-icons">
-                <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr">
-                  <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-4 w-4" />
-                </a>
-                <a href="https://www.linkedin.com/company/red-shadow-designs/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">in</a>
-                <a href="https://www.behance.net/redshadowdesigns" target="_blank" rel="noopener noreferrer" className="social-icon" title="Behance">Be</a>
+                <a href="https://www.linkedin.com/company/red-shadow-designs/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn" aria-label="LinkedIn">in</a>
+                <a href="https://www.behance.net/redshadowdesigns" target="_blank" rel="noopener noreferrer" className="social-icon" title="Behance" aria-label="Behance">Be</a>
               </div>
             </div>
           </motion.div>
@@ -183,7 +180,8 @@ export function ContactEnhanced() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="contact-form glass-strong">
+              <form onSubmit={handleSubmit} className="contact-form glass-strong" data-netlify-honeypot="bot-field">
+                <input name="bot-field" style={{ display: 'none' }} />
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="name">Name</label>

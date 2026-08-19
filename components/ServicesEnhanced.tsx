@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { servicesData } from '@/app/services/seoServices';
@@ -38,7 +38,7 @@ function getAllServiceImages(service: Service) {
   const uniqueOtherImages = [
     ...otherImages.slice(offset),
     ...otherImages.slice(0, offset)
-  ].slice(0, 4);
+  ].slice(0, Math.max(4, 3 - 1));
 
   return [baseImage, ...uniqueOtherImages].filter(Boolean);
 }
@@ -47,10 +47,15 @@ export default function ServicesEnhanced() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [absoluteLoopIndex, setAbsoluteLoopIndex] = useState(0);
 
+  const serviceImages = useMemo(
+    () => servicesData.map((s) => getAllServiceImages(s as Service)),
+    []
+  );
+
   // Interval for fast looping images
   useEffect(() => {
+    setAbsoluteLoopIndex(0);
     if (activeIndex === null) {
-      setAbsoluteLoopIndex(0);
       return;
     }
 
@@ -69,7 +74,7 @@ export default function ServicesEnhanced() {
         className="services-header-panel"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
+        transition={{ duration: 0.3, ease: 'easeIn' }}
         viewport={{ once: true }}
       >
         <span className="services-pill">Our Services</span>
@@ -85,7 +90,7 @@ export default function ServicesEnhanced() {
           {(servicesData as Service[]).map((service, index) => {
             const isActive = activeIndex === index;
             const isDimmed = activeIndex !== null && !isActive;
-            const images = getAllServiceImages(service);
+            const images = serviceImages[index];
 
             const visibleItems = [
               absoluteLoopIndex - 2,
@@ -106,9 +111,9 @@ export default function ServicesEnhanced() {
                   {isActive && (
                     <motion.div
                       className="services-active-desc"
-                      initial={{ opacity: 0, x: -10, y: '-50%' }}
-                      animate={{ opacity: 1, x: 0, y: '-50%' }}
-                      exit={{ opacity: 0, x: -10, y: '-50%' }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -10 }}
                       transition={{ duration: 0.3 }}
                     >
                       <p>{service.description}</p>
@@ -128,7 +133,7 @@ export default function ServicesEnhanced() {
                         exit={{ opacity: 0, scale: 0.8, y: 10 }}
                         transition={{ duration: 0.25, type: 'spring', stiffness: 200 }}
                       >
-                        {actionLabels[index] ?? 'EXPLORE IT'}
+                        {actionLabels[index]}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -139,12 +144,12 @@ export default function ServicesEnhanced() {
                   {isActive && (
                     <motion.div
                       className="services-stack-card-container"
-                      initial={{ opacity: 0, x: 40, y: '-50%' }}
-                      animate={{ opacity: 1, x: 0, y: '-50%' }}
-                      exit={{ opacity: 0, x: 20, y: '-50%' }}
+                      initial={{ opacity: 0, x: 40 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.5, type: 'spring', bounce: 0.3 }}
                     >
-                      <AnimatePresence>
+                      <AnimatePresence mode="popLayout">
                         {visibleItems.map((itemIndex) => {
                           const imageIndex = itemIndex % images.length;
                           const currentImage = images[imageIndex];
@@ -182,7 +187,7 @@ export default function ServicesEnhanced() {
       {/* MOBILE — Static card grid: image → title → description */}
       <div className="services-mobile-cards">
         {(servicesData as Service[]).map((service, index) => {
-          const images = getAllServiceImages(service);
+          const images = serviceImages[index];
           const heroImage = images[0];
           return (
             <motion.div
@@ -197,9 +202,11 @@ export default function ServicesEnhanced() {
                 {/* Image */}
                 <div className="services-mobile-card-img">
                   <img src={heroImage} alt={service.title} />
-                  <span className="services-mobile-card-badge">
-                    {actionLabels[index] ?? 'EXPLORE IT'}
-                  </span>
+                  {actionLabels[index] ? (
+                    <span className="services-mobile-card-badge">
+                      {actionLabels[index]}
+                    </span>
+                  ) : null}
                 </div>
                 {/* Title */}
                 <h3 className="services-mobile-card-title">{service.title}</h3>

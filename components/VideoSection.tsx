@@ -98,7 +98,8 @@ export default function VideoSection() {
             ref={videoRef}
             src="/assets/video/3d-cad-design.mp4"
             playsInline
-            preload="metadata"
+            preload="none"
+            poster="/assets/images/video-thumbnail.webp"
             muted
             className={`w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
             onPlay={() => setIsLoaded(true)}
@@ -106,11 +107,7 @@ export default function VideoSection() {
             onPause={() => setIsLoaded(true)}
           />
 
-          {!isLoaded && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white/90 text-sm tracking-[0.18em] uppercase">Loading video...</span>
-            </div>
-          )}
+
         </div>
       </div>
     </section>

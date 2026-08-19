@@ -1,4 +1,4 @@
-const BASE_URL = 'https://www.redshadowdesigns.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.redshadowdesigns.com';
 
 export async function GET() {
   return new Response(

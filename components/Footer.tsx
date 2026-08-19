@@ -86,9 +86,7 @@ export function Footer() {
             </ul>
             <h4 className="mt-4">Follow Us</h4>
             <div className="social-icons">
-              <a href="https://www.fiverr.com/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr" aria-label="Fiverr profile">
-                <img src="/assets/images/fiverr.svg" alt="Fiverr" className="h-4 w-4" />
-              </a>
+
               <a href="https://www.linkedin.com/company/red-shadow-designs/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn" aria-label="LinkedIn company page">in</a>
               <a href="https://www.behance.net/redshadowdesigns" target="_blank" rel="noopener noreferrer" className="social-icon" title="Behance" aria-label="Behance portfolio">Be</a>
             </div>

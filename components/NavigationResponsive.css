@@ -652,3 +652,28 @@
 .nav-responsive.theme-light .nav-mobile-sublist li.divider {
   background: rgba(93, 75, 139, 0.15);
 }
+
+.nav-cta-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.8rem;
+  background: transparent;
+  border: 1.5px solid #00c8ff;
+  color: #00c8ff;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-responsive.theme-light .nav-cta-mobile {
+  border-color: #5D4B8B;
+  color: #5D4B8B;
+}
+
+@media (min-width: 768px) {
+  .nav-cta-mobile {
+    display: none;
+  }
+}

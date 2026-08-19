@@ -2,14 +2,15 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MessageSquare, Send, Minus, RefreshCcw } from 'lucide-react';
-import { chatbotKnowledge, fallbackResponse } from '@/lib/chatbotKnowledge';
+import { X, MessageSquare, Send, Minus, RefreshCcw, Sparkles } from 'lucide-react';
+import { chatbotKnowledge, fallbackResponse, Intent } from '@/lib/chatbotKnowledge';
 
 type Message = {
   id: string;
   sender: 'user' | 'bot';
   text: string;
   quickReplies?: string[];
+  action?: Intent['action'];
 };
 
 type IntakeData = {
@@ -20,6 +21,81 @@ type IntakeData = {
   deadline?: string;
   filesOption?: string;
 };
+
+// Formats simple bold **text** and bullet lines in bot messages
+function renderFormattedMessage(text: string) {
+  const lines = text.split('\n');
+  return lines.map((line, lineIdx) => {
+    // Split bold syntax **bold**
+    const parts = line.split(/(\*\*[^*]+\*\*)/g);
+    return (
+      <span key={lineIdx} className="block leading-relaxed">
+        {parts.map((part, partIdx) => {
+          if (part.startsWith('**') && part.endsWith('**')) {
+            return (
+              <strong key={partIdx} className="font-semibold text-black dark:text-white">
+                {part.slice(2, -2)}
+              </strong>
+            );
+          }
+          return part;
+        })}
+      </span>
+    );
+  });
+}
+
+// Stop words to ignore during matching for better AEO question matching accuracy
+const STOP_WORDS = new Set([
+  'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
+  'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'was', 'were',
+  'will', 'with', 'what', 'which', 'who', 'how', 'do', 'does', 'can', 'you',
+  'i', 'we', 'they', 'your', 'my', 'our', 'me', 'please', 'tell', 'about'
+]);
+
+function findBestMatch(userInput: string): Intent | null {
+  const cleanInput = userInput.toLowerCase().trim();
+  const tokens = cleanInput
+    .replace(/[^\w\s]/g, ' ')
+    .split(/\s+/)
+    .filter((t) => t.length > 1 && !STOP_WORDS.has(t));
+
+  let bestMatch: Intent | null = null;
+  let highestScore = 0;
+
+  for (const item of chatbotKnowledge) {
+    let score = 0;
+
+    for (const keyword of item.keywords) {
+      const lowerKw = keyword.toLowerCase();
+
+      // Exact phrase match in input gives huge boost
+      if (cleanInput === lowerKw) {
+        score += 20;
+      } else if (cleanInput.includes(lowerKw)) {
+        score += 10 + lowerKw.length * 0.5;
+      } else {
+        // Token level matching
+        const kwTokens = lowerKw.replace(/[^\w\s]/g, ' ').split(/\s+/).filter(Boolean);
+        for (const token of tokens) {
+          if (kwTokens.includes(token)) {
+            score += 3;
+          } else if (kwTokens.some(kwt => kwt.includes(token) || token.includes(kwt))) {
+            score += 1.5;
+          }
+        }
+      }
+    }
+
+    if (score > highestScore) {
+      highestScore = score;
+      bestMatch = item;
+    }
+  }
+
+  // Require a minimum confidence score
+  return highestScore >= 3 ? bestMatch : null;
+}
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,20 +126,20 @@ export default function Chatbot() {
     if (isOpen && messages.length === 0) {
       const greeting = chatbotKnowledge.find((k) => k.intent === 'greeting');
       if (greeting) {
-        addBotMessage(greeting.response, greeting.quickReplies);
+        addBotMessage(greeting.response, greeting.quickReplies, greeting.action);
       }
     }
   }, [isOpen]);
 
-  const addBotMessage = (text: string, quickReplies?: string[]) => {
+  const addBotMessage = (text: string, quickReplies?: string[], action?: Intent['action']) => {
     setIsTyping(true);
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
-        { id: Date.now().toString(), sender: 'bot', text, quickReplies },
+        { id: Date.now().toString(), sender: 'bot', text, quickReplies, action },
       ]);
       setIsTyping(false);
-    }, 600); // simulated typing delay
+    }, 450);
   };
 
   const addUserMessage = (text: string) => {
@@ -80,13 +156,13 @@ export default function Chatbot() {
     setIntakeData({ name: '', service: '', description: '', contact: '' });
     const greeting = chatbotKnowledge.find((k) => k.intent === 'greeting');
     if (greeting) {
-      addBotMessage(greeting.response, greeting.quickReplies);
+      addBotMessage(greeting.response, greeting.quickReplies, greeting.action);
     }
   };
 
   const handleSend = (text: string) => {
     if (!text.trim()) return;
-    
+
     addUserMessage(text);
     setInputValue('');
 
@@ -95,37 +171,17 @@ export default function Chatbot() {
       return;
     }
 
-    // Match Intent
-    const lowerText = text.toLowerCase();
-    let bestMatch = null;
-    let maxMatches = 0;
+    // Match Intent with AEO-optimized token matching
+    const match = findBestMatch(text);
 
-    for (const item of chatbotKnowledge) {
-      let matches = 0;
-      for (const keyword of item.keywords) {
-        // Simple word boundary or exact match
-        if (lowerText.includes(keyword.toLowerCase())) {
-          matches++;
-        }
-      }
-      if (matches > maxMatches) {
-        maxMatches = matches;
-        bestMatch = item;
-      }
-    }
-
-    if (bestMatch && maxMatches > 0) {
-      if (bestMatch.action === 'project_intake') {
+    if (match) {
+      if (match.action === 'project_intake') {
         startProjectIntake();
-      } else if (bestMatch.action === 'portfolio') {
-        addBotMessage(bestMatch.response, ['View Portfolio']);
-      } else if (bestMatch.action === 'contact') {
-        addBotMessage(bestMatch.response, ['Contact Us']);
-      } else if (bestMatch.action === 'whatsapp') {
+      } else if (match.action === 'whatsapp') {
         window.open('https://wa.me/923338917021?text=Hi%20Red%20Shadow%20Designs,%20I%20would%20like%20to%20discuss%20a%20project.', '_blank');
-        addBotMessage("I've opened WhatsApp for you!");
+        addBotMessage(match.response, match.quickReplies || ["Start a Project", "Contact Us"]);
       } else {
-        addBotMessage(bestMatch.response, bestMatch.quickReplies);
+        addBotMessage(match.response, match.quickReplies, match.action);
       }
     } else {
       addBotMessage(fallbackResponse.response, fallbackResponse.quickReplies);
@@ -135,7 +191,7 @@ export default function Chatbot() {
   const startProjectIntake = () => {
     setIntakeMode(true);
     setIntakeStep(1);
-    addBotMessage("Let's get started. What is your name?");
+    addBotMessage("Let's get started on your project. What is your name?");
   };
 
   const handleIntakeStep = (text: string) => {
@@ -144,48 +200,63 @@ export default function Chatbot() {
         setIntakeData((prev) => ({ ...prev, name: text }));
         setIntakeStep(2);
         addBotMessage(`Thanks, ${text}. What service are you interested in?`, [
-          "CAD / Product Design", "Mechanical Engineering", "DFM", 
-          "3D Printing", "Prototyping", "Rendering", "Animation", "Other"
+          "CAD / Product Design",
+          "DFM & Manufacturing",
+          "Medical Device CAD",
+          "3D Printing / Prototyping",
+          "Photorealistic Rendering",
+          "3D Mechanism Animation",
+          "Reverse Engineering",
+          "Other"
         ]);
         break;
       case 2:
         setIntakeData((prev) => ({ ...prev, service: text }));
         setIntakeStep(3);
-        addBotMessage("Tell us briefly about your project and what you need.");
+        addBotMessage("Tell us briefly about your product concept or requirements.");
         break;
       case 3:
         setIntakeData((prev) => ({ ...prev, description: text }));
         setIntakeStep(4);
-        addBotMessage("Do you have a sketch, CAD file, image, PDF or other project files?", [
-          "I'll upload them later via Email/WhatsApp", "I don't have files yet"
+        addBotMessage("Do you have reference sketches, 3D CAD files, or technical drawings?", [
+          "I will share via Email / WhatsApp",
+          "I need designs created from scratch",
+          "I have rough sketches / photos"
         ]);
         break;
       case 4:
         setIntakeData((prev) => ({ ...prev, filesOption: text }));
         setIntakeStep(5);
-        addBotMessage("What is the best way to contact you? (Email or Phone)");
+        addBotMessage("What is the best email or phone number to send your quotation and project review?");
         break;
       case 5:
         setIntakeData((prev) => ({ ...prev, contact: text }));
         setIntakeStep(6);
-        addBotMessage("Do you have a target deadline?", [
-          "ASAP", "1 week", "1–2 weeks", "2–4 weeks", "Flexible", "Not sure"
+        addBotMessage("Do you have a target completion deadline?", [
+          "Urgent (24–48 hours)",
+          "1 week",
+          "1–2 weeks",
+          "2–4 weeks",
+          "Flexible"
         ]);
         break;
       case 6:
         setIntakeData((prev) => ({ ...prev, deadline: text }));
         setIntakeStep(7);
-        const summary = `**Project Summary**\nName: ${intakeData.name}\nService: ${intakeData.service}\nProject: ${intakeData.description}\nFiles: ${intakeData.filesOption}\nContact: ${intakeData.contact}\nDeadline: ${text}`;
-        addBotMessage(summary + "\n\nPlease check your information before submitting.", ["Submit Inquiry", "Edit"]);
+        const summary = `**Project Inquiry Review**\n• Name: ${intakeData.name}\n• Service: ${intakeData.service}\n• Description: ${intakeData.description}\n• Files: ${intakeData.filesOption}\n• Contact: ${intakeData.contact}\n• Target Deadline: ${text}`;
+        addBotMessage(summary + "\n\nWould you like to submit this project inquiry for a free 24-hour review?", [
+          "Submit Inquiry",
+          "Edit Details"
+        ]);
         break;
       case 7:
-        if (text.toLowerCase() === 'submit inquiry') {
+        if (text.toLowerCase().includes('submit')) {
           submitInquiry();
-        } else if (text.toLowerCase() === 'edit') {
+        } else if (text.toLowerCase().includes('edit')) {
           setIntakeStep(1);
           addBotMessage("Let's start over. What is your name?");
         } else {
-          addBotMessage("Please choose an option.", ["Submit Inquiry", "Edit"]);
+          addBotMessage("Please choose an option to continue:", ["Submit Inquiry", "Edit Details"]);
         }
         break;
       default:
@@ -195,15 +266,15 @@ export default function Chatbot() {
 
   const submitInquiry = async () => {
     setSubmitting(true);
-    addBotMessage("Submitting your inquiry...");
+    addBotMessage("Submitting your inquiry to our engineering team...");
 
     const payload = {
       access_key: "96bf085a-5410-4a8f-9048-3533423c4735",
       name: intakeData.name,
-      email: intakeData.contact, // Using contact field as email/identifier
-      subject: `[Chatbot Project Inquiry] ${intakeData.service}`,
-      message: `Service: ${intakeData.service}\nProject Description: ${intakeData.description}\nFiles Option: ${intakeData.filesOption}\nDeadline: ${intakeData.deadline}`,
-      from_name: "Red Shadow Chatbot"
+      email: intakeData.contact,
+      subject: `[Chatbot Project Inquiry] ${intakeData.service} - ${intakeData.name}`,
+      message: `Service: ${intakeData.service}\nName: ${intakeData.name}\nContact: ${intakeData.contact}\nProject Description: ${intakeData.description}\nFiles Option: ${intakeData.filesOption}\nDeadline: ${intakeData.deadline}`,
+      from_name: "Red Shadow AI Assistant"
     };
 
     try {
@@ -216,16 +287,25 @@ export default function Chatbot() {
         body: JSON.stringify(payload)
       });
       const data = await res.json();
-      
+
       if (data.success) {
-        addBotMessage("Your inquiry has been submitted successfully! Our team will contact you soon. If you have files to share, please email them to hello@redshadowdesigns.com or use WhatsApp.");
+        addBotMessage(
+          "✓ Your inquiry has been submitted successfully!\n\nOur engineering team will review your requirements and respond within 24 hours. If you have files to attach, feel free to send them directly to hello@redshadowdesigns.com or via WhatsApp.",
+          ["WhatsApp Us", "View Portfolio", "Explore Services"]
+        );
         setIntakeMode(false);
         setIntakeStep(0);
       } else {
-        addBotMessage("There was an issue submitting your inquiry. Please try contacting us directly via our Contact page.", ["Contact Us"]);
+        addBotMessage(
+          "We encountered a temporary issue sending your form. You can reach us directly via our Contact page or WhatsApp.",
+          ["Contact Us", "WhatsApp Us"]
+        );
       }
-    } catch (error) {
-      addBotMessage("An error occurred. Please try contacting us directly.", ["Contact Us"]);
+    } catch {
+      addBotMessage(
+        "Network error. Please reach out to us directly via WhatsApp or our Contact page.",
+        ["Contact Us", "WhatsApp Us"]
+      );
     } finally {
       setSubmitting(false);
     }
@@ -239,6 +319,8 @@ export default function Chatbot() {
       window.location.href = '/portfolio';
     } else if (reply === "Contact Us") {
       window.location.href = '/contact';
+    } else if (reply === "Explore Services") {
+      window.location.href = '/services';
     } else if (reply === "WhatsApp Us") {
       window.open('https://wa.me/923338917021?text=Hi%20Red%20Shadow%20Designs,%20I%20would%20like%20to%20discuss%20a%20project.', '_blank');
     } else {
@@ -256,9 +338,16 @@ export default function Chatbot() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => { setIsOpen(true); setIsMinimized(false); }}
-            className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-lg dark:shadow-[0_0_20px_rgba(255,255,255,0.1)] text-black dark:text-white hover:bg-white dark:hover:bg-black/60 transition-all duration-300 group"
+            aria-label="Open AI Design Assistant"
+            className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-white/90 dark:bg-black/70 backdrop-blur-md border border-black/15 dark:border-white/15 shadow-xl text-black dark:text-white hover:scale-105 transition-all duration-300 group"
           >
-            <MessageSquare className="w-6 h-6 group-hover:scale-110 transition-transform" />
+            <div className="relative">
+              <MessageSquare className="w-6 h-6" />
+              <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00d4ff] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00d4ff]"></span>
+              </span>
+            </div>
           </motion.button>
         )}
       </AnimatePresence>
@@ -267,36 +356,56 @@ export default function Chatbot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0, 
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{
+              opacity: 1,
+              y: 0,
               scale: 1,
-              height: isMinimized ? 'auto' : '500px',
+              height: isMinimized ? 'auto' : '520px',
             }}
-            exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className={`fixed bottom-6 right-6 z-50 w-[350px] max-w-[calc(100vw-32px)] bg-white/90 dark:bg-black/60 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ${isMinimized ? 'h-auto' : 'h-[500px] max-h-[calc(100vh-100px)]'}`}
+            exit={{ opacity: 0, y: 30, scale: 0.95 }}
+            className={`fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-32px)] bg-white/95 dark:bg-[#0b0f19]/95 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-200 ${
+              isMinimized ? 'h-auto' : 'h-[520px] max-h-[calc(100vh-100px)]'
+            }`}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5">
+            <div className="flex items-center justify-between p-3.5 border-b border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.03]">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-black/10 dark:bg-white/10 flex items-center justify-center">
-                  <img src="/assets/logo.webp" alt="RSD" className="w-5 h-5 object-contain" />
+                <div className="relative w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center p-1 border border-black/5 dark:border-white/5">
+                  <img src="/assets/logo.webp" alt="Red Shadow Designs" className="w-5 h-5 object-contain" />
                 </div>
                 <div>
-                  <h3 className="text-black dark:text-white font-medium text-sm">Red Shadow Assistant</h3>
-                  <p className="text-black/50 dark:text-white/50 text-xs">Project & Design Support</p>
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="text-black dark:text-white font-medium text-sm leading-tight">Red Shadow Assistant</h3>
+                    <Sparkles className="w-3.5 h-3.5 text-[#00d4ff]" />
+                  </div>
+                  <p className="text-black/50 dark:text-white/50 text-[11px] leading-tight">AEO & Engineering Knowledge</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <button onClick={resetChat} className="p-1.5 rounded-md hover:bg-black/10 dark:hover:bg-white/10 text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-colors" title="Reset Chat">
-                  <RefreshCcw className="w-4 h-4" />
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={resetChat}
+                  className="p-1.5 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors"
+                  title="Reset conversation"
+                  aria-label="Reset conversation"
+                >
+                  <RefreshCcw className="w-3.5 h-3.5" />
                 </button>
-                <button onClick={() => setIsMinimized(!isMinimized)} className="p-1.5 rounded-md hover:bg-black/10 dark:hover:bg-white/10 text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-colors" title="Minimize">
-                  <Minus className="w-4 h-4" />
+                <button
+                  onClick={() => setIsMinimized(!isMinimized)}
+                  className="p-1.5 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors"
+                  title={isMinimized ? "Expand" : "Minimize"}
+                  aria-label={isMinimized ? "Expand" : "Minimize"}
+                >
+                  <Minus className="w-3.5 h-3.5" />
                 </button>
-                <button onClick={() => setIsOpen(false)} className="p-1.5 rounded-md hover:bg-black/10 dark:hover:bg-white/10 text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-colors" title="Close">
-                  <X className="w-4 h-4" />
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors"
+                  title="Close chat"
+                  aria-label="Close chat"
+                >
+                  <X className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
@@ -304,27 +413,27 @@ export default function Chatbot() {
             {/* Messages Area */}
             {!isMinimized && (
               <>
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                <div className="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs sm:text-sm scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
                   {messages.map((msg) => (
                     <div key={msg.id} className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
-                      <div 
-                        className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm whitespace-pre-wrap ${
-                          msg.sender === 'user' 
-                            ? 'bg-primary text-primary-foreground rounded-br-sm shadow-sm' 
-                            : 'bg-black/5 dark:bg-white/10 text-black/90 dark:text-white/90 border border-black/5 dark:border-white/5 rounded-bl-sm'
+                      <div
+                        className={`max-w-[88%] rounded-2xl px-3.5 py-2.5 ${
+                          msg.sender === 'user'
+                            ? 'bg-gradient-to-r from-[#00d4ff] to-[#7c3aed] text-white rounded-br-sm shadow-md font-medium'
+                            : 'bg-black/[0.04] dark:bg-white/[0.08] text-black/90 dark:text-white/90 border border-black/5 dark:border-white/5 rounded-bl-sm space-y-1'
                         }`}
                       >
-                        {msg.text}
+                        {renderFormattedMessage(msg.text)}
                       </div>
-                      
+
                       {/* Quick Replies */}
                       {msg.quickReplies && msg.quickReplies.length > 0 && msg.sender === 'bot' && (
-                        <div className="flex flex-wrap gap-2 mt-3 w-full">
+                        <div className="flex flex-wrap gap-1.5 mt-2.5 max-w-full">
                           {msg.quickReplies.map((reply, i) => (
                             <button
                               key={i}
                               onClick={() => handleQuickReply(reply)}
-                              className="px-3 py-1.5 text-xs rounded-full bg-transparent border border-black/20 dark:border-white/20 text-black/80 dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10 hover:border-black/40 dark:hover:border-white/40 transition-colors"
+                              className="px-2.5 py-1 text-[11px] font-medium rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 text-black/80 dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/20 hover:border-black/30 dark:hover:border-white/30 transition-all hover:scale-[1.02]"
                             >
                               {reply}
                             </button>
@@ -333,13 +442,13 @@ export default function Chatbot() {
                       )}
                     </div>
                   ))}
-                  
+
                   {isTyping && (
                     <div className="flex items-start">
-                      <div className="bg-black/5 dark:bg-white/10 border border-black/5 dark:border-white/5 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5">
-                        <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} className="w-1.5 h-1.5 bg-black/50 dark:bg-white/50 rounded-full" />
-                        <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-1.5 h-1.5 bg-black/50 dark:bg-white/50 rounded-full" />
-                        <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-1.5 h-1.5 bg-black/50 dark:bg-white/50 rounded-full" />
+                      <div className="bg-black/5 dark:bg-white/10 border border-black/5 dark:border-white/5 rounded-2xl rounded-bl-sm px-3.5 py-2.5 flex gap-1.5 items-center">
+                        <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} className="w-1.5 h-1.5 bg-[#00d4ff] rounded-full" />
+                        <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-1.5 h-1.5 bg-[#7c3aed] rounded-full" />
+                        <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-1.5 h-1.5 bg-black/50 dark:bg-white/50 rounded-full" />
                       </div>
                     </div>
                   )}
@@ -347,7 +456,7 @@ export default function Chatbot() {
                 </div>
 
                 {/* Input Area */}
-                <div className="p-3 border-t border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5">
+                <div className="p-3 border-t border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02]">
                   <div className="flex items-center gap-2">
                     <input
                       type="text"
@@ -356,14 +465,15 @@ export default function Chatbot() {
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') handleSend(inputValue);
                       }}
-                      placeholder="Type your message..."
-                      className="flex-1 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full px-4 py-2 text-sm text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 focus:outline-none focus:border-black/30 dark:focus:border-white/30 transition-colors"
+                      placeholder="Ask about CAD, DFM, pricing, standards..."
+                      className="flex-1 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full px-3.5 py-2 text-xs sm:text-sm text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 focus:outline-none focus:border-[#00d4ff] dark:focus:border-[#00d4ff] transition-colors"
                       disabled={submitting}
                     />
                     <button
                       onClick={() => handleSend(inputValue)}
                       disabled={!inputValue.trim() || submitting}
-                      className="p-2 rounded-full bg-primary text-primary-foreground hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+                      aria-label="Send message"
+                      className="p-2 rounded-full bg-gradient-to-r from-[#00d4ff] to-[#7c3aed] text-white hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all hover:scale-105"
                     >
                       <Send className="w-4 h-4" />
                     </button>

@@ -1488,7 +1488,7 @@
 /* ── Mobile VideoSection layout fix ── */
 @media (max-width: 767px) {
   /* On mobile the title+button row should stack nicely */
-  .video-section .flex.flex-col.md\\:flex-row {
+  .video-section .flex.flex-col.md\:flex-row {
     flex-direction: column !important;
     gap: 1.5rem !important;
   }

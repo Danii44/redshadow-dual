@@ -25,7 +25,7 @@ const impactItems = [
   },
 ];
 
-const loopedProjects = [...projects, ...projects, ...projects];
+const loopedProjects = [...projects, ...projects];
 
 export default function PortfolioShowcase() {
   const trackContainerRef = useRef<HTMLDivElement | null>(null);
@@ -54,7 +54,7 @@ export default function PortfolioShowcase() {
 
     const initializeSizes = () => {
       const fullWidth = track.scrollWidth;
-      const singleWidth = fullWidth / 3;
+      const singleWidth = fullWidth / 2;
       contentWidthRef.current = singleWidth;
       offsetRef.current = singleWidth;
       updateTransform(offsetRef.current);
@@ -66,7 +66,7 @@ export default function PortfolioShowcase() {
 
       let next = rawOffset;
       while (next < width * 0.25) next += width;
-      while (next > width * 2.75) next -= width;
+      while (next > width * 1.75) next -= width;
       return next;
     };
 
@@ -228,6 +228,7 @@ export default function PortfolioShowcase() {
                 className="portfolio-card"
                 whileHover={{ y: -8, scale: 1.01 }}
                 transition={{ duration: 0.3, ease: 'easeOut' }}
+                aria-hidden={index >= projects.length ? "true" : undefined}
               >
                 <Link href={`/portfolio/${project.id}`} className="block h-full">
                   <div className="portfolio-image-placeholder">
