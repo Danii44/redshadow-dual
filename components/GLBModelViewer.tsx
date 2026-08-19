@@ -20,12 +20,22 @@ function Model({ url, isLight }: { url: string; isLight: boolean }) {
   const scrollProgress = useRef(0);
   const modelReadyFired = useRef(false);
 
-  // Fire a one-shot event so SessionLoader knows the GLB is fully parsed & ready
-  useEffect(() => {
-    if (modelReadyFired.current) return;
-    modelReadyFired.current = true;
-    window.dispatchEvent(new CustomEvent('glb:ready'));
-  }, []);
+  // Fire a one-shot event after the first frame renders to ensure it's painted
+  useFrame(() => {
+    if (!modelReadyFired.current) {
+      modelReadyFired.current = true;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.dispatchEvent(new CustomEvent('glb:ready'));
+        });
+      });
+    }
+
+    if (!group.current) return;
+
+    group.current.rotation.y += scrollProgress.current * 0.012;
+    scrollProgress.current *= 0.95;
+  });
 
   const model = useMemo(() => {
     const clonedScene = scene.clone();
@@ -90,12 +100,7 @@ function Model({ url, isLight }: { url: string; isLight: boolean }) {
     return () => ctx.revert();
   }, []);
 
-  useFrame(() => {
-    if (!group.current) return;
 
-    group.current.rotation.y += scrollProgress.current * 0.012;
-    scrollProgress.current *= 0.95;
-  });
 
   const isMobile = size.width < 768;
   const isTablet = size.width < 1024;

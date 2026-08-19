@@ -138,15 +138,6 @@ export default function SessionLoader() {
             />
           </div>
 
-          {/* Logo below gear (smaller) */}
-          <motion.img
-            src="/assets/logo.webp"
-            alt="Red Shadow Designs"
-            className="w-8 h-8 object-contain"
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          />
-
           {/* Brand name */}
           <div className="flex flex-col items-center gap-1 mt-2">
             <span
@@ -154,12 +145,6 @@ export default function SessionLoader() {
               style={{ color: isLight ? '#1e1830' : '#ffffff' }}
             >
               Red Shadow Designs
-            </span>
-            <span
-              className="text-[0.65rem] uppercase tracking-[0.25em]"
-              style={{ color: isLight ? '#7c3aed' : '#00d4ff' }}
-            >
-              Loading assets…
             </span>
           </div>
 
