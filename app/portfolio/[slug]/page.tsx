@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { findProject, projects } from '@/lib/projects';
+import { fetchProjectByIdFromDB } from '@/lib/supabaseClient';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.redshadowdesigns.com';
 
@@ -11,7 +12,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = findProject(slug);
+  const project = (await fetchProjectByIdFromDB(slug)) || findProject(slug);
   if (!project) return { title: 'Project not found' };
 
   return {
@@ -22,14 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: project.title,
       description: project.description,
       url: `${BASE_URL}/portfolio/${project.id}`,
-      images: project.image ? [{ url: `${BASE_URL}${project.image}` }] : undefined,
+      images: project.image ? [{ url: project.image.startsWith('http') ? project.image : `${BASE_URL}${project.image}` }] : undefined,
     },
   };
 }
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = findProject(slug);
+  const project = (await fetchProjectByIdFromDB(slug)) || findProject(slug);
 
   if (!project) {
     return (

@@ -88,6 +88,7 @@ export function Footer() {
             <div className="social-icons">
 
               <a href="https://www.linkedin.com/company/red-shadow-designs/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn" aria-label="LinkedIn company page">in</a>
+              <a href="https://www.fiverr.com/users/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr" aria-label="Fiverr profile">Fi</a>
               <a href="https://www.behance.net/redshadowdesigns" target="_blank" rel="noopener noreferrer" className="social-icon" title="Behance" aria-label="Behance portfolio">Be</a>
             </div>
           </motion.div>

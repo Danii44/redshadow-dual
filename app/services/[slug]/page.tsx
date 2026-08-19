@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { getServiceBySlug, serviceSlugs, ServiceData } from '../seoServices';
+import { fetchServiceBySlugFromDB } from '@/lib/supabaseClient';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.redshadowdesigns.com';
 
@@ -11,7 +12,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = (await fetchServiceBySlugFromDB(slug)) || getServiceBySlug(slug);
 
   if (!service) {
     return {
@@ -31,6 +32,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  const imageUrl = service.heroImage?.startsWith('http')
+    ? service.heroImage
+    : `${BASE_URL}${service.heroImage}`;
+
   return {
     title: `${service.title} | Red Shadow Designs`,
     description: `${service.description} Get production-ready CAD, photorealistic renders, and engineering deliverables from Islamabad, Pakistan.`,
@@ -42,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url: `${BASE_URL}/services/${slug}`,
       images: [
         {
-          url: `${BASE_URL}${service.heroImage}`,
+          url: imageUrl,
           width: 1200,
           height: 630,
           alt: `${service.title} | Red Shadow Designs`,
@@ -53,14 +58,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: 'summary_large_image',
       title: `${service.title} | Red Shadow Designs`,
       description: service.description,
-      images: [`${BASE_URL}${service.heroImage}`],
+      images: [imageUrl],
     },
   };
 }
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const service: ServiceData | null = getServiceBySlug(slug);
+  const service: ServiceData | null = (await fetchServiceBySlugFromDB(slug)) || getServiceBySlug(slug);
 
   if (!service) {
     return (

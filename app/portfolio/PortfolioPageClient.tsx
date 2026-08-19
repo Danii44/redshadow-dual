@@ -3,11 +3,13 @@
 import { type CSSProperties, useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { projects } from '@/lib/projects';
+import { Project, projects as defaultProjects } from '@/lib/projects';
+import { fetchProjectsFromDB } from '@/lib/supabaseClient';
 
 const ALL_CATEGORIES = ['All', 'CAD Design', 'Product Design', 'Industrial Design', '3D Rendering', 'Medical', 'Hardware'];
 
 export default function PortfolioPageClient() {
+  const [projectList, setProjectList] = useState<Project[]>(defaultProjects);
   const [scrollY, setScrollY] = useState(0);
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
@@ -16,16 +18,24 @@ export default function PortfolioPageClient() {
     const handleScroll = () => setScrollY(window.scrollY);
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Fetch dynamic project updates from database
+    fetchProjectsFromDB().then((data) => {
+      if (data && data.length > 0) {
+        setProjectList(data);
+      }
+    });
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const ambientStyle = { '--scroll-offset': `${Math.min(scrollY * 0.12, 120)}px`, '--scroll-rise': `${Math.min(scrollY * 0.08, 70)}px` } as CSSProperties;
 
-  const filtered = useMemo(() => projects.filter(p => {
+  const filtered = useMemo(() => projectList.filter(p => {
     const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
     const matchesSearch = search === '' || p.title.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase()) || p.description.toLowerCase().includes(search.toLowerCase());
     return matchesCategory && matchesSearch;
-  }), [search, activeCategory]);
+  }), [projectList, search, activeCategory]);
 
   return (
     <div className="homepage-shell" style={ambientStyle}>

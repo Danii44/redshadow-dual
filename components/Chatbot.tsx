@@ -269,7 +269,7 @@ export default function Chatbot() {
     addBotMessage("Submitting your inquiry to our engineering team...");
 
     const payload = {
-      access_key: "96bf085a-5410-4a8f-9048-3533423c4735",
+      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "96bf085a-5410-4a8f-9048-3533423c4735",
       name: intakeData.name,
       email: intakeData.contact,
       subject: `[Project Inquiry] ${intakeData.service} - ${intakeData.name}`,

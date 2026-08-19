@@ -57,7 +57,7 @@ export function ContactEnhanced() {
     setSubmitting(true);
 
     const payload = {
-      access_key: "96bf085a-5410-4a8f-9048-3533423c4735",
+      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "96bf085a-5410-4a8f-9048-3533423c4735",
       name: formData.name,
       email: formData.email,
       subject: `[Red Shadow Contact] ${formData.subject}`,
@@ -158,6 +158,7 @@ export function ContactEnhanced() {
 
               <div className="social-icons">
                 <a href="https://www.linkedin.com/company/red-shadow-designs/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn" aria-label="LinkedIn">in</a>
+                <a href="https://www.fiverr.com/users/daniyalahmad7" target="_blank" rel="noopener noreferrer" className="social-icon" title="Fiverr" aria-label="Fiverr">Fi</a>
                 <a href="https://www.behance.net/redshadowdesigns" target="_blank" rel="noopener noreferrer" className="social-icon" title="Behance" aria-label="Behance">Be</a>
               </div>
             </div>
