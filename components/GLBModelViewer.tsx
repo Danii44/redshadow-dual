@@ -50,7 +50,7 @@ function Model({ url, isLight }: { url: string; isLight: boolean }) {
         const parentName = (child.parent?.name || '').toLowerCase();
         const fullIdentifier = `${name} ${parentName}`;
 
-        // 1. AI WATCH - 1 BODY (Solid Sleek Black)
+        // 1. WATCH - 1 BODY (Solid Sleek Black)
         if (fullIdentifier.includes('ai watch') || fullIdentifier.includes('mesh_1')) {
           child.material = new THREE.MeshStandardMaterial({
             color: new THREE.Color('#0D0D12'), // Deep Obsidian Black

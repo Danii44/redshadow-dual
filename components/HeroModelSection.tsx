@@ -5,15 +5,12 @@
  * 
  * Features:
  * - Full-screen immersive 3D model display
- * - Modal prompt for the hero experience
- * - Glassmorphism info panel with action buttons
+ * - Interactive scroll indicator
  * - Mobile responsive
  */
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import { ManusDialog } from '@/components/ManusDialog';
 import './HeroModelSection.css';
 
 const GLBModelViewer = dynamic(() => import('@/components/GLBModelViewer'), {
@@ -21,16 +18,13 @@ const GLBModelViewer = dynamic(() => import('@/components/GLBModelViewer'), {
   loading: () => <div className="w-full h-full min-h-[500px]" />,
 });
 
-
 export function HeroModelSection() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
   return (
     <section id="home" className="hero-model-section">
       <div className="hero-overlay-top" />
       <div className="hero-background-glow" />
 
-      {/* Floating 3D Model Display ONLY */}
+      {/* Floating 3D Model Display */}
       <div className="model-container">
         <GLBModelViewer />
       </div>
@@ -54,14 +48,6 @@ export function HeroModelSection() {
           />
         </svg>
       </motion.div>
-
-      <ManusDialog
-        title="Launch the Red Shadow demo"
-        logo="/assets/logo.webp"
-        open={isDialogOpen}
-        onOpenChange={setIsDialogOpen}
-        onLogin={() => setIsDialogOpen(false)}
-      />
     </section>
   );
 }

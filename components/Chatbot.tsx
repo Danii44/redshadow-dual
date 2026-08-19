@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MessageSquare, Send, Minus, RefreshCcw, Sparkles } from 'lucide-react';
+import { X, MessageSquare, Send, Minus, RefreshCcw } from 'lucide-react';
 import { chatbotKnowledge, fallbackResponse, Intent } from '@/lib/chatbotKnowledge';
 
 type Message = {
@@ -272,9 +272,9 @@ export default function Chatbot() {
       access_key: "96bf085a-5410-4a8f-9048-3533423c4735",
       name: intakeData.name,
       email: intakeData.contact,
-      subject: `[Chatbot Project Inquiry] ${intakeData.service} - ${intakeData.name}`,
+      subject: `[Project Inquiry] ${intakeData.service} - ${intakeData.name}`,
       message: `Service: ${intakeData.service}\nName: ${intakeData.name}\nContact: ${intakeData.contact}\nProject Description: ${intakeData.description}\nFiles Option: ${intakeData.filesOption}\nDeadline: ${intakeData.deadline}`,
-      from_name: "Red Shadow AI Assistant"
+      from_name: "Red Shadow Design Studio"
     };
 
     try {
@@ -338,7 +338,7 @@ export default function Chatbot() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => { setIsOpen(true); setIsMinimized(false); }}
-            aria-label="Open AI Design Assistant"
+            aria-label="Open Project Desk"
             className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-white/90 dark:bg-black/70 backdrop-blur-md border border-black/15 dark:border-white/15 shadow-xl text-black dark:text-white hover:scale-105 transition-all duration-300 group"
           >
             <div className="relative">
@@ -376,10 +376,10 @@ export default function Chatbot() {
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <h3 className="text-black dark:text-white font-medium text-sm leading-tight">Red Shadow Assistant</h3>
-                    <Sparkles className="w-3.5 h-3.5 text-[#00d4ff]" />
+                    <h3 className="text-black dark:text-white font-medium text-sm leading-tight">Red Shadow Studio Desk</h3>
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" title="Online" />
                   </div>
-                  <p className="text-black/50 dark:text-white/50 text-[11px] leading-tight">AEO & Engineering Knowledge</p>
+                  <p className="text-black/50 dark:text-white/50 text-[11px] leading-tight">Engineering & Project Support</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">

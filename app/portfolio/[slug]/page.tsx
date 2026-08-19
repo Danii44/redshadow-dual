@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
-import { findProject } from '@/lib/projects';
+import { findProject, projects } from '@/lib/projects';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.redshadowdesigns.com';
 
 type Props = { params: Promise<{ slug: string }> };
+
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.id }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
