@@ -1100,7 +1100,7 @@ export default function AdminDashboardClient() {
                   <div className="p-3 rounded-xl bg-black/90 text-white font-mono text-[11px] select-all">
                     NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co<br />
                     NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...<br />
-                    ADMIN_PASSWORD=your_chosen_admin_password
+                    Add the admin password only as a server-side Netlify environment variable.
                   </div>
                 </div>
 

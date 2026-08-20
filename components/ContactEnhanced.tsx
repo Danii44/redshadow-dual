@@ -52,43 +52,40 @@ export function ContactEnhanced() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
-    const payload = {
-      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "96bf085a-5410-4a8f-9048-3533423c4735",
-      name: formData.name,
-      email: formData.email,
-      subject: `[Red Shadow Contact] ${formData.subject}`,
-      message: formData.message,
-      from_name: "Red Shadow Designs Portfolio"
-    };
-
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(payload)
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setSubmitting(false);
-        if (data.success) {
-          setSubmitted(true);
-          setFormData({ name: '', email: '', subject: '', message: '' });
-        } else {
-          console.error("Web3Forms submission failed:", data);
-          alert("Submission failed. Please try again or email us directly.");
-        }
-      })
-      .catch((error) => {
-        setSubmitting(false);
-        console.error("Form submission error:", error);
-        alert("An error occurred. Please try again.");
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: `[Red Shadow Contact] ${formData.subject}`,
+          message: formData.message,
+          from_name: 'Red Shadow Designs Portfolio',
+        }),
       });
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        console.error('Contact submission failed:', data);
+        alert('Submission failed. Please try again or email us directly.');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('An error occurred. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

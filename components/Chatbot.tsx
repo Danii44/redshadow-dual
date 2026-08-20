@@ -268,23 +268,20 @@ export default function Chatbot() {
     setSubmitting(true);
     addBotMessage("Submitting your inquiry to our engineering team...");
 
-    const payload = {
-      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "96bf085a-5410-4a8f-9048-3533423c4735",
-      name: intakeData.name,
-      email: intakeData.contact,
-      subject: `[Project Inquiry] ${intakeData.service} - ${intakeData.name}`,
-      message: `Service: ${intakeData.service}\nName: ${intakeData.name}\nContact: ${intakeData.contact}\nProject Description: ${intakeData.description}\nFiles Option: ${intakeData.filesOption}\nDeadline: ${intakeData.deadline}`,
-      from_name: "Red Shadow Design Studio"
-    };
-
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
+      const res = await fetch('/api/contact', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          name: intakeData.name,
+          email: intakeData.contact,
+          subject: `[Project Inquiry] ${intakeData.service} - ${intakeData.name}`,
+          message: `Service: ${intakeData.service}\nName: ${intakeData.name}\nContact: ${intakeData.contact}\nProject Description: ${intakeData.description}\nFiles Option: ${intakeData.filesOption}\nDeadline: ${intakeData.deadline}`,
+          from_name: 'Red Shadow Design Studio',
+        }),
       });
       const data = await res.json();
 
