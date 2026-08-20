@@ -195,15 +195,12 @@ const structuredData = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="bg-background" suppressHydrationWarning>
       <head>
         {/* Resource preconnect hints — tell browser to resolve DNS early */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://api.web3forms.com" />
-
-        {/* Preload the hero 3D model so the browser fetches it immediately at parse time */}
-        <link rel="preload" href="/assets/Watch.glb" as="fetch" crossOrigin="anonymous" />
 
         {/* JSON-LD Structured Data for SEO, AEO & GEO */}
         {/* Favicon and touch icons (generated) */}

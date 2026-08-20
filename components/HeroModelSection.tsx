@@ -25,29 +25,36 @@ export function HeroModelSection() {
       <div className="hero-background-glow" />
 
       {/* Floating 3D Model Display */}
-      <div className="model-container">
+      <div className="model-container" aria-hidden="true">
         <GLBModelViewer />
       </div>
 
-      <motion.div
+      <div className="hero-content-shell">
+        <div className="hero-eyebrow"><span className="hero-status-dot" /> Available for select projects</div>
+        <h1>Engineering ideas into <em>real</em> products.</h1>
+        <p>Precision CAD, product visualization, and industrial design for teams building what comes next.</p>
+        <div className="hero-actions">
+          <a className="hero-primary-action" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
+          <a className="hero-secondary-action" href="#portfolio">View selected work <span aria-hidden="true">↓</span></a>
+        </div>
+        <div className="hero-proof-row" aria-label="Studio capabilities">
+          <span>CAD &amp; DFM</span><span>3D visualization</span><span>Worldwide delivery</span>
+        </div>
+      </div>
+
+      <motion.button
+        type="button"
         className="scroll-indicator-hero"
-        animate={{ y: [0, 12, 0] }}
+        aria-label="Scroll to about section"
+        animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2.5, repeat: Infinity }}
-        onClick={() => {
-          const el = document.getElementById('about');
-          el?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M12 5v14m0 0l-7-7m7 7l7-7"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+        <span>Scroll to explore</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5v14m0 0l-5-5m5 5l5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-      </motion.div>
+      </motion.button>
     </section>
   );
 }

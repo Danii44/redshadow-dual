@@ -11,12 +11,20 @@ export default function SiteLoader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Show loader for 3.5 seconds
-    const timer = setTimeout(() => {
+    let settled = false;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
       setIsLoading(false);
-    }, 3500);
+    };
 
-    return () => clearTimeout(timer);
+    window.addEventListener('glb:ready', finish, { once: true });
+    const fallbackTimer = window.setTimeout(finish, 1600);
+
+    return () => {
+      window.removeEventListener('glb:ready', finish);
+      window.clearTimeout(fallbackTimer);
+    };
   }, []);
 
   return (

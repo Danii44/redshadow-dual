@@ -400,6 +400,50 @@
   transform: translateX(-50%) scale(1.2);
 }
 
+/* Clear message layer: the model remains visible, but the business value leads. */
+.hero-content-shell {
+  position: relative;
+  z-index: 12;
+  width: min(1180px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding-top: clamp(4rem, 12vh, 8rem);
+  pointer-events: none;
+}
+
+.hero-content-shell > * { pointer-events: auto; }
+.hero-eyebrow, .hero-proof-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: rgba(255,255,255,0.68);
+  font: 600 0.68rem/1.2 'Space Mono', monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.hero-status-dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #ff6257; box-shadow: 0 0 0 4px rgba(255,98,87,0.14); }
+.hero-content-shell h1 { max-width: 650px; margin: 1rem 0 1.25rem; color: #fff; font-size: clamp(3rem, 7vw, 6.8rem); line-height: 0.96; letter-spacing: -0.065em; text-wrap: balance; }
+.hero-content-shell h1 em { color: #ff6257; font-style: normal; }
+.hero-content-shell p { max-width: 430px; margin: 0; color: rgba(255,255,255,0.72); font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.55; }
+.hero-actions { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; }
+.hero-primary-action, .hero-secondary-action { display: inline-flex; align-items: center; gap: 0.8rem; border-radius: 999px; padding: 0.85rem 1.2rem; font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: transform 180ms ease, background 180ms ease, color 180ms ease; }
+.hero-primary-action { background: #ff6257; color: #160d0d; }
+.hero-secondary-action { border: 1px solid rgba(255,255,255,0.22); color: #fff; }
+.hero-primary-action:hover, .hero-secondary-action:hover { transform: translateY(-2px); }
+.hero-secondary-action:hover { background: rgba(255,255,255,0.1); }
+.hero-proof-row { margin-top: 3rem; gap: 1.5rem; color: rgba(255,255,255,0.48); }
+.hero-proof-row span + span { border-left: 1px solid rgba(255,255,255,0.2); padding-left: 1.5rem; }
+.scroll-indicator-hero { display: flex; align-items: center; gap: 0.45rem; border: 0; background: transparent; color: rgba(255,255,255,0.65); font: 600 0.68rem/1 'Space Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+
+:root:not(.dark) .hero-content-shell h1 { color: #1e1830; }
+:root:not(.dark) .hero-content-shell p, :root:not(.dark) .hero-eyebrow, :root:not(.dark) .hero-proof-row { color: rgba(30,24,48,0.68); }
+:root:not(.dark) .hero-secondary-action { border-color: rgba(30,24,48,0.22); color: #1e1830; }
+:root:not(.dark) .hero-secondary-action:hover { background: rgba(30,24,48,0.08); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-primary-action, .hero-secondary-action, .scroll-indicator-hero { transition: none; }
+  .scroll-indicator-hero { animation: none !important; }
+}
+
 /* ============================================================================
    RESPONSIVE DESIGN
    ============================================================================ */
